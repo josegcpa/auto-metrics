@@ -1,0 +1,143 @@
+{
+  "Summary": "This study develops and assesses a radiomics-based prediction model using contrast-enhanced CT images to distinguish between T2 and T3 stages of laryngeal and hypopharyngeal squamous cell carcinoma (LHSCC). The model combines radiomic features with morphological imaging characteristics to create a nomogram, demonstrating good diagnostic performance and clinical usefulness for guiding treatment decisions.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual delineation of ROIs on CT images for feature extraction, indicating segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions manual delineation of ROIs, so the segmentation is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts 851 radiomic features from CT images using the PyRadiomics package, which are hand-crafted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses radiomic features in a CSV format, which is a tabular data format."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses traditional machine learning classifiers (e.g., logistic regression) rather than an end-to-end deep learning approach."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathological examination, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that contrast-enhanced CT images were acquired by one of three scanners, but all scanners are at a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses contrast-enhanced CT images, which are a standard imaging technique in clinical practice for LHSCC staging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions that the details of the scanning parameters are described in Supplementary A1."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that histopathological examination was performed within 2 weeks after CT scanning, which is an appropriate interval."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the delineation criteria in Supplementary A3 and mentions that the images were manually delineated and validated by two readers."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study uses manual segmentation, not fully automated segmentation, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study mentions that the ROIs were delineated and validated by two readers, so the final segmentation in the test set was not produced by a single reader or automated tool."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions standardization preprocessing of images and feature extraction using 3D Slicer software with the PyRadiomics package."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses the PyRadiomics package (version 3.0.1) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (original image features and wavelet decomposition features) and provides information on the feature extraction parameters."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study assesses the reproducibility of extracted features using ICCs and only uses features with ICCs > 0.75 for subsequent analyses."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses Pearson's correlation coefficient (PCC) for dimensionality reduction, which is a method for removing redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study randomly splits the data into training and test sets at a ratio of 7:3."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study uses the Kruskal-Wallis test to remove features showing significant statistical differences among different scanners, addressing potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC, accuracy, sensitivity, and specificity to assess the performance of the models."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The Hosmer–Lemeshow goodness-of-fit test was performed to evaluate the calibration of the nomogram, and a calibration curve was plotted."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of a uni-parametric approach to the multi-parametric approach used."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study incorporates morphological imaging characteristics evaluated by radiologists into the nomogram and compares the net benefit using decision curve analysis (DCA)."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of the radiomic model to a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent test set sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study is a single-center study and does not include external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any scripts related to automatic segmentation and/or modeling being shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the final model being shared in any form."
+  }
+}

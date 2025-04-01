@@ -1,0 +1,143 @@
+{
+  "Summary": "This study presents a deep learning and radiomics approach to predict EGFR mutations in NSCLC patients using contrast-enhanced CT images. The method involves segmenting tumor regions, extracting radiomics features, and using a convolutional neural network to extract image features. These features are combined with clinical data to train a predictive model, which is then validated on both internal and external datasets. The results suggest that integrating radiomics analysis with deep learning can improve the prediction of EGFR mutations, potentially leading to better prognosis and personalized treatment strategies for NSCLC patients.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study mentions segmenting regions of interest from CT images to extract radiomics features and obtain tumor images, indicating the presence of segmentation."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study mentions using a fully automatic segmentation technique implemented using a U-Net model, indicating fully automated segmentation."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study mentions extracting radiomics features, including first-order statistics and secondary statistical features, which are hand-crafted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes clinical data such as sex, height, weight, smoking history, and clinical stage, which are presented in a tabular format."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses convolutional neural networks (CNNs) to directly process tumor images and extract image features, which are then combined with radiomics and clinical data to predict EGFR mutations, indicating an end-to-end deep learning approach."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria by selecting patients with NSCLC who underwent EGFR mutation testing and had pretreatment CT scans, which describes a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses EGFR mutation testing as the reference standard, which is a well-established clinical marker for NSCLC."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from three different hospitals (Ajou University Hospital, Inha University Hospital, and Chungnam National University Hospital), indicating a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses contrast-enhanced CT scans, which are a standard imaging technique in clinical practice for NSCLC diagnosis and staging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions using CT images and provides some details about the preprocessing steps, such as normalization and application of modality and VOI LUTs, which contributes to the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that pretreatment CT scans were used, implying that the imaging was performed before the EGFR mutation testing, which is appropriate for validating the presence of target conditions at the moment of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology by mentioning the use of a U-Net model pretrained using the Lung-PET-CT-Dx dataset from the Cancer Imaging Archive."
+  },
+  "Item9": {
+    "rating": "no",
+    "reason": "The study does not provide a formal evaluation of the fully automated segmentation accuracy compared to domain expert annotations (e.g., DICE score or Jaccard index)."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study does not explicitly state whether the test set segmentation masks were produced by a single reader or an automated tool. It only mentions using a fully automatic segmentation technique."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps such as normalization, modality and VOI LUTs, and histogram flattening, which are appropriate for CT images. It also describes the normalization of pixel values between 0 and 1."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the use of a standardized feature extraction software compliant with IBSI."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of features extracted (first-order statistics and secondary statistical features) and mentions the use of CNN models (EfficientNet b7, ResNet 34, and DenseNet264) for image feature extraction. It also provides details about the network architecture and image operations."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of redundant features through dimensionality reduction techniques like LASSO, Random Forest, or correlation analysis."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide any statistical justification or empirical evidence to demonstrate the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not assess the robustness of the end-to-end deep learning pipelines in a test-retest setting or through stability analysis."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions using data from different hospitals for training, internal validation, and external validation, indicating a proper data partitioning process. It also mentions using fivefold cross-validation."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges that sex, height, weight, smoking history, and clinical stage were significantly different between the EGFR-mutant patient groups, suggesting an awareness of potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC values, specificity, precision, sensitivity, F1-score, and accuracy as performance evaluation metrics for the classification models, which are appropriate for the task. It also includes ROC curves."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes the standard deviation of each fold model performance, which is a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with uni-parametric imaging or a justification for using multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses an internal validation dataset (AJMC and CNUH data) that is sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study uses an external validation dataset (INHA data) from another institution."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that the datasets generated and/or analyzed are available from the corresponding author upon reasonable request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study includes a code availability statement and provides a link to a publicly available pytorch training script for lung tumor mask."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

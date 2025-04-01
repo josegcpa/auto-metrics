@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates the potential of radiomics analysis of BOLD-MRI images to predict renal response to percutaneous-transluminal renal angioplasty (PTRA) and stenting in a swine model of renal artery stenosis (RAS). The study found that radiomics features extracted from pre-PTRA BOLD maps, combined with physiological parameters, can predict post-PTRA renal function, specifically GFR and RBF. The study also observed that oxygenation heterogeneity, as captured by radiomics features, is associated with better GFR recovery. The authors conclude that radiomics analysis of renal BOLD-MRI maps can provide valuable information for identifying subjects likely to benefit from renal artery stenting.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the renal cortex for radiomics analysis, as described in the methods section: 'Cortical ROIs were defined manually (Fig. 1).'"
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually, so it is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from BOLD maps, such as GLCM, GLRLM, GLSZM, and NGTDM features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of physiological parameters (Table 1) and radiomics features that are used in the predictive models."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and Lasso regression for model building."
+  },
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions following the guidelines proposed by the image biomarker standardization initiative (IBSI) and the workflow described by van Timmeren et al. for feature selection and data preparation."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion criteria (swine model of RAS) and exclusion criteria (not explicitly stated, but implied through the model)."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on MDCT measurements of RBF and GFR, which are well-established methods for assessing renal function. The study also uses a well-characterized swine model of RAS."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is performed at a single institution (Mayo Clinic)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (BOLD-MRI) is clinically translatable, as BOLD-MRI is used in clinical practice to assess renal oxygenation."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the imaging protocol with acquisition parameters for both CT and MRI."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The interval between imaging and the reference standard is appropriate, as the post-PTRA CT and MR scans were repeated 4 weeks after the procedure to assess the response to treatment."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, stating that cortical ROIs were defined manually. It also mentions the use of Analyze™ software for image analysis."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not use fully automated segmentation."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that cortical ROIs were defined manually, implying that the final segmentation in the test set was produced by a single reader."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image preprocessing techniques used, including interpolation and re-sampling of BOLD maps. It also mentions the selection of an upper limit for acceptable cortical R2* values to address susceptibility artifacts."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study mentions using an open-source Matlab code for feature extraction, but it does not explicitly state that the software is IBSI compliant."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (global first-order histograms, GLCM, GLRLM, GLSZM, and NGTDM features) and provides details on the feature extraction parameters, such as the number of bins used for discretization."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study removes non-robust features using a perturbation-based method and intraclass correlation coefficients (ICC). Only features with excellent ICC values were used for subsequent analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention removing redundant features. It focuses on removing non-robust features based on ICC values."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. It does not explicitly discuss statistical means or empirical evidence to support the choice of the number of features used in the final model."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study describes an iterative partitioning approach where the dataset was repeatedly divided into training and testing cohorts. It mentions that 80% of the dataset was used for training and 20% for testing, with approximately 4800 unique training and test sets generated."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address potential confounding factors such as scanner type or patient characteristics. It does not mention analyzing or removing any confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the task, including correlation coefficients (r) and p-values. It also reports sensitivity and specificity for distinguishing responders from non-responders."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports confidence intervals (CI) for single-kidney CT-based GFR measurements."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (CT and MRI). It does not include a uni-parametric evaluation or a justification for the use of multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice. It does not provide proof of improved diagnostic accuracy or patient outcome compared to a non-radiomic method."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the results with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses internal testing by repeatedly dividing the dataset into training and testing cohorts."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not use external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention sharing any imaging, segmentation, clinical, or radiomics analysis data with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing any scripts related to automatic segmentation and/or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form with the public."
+  }
+}

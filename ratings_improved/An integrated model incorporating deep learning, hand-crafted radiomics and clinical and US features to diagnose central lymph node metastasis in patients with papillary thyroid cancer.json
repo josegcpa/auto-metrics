@@ -1,0 +1,143 @@
+{
+  "Summary": "This study developed and validated an integrated model incorporating deep learning (DL), hand-crafted radiomics, and clinical and US features for diagnosing central lymph node metastasis (CLNM) in patients with papillary thyroid cancer (PTC). The integrated model outperformed individual DL and hand-crafted radiomics models, as well as junior and senior radiologists, in reducing missed CLNM and unnecessary central lymph node dissection (CLND). The study also used SHAP and Grad-CAM for model explanation, enhancing clinical acceptance of AI-assisted US diagnosis.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study mentions manual segmentation of regions of interest (ROI) using ITK-SNAP for both hand-crafted radiomics and cropping for the deep learning model."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions manual segmentation of ROIs, indicating that the segmentation process is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study explicitly mentions the extraction of hand-crafted radiomic features using pyradiomics."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes clinical and US features such as age, gender, tumor size, and extrathyroidal extension, which are presented and used as tabular data in the integrated model."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study develops a deep learning model using a convolutional neural network (CNN) with ResNet50 architecture, indicating an end-to-end deep learning approach."
+  },
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions using the CLAIM and CLEAR checklists as reporting guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is clinicopathological confirmation of PTC and CLNM, which is a robust and well-established standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study includes data from two institutions, indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses ultrasound (US) imaging, which is a commonly used and standardized technique for preoperative LN assessment in PTC."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the US machines used (Siemens, Supersonic, Toshiba) and that data was stored in DICOM format, providing some details about the imaging protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study states that thyroid US examination was performed within one month before the operation, which is an appropriate interval to validate the presence or absence of target conditions."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual segmentation process using ITK-SNAP, with a radiologist performing the initial segmentation and another radiologist reviewing and reaching a consensus. They also report a dice coefficient of 0.946 for inter-reader consistency."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were produced by two readers reaching consensus, which does not reflect clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps such as cropping, resizing, and grayscale normalization for the DL model. However, details on gray level discretization for hand-crafted radiomics are not explicitly provided."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions using the pyradiomics package (version 3.1.0) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (hand-crafted and deep learning features) and provides some details on feature extraction parameters. It also refers to supplementary material for feature definitions."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses LASSO logistic regression for feature selection, which is a method for removing redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification or statistical assessment of the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not assess the robustness of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions random division into training and independent test cohorts. The ratio of training to validation is also mentioned. However, it does not explicitly state that the split was done at the patient level or that data processing was blinded to the test set."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study performs multivariate analysis to identify independent risk factors for CLNM, which can be considered as handling potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, sensitivity, specificity, PPV, and NPV for evaluating the performance of predictive models. ROC curve analysis is also mentioned."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not include a uni-parametric imaging analysis or justification for using multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the integrated model's performance with that of junior and senior radiologists, which represents a comparison with a non-radiomic approach representative of clinical practice."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple or classical statistical model like a Zero Rules classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes data from two institutions, so the external testing is performed."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the analyzed datasets are not publicly available due to patient information concerns."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study mentions that the codes used during the current study can be accessed at a GitHub repository."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

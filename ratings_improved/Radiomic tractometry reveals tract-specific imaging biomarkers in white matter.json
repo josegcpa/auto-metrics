@@ -1,0 +1,143 @@
+{
+  "Summary": "The study introduces radiomic tractometry (RadTract), a novel approach that combines radiomics with tractometry for enhanced white matter analysis. By extracting a rich set of radiomic features along white matter tracts, RadTract improves predictive modeling and localization of informative tract regions. The study demonstrates RadTract's superior performance in diagnosing disease subgroups and estimating demographic/clinical parameters across multiple clinical datasets, suggesting its potential for developing new tract-specific imaging biomarkers.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of white matter tracts using TractSeg, as described in the methods section. This involves delineating specific regions of interest within the diffusion MRI images."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study utilizes TractSeg for tract segmentation, which is an automated tool. The methods section describes the use of TractSeg to calculate tract segmentations, tract start- and end-region segmentations, tract orientation maps, and tractograms of each tract."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features such as first-order statistics, shape-based features, and texture features (GLCM, GLRLM, GLSZM, NGTDM, GLDM) from the segmented white matter tracts."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features, which are organized and analyzed in a table format for machine learning tasks. The features are described as being used for classification and regression experiments."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not employ an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and machine learning models like random forests."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist. While the methodology is detailed, there's no statement confirming the use of such guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for each dataset, describing the subgroups included (e.g., Alzheimer's disease, mild cognitive impairment, healthy controls) and matching them for age and sex. This ensures a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses well-established clinical diagnoses (e.g., Alzheimer's disease, Parkinson's disease, schizophrenia) as the reference standard. These diagnoses are based on clinical assessments and are representative of current clinical practice."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from multiple centers, including ADNI, PPMI, UCLA Consortium for Neuropsychiatric Phenomics, and the Central Institute of Mental Health (CIMH). This multi-center approach enhances the generalizability of the findings."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (dMRI) is clinically translatable, as diffusion MRI is a widely used and standardized technique for assessing white matter microstructure in clinical settings."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the imaging protocol with acquisition parameters for each dataset, including scanner type, field strength, number of directions, b-values, and resolution. This level of detail ensures the replicability of the method."
+  },
+  "Item7": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the interval between imaging and the reference standard (clinical diagnosis). Without this information, it's difficult to assess whether the imaging data accurately reflects the condition at the time of diagnosis."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study provides a transparent description of the segmentation methodology, detailing the use of TractSeg for automated tract segmentation and the subsequent steps for creating binary tract envelopes and filling holes. The centerline-based approach for parcel assignment is also clearly explained."
+  },
+  "Item9": {
+    "rating": "no",
+    "reason": "While the study uses fully automated segmentation with TractSeg, it does not include a formal evaluation of its accuracy compared to domain expert annotations. There is no mention of metrics like DICE score or Jaccard index to assess the segmentation performance."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study uses TractSeg for automated segmentation in the test set, which reflects clinical practice by using an entirely automated tool without manual review by a radiologist."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study appropriately uses image preprocessing techniques, including noise reduction, Gibbs ringing removal, eddy current and inhomogeneity distortion correction, and bias field correction. These techniques are standard for dMRI data and are transparently described."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses pyradiomics for feature extraction, which is a standardized software package. The version number (v3.0.1) is also provided, indicating the use of a standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study transparently reports the feature extraction parameters, including the types of features (first-order statistics, shape-based, texture) and the specific features calculated. The use of a YAML file for parameterizing the feature extraction is also mentioned, providing a detailed configuration of the settings."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis. While feature selection is performed, it focuses on removing constant and highly correlated features rather than unstable ones."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs dimensionality reduction by removing highly correlated features (Pearson correlation > 0.95) and using univariate feature selection to select the k most informative features. This addresses the removal of redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. While feature selection is performed, there's no statistical or empirical evidence presented to demonstrate that the number of instances and features is appropriate for the modeling algorithm."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study uses leave-one-out cross-validation (LOO-CV) with ten different seeds, which ensures that the data partitioning is done at the patient level and that the training and testing sets are independent. The use of LOO-CV also implies that data processing is done blinded to the test set data."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of confounding factors. While the groups are matched for age and sex, there's no mention of analyzing or removing other potential confounders stemming from the acquisition process or individual patient characteristics."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the classification task, including the area under the receiver operating characteristic (AUROC). For regression tasks, Pearson's correlations and mean squared error (MSE) are used. The choice of AUROC over accuracy is justified to avoid bias due to arbitrary probability thresholds."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not explicitly report uncertainty measures such as confidence intervals or standard deviations for the performance metrics. While variance across repetitions is mentioned, it's not presented as a formal uncertainty measure."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model. There is no mention of calibration curves or other methods to evaluate the model's calibration."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiple parameter maps (FA, ADC, AD, RD) without providing a comparison to uni-parametric imaging or justification for the added value of the multi-parametric approach. There is no formal comparison to demonstrate the inferiority of using a single parameter map."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomic approach with a non-radiomic method that is representative of clinical practice. There is no comparison with semantic features, RADS or RECIST scoring, or simple volume/size evaluations."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model such as a Zero Rules/No Information Rate classifier. The justification for using machine learning methods is not supported by a comparison with a simple baseline model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses leave-one-out cross-validation (LOO-CV), which involves internal testing on an independent data set sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions. All datasets used are analyzed separately, but there is no validation of the model on a completely independent external dataset."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study makes the code and the parameters used for the analysis publicly available. The data used in the study is also available through public repositories."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study provides the RadTract code as supplementary software and mentions that updated versions can be found on GitHub and PyPI. This indicates that the scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "yes",
+    "reason": "The study makes the RadTract code available as a ready-to-use Python package, which can be considered a form of model availability. This allows others to use the tool for calculating advanced and standardized tract-specific imaging features."
+  }
+}

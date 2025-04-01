@@ -1,0 +1,143 @@
+{
+  "Summary": "This study explores the performance of LI-RADS and radiomics from multiparametric MRI in predicting microvascular invasion (MVI) preoperatively in patients with solitary hepatocellular carcinoma (HCC) < 5 cm. The study found that incomplete tumor capsule and corona enhancement on preoperative MRI were significantly related to MVI in solitary HCC < 5 cm. Multiple-sequence radiomic features potentially improve MVI-prediction-model performance, which could potentially help determine HCC’s appropriate therapy. The combination model exhibited superior diagnostic performance to the clinical model and yielded an AUC of 0.858 in an independent test cohort.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes tumor segmentation as part of the radiomic analysis workflow, where the region of interest (ROI) was drawn along the tumor margin layer by layer to generate a 3D-ROI."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The tumor segmentation was performed by two radiologists, indicating that it was not a fully automated process."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features from T2WI/FS, AP, PVP, and delayed phase (DP) images using PyRadiomics, which involves hand-crafted feature extraction."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images and clinical factors."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it uses hand-crafted radiomic features and AdaBoost for model construction."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, which helps to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathological diagnosis of MVI, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study was conducted at a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is CE-MRI, which is a clinically translatable imaging technique for HCC diagnosis and staging, and LI-RADS criteria are used."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition protocol with parameters such as TR, TE, flip angle, FOV, matrix, section thickness, and contrast agent details."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that CE-MRI examination was performed within 30 days preoperatively, which is an appropriate interval to validate the presence or absence of MVI at the moment of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that the ROI was drawn along the tumor margin layer by layer to generate a 3D-ROI."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed by two radiologists, so it was not a fully automated segmentation."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The segmentation was performed by two radiologists, not a single reader or automated tool."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps such as resampling the voxel size to 1x1x1 mm3 using B-spline interpolation and gray-level intensity discretization at a fixed bin width of 25."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics v.2.1.2 for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order statistics, morphological features, GLCM, GLSZM, GLRLM, NGTDM, and GLDM features) and mentions that the same series of radiomic features were extracted from all sequences."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study used ICC analysis to assess the reliability and stability of each feature, retaining only those with ICC values greater than 0.75."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used Pearson’s correlation to remove redundant features with mutual correlation coefficients > 0.9 and univariate statistical difference analysis to identify discriminative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, such as statistical means or empirical evidence."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly stratified into training, internal validation, and independent test cohorts. However, it does not explicitly state whether the data split was done at the patient level or whether a fixed random seed was used."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across sites or scanners."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity for model evaluation. ROC curves, calibration curves, and decision curve analysis were also used."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study includes calibration curves to assess the calibration of the models."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide a justification for the use of multi-parametric imaging by formally comparing its performance with uni-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics-based models with a clinical model based on LI-RADS features and other imaging features, which can be considered a non-radiomic approach representative of clinical practice. The study also uses DeLong's test to compare the AUCs of different models."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the models with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an internal validation cohort."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent test cohort."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code being shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the model being shared with the public."
+  }
+}

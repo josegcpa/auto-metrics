@@ -1,0 +1,143 @@
+{
+  "Summary": "This study developed and validated a preoperative prediction model for early recurrence of pancreatic cancer using clinical, radiologic, and CT radiomics features. The clinical-radiologic-radiomics (CRR) model outperformed the radiomics and clinical-radiologic (CR) models in predicting early recurrence, suggesting that integrating radiomics with clinical and radiologic factors enhances predictive accuracy.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of pancreatic masses on CT images to create a volume of interest (VOI) for radiomics feature extraction."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by a radiologist, indicating that the segmentation process was not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features (first-order, shape, and higher-order features) from CT images using PyRadiomics software."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, including clinical, radiologic, and radiomic features, organized in tables for model development and analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on manual segmentation and hand-crafted feature extraction."
+  },
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions adherence to the Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is recurrence of pancreatic cancer, defined by radiologic evidence, which is a reasonable clinical endpoint. The follow-up period is clearly defined."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves three tertiary referral centers, indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, a standard imaging technique for pancreatic cancer, reflecting established standardization approaches."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details of CT imaging techniques in Table S1, including the portal venous phase timing, which helps ensure replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that preoperative CT scans were performed within 3 months of surgery, which is appropriate for validating the presence or absence of target conditions at the time of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual segmentation process, including the use of commercial software (Aview) and tracing along the tumor margins to create a volume of interest (VOI)."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The test set segmentation masks were produced by a single reader, which better reflects clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of Laplacian of Gaussian (LoG)-filtered and wavelet-filtered images for feature extraction, indicating appropriate image preprocessing techniques. They also specify the sigma values for LoG filtering."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics software for feature extraction, which is a standardized software. The version number is also provided."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order, shape, and higher-order features) and mentions the use of original, LoG-filtered, and wavelet-filtered images. This provides transparent reporting of feature extraction parameters."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study calculated intraclass correlation coefficients (ICC) for all extracted features using data from 20 cases segmented independently by two radiologists. Features with an interobserver ICC value > 0.75 were selected for subsequent processing, indicating removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used the exhaustive variant of the minimum redundancy maximum relevance ensemble to select the top five features for the radiomics model, indicating removal of redundant features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses statistical methods (bootstrap resampling) to compare the performance of different models and selects the model with the highest AUC, suggesting an appropriate dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into development and test cohorts from different centers. The data split is done at the patient level. The description of the statistical analysis suggests that the data partitioning was done properly."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges potential variations in CT scanners and protocols across different cohorts and discusses their potential impact on model performance, indicating consideration of confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics such as AUC, Brier score, sensitivity, and specificity for the classification task. The study also includes confidence intervals."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUCs of the models, indicating consideration of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses contrast-enhanced CT, which involves multiple phases. There is no comparison to single-phase imaging or justification for the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the radiomics-based models with a clinical-radiologic (CR) model, which represents a non-radiomic approach. The study also uses statistical methods (Delong test) to compare the AUCs of the models."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the models with a simple baseline reference model or justify the use of machine learning methods with proof of increased performance compared to such a baseline."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study includes internal validation using bootstrap samples, indicating internal testing."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes external validation using data from different institutions, indicating external testing."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study mentions that the data supporting the conclusions of the article is available in the author’s github repository, although patient data is available upon reasonable request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study mentions that the data supporting the conclusions of the article is available in the author’s github repository."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

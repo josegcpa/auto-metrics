@@ -1,0 +1,143 @@
+{
+  "Summary": "This study developed a combined model incorporating radiomics and CT imaging features to differentiate between benign and malignant subcentimeter solid pulmonary nodules (SSPNs). The model, which was trained and tested on a retrospective dataset of 324 patients, demonstrated excellent discriminative ability, potentially aiding radiologists in diagnosing SSPNs.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study mentions manual delineation of regions of interest (ROI) of the nodules on CT images, indicating segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study explicitly states that a radiologist manually delineated the ROIs, indicating that the segmentation was not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features, including first-order, shape, and texture features (GLCM, GLSZM, GLRLM, GLDM, and NGTDM), which are considered hand-crafted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses extracted radiomics features and CT characteristics in a tabulated format for model construction, indicating the presence of tabular data."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses logistic regression with hand-crafted radiomic features and CT imaging features, rather than an end-to-end deep learning approach."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, which helps to ensure a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses surgical pathology and follow-up imaging as reference standards, which are appropriate for validating the presence or absence of target conditions."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses CT images obtained from multiple scanners (General Electric and Toshiba), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses contrast-enhanced CT, which is a clinically translatable imaging technique for lung nodule evaluation."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the CT acquisition parameters, including tube voltage, tube current, helical pitch, rotation time, and slice thickness, which allows for replication of the imaging protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions the median interval time between CT scans and surgery (16 days), which is appropriate for validating the presence or absence of target conditions at the time of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual delineation of ROIs, avoiding adjacent vessels, bronchi, and normal lung tissue, providing a transparent description of the segmentation methodology."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study uses manual segmentation, not fully automated segmentation, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that a single radiologist delineated the ROIs, which reflects clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization and resampling during image pre-processing with a fixed bin width of 25, and resampling to [1,1,0] after B-spline interpolation, indicating appropriate use of image preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used Deepwise Multimodal Research Platform version 2.0.1.4, which is an integrated machine learning platform for medical data analysis based on the mature python Pyradiomics (version 3.0.1) and Scikit-learn (version 0.22) packages."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order, shape, and texture features) and refers to the Pyradiomics web page for specific calculation formulas, providing transparent reporting of feature extraction parameters."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study assessed the interobserver reproducibility of the segmentation by calculating ICCs and only included features with values > 0.75 in subsequent analysis, indicating removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study removed redundant features when the linear correlation coefficient between any two features was greater than 0.9, and used the analysis of variance F-test for feature selection, indicating removal of redundant features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses a fivefold cross validation, which is a good practice to avoid overfitting."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study randomly divides the original dataset into training and validation cohorts in a ratio of 7:3, and a model was developed using fivefold cross validation."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address or analyze potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, accuracy, sensitivity, specificity, positive predictive value, and negative predictive value, which are appropriate performance evaluation metrics for the classification task."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, indicating consideration of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the combined model with clinical and radiomics models, and uses the Delong test to compare AUCs, indicating a comparison with a non-radiomic approach."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent testing set that is sampled from the same source as the training set, indicating internal testing."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are not publicly available due to data sharing not obtaining the informed consent of the patients."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing any scripts related to automatic segmentation or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form."
+  }
+}

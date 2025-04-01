@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates the potential of CT radiomics in differentiating between Wilms tumor (WT) and clear cell sarcoma of the kidney (CCSK) in pediatric patients. The study retrospectively analyzed contrast-enhanced CT images from 83 WT and 33 CCSK cases, extracting radiomic features from the corticomedullary phase. A radiomics model was constructed using logistic regression and evaluated using cross-validation and an independent test set. The results suggest that CT radiomics can be diagnostically valuable for distinguishing between WT and CCSK, potentially improving clinical management by avoiding unnecessary treatments.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the tumor region of interest (ROI) on corticomedullary phase CT images using ITK-SNAP software."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions manual delineation of tumor boundaries by a radiologist, followed by verification by a senior radiologist, indicating that the segmentation was not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from CT images, including first-order, morphological, and texture features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomics features organized and presented in tables."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and a logistic regression model."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population. The criteria are clearly stated in the Methods section."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is pathological examination, which is a high-quality reference standard for diagnosing WT and CCSK."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution, Children's Hospital of Chongqing Medical University."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a clinically translatable imaging technique for evaluating renal tumors. The study uses corticomedullary and nephrographic phases, which are standard in clinical practice."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the scanning parameters used for CT acquisition, including slice thickness, slice spacing, automatic voltage, and automatic tube current. It also specifies the contrast agent and injection timing."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes pre-operative CT scans, which are appropriate for validating the presence of the tumors at the time of imaging. The time interval is appropriate as the imaging is done before any treatment."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that a radiologist manually delineated the tumor boundaries using ITK-SNAP software, and a senior radiologist reviewed and verified these areas. This provides a transparent description of the segmentation process."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study involves manual segmentation, not fully automated segmentation. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were reviewed by a senior radiologist, which does not reflect clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions resampling CT images to a uniform resolution and discretizing CT images with a specific binwidth. These preprocessing steps are described, contributing to the transparency of the image processing techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used FeAture Explorer (version 0.5.5) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomics features extracted (first-order, morphological, texture) and provides details on the feature extraction parameters. The software used (FeAture Explorer) is also mentioned."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study mentions the use of ICC to assess the reproducibility of radiomics features and selectively retained features with an ICC greater than 0.80. This indicates an effort to remove non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study employs Pearson correlation coefficient (PCC) analysis to mitigate correlations among radiomics features, removing features with a PCC value exceeding 0.90. Additionally, LASSO method was used for feature selection."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification or statistical evidence to demonstrate the appropriateness of the dimensionality compared to the data size. There is no discussion on whether the number of instances and features in the final training data set is appropriate for the modeling algorithm."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline. Therefore, robustness assessment of end-to-end deep learning pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions random stratification of patients into training and test sets using a 7:3 ratio. This indicates a proper data partitioning process at the beginning of the analysis."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address or analyze potential confounding factors such as scanner type, manufacturer, or scanner parameters. There is no discussion on how these factors might influence the generalizability of the results."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, specificity, and F1 score for the classification task. ROC curves are also presented. The study also includes calibration curves to evaluate the model's goodness of fit."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study includes calibration curves for the radiomics model in both the training and test sets, indicating a calibration assessment."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses contrast-enhanced CT images from both corticomedullary and nephrographic phases. There is no comparison with uni-parametric imaging or justification for the use of multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study includes image analysis by an experienced pediatric radiologist, evaluating imaging features such as maximum tumor diameter, CTmax/CT renal vein, and the presence of dilated peritumoral cysts. This can be considered a comparison with a non-radiomic approach. The study also uses clinical decision curves and clinical impact curves to assess the model's clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model or justify the use of machine learning methods with proof of increased performance compared to such a baseline."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent test set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets generated or analyzed are not publicly available."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the scripts related to automatic segmentation and/or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form with the public."
+  }
+}

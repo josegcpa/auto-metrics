@@ -1,0 +1,143 @@
+{
+  "Summary": "This study develops and validates CT-based radiomics signatures, including intratumoral, peritumoral, and combined signatures, to predict progression-free survival (PFS) in patients with chondrosarcoma (CS). The combined radiomics signature, incorporating both intratumoral and peritumoral features, demonstrates superior predictive performance compared to individual signatures, potentially aiding clinicians in tailoring surveillance and treatment plans for CS patients.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of the tumor and peritumoral region of interest (ROI) on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by two radiologists, so it is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from the segmented regions."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features organized in a table."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and traditional machine learning techniques."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on surgical or biopsy pathology, which is a high-quality reference standard for chondrosarcoma diagnosis."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves two centers, making it a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is non-contrast-enhanced CT, which is a clinically relevant imaging technique for chondrosarcoma evaluation."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed CT scanning protocols in Table S1, ensuring replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that CT examinations were performed within 2 weeks prior to obtaining surgical or biopsy pathology, which is an appropriate interval to validate the presence or absence of target conditions."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of ITK-SNAP software and the expansion of the peritumoral region using RIAS software."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The final segmentation was performed by a single reader, but it was not done to reflect clinical practice. It was done after inter-reader reliability was established."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions resampling, grayscale discretization, and normalization of CT images before feature extraction, which are appropriate preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the RadCloud platform for feature extraction, which can be considered a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomics features extracted (first-order statistics, shape- and size-based features, texture features, and higher-order statistical features) and provides details in supplementary methods."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study used Pearson correlation analysis to reduce the redundancy of radiation signatures."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used univariate Cox proportional regression analysis and LASSO Cox regression model to select the optimal features, which are dimensionality reduction techniques."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for it."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were from different centers, the CT images were resampled and grayscale discretized and normalized before feature extraction."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study mentions that there was no significant difference in clinical and pathological characteristics between the training and test cohorts."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics such as C-index, time-dependent AUC, and time-dependent C-index for survival prediction."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the C-index, which is a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study generated calibration curves of each signature."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the combined signature with uni-parametric imaging or provide justification for the use of multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method representative of clinical practice or provide proof of added clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics model with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set (test cohort) sampled from a different institution."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution (Shandong Provincial Hospital Affiliated to Shandong First Medical University)."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are available from the corresponding author on reasonable request, but it does not explicitly mention public sharing of the data."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the scripts related to segmentation or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form."
+  }
+}
