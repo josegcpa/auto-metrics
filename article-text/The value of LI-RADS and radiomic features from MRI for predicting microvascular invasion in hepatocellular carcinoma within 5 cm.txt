@@ -1,0 +1,176 @@
+Abstract
+Rationale and Objectives
+To explore and compare the performance of LI-RADS® and radiomics from multiparametric MRI in predicting microvascular invasion (MVI) preoperatively in patients with solitary hepatocellular carcinoma (HCC)< 5 cm.
+Methods
+We enrolled 143 patients with pathologically proven HCC and randomly stratified them into training (n = 100) and internal validation (n = 43) cohorts. Besides, 53 patients were enrolled to constitute an independent test cohort. Clinical factors and imaging features, including LI-RADS and three other features (non-smooth margin, incomplete capsule, and two-trait predictor of venous invasion), were reviewed and analyzed. Radiomic features from four MRI sequences were extracted. The independent clinic-imaging (clinical) and radiomics model for MVI-prediction were constructed by logistic regression and AdaBoost respectively. And the clinic-radiomics combined model was further constructed by logistic regression. We assessed the model discrimination, calibration, and clinical usefulness by using the area under the receiver operating characteristic curve (AUC), calibration curve, and decision-curve analysis respectively.
+Results
+Incomplete tumor capsule, corona enhancement, and radiomic features were related to MVI in solitary HCC＜5 cm. The clinical model achieved AUC of 0.694/0.661 (training/internal validation). The single-sequence-based radiomic model’s AUCs were 0.753–0.843/0.698–0.767 (training/internal validation). The combination model exhibited superior diagnostic performance to the clinical model (AUC: 0.895/0.848 [training/ internal validation]) and yielded an AUC of 0.858 in an independent test cohort.
+Conclusion
+Incomplete tumor capsule and corona enhancement on preoperative MRI were significantly related to MVI in solitary HCC＜5 cm. Multiple-sequence radiomic features potentially improve MVI-prediction-model performance, which could potentially help determining HCC’s appropriate therapy.
+Abbreviations
+AFP (alpha-fetoprotein)
+AP (arterial phase)
+APHE (arterial phase hyperenhancement)
+CE-MRI (contrast-enhanced magnetic resonance imaging)
+DP (delayed phase)
+HBP (hepatobiliary phase)
+LI-RADS (Liver Imaging Reporting and Data System)
+MVI (microvascular invasion)
+PVP (portal venous phase)
+T2WI/FS (fat-suppressed T2-weighted imaging)
+TTPVI (two-trait predictor of venous invasion)
+Key Words
+Hepatocellular carcinoma
+Neoplasm Invasiveness
+Radiomics
+Magnetic resonance imaging
+Hepatocellular carcinoma (HCC) is the most common primary liver cancer with high recurrence rate after curative surgery (1). Microvascular invasion (MVI) is one of the predominant risk factors for a poor prognosis in patients with HCC and wider resection margin has been reported to reduce recurrence rate when MVI is present (2). However, MVI is pathologically determined based on surgical specimens, thus limiting its utility in preoperative treatment to improve the prognosis of patients with HCC.
+Several promising radiological signs have been demonstrated to exhibit important value in predicting MVI before surgery in recent studies, such as an incomplete tumor capsule, a non-smooth tumor margin, arterial peritumoral enhancement, and a two-trait predictor of venous invasion (TTPVI) (3–5). However, the description of radiological signs is relatively subjective, and the standards in different studies may not be entirely consistent, thus leading to controversy regarding the determination of optimal biomarkers for MVI. The Liver Imaging Reporting and Data System, version v2018, (LI-RADS® v2018) is a comprehensive system for standardizing the definition of radiological signs and HCC diagnostic criteria, and it potentially facilitates a higher rate of inter-reader agreement, especially after professional training (6). Several standardized LI-RADS-based imaging features in preoperative gadoxetic acid-enhanced magnetic resonance imaging (MRI) have been reported to be independent indicators of MVI, including mosaic architecture, tumor size> 5 cm, and the absence of nodule-in-nodule architecture (7,8). The identification of prognostic LI-RADS imaging features offers opportunities to optimize the treatment management of patients with HCC in a more standardized manner.
+In addition to LI-RADS imaging features, multiparametric MRI radiomics has also been applied in the preoperative identification of MVI status (9–12). Radiomics refers to the extraction of quantitative imaging features from medical images based on mathematical formulas, and it carries great potential to uncover tumor heterogeneity in a mathematically describable manner (13). MRI radiomic signatures derived from the portal venous phase (PVP), hepatobiliary phase (HBP), and arterial phase (AP) of contrast-enhanced MRI (CE-MRI) have been reported to potentially predict MVI status, with an area under the receiver operating characteristics curve (AUC) approaching or greater than 0.8 (11,12). In addition, radiomics involving CE-MRI features has been demonstrated to have added value for traditional radiological signs in predicting MVI in 2–5 cm HCC (10).
+LI-RADS and MRI-based radiomics have the potential to develop imaging biomarkers for preoperatively predicting the MVI status. However, sufficient evidence to reach a consensus regarding an optimal, practically applicable biomarker for predicting MVI in HCC remains lacking. The main underlying reasons originate from certain aspects, including the heterogeneity of patient enrollment, scanning protocols, and radiomic-processing procedure across different studies (14,15). Therefore, the current study aimed to evaluate and compare the performance of LI-RADS and radiomics from multiparametric CE-MRI in the preoperative prediction of MVI status based on the same dataset of patients with solitary HCC< 5 cm. Hopefully, this study will augment current evidence regarding the prognostic utility of LI-RADS and radiomic values. More importantly, it may help bridge the gap between clinically practicable HCC diagnosis criteria and radiomics, which remains in the research stage.
+MATERIALS AND METHODS
+Patients
+Between January 2014 and June 2017, 143 patients who were pathologically diagnosed with HCC at our hospital, were retrospectively enrolled in the current study. The study protocol was approved by the independent ethics committee of our hospital, and the requirement for informed consent was waived. The inclusion criteria were as follows: (1) partial hepatic resection and pathological confirmation of HCC; (2) pathological diagnosis that includes a description of the MVI status; (3) CE-MRI examination performed within 30 days preoperatively; and (4) a single tumor without macrovascular invasion, with the largest tumor diameter being < 5.0 cm. The exclusion criteria were as follows: (1) previous treatment, including transcatheter arterial chemoembolization, radiofrequency ablation, or radiotherapy; (2) severe respiratory motion artifacts not satisfying analysis requirements; and (3) comorbidities involving other tumors. From July 2017 to December 2018, we enrolled 53 patients to constitute an independent test cohort following the same inclusion and exclusion criteria. The study-enrollment flowchart was illustrated in Figure 1. A total of 196 patients were enrolled in this study, including 170 men and 26 women; the median age was 56 years (range, 25–79 years).
+Figure 1
+Figure viewer
+Figure 1 Flowchart of the patient enrollment.
+MRI Technology
+All patients underwent CE-MRI of the liver using a 3.0 T body MRI system (Discovery MR750 3.0 T or Signa excite HD 3.0 T; GE Medical Systems). The MRI scanner is equipped with an 8-channel phased-array body coil. Fat-suppressed T2-weighted imaging (T2WI/FS) was acquired with a repetition time (TR) of 6000–10000 ms and an echo time (TE) of 85 ms. Contrast enhanced MRI was performed using a multiphase 3D spoiled gradient echo liver acceleration volume acquisition (LAVA) sequence. The scanning parameters were as follows: repetition time, 2.9 ms; echo time, 1.3 ms; flip angle, 12°; field of view, 36–42 × 36–42 cm; matrix, 512 × 512; section thickness, 4 mm; gap, 0 mm; and number of sections, 36–40. The contrast agent used was gadodiamide (Omniscan® 0.5 mmol/mL; GE Healthcare) or gadopentetate dimeglumine (Magnevist®, 469.01 mg/mL, Bayer Healthcare). The injection dose was 0.2 mL/kg at a rate of 3.0 mL/s. The contrast agent was injected as a bolus through the peripheral veins, immediately followed by a 0.9% sterile saline solution. After injection, images were acquired at 15–20 s (arterial phase, AP), 50–55 s (portal venous phase, PVP), and 85–90 s (delayed phase, DP).
+Clinicopathological Characteristics and Imaging Features
+Demographic data (age, sex) and laboratory tests (alpha-fetoprotein [AFP], hepatitis B surface antigen, or hepatitis C antibody status) were collected from electronic health records. MVI was defined as the presence of tumor cells in the vascular lumen lined with endothelial cells at the microscopic level, mainly including the branches of peripheral portal veins and hepatic vein. Imaging features, including LI-RADS features and three other features (non-smooth margin, incomplete capsule, and TTPVI) that were reported to be closely related to MVI (3–5), were reviewed and recorded by a radiologist. Two radiologists reviewed the imaging features separately, without knowledge of the MVI status of each patient with HCC. In cases of result inconsistencies, a senior radiologist with over 15 years’ experience in abdominal imaging was consulted to make a final decision.
+Radiomic-Analysis Workflow
+Radiomic analysis includes the following five steps: (1) tumor segmentation, (2) radiomic feature extraction, (3) radiomic feature selection, (4) model construction, and (5) model evaluation. The workflow is illustrated in Figure 2.
+Figure 2
+Figure viewer
+Figure 2 Workflow of radiomics analysis.
+Tumor Segmentation
+Before segmentation, preprocessing was performed to avoid the variance caused by different scanners and improve reproductivity. The voxel of all MR images was resampled into a size of 1 × 1 × 1 mm3 using B-spline interpolation, and the gray-level intensity was discretized at a fixed bin width of 25. The region of interest (ROI) was drawn along the tumor margin layer by layer to generate a 3D-ROI by two radiologists with over 7 years and 2 years of experience in abdominal imaging diagnosis.
+Feature Extraction and Selection
+We extracted the same series of radiomic features from T2WI/FS, AP, PVP, and delayed phase (DP) images by PyRadiomics v.2.1.2 (16). The extracted radiomic features were divided into seven categories: i) first-order statistics; ii) morphological features; iii) gray-level co-occurrence matrix (GLCM) features; iv) gray level size zone matrix (GLSZM) features; v) gray level run length matrix (GLRLM) features; vi) neighboring gray tone difference matrix (NGTDM) features; and vii) gray level dependence matrix (GLDM) features.
+The dimensionality reduction of the selected radiomic features involved a multi-step process aimed at enhancing the robustness and effectiveness of the feature set. The extracted radiomic features were first normalized using min–max normalization. Subsequently, intra- and inter-class correlation coefficient (ICC) analysis was employed to assess the reliability and stability of each feature. Only those features exhibiting ICC values greater than 0.75 were retained, signifying a high level of consistency within and between classes. Second, Pearson’s correlation was performed to remove redundant features with mutual correlation coefficients > 0.9. Univariate statistical difference analysis was incorporated to identify discriminative features with a p-value < 0.05. To further enhance the model's generalization capability and avoid overfitting, the least absolute shrinkage selection operator (LASSO) was finally employed.
+Model Construction and Evaluation
+AdaBoost, employing the selected radiomic features as input, was utilized to derive Rad-scores for T2WI/FS, AP, PVP, and DP images—specifically T2_score, AP_score, PVP_score, and DP_score. Gini impurity was applied to measure the quality of a split, and the best split was chosen at each node, with the maximum depth of a tree set to 1. Other hyperparameters of AdaBoost, such as the number of estimators and learning rate, were fine-tuned by optimizing the Area Under the Curve (AUC) on validation cohorts. To achieve this, a grid search method was implemented, exploring the learning rate across a range from 0.001 to 1, with 20 logarithmically spaced values. Simultaneously, the number of estimators varied from 5 to 40, with 20 values evenly distributed on a linear scale.
+Clinical factors, including age, sex, AFP level, hepatitis B virus or hepatitis C virus status, major and axillary features defined by LI-RADS, and three other features (non-smooth margin, incomplete capsule, and TTPVI), were sequentially selected by univariate and multivariate analysis, and the retained independent factors were used to develop a clinical model based on the logistic regression method.
+Furthermore, clinical factors, T2_score, AP_score, PVP_score, and DP_score were selected by multivariate logistic regression analysis, and the retained factors were used to develop the combination model to predict the MVI status via logistic regression. The modeling methods are summarized in Table 1.
+ 	Factors	Method
+Clinic model	age, gender, AFP level, HBV or HCV status, non-smooth margin, incomplete capsule, TTPVI, major and axillary features defined by LI-RADS and three other features	Logistic regression
+Radiomics model	 	 
+T2	Radiomic features from T2WI/FS sequence	Adaboost
+Arterial	Radiomic features from AP sequence	Adaboost
+Portal	Radiomic features from PVP sequence	Adaboost
+Delay	Radiomic features from DP sequence	Adaboost
+Combined Radiomics	Rad-scores of T2WI/FS, AP, PVP and DP sequences generated by Adaboost	Logistic regression
+Combination model	 	 
+Combined Radiomics +Clinic	Clinical factors and rad-scores of T2WI/FS, AP, PVP and DP sequences generated	Logistic regression
+Table 1
+Summarized the Methods for Model Building
+AFP alpha-fetoprotein, AP arterial phase, DP delayed phase, HBV hepatitis B virus, HCV hepatitis C virus, LI-RADS Liver Imaging Reporting and Data System, PVP portal venous phase, TTPVI two-trait predictor of venous invasion
+Open table in a new tab
+The discrimination power of the different models was visualized by T-distributed stochastic neighbor embedding (T-SNE). Model diagnostic performance was assessed using the AUC, calibration curve, and decision curve analysis (DCA). Accuracy, sensitivity, and specificity were derived at the threshold determined by maximizing the Youden index. The model was visualized as a nomogram for predicting MVI preoperatively and individually.
+Statistical Analysis
+The characteristics of the enrolled patients were compared between the training and internal validation cohorts. Statistical differences were analyzed by student t-test or Mann–Whitney U test for normally distributed or non-normally distributed continuous variables, respectively. Categorical variables were analyzed using the chi-squared or Fisher’s exact test. All statistical analyses were performed using SPSS (version 25.0; IBM, Armonk, NY, USA), Python 3.7, and R (version 3.6.3, http://www.r-project.org). A two-sided p-value＜0.05 was considered statistically significant.
+RESULTS
+Clinicopathological and LI-RADS Features
+196 patients were enrolled in this study. Patients were stratified into training (n = 100), internal validation (n = 43) and independent test (n = 53) cohorts. The demographics, AFP levels, pathological data, and imaging features are summarized in Table 2. Interobserver agreement of imaging features was assessed and detailed in Table 3. No significant difference was noted between the training and internal validation cohorts (p > 0.05). Incomplete tumor capsule, corona enhancement, and TTPVI were related with MVI significantly in the training cohort; however, this correlation was not confirmed in the internal validation cohort. Other variables exhibited no significant correlation with MVI in the training cohort (p > 0.05).
+Characteristics	Training Cohort	Internal Validation Cohort	Test Cohort	pb
+MVI-positive※ (n = 34)	MVI-negative※ (n = 66)	pa	MVI-positive※ (n = 15)	MVI-negative※ (n = 28)	pa	MVI-positive※ (n = 16)	MVI-negative※ (n = 37)	pa
+Age#	57.7 ± 11.4	55.1 ± 9.7	0.239	58.6 ± 6.0	55.7 ± 10.4	0.251	57.3 ± 8.7	55.4 ± 10.5	0.557	0.706
+Gender	 	 	0.874	 	 	0.807	 	 	0.088	0.702
+Male	29(85.3)	57(86.4)	 	14(93.3)	24(85.7)	 	16(100.0)	30(81.1)	 	 
+Female	5(14.7)	9(13.6)	 	1(6.7)	4(14.3)	 	0(0.0)	7(18.9)	 	 
+AFP> 200 ug/L	12(35.3)	14(21.2)	0.128	5(33.3)	6(21.4)	0.627	5(31.3)	11(29.7)	1.000	0.958
+Cirrhosis	26(76.5)	53(80.3)	0.656	15(100.0)	16(57.1)	0.009	11(68.8)	21 (56.8)	0.412	0.369
+Location	 	 	0.305	 	 	0.811	 	 	0.852	0.496
+Right lobe	23(67.7)	50(75.8)	 	13(86.7)	22(78.6)	 	13(81.2)	30(81.1)	13	 
+Left lobe	10(29.4)	16(24.2)	 	2(13.3)	6(21.4)	 	2(12.5)	6(16.2)	2	 
+Caudal lobe	1(2.9)	0(0.0)	 	0(0.0)	0(0.0)	 	1(6.3)	1(2.7)	1	 
+Nonsmooth tumor margin	16(47.1)	19(28.8)	0.07	6(40.0)	9(32.1)	0.606	15(93.8)	16(43.2)	0.001	0.989
+Incomplete tumor capsule	20(58.8)	21(31.8)	0.009	8(53.3)	7(25.0)	0.063	10(62.5)	6(16.2)	0.002	0.492
+Enhancing capsule	33(97.1)	65(98.5)	1.0	15(100.0)	27(96.4)	1.0	16(100.0)	34(91.9)	0.545	 
+non-rim_APHE	33(97.1)	63(95.5)	0.88	11(73.3)	27(96.4)	0.08	14(87.5)	26(70.3)	0.322	0.178
+Irregular rim-like enhancement in AP	1(2.9)	0(0.0)	0.34	2(13.3)	1(3.6)	0.569	2(12.5)	11(29.7)	0.322	0.151
+Corona enhancement	16(47.1)	14(21.2)	0.008	6(40.0)	7(25.0)	0.501	5(31.3)	5(13.5)	0.257	0.978
+Nodule-in-nodule architecture	0(0.0)	0(0.0)	1.000	0(0.0)	1(3.6)	1.000	0(0.0)	0(0.0)	1.000	0.301
+Washout	58(87.9)	33(97.1)	0.25	14(93.3)	26(92.9)	0.569	15(93.8)	28(75.7)	0.245	0.738
+Mosaic architecture	25(37.9)	11(32.4)	0.586	7(46.7)	7(25.0)	0.27	11(68.8)	5(13.5)	0.000	0.692
+TTPVI	8(23.5)	3(4.6)	0.011	2(13.3)	3(10.7)	0.807	3(18.8)	2(5.4)	0.311	0.857
+Table 2
+Summarized the Demographics, AFP Level, Pathologic Data and Imaging Features of Training, Internal Validation Cohort and Test Cohort
+AFP alpha-fetoprotein, APHE arterial phase hyperenhancement, MVI microvascular invasion, TTPVI two-trait predictor of venous invasion
+※unless otherwise indicated, data are number of patients and data in parentheses are percentages.
+#data are continuous variables, reported as mean±standard deviation.
+ap values comparing MVI-positive with MVI-negative
+bp values comparing training cohort with internal validation cohort
+Open table in a new tab
+Imaging Features	Disagreement	Kappa value
+Nonsmooth tumor margin	18(12.6)	0.741
+Incomplete tumor capsule	9(6.3)	0.869
+Enhancing capsule	1(0.7)	0.854
+non-rim_APHE	2(1.4)	0.882
+Irregular rim-like enhancement in arterial phase	1(0.7)	0.854
+Corona enhancement	12(8.4)	0.785
+Nodule-in-nodule architecture	0	1.000
+Washout	2(1.4)	0.902
+Mosaic architecture	9(6.3)	0.863
+TTPVI	7(4.9)	0.672
+Table 3
+Interobserver Agreement of Imaging Features
+APHE arterial phase hyperenhancement, TTPVI two-trait predictor of venous invasion
+Open table in a new tab
+Feature Selection and Model Construction
+A total of 5264 features were extracted from four sequences (T2WI/FS, AP, PVP, and DP) for feature-reduction procedures, and they are described in the section on Feature extraction and selection. Among the extracted features, seven features on T2WI/FS, three on AP, six on PVP and five on DP were retained for further analysis (eTable 1). AdaBoost was used to develop the radiomic model, and the Rad-score was calculated for each sequence (T2WI/FS, AP, PVP, and DP) as follows: T2_score, AP_score, PVP_score, and DP_score. A clinical model was developed using logistic regression. Six features, including corona enhancement, incomplete tumor capsule, T2_score, AP_score, PVP_score, and DP_score, were used to develop the combination model. The formulae of the clinical and combination models are as follows:
+Clinical model:
+𝑌=−0.33+0.04×Incompletetumorcapsule+0.04×Coronaenhancement+0.03×TTPVI
+Combination model:
+𝑌=−2.67+0.60×Incompletetumorcapsule+0.49×Coronaenhancement+0.58×T⁢2⁢_score+1.09×AP_score+0.81×PVP_score+1.05×DP_score
+Model-Performance Evaluation
+Three models were developed in our study: the clinical, radiomic, and combination models. The discrimination abilities of the three models were visualized using T-SNE (Fig 3). Since clinical text data are discrete, many samples overlap in Figure 3, and confusing features provided by clinical text data also account for the lower sensitivity and specificity of the independent clinical model. After adding the radiomic signature, t-SNE visualization generally exhibited superior separating power, thus potentially providing intuition for the increase in classification performance.
+Figure 3
+Figure viewer
+Figure 3 The differential ability of the three models were visualized by T-SNE.
+The ROC-curve performances of the independent and combined models are summarized in Table 4. The combination model for the preoperative prediction of MVI yielded an AUC of 0.895（0.840, 0.944）, 0.848（0.750, 0.935) and 0.858 (0.755, 0.962) in the training, internal validation, and independent test cohorts, exhibiting superior diagnostic performance to the clinical model（Delong test, p = 0.023）and any of the single-sequence radiomic model. The ROC, calibration, and DCA curves of the clinical, radiomic, and combination models are illustrated in Figure 4. The nomogram for the combination model is shown in Figure 5.
+Figure 4
+Figure viewer
+Figure 4 The performance of different models in predicting MVI status. (a, b, c) ROC curves of different models in the training group (a), internal validation group (b) and test group (c). (d, e, f) Calibration curves of different models in the training group (d), internal validation group (e) and test group (f). The 45-degree sloping line indicates the ideal calibration, and the closer of the model curve to the ideal calibration, the better the agreement between the predicted and the actual probability. (g, h, i) Decision curves of different prediction models in the training group (g), internal validation group (h) and test group (i). The X-axis is the threshold probability and the Y-axis is the net benefit. The dotted line "NONE" indicates that no lesions are assumed to be MVI (+), and the gray line "ALL" indicates that all lesions are assumed to be MVI (+). The model with higher clinical usefulness means it is further away from both the dotted and gray lines and has larger the area under the curve within the same threshold probability interval compared to other models.
+Figure 5
+Figure viewer
+Figure 5 The nomogram of the combination model.
+ 	 	Training Cohort
+ 	 	AUC (95%CI)	Accuracy	Sensitivity	Specificity
+Clinic	Training cohort	0.694 (0.582–0.806)	0.620	0.706	0.576
+Internal validation cohort	0.661 (0.483–0.839)	0.581	0.667	0.536
+Test cohort	0.680 (0.526–0.834)	0.660	0.688	0.649
+Combined Radiomics	Training cohort	0.900 (0.841–0.958)	0.810	0.794	0.818
+Internal validation cohort	0.833 (0.716–0.951)	0.767	0.800	0.750
+Test cohort	0.787 (0.665–0.910)	0.698	0.938	0.594
+Combined Radiomics +Clinic	Training cohort	0.895 (0.840–0.944)	0.830	0.765	0.879
+Internal validation cohort	0.848 (0.750–0.935)	0.721	0.706	0.894
+Test cohort	0.858 (0.755–0.962)	0.792	0.938	0.730
+Radiomics_arterial	Training cohort	0.843 (0.765–0.920)	0.720	0.853	0.652
+Internal validation cohort	0.769 (0.627–0.911)	0.721	0.800	0.679
+Test cohort	0.680 (0.535–0.824)	0.604	0.813	0.514
+Radiomics_delay	Training cohort	0.839 (0.760–0.918)	0.720	0.824	0.667
+Internal validation cohort	0.793 (0.660–0.925)	0.767	0.867	0.714
+Test cohort	0.685 (0.537–0.833)	0.528	1.000	0.324
+Radiomics_portal	Training cohort	0.778 (0.684–0.873)	0.730	0.471	0.864
+Internal validation cohort	0.708 (0.546–0.871)	0.721	0.467	0.857
+Test cohort	0.630 (0.454–0.806)	0.679	0.562	0.730
+Radiomics_T2	Training cohort	0.753 (0.656–0.850)	0.610	0.853	0.485
+Internal validation cohort	0.771 (0.630–0.913)	0.698	0.800	0.643
+Test cohort	0.744 (0.614–0.874)	0.660	1.000	0.514
+Table 4
+Performance of Predictive Models
+AUC area under the receiver operating characteristic curve.
+Open table in a new tab
+DISCUSSION
+The current study developed a combination model based on incomplete tumor capsule, corona enhancement, and radiomic features for preoperatively predicting MVI in patients with solitary HCC＜5 cm. It demonstrated that incomplete tumor capsule, AP_score, and DP_score were independent risk factors for MVI, and the combination model exhibited superior diagnostic performance to the clinical model and single-sequence radiomic models.
+In terms of imaging features, incomplete tumor capsule, corona enhancement, and TTPVI were significantly different between the MVI (+) and MVI (-) subgroups in the training group. In imaging, enhancing capsule refers to delayed peripheral or periobservational enhancement, which cannot distinguish the fibrous capsule from the pseudocapsule in the LI-RADS (v2018) (17). An intact tumor capsule has been reported to be a protective prognostic factor in patients with HCC because it prevents the tumor from invading the adjacent liver parenchyma (18). A solitary mass with an incomplete tumor capsule is more likely to exhibit MVI than one with a complete capsule. This result is consistent with those of previous studies (3). Corona enhancement is an ancillary feature of HCC in the LI-RADS (v2018). Corona enhancement is defined as periobservational enhancement in the late AP or early PVP that is contiguous with and surrounds all or part of the observation (19). Our results suggest that corona enhancement is a significant risk factor for MVI in patients with HCC. Kim et al. (20) reported that irregular circumferential peritumoral enhancement is a statistically significant risk factor for MVI. An increased incidence of micrometastatic disease may exist within the enhancing corona. An irregular circumferential peritumoral enhancement potentially reflects a direct tumor-related hemodynamic change in the corona enhancement and/or tumorous AP shunt (20).
+Previous studies have demonstrated that TTPVI is a good predictor of MVI, with high sensitivity and specificity (5,21). However, in our study, TTPVI was significantly different between the MVI (+) and MVI (-) groups in the univariate analysis; nonetheless, it was not an independent risk factor for MVI. Previous studies have not defined tumor size, and internal arteries and shadows have commonly been observed in patients with large tumors (22). This may be attributed to the differences in tumor diameter and lower inter-reader agreement of the study samples (23). Additionally, non-smooth margins were not an independent risk factor for MVI in our study. This is inconsistent with the results of previous studies (4,24,25). Non-smooth margins lack a standardized definition and have typically been classified as single-nodular (with extraocular growth), confluent-multinodular, and infiltrative types in several studies. The HBP phase is recommended for margin estimation; nevertheless, the inter-reader reliability remains to be improved. Thus, differentiating between smooth and non-smooth margins can be difficult for other MRI sequences.
+More and more studies have indicated that radiomics method could help reveal the pathological staging, prognosis, MVI status, and treatment response of liver cancer (26–28). The quantitative and mathematical description during the radiomics analysis could facilitate the exploration of microscopic tissue complexity and heterogeneity. Therefore, we integrated radiomic analysis with imaging features based on the whole tumor, and it demonstrated superior performance to conventional parameters in tumor differentiation. The results of this study demonstrate that the combination of imaging features and radiomics is effective in predicting MVI. The combination model performed with the highest AUC of 0.895 (0.840, 0.944)/0.848 (0.750, 0.935) (training/internal validation), yielding an AUC of 0.858 (0.755, 0.962) in an independent test cohort. Radiomic features from MR images provide significant incremental value in predicting MVI preoperatively. The efficacy of MVI prediction was superior in the multisequence model than in any of the single-sequence models. Radiomic features reflect the heterogeneity and tissue complexity of the tumor in different aspects, according to their definitions. In the T2WI/FS sequence, log-sigma-3–0-mm-3D_firstorder_Kurtosis was the most discriminating signature. Kurtosis is a first-order feature that reveals the “peakedness” of the distribution of values in the image ROI. Log-sigma-3–0-mm-3D_glrlm_LongRunHighGrayLevelEmphasis, original_glszm_GrayLevelNonUniformity and wavelet-LHH_glszm_Gray Level NonUniformity were the most important features in the AP, PVP, and DP sequences. Different features in each sequence display the tumor’s heterogeneity and tissue complexity in different ways, thus providing complementary value in the final combination model (29). After radiomic features were integrated with imaging features, the parameters could specifically reflect heterogeneity at a more microscopic level. Our findings showed that tumor heterogeneity was significantly different between the MVI (+) and MVI (-) subgroups, and we developed a combination predictive model with favorable discriminative performance.
+Our study has certain limitations. First, it was a retrospective study. Hence, we could not match corona enhancement and incomplete capsule with pathological vessel invasion point-by-point. Second, the sample size was small, and we assessed the generalization capability of models in an independent test cohort. Further large-scale and multicenter studies are required to confirm generalization capability of the developed models. Third, we did not include the peri-tumoral area in the radiomics analysis. Peritumoral area is vulnerable to MVI, thus both imaging and radiomic features have potential in predicting MVI preoperatively. In our study, we only included the peritumoral imaging feature (corona enhancement), and radiomics analysis based on peri-tumoral area need further analysis in the future studies. Finally, our study exclusively included patients who had undergone surgical resection to facilitate a thorough search for MVI, thus potentially causing selection bias.
+CONCLUSION
+In conclusion, an incomplete tumor capsule and corona enhancement on preoperative MRI were related to the MVI presence in HCC. Radiomic features from multiple sequences can improve the predictive performance of the MVI-prediction model, thus potentially playing an important role in determining the appropriate therapy for patients with HCC.
+Declaration of Competing Interest
+The authors declare the following financial interests/personal relationships which may be considered as potential competing interests: Bing Feng reports article publishing charges was provided by Beijing Hope Run Special Fund of Cancer Foundation of China (No. LC2021B05). The authors of this manuscript declare that Siyun Liu and Sicong Wang are statisticians from GE Healthcare. The other authors declare no competing interests.
+Acknowledgments
+The authors acknowledge Siyun Liu, Sicong Wang and Jiesi Hu for their great help for the statistical analysis. The authors acknowledge Editage [www.editage.cn] for English language editing. This study was approved by the independent ethics committee of Cancer Hospital, Chinese Academy of Medical Sciences. Approval from the institutional animal care committee was not applicable because this is human research. This study was funded by Beijing Hope Run Special Fund of Cancer Foundation of China, No. LC2021B05.
