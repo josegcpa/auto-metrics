@@ -1,0 +1,143 @@
+{
+  "Summary": "This study developed an integrated model incorporating deep learning (DL), hand-crafted radiomics, and clinical and US features to diagnose central lymph node metastasis (CLNM) in papillary thyroid cancer (PTC). The integrated model outperformed individual DL and hand-crafted radiomics models, as well as junior and senior radiologists, in reducing missed CLNM and unnecessary central lymph node dissection (CLND). The model's visual explanation aligned with radiologists' judgments, potentially improving the acceptance of AI-assisted US diagnosis.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the primary lesion images for both the hand-crafted radiomics model and the deep learning model. The ROIs were manually delineated."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by radiologists, so it is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study explicitly mentions the use of hand-crafted radiomics features, including first-order statistics, texture features, and shape features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of clinical and US features, as well as the extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses a convolutional neural network (CNN) to extract deep features from US images in an end-to-end manner."
+  },
+  "Item1": {
+    "rating": "yes",
+    "reason": "The authors state that they used the CLAIM and CLEAR checklists as step-by-step reporting guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is clinicopathological confirmation of PTC and CLNM, which is a robust and well-established standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study includes data from two institutions."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is thyroid US, which is a commonly used and standardized technique for preoperative LN assessment in PTC."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the US machines used and that the data was stored in DICOM format. They also mention the use of C-TIRADS and ATA guidelines for US feature assessment."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The thyroid US examination was performed within one month before the operation, which is appropriate for validating the presence or absence of CLNM at the time of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual segmentation process using ITK-SNAP, with a radiologist performing the initial segmentation and another radiologist reviewing and reaching a consensus."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not in a fully automated fashion."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The ROIs were reviewed by a radiologist with 7 years of experience, reflecting clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of grayscale values to [0, 1] in the pre-processing stage for the DL model. For the hand-crafted radiomics, wavelet decompositions and Laplacian of Gaussian features were extracted."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the pyradiomics package (version 3.1.0) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (hand-crafted and deep learning) and feature classes (first-order statistics, texture features, shape features). The neural network architecture is presented in Supplementary Material 3 S4."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly mention the removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used LASSO logistic regression analysis to select radiomics features, which is a method for dimensionality reduction."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses LASSO for feature selection. The number of patients is 460 in the training set, and the number of selected features is much smaller than that."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not mention any test-retest assessment of the DL pipeline."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that participants were randomly divided into training and independent test cohorts. The ratio of training and validation datasets is 2:1."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study performed multivariate analysis to identify independent risk factors for CLNM, effectively handling potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, sensitivity, specificity, PPV, and NPV for evaluating the performance of the predictive models. ROC curves are also presented."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide proof of its inferiority compared to the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the integrated model with that of junior and senior radiologists, which represents a non-radiomic method representative of clinical practice. They use DeLong's test for AUC comparison."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes data from two institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The analyzed datasets from the current study are not publicly available because the data contain information that may compromise patients."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The codes used during the current study can be accessed at https://github.com/yytangxiaoyuan/metastasis_predict_model/tree/main."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

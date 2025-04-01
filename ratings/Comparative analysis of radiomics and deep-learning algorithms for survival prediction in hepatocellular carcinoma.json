@@ -1,0 +1,143 @@
+{
+  "Summary": "This study compares the performance of conventional radiomics and deep learning (CNN) models in predicting overall survival (OS) in HCC patients using CT data. The study found that CNN models generally outperformed conventional radiomics, but the clinical Cox-regression model achieved the best validation performance. The study highlights the potential of deep learning in predicting OS, especially when clinical data is limited.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the liver parenchyma and tumor findings on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions manual contouring of the liver parenchyma and HCC lesion, so the segmentation is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features using MIRP, which indicates the use of hand-crafted feature extraction."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses clinical parameters and radiomics features in a tabular format for model development."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses deep learning models to directly process image data for predicting overall survival."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like CLEAR."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, describing a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histopathological findings or imaging patterns according to the German HCC guideline, which is a reasonable clinical standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The CT scans were acquired from 21 medical centers, indicating a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a standard imaging technique for HCC diagnosis and staging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the imaging protocol and acquisition parameters, including contrast media methods and slice thickness interpolation."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "Overall survival was calculated from the initial CT scan to the time of death or last contact, which is appropriate for validating the prognostic value of the imaging data."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the software used (3D Slicer) and the verification process."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentations were performed by a single resident, reflecting clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes image preprocessing techniques, including standardization of CT numbers and interpolation to isotropic voxel size."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used MIRP for feature extraction, which is a publicly available open-source software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature subgroups extracted and provides details on the feature extraction parameters in the supplementary materials."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study uses FAMILIAR framework which includes feature processing steps such as missing value imputation, feature transformation, filtering and clustering."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses FAMILIAR framework which includes feature processing steps such as missing value imputation, feature transformation, filtering and clustering."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses FAMILIAR framework which includes feature processing steps such as missing value imputation, feature transformation, filtering and clustering."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention a robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study divides the patients into development and validation cohorts by stratified randomization based on the initial therapy concept."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers clinical parameters and baseline demographics and reports that the development and validation cohorts were balanced in these terms."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses the concordance index (C-index) to evaluate prognostic performance, which is appropriate for survival analysis."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the C-index."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study includes calibration plots in the supplementary materials, but does not explicitly discuss calibration assessment."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric imaging analysis or provide proof of its inferiority compared to multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of radiomics and deep learning models with a clinical model based on Cox-regression."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the models with a simple baseline reference model like a Zero Rules classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent validation cohort sampled from the same source as the development cohort."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are available from the corresponding author on reasonable request, but does not explicitly state that the data is publicly shared."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study mentions that the FAMILIAR framework was used, but does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
+  }
+}

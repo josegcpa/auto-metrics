@@ -1,0 +1,143 @@
+{
+  "Summary": "This study develops a radiomics model based on MRV shape features to predict high trans-stenotic pressure gradients (TPG) in IIH patients with venous sinus stenosis. The model, incorporating clinical features, shows good performance in predicting high TPG, potentially aiding in identifying patients who would benefit from stenting.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the stenotic regions on MRV images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by neuroradiologists, so it is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted shape features from the segmented regions using the PyRadiomics package."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, specifically the extracted radiomic features and clinical data, in a table format for analysis and model building."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on manual segmentation and hand-crafted feature extraction."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard, TPG measurement via catheter venography, is a well-established method for assessing venous sinus stenosis severity."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is conducted at a single institution, Beijing Tiantan Hospital, and does not involve data from multiple centers."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "MRV is a clinically relevant imaging technique for assessing venous sinus stenosis, making the imaging data source clinically translatable."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the MRV acquisition parameters, including matrix size, slice thickness, echo time, repetition time, and flip angle."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses preprocedural MRV and catheter venography accompanied by venous manometry. This suggests that the interval between imaging and reference standard is appropriate."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study mentions that the stenotic regions were manually segmented by neuroradiologists blinded to the pressure measurements using 3D Slicer."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automatically, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The stenotic regions were manually segmented by neuroradiologists, so the test set segmentation masks were produced by a single reader."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of contrast-enhanced MRV and specifies the contrast agent and injection parameters. The images were reconstructed using a standard algorithm. This suggests appropriate image preprocessing techniques were used."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics package for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (shape features) and mentions the use of PyRadiomics. The specific shape features extracted are listed (least axis length, sphericity, and maximum 3D diameter)."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses LASSO for feature selection, which is a method for removing redundant features by reducing dimensionality."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses LASSO for feature selection to reduce the number of features. The number of patients is 105, and the number of selected features is 3. This seems appropriate."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that the data was randomly divided into training and test datasets with a 7:3 ratio. This suggests a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers sex, cervicodynia, and anticoagulant use as potential confounding factors and includes them in the nomogram."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUROC to assess the discrimination performance of the radiomics score and nomogram, which is an appropriate metric for a classification task. The study also presents the calibration curve."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUROC values, which is a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the nomogram using a calibration curve."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the model using a single imaging set versus multiple parameters. It only uses contrast-enhanced MRV."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice. It only compares the radiomics score with a nomogram incorporating clinical features."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple or classical statistical model like a Zero Rules classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent test dataset sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a statement on the availability of data and materials, indicating that the datasets are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the code is publicly available. The availability of data does not imply code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model in any form."
+  }
+}

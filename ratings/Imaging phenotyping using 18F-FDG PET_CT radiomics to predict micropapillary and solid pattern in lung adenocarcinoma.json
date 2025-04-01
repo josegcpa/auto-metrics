@@ -1,0 +1,143 @@
+{
+  "Summary": "This study develops and validates a machine learning model using 18F-FDG PET/CT radiomics and clinical features to predict the presence of micropapillary and solid components in lung adenocarcinoma. The combined radiomics-clinical model demonstrates superior performance compared to PET or CT radiomics alone, showing promising prediction efficiency for identifying MP/S components and potentially aiding in personalized treatment decisions.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the tumor volume of interest (VOI) on PET/CT images using ITK-SNAP software."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed semi-automatically by two experienced nuclear medicine physicians, indicating human intervention."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts 1688 radiomic features from PET/CT images using PyRadiomics software, which are hand-crafted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, including clinical features and radiomics features, organized in tables for model construction and analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted radiomic features and traditional machine learning techniques."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines clear inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on pathological analysis of resected lung adenocarcinoma specimens, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is a retrospective, single-center study, meaning the data comes from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "PET/CT imaging is a clinically translatable imaging modality for lung cancer diagnosis, staging, and treatment assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the PET/CT imaging parameters, including voltage, tube current, slice thickness, and scanning time, which is important for replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that the operation was performed within 2 weeks after the PET/CT scan, which is an appropriate interval to validate the presence or absence of MP/S components at the time of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the software used (ITK-SNAP), the physicians involved, and the threshold used (40% SUVmax)."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was semi-automatic, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation was performed by two experienced nuclear medicine physicians, which reflects clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions image preprocessing techniques, such as resampling the isotropic voxel into 1x1x1 mm with linear interpolation, and specifies the lung window settings for CT segmentation."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics 3.1.0 software for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (radiomics features from PET and CT) and mentions the use of PyRadiomics. They also mention the number of extracted features (1688)."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study used interclass correlation coefficient (ICC) to assess the reproducibility of the radiomics features and selected features with ICC greater than 0.75."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used Mann-Whitney U test, Pearson correlation analysis, and LASSO algorithm for feature selection and dimensionality reduction."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of features used in the final model."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study divides the patients into training, test cohort 1, and test cohort 2 randomly at a 6:2:2 ratio. However, it does not explicitly mention whether the data split was stratified or if a fixed random seed was used."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers clinical variables such as gender, age, smoking, TNM stage, nodule type, and tumor size as potential confounding factors and includes them in the combined model."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics such as AUC for ROC curves, calibration curves, and decision curve analysis (DCA) for assessing the predictive performance of the models."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not report uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the nomogram using Hosmer-Lemeshow validation and calibration curves."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide a justification for the use of multi-parametric imaging (PET/CT) by comparing its performance to that of single-modality imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics model with a non-radiomic approach that is representative of clinical practice, such as semantic features or RECIST scoring."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the machine learning models with a simple baseline reference model, such as a Zero Rules classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on two independent test cohorts that are sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing of the model on data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the scripts related to automatic segmentation and/or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model in any form."
+  }
+}

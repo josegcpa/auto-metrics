@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates the stability and prognostic value of MRI-based radiomics features in rectal cancer, using both anatomical and quantitative MRI (qMRI) with different tumor volume definition methods (machine learning, deep learning, and manual delineations). The study found that qMRI features, particularly those derived from blood flow (BF) in dynamic susceptibility contrast (DSC) MRI, were more stable and had better prognostic potential for 5-year progression-free survival (PFS) and overall survival (OS) compared to features from anatomical MRI. A BF-based radiomics feature was significantly associated with both PFS and OS.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual, semi-automatic and automatic segmentation of the tumor volume."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study mentions the use of a DL 2D U-Net for automatic segmentation."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features using PyRadiomics, which includes hand-crafted feature extraction."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features and clinical parameters for statistical analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline for direct image processing and outcome prediction. Deep learning is only used for segmentation."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, such as age, diagnosis of rectal cancer, and no prior treatment, which helps ensure a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard includes histopathological assessment (pTN or ypTN stage) performed by experienced pathologists after surgery, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source includes high-resolution T2-weighted MRI, which is a standard imaging technique in rectal cancer diagnosis."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition protocol, including parameters for T2-weighted, DW MRI, and dynamic multi-echo contrast MRI sequences, with further details in Supplementary Table S1 and cited references."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses diagnostic MRI performed at baseline before treatment, and the outcomes (PFS and OS) are measured over a 5-year follow-up period, which is appropriate for validating the prognostic value of the radiomics analysis."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including manual delineation by radiologists and automatic segmentation using machine learning and deep learning methods. It also mentions the use of DW images as guidance for manual contouring."
+  },
+  "Item9": {
+    "rating": "yes",
+    "reason": "The study reports the DSCP scores for the automatic and semi-automatic segmentation methods compared to manual delineations, providing a formal evaluation of the fully automated segmentation accuracy."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study uses manual tumor contour of the most experienced radiologist (Manual A) for the outcome analysis."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions appropriate image preprocessing techniques, such as z-score normalization for T2w images and calculation of quantitative parameter maps from DW and multi-echo MR images. It also describes the bin width adjustment for feature extraction."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses PyRadiomics v2.2 for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first order statistics, GLCM, GLRLM, GLSZM, GLDM, and NGTDM) and provides detailed extraction configurations in the Supplementary Appendix A1. It also mentions adjusting the bin width parameter for each image type."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of redundant features using algorithm-based feature selection, correlation analysis, or variance analysis."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study excludes 19 patients who presented distant metastases at the time of primary diagnosis. This is done before statistical analysis to avoid bias."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the analysis and handling of potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics such as AUC for ROC analysis, sensitivity, specificity, PPV, NPV, and accuracy. It also includes calibration plots and decision curve analysis."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes uncertainty measures such as standard deviation (SD) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the final models using calibration plots."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach. It uses multiple MRI parameters without comparing them to single-parameter models."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method representative of clinical practice. It lacks a comparison to semantic features, RADS/RECIST scoring, or simple volume/size evaluations."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the models with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study performs internal validation on 1000 bootstrap resamples."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that the datasets generated and analyzed are available from the corresponding author upon reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
+  }
+}

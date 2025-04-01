@@ -1,0 +1,143 @@
+{
+  "Summary": "This study compares handcrafted radiomics (HCR) and deep learning radiomics (DLR) models, both with and without clinical factors, for predicting the response to concurrent chemoradiotherapy (CRT) in patients with locally advanced cervical cancer (LACC). The study found that DLR models generally outperformed HCR models, and the integration of clinical factors tended to improve performance, particularly in HCR analysis. The DLR models also showed improved uncertainty estimates and sensitivity compared to the HCR models.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study mentions segmentation of the primary tumor on CE-T1WI and T2WI images using the Eclipse treatment planning system."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions that the primary tumor was semi-manually segmented, indicating that the segmentation process involved human intervention."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study explicitly mentions the use of handcrafted radiomics (HCR), which involves the extraction of predefined quantitative features from medical images."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study incorporates clinical factors such as tumor size, FIGO stage, and HPV status, which are presented as tabular data."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses a 3D convolutional neural network (CNN) for deep learning radiomics (DLR) analysis, which is trained end-to-end to predict CRT response."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, aiming to create a representative study population. Inclusion and exclusion criteria are described in the methods section."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses the Response Evaluation Criteria in Solid Tumors (RECIST) version 1.1, assessed by pelvic MRI and biopsy 3 months after CRT, as the reference standard for evaluating CRT response, which is a well-established method."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that the data were collected from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses contrast-enhanced T1-weighted and T2-weighted MRI scans, which are standard imaging techniques for cervical cancer assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions that detailed information about the image acquisition process is described in the supplementary material."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study assesses CRT response 3 months after CRT by pelvic MRI and biopsy, which is an appropriate interval to evaluate the treatment response."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study mentions that the primary tumor was semi-manually segmented on axial CE-T1WI and T2WI by two radiation oncologists using the Eclipse treatment planning system, version 13.7."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was semi-manual, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study mentions that the primary tumor was semi-manually segmented by two radiation oncologists, suggesting that the segmentation in the test set was not produced by a single reader or an entirely automated tool."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of contrast-enhanced T1-weighted and T2-weighted MRI scans, implying that appropriate preprocessing techniques were applied. The study also describes the use of an inflated 3D CNN to capture spatio-temporal information in 3D images."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the use of a standardized feature extraction software compliant with IBSI for handcrafted radiomics."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (handcrafted and deep features) and mentions the use of a 3D CNN architecture (ResNet-50) for deep learning. The supplementary material provides a detailed description of how to carry out the modeling process."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study applies logistic regression and recursive feature elimination to select 20 imaging features for the analysis, indicating the removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study applies logistic regression and recursive feature elimination to select 20 imaging features for the analysis, indicating the removal of redundant features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses 252 patients with 1890 imaging features, and applies feature selection to reduce the dimensionality to 20 features. The study also compares the performance of HCR and DLR models with and without clinical factors, providing some evidence of the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly assess the robustness of the end-to-end deep learning pipelines in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that the dataset was randomly divided into two independent groups for training and testing using the 'createDataPartition' function from the 'caret' package in R, suggesting a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers potential confounding factors such as tumor size, FIGO stage, and HPV status, and integrates them into the models to reduce dimensionality."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, balanced accuracy, sensitivity, specificity, positive predictive value, negative predictive value, and F1-score for classification tasks, and includes ROC curves and confusion matrices."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study evaluates uncertainty using the Brier score."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses both T1-weighted and T2-weighted MRI scans without comparing their individual performance to justify the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics models with a non-radiomic approach representative of clinical practice. The study does not provide proof of improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the models with a simple baseline reference model such as a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent data set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are not publicly available due to the privacy protection policy of personal medical information."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study mentions that the code is made available open-source along with the experimental results at a GitHub repository."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

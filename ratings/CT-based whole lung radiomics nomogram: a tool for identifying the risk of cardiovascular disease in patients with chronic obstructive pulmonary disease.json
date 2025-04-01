@@ -1,0 +1,143 @@
+{
+  "Summary": "This study develops a CT-based whole lung radiomics nomogram to identify the risk of cardiovascular disease (CVD) in patients with chronic obstructive pulmonary disease (COPD). The nomogram, incorporating radiomics features and clinical factors, demonstrates improved performance compared to a clinical factors model alone in training, internal validation, and external validation cohorts.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the whole lung using a U-net model, followed by manual correction by a radiologist."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "Although a U-net model is used for initial segmentation, a radiologist manually corrects the segmentation results. Therefore, the segmentation is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features from the segmented lung regions, which are hand-crafted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, including clinical information and extracted radiomic features, organized in tables for analysis and model building."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. While a deep learning model (U-net) is used for segmentation, the radiomics features are extracted separately and used in a logistic regression model. Therefore, it is not an end-to-end deep learning pipeline."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population of COPD patients."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for CVD events is based on ICD-10 definitions, which are standard diagnostic criteria. The CVD events were diagnosed at the time of admission, and the interval between the admission and the acquisition of the chest CT scan was less than 1 month."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from three different hospitals, indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is non-contrast chest CT, which is a common and standardized imaging technique for lung assessment in COPD patients."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides a table (Table 1) with CT acquisition protocols for different scanners, including parameters like scanner type, tube voltage, tube current, slice thickness, and reconstruction algorithm."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that the interval between the admission (when CVD events were diagnosed) and the acquisition of the chest CT scan was less than 1 month, which is appropriate for validating the presence or absence of CVD at the time of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a U-net model for initial segmentation and subsequent manual correction by a radiologist using ITK-SNAP software. The version of the software is also provided."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated as it involves manual correction by a radiologist. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation in the test set is performed by a single reader (radiologist) using ITK-SNAP software to correct the faulty segmentation, reflecting clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps, including voxel resampling to 1x1x1 mm3, gray level discretization to 25 Gy levels, and image intensity normalization. These steps are appropriate for the imaging modality and feature extraction techniques used."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses PyRadiomics (version 3.0.1), an open-source software, for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order, shape, and texture features) and mentions that radiomics features were extracted using Z-score normalization. The software and version used for feature extraction are also provided."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study uses the maximal redundancy minimal relevance (mRMR) algorithm to eliminate redundant and irrelevant parameters, which can be considered a method for removing non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses LASSO logistic regression to select the optimized subset of features for model construction, which is a method for dimensionality reduction and removing redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of features selected."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly assigned to training, internal validation, and external validation cohorts. The split was done at the beginning of the analysis. However, the study does not explicitly state whether the data split was stratified or if a fixed random seed was used to ensure reproducibility."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study mentions potential confounding factors like smoking status but excludes it due to missing data. It does not explicitly analyze or remove other potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC for ROC curves to evaluate the prediction performance of the model. The study also includes the Hosmer-Lemeshow test for calibration."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for odds ratios (OR) in the regression analysis."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the nomogram using the Hosmer-Lemeshow test and presents calibration curves."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide a justification for using multi-parametric imaging. It only uses non-contrast CT images."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics nomogram with a clinical factors model, which can be considered a non-radiomic approach. The study uses the Delong test to compare the AUCs of different models and decision curve analysis to compare the net benefit."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple baseline reference model like a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study includes an internal validation cohort, which is an independent data set sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes an external validation cohort from a different hospital, indicating external testing of the model."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data sharing statement indicating that data generated or analyzed during the study are available from the corresponding author by request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study mentions the use of a publicly accessed deep learning model (U-net) for segmentation and provides a link to the GitHub repository. The study also uses PyRadiomics, an open-source software, for feature extraction."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system. The data sharing statement only mentions that data is available upon request."
+  }
+}

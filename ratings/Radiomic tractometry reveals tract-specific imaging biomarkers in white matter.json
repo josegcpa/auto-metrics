@@ -1,0 +1,143 @@
+{
+  "Summary": "The study introduces radiomic tractometry (RadTract), a novel approach that combines radiomics with tractometry for improved predictive modeling of white matter microstructure. RadTract extracts a rich set of radiomic features from individual white matter tracts, enabling more detailed analysis and better performance in diagnosing disease subgroups and estimating demographic and clinical parameters compared to traditional tractometry methods. The authors demonstrate the capabilities of RadTract on four distinct datasets comprising individuals with Alzheimer’s disease, Mild Cognitive Impairment, Parkinson’s disease, prodromal Parkinson’s disease, schizophrenia, and catatonia as well as matched healthy controls.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of white matter tracts using TractSeg, as described in the methods section: 'The peaks served as input to TractSeg, which was used to calculate tract segmentations, tract start- and end-region segmentations, tract orientation maps, and as well as tractograms of each tract.'"
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study uses TractSeg for automated tract segmentation, which is a fully automated process. This is stated in the methods section: 'The peaks served as input to TractSeg, which was used to calculate tract segmentations, tract start- and end-region segmentations, tract orientation maps, and as well as tractograms of each tract.'"
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features such as first-order statistics, shape-based features, and texture features. This is described in the Results section: 'For each parcel, we calculated a set of 18 first-order statistics, 14 shape-based, and 73 texture features, using RadTract, resulting in 105 features per parcel and parameter map.'"
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features organized in a table. This is evident from the description of feature extraction and the use of these features in machine learning models. The features are numeric and used in a tabulated format."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. Instead, it relies on hand-crafted feature extraction and machine learning models like random forests. The pipeline involves explicit feature extraction steps rather than directly processing image data with a deep learning model."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist. While the methodology is well-described, there is no statement confirming the use of such guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for the included datasets, describing the subgroups and matching criteria for age and sex. This is mentioned in the Datasets section for each dataset (ADNI, PPMI, SCHZ, CAT), indicating a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses well-defined diagnostic criteria for the different disease subgroups as the reference standard, which are based on clinical diagnoses of Alzheimer's disease, Parkinson's disease, schizophrenia, and catatonia. These are representative of current clinical practice."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from multiple centers, including ADNI, PPMI, UCLA (SCHZ), and CIMH (CAT). This is explicitly stated in the Results section: 'We present results obtained on four datasets, including data obtained from the Alzheimer’s Disease Neuroimaging Initiative (ADNI, www.adni-info.org/), the Parkinson’s Progression Markers Initiative (PPMI, www.ppmi-info.org/access-data-specimens/download-data, RRID:SCR_006431), the UCLA Consortium for Neuropsychiatric Phenomics LA5c Study (SCHZ, https://openfmri.org/dataset/ds000030/)46 and a non-public dataset (CAT) acquired at the Central Institute of Mental Health (CIMH, https://www.zi-mannheim.de/en/)27.'"
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is clinically translatable as it uses diffusion MRI, a widely used and standardized imaging technique in clinical practice. The parameters and protocols are described, making it potentially replicable."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the imaging protocol with acquisition parameters for each dataset, including scanner type, field strength, number of directions, b-values, and resolution. This is described in the Datasets section for each dataset, ensuring replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses baseline imaging data from the PPMI dataset, which is appropriate for validating the presence or absence of target conditions at the moment of diagnostic imaging. For the other datasets, the time interval is not explicitly stated but can be assumed to be appropriate for the study aims."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study provides a transparent description of the segmentation methodology, detailing the use of TractSeg and the parameters used for tract segmentation. The methods section describes the process of tract modeling using TractSeg."
+  },
+  "Item9": {
+    "rating": "no",
+    "reason": "The study does not include a formal evaluation of the fully automated segmentation performed by TractSeg. While TractSeg is used, there is no mention of assessing its accuracy compared to expert annotations using metrics like DICE score or Jaccard index."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study uses TractSeg for automated segmentation, which means the test set segmentation masks are produced by an entirely automated tool. This is consistent across the dataset."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the use of appropriate image preprocessing techniques, including noise reduction, Gibbs ringing removal, eddy current and inhomogeneity distortion correction, and bias field correction. These steps are detailed in the Data preprocessing and tract modeling section."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state the use of a standardized feature extraction software compliant with IBSI. While pyradiomics is used, there is no mention of IBSI compliance."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study provides a transparent reporting of feature extraction parameters, describing the feature types (first-order statistics, shape-based, and texture features) and providing a list of the features used. The methods section and Supplementary Table 9 detail the features and the yaml file used for parameterization."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study mentions the removal of highly correlated features (Pearson correlation > 0.95), which can be considered a form of removing non-robust features. This is described in the Feature calculation section."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs dimensionality reduction by removing highly correlated features and using univariate feature selection. This is described in the Feature calculation section: 'we first removed all constant features as well as all highly correlated (Pearson correlation > 0.95) and therefore likely redundant features. Second, we used a simple and fast univariate feature selection implemented in scikit-learn on the training data to further automatically reduce the respective input feature set to k features76.'"
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study optimizes the number of selected features (k) and the number of parcels (n) on the SCHZ dataset, suggesting consideration of the appropriateness of dimensionality compared to data size. This is described in the Results section."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning, so robustness assessment of end-to-end deep learning pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study uses leave-one-out cross-validation (LOO-CV) with multiple repetitions, which ensures proper data partitioning. The methods section describes the use of LOO-CV and the handling of data splits."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study matches the subgroups for age and sex, indicating an attempt to handle potential confounding factors. This is mentioned in the Datasets section for each dataset."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the classification task, such as AUROC. This is stated in the Results section: 'As a metric to quantify classification performance, we chose the area under the receiver operating characteristic (AUROC).'"
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not explicitly report uncertainty measures like confidence intervals or standard deviations for the performance metrics. While variance is mentioned, it is not used as a formal uncertainty measure."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiple parameter maps (FA, ADC, AD, RD) without explicitly comparing their performance to uni-parametric evaluations to justify the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares RadTract with two variations of classic tractometry (Centerline Tractometry and Static Tractometry), which can be considered representative of the clinical practice. This is described in the Results section."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the results with a simple baseline reference model such as a Zero Rules/No Information Rate classifier. The comparison is limited to other tractometry methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses internal testing through leave-one-out cross-validation (LOO-CV), which involves testing on an independent data set sampled from the same source as the training data. This is described in the Methods section."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing with independent data from other institutions. The datasets used are from different institutions, but the models are not tested on completely independent external data."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study makes the code and the processed data available. The ADNI and PPMI datasets are publicly available, and the study provides the subject IDs for these datasets. The SCHZ dataset is also publicly available. The CAT dataset is not publicly available due to data privacy laws."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study provides the RadTract code on GitHub and as a Python package, including scripts related to automatic segmentation and modeling. This is mentioned in the Introduction and Code availability sections."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly share the final model in the form of a raw model file or a ready-to-use system. While the code is available, the trained models are not directly shared."
+  }
+}
