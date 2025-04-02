@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     out_dir = "article-text"
     Path(out_dir).mkdir(exist_ok=True)
-    with open("inter-rater.csv") as f:
+    with open("data/kokac/inter-rater.csv") as f:
         reader = csv.reader(f)
         next(reader)  # skip header
         for row in reader:
