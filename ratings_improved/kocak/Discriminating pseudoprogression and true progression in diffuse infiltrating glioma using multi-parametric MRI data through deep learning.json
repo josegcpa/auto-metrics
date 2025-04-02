@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates the use of a CNN-LSTM model with multiparametric MRI data to differentiate between pseudoprogression (PsP) and true tumor progression (PD) in diffuse infiltrating gliomas. The results suggest that incorporating all available MRI sequences into a sequence input for a CNN-LSTM model improves diagnostic performance compared to using a single MRI sequence with a VGG16 model.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study uses multiple MRI sequences and engineered sequences as input for the CNN-LSTM model, effectively segmenting or delineating regions of interest based on different contrasts."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the segmentation or image processing is fully automated without any human intervention. The description of the deep learning structure implies automated processing, but it's not explicitly confirmed as fully automated."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses deep learning (CNN-LSTM and VGG16) to extract features directly from the images, rather than relying on hand-crafted feature extraction methods."
+  },
+  "Condition4": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the use of tabular data in the analysis. The input data consists of MRI sequences processed by deep learning models."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study employs end-to-end deep learning by using CNN-LSTM and VGG16 models to directly process the image data and produce a classification model for differentiating between pseudoprogression and true tumor progression."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria by including biopsy-proven diffuse infiltrating glioma patients with disease progression/recurrence. This helps to define a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses biopsy results as the reference standard for differentiating between pseudoprogression and true tumor progression, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that all patients were imaged using both Philips and GE MR scanners at the University of Michigan, but it does not explicitly state that the data comes from multiple centers or institutions."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (MRI) is clinically translatable as it is a standard imaging technique used in clinical practice for assessing brain tumors."
+  },
+  "Item6": {
+    "rating": "no",
+    "reason": "The study mentions the MRI sequences used (pre-contrast T1-weighted, post-contrast T1-weighted, T2-weighted, FLAIR, ADC), but it does not provide detailed acquisition parameters to ensure replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions using MRI data closest to the follow-up operation confirming PsP or PD, indicating an attempt to align the imaging data with the reference standard acquisition."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the use of multiple MRI sequences and engineered sequences (T1post-T1pre, T2-FLAIR) as input for the CNN-LSTM model, which can be considered a form of segmentation or region of interest definition. The rationale behind creating the engineered sequences is also explained, providing transparency in the methodology."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly state that the segmentation or image processing is fully automated without any human intervention. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly state whether the final segmentation in the test set is produced by a single reader or an automated tool. Therefore, this criterion is not applicable."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of MRI images using white-stripe normalization, which is an appropriate image preprocessing technique. The rationale behind creating the engineered sequences (T1post-T1pre, T2-FLAIR) is also explained."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "The study uses deep learning (CNN-LSTM and VGG16) to extract features directly from the images, rather than relying on hand-crafted feature extraction methods and standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the neural network architectures (VGG16 and CNN-LSTM) and the image operations performed. The parameters of the CNN-LSTM model, such as the number of filters and kernel sizes, are also mentioned."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly mention the use of tabular data in the analysis. The input data consists of MRI sequences processed by deep learning models. Therefore, this criterion is not applicable."
+  },
+  "Item15": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly mention the use of tabular data in the analysis. The input data consists of MRI sequences processed by deep learning models. Therefore, this criterion is not applicable."
+  },
+  "Item16": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly mention the use of tabular data in the analysis. The input data consists of MRI sequences processed by deep learning models. Therefore, this criterion is not applicable."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipelines using test-retest, scan-rescan, or stability analysis."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions performing threefold cross-validation, which implies a data partitioning process. However, the details of the data split (e.g., random seed, stratified split, patient-level split) are not explicitly stated."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across sites or scanners."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports accuracy and AUC as performance evaluation metrics for the classification task. ROC curves are also presented. However, confusion matrices and other metrics like sensitivity, specificity, and precision are not explicitly mentioned."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals for the AUC values, which provides a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiparametric MRI data as input for the CNN-LSTM model. While it compares the performance of the CNN-LSTM model with a single MRI sequence using a VGG16 model, it does not explicitly justify the need for a multi-parametric approach by formally comparing its performance with uni-parametric evaluations."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the proposed CNN-LSTM model with a VGG16 model, which can be considered a comparison with a non-radiomic approach or a simpler model. The study also provides a rationale for the added value of the proposed method by highlighting its ability to leverage correlations between multiple MRI sequences."
+  },
+  "Item25": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the proposed CNN-LSTM model with a VGG16 model, which can be considered a comparison with a simple or classical statistical model. The study also provides a rationale for the increased performance of the proposed method."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study performs threefold cross-validation, which involves testing the model on an independent data set sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not mention testing the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study includes a data availability statement, but it only mentions that the datasets are available from the corresponding author on reasonable request. It does not explicitly state that any imaging, segmentation, clinical, or radiomics analysis data is shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not include a code availability statement, and it does not mention that any scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not include a model availability statement, and it does not mention that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "Summary": "This study explores the potential of FET PET radiomics for differentiating pseudoprogression from early tumor progression in glioma patients. The radiomics model, based on static FET PET scans, achieved 100% sensitivity and negative predictive value in diagnosing pseudoprogression in the test cohort, suggesting its potential as a diagnostic tool. The model uses only four parameters, enhancing interpretability and clinical acceptance. Further validation in a larger, multicenter dataset is recommended.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves tumor VOI segmentation based on TBR thresholds (1.4, 1.6, and 1.8) for radiomics analysis."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The segmentation is based on an automated contouring process using a tumor-to-brain ratio (TBR) of 1.6 or more, without human intervention."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features using the pyradiomics package, including first-order statistics, shape features, GLCM, GLRLM, GLSZM, NGLDM, and GLDM features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features organized for machine learning model training and validation."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach; instead, it relies on hand-crafted feature extraction and traditional machine learning models."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, specifying the type of glioma, confirmation of tumor progression on MRI, and timing of FET PET scans."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The study uses histomolecular confirmation or clinicoradiological follow-up to diagnose pseudoprogression and early tumor progression, which represents a reasonable reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses FET PET, which is an established imaging technique in neuro-oncology, and the methodology for TBR calculation is well-defined."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the FET PET imaging protocol with acquisition parameters, including injected dose, scan duration, and scanner details."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that FET PET scans were performed within 7-10 days after the MRI suspicious for tumor progression, which is appropriate for validating the presence or absence of target conditions."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of TBR thresholds (1.4, 1.6, and 1.8) for creating tumor VOIs."
+  },
+  "Item9": {
+    "rating": "no",
+    "reason": "The study does not include a formal evaluation of the fully automated segmentation accuracy compared to domain expert annotations. Although the segmentation is automated, there is no mention of DICE score or Jaccard index calculation."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study uses a fully automated tool for segmentation in the test set."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image pre-processing techniques, including absolute intensity resampling with a bin width of 0.15. It also mentions the use of Laplacian-of-Gaussian and wavelet transformation filters."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses the pyradiomics package (version 3.0) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study reports the feature extraction parameters, including the types of features (first-order, shape, GLCM, GLRLM, GLSZM, NGLDM, GLDM) and the use of LoG and wavelet filters. It also mentions the bin width for absolute intensity resampling."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs feature selection using recursive feature elimination with random forest classifiers to reduce dimensionality and identify a subset of useful features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study limits the number of features for model generation to four to avoid overfitting, which suggests consideration of the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions a stratified random split of data in a ratio of 70/30 before feature extraction. This indicates a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors stemming from the acquisition process or individual patient characteristics."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics such as AUC, sensitivity, specificity, and p-values for classification tasks. It also provides classification results in tables."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not include a uni-parametric imaging evaluation or proof of its inferiority compared to the multi-parametric approach. It directly uses FET PET radiomics without comparing it to single PET parameter radiomics."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics model with conventional FET PET parameters (TBRmean, TBRmax) and their combinations, which can be considered a non-radiomic approach."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with simple or classical statistical models like a Zero Rules classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent test dataset that is sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not involve external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention model availability."
+  }
+}

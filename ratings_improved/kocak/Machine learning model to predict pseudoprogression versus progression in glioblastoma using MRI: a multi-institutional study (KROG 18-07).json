@@ -1,0 +1,143 @@
+{
+  "Summary": "This study aimed to develop a deep learning model to differentiate pseudoprogression (PsPD) from progressive disease (PD) in glioblastoma patients using multi-institutional MRI data and clinical features. The model, which combines CNN and LSTM structures, was trained on a dataset of 182 patients and showed an acceptable performance with a micro-average AUPRC of 0.86 in 10-fold cross-validation. The model was calibrated and implemented in a web-user interface to provide clinicians with the probability of pseudoprogression.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study uses nine axial MR images that cover the brain lesion to be classified, which constitutes a segmentation/cropping around the region of interest."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study does not explicitly state whether the segmentation is fully automated. However, given the description of using nine axial MR images, it is likely that the images are selected manually."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses a deep learning approach with CNN and LSTM, which automatically extracts features from the images. Therefore, there is no hand-crafted feature extraction."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses clinical information such as age, gender, total radiation dose, number of fractions, interval between CCRT and the appearance of lesion, MGMT methylation status, and IDH mutation status as inputs to the model, which can be considered tabular data."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses a deep learning model with CNN and LSTM structures to directly process the image data and clinical information to classify PsPD and PD, which is an end-to-end deep learning approach."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, which helps to describe a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The classification of PD vs. PsPD was based on expert opinions, PET imaging, pathological confirmation, and follow-up MR imaging, which can be considered a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from multiple institutions (KROG dataset), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses gadolinium-enhanced T1-weighted MR images, which are commonly used in clinical practice for glioblastoma diagnosis and monitoring."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the slice thickness of the MR images and the use of triplicate images when the slice thickness was > 1 mm, providing some information about the imaging protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions the interval from the completion of CCRT to the appearance of the brain lesion, which is relevant to the diagnosis of PsPD vs. PD."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes how MR images were selected based on slice thickness and lesion size, providing a transparent description of the segmentation methodology."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not use fully automated segmentation."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study uses a fixed protocol for image selection (nine axial MR images), which can be considered as a single reader producing the segmentation in the test set."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of gadolinium-enhanced T1-weighted MR images and the consideration of slice thickness, indicating appropriate use of image preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the network architecture (CNN-LSTM) and the input features (MR images and clinical information), providing transparent reporting of feature extraction parameters."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted features."
+  },
+  "Item15": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted features."
+  },
+  "Item16": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted features."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study performs a 10-fold cross-validation, which is a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study compares clinicopathological characteristics between patients with PsPD and PD and mentions variations in MR image quality due to different imaging policies in each institution, indicating consideration of potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUPRC as the performance evaluation metric for the classification task and plots precision-recall curves."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not report uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the final model by comparing different calibration models and plotting reliability diagrams."
+  },
+  "Item23": {
+    "rating": "yes",
+    "reason": "The study uses a single MR sequence image (gadolinium-enhanced T1-weighted MR) and justifies its use by stating that it will expand the practical use in clinical setting."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the deep learning model with a non-radiomic approach or provide proof of added clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the deep learning model with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study performs a 10-fold cross-validation, which can be considered as internal testing."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model availability, although they provide a web interface."
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates the diagnostic and prognostic value of conventional MRI radiomics in distinguishing between early progression (EP) and pseudoprogression (Psp) in glioblastoma patients after radiochemotherapy. The study found that radiomics, especially when combined with MGMT promoter status, shows promising diagnostic value but with moderate specificity. Additionally, the study suggests a potential for predicting overall survival (OS) and progression-free survival (PFS) using radiomics features.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves manual segmentation of tumor volumes of interest (VOIs) on MRI images, including contrast-enhanced tumor, peritumoral area, and combinations thereof."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by an expert reader, indicating that it was not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features from manually segmented regions on conventional MRI, which are considered hand-crafted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses radiomics features in a tabulated format for statistical analysis and model construction."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not employ an end-to-end deep learning approach. Instead, it relies on manual segmentation and hand-crafted feature extraction followed by machine learning algorithms like random forest and supervised principal component analysis."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, such as histological diagnosis of GBM, age over 18, TMZ radiochemotherapy as initial treatment, radiological and clinical surveillance data availability, radiological progression within 6 months, and absence of significant MRI artifacts."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for diagnosis (EP vs. Psp) is based on histological analysis or radioclinical follow-up according to RANO criteria, which is a reasonable clinical practice, although not the highest quality (histological analysis)."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is conducted at a single institution, as it mentions patients being identified in \"our institution’s radiological database.\""
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses conventional MRI sequences (FLAIR and T1CE) which are standard for GBM evaluation, indicating clinical translatability."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the imaging protocol with acquisition parameters for both 1.5 Tesla and 3 Tesla MRI scans, including TI, TE, TR, section thickness, and interslice gap."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes patients who experienced radiological progression within 6 months of their concomitant TMZ radiochemotherapy, which is an appropriate interval for distinguishing between EP and Psp."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual segmentation methodology, specifying the volumes of interest (T1CE, FT, FO, FOT) and the use of T1CE and FLAIR images for each volume. It also mentions that an expert reader performed the segmentation without coregistration."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation was performed manually by a single expert reader, which reflects clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of radiomics features to z-scores, which is an appropriate preprocessing technique. However, it lacks details on other preprocessing steps, such as gray level normalization or image registration."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions the use of LifeX software for radiomics feature extraction. While it doesn't explicitly state IBSI compliance, using a dedicated software suggests a degree of standardization. The software is cited with its origin."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study mentions the number of extracted radiomics features (39 per volume, 156 per patient) and that they were normalized to z-scores. Supplementary Table 2 lists the selected features and their scores. However, detailed feature extraction parameters are not fully transparently reported."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis. Therefore, this item is not applicable."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses a Wilcoxon-test-based method for feature selection, which can be considered a form of dimensionality reduction by selecting the more informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. There is no statistical evidence or empirical demonstration to support the chosen number of features relative to the number of patients."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions random assignment of patients into training and validation groups in a 2:1 ratio while maintaining the EP/Psp ratio. This suggests a proper data partitioning process at the beginning of the analysis pipeline."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors. While MGMT promoter status is included in some models, there is no mention of analyzing or removing other potential confounders."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports accuracy, sensitivity, and specificity for the classification model, and C-index and IBS for the survival models, which are appropriate performance evaluation metrics for the respective tasks. Kaplan-Meier plots are also presented."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for accuracy, sensitivity, and specificity, as well as hazard ratios, which provide a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final models."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (FLAIR and T1CE) without justifying the need for it by comparing its performance to uni-parametric evaluations."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method representative of clinical practice. There is no comparison to semantic features, RADS/RECIST scoring, or simple volume measurements."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model. The use of machine learning methods is not explicitly justified by proof of increased performance compared to a simpler alternative."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent validation set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model availability."
+  }
+}

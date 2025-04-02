@@ -1,0 +1,143 @@
+{
+  "Summary": "This study developed and validated a multiparametric MRI radiomics model to differentiate pseudoprogression from early tumor progression (ETP) in glioblastoma patients. The model, incorporating contrast-enhanced T1-weighted imaging, FLAIR, DWI, and DSC imaging, demonstrated improved diagnostic performance compared to single-parameter or single-imaging technique approaches. The model's robustness was confirmed through external and internal validation.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes semi-automatic segmentation of contrast-enhancing tumor regions."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed semi-automatically, requiring human intervention."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from the images."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach; instead, it relies on hand-crafted feature extraction and a generalized linear model."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines clear inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for final diagnosis (pseudoprogression vs. ETP) involves a consensus between a neuro-oncologist and a neuroradiologist, incorporating clinico-radiological diagnoses according to the Response Assessment in Neuro-Oncology criteria, and pathological diagnoses when available. This represents a robust reference standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from two different institutions (tertiary centers), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source includes standard MRI sequences (T1-weighted, FLAIR, DWI, DSC) commonly used in clinical practice for glioblastoma assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed acquisition protocols and image preprocessing methods for both the training and validation cohorts in the supplementary material."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that baseline multiparametric MRI was performed within 6 months (mean, 18.9 wk; range, 12.1–24.7 wk) after surgery or biopsy, and that newly developed or enlarging lesions were assessed within 12 weeks of completing CCRT. This timeframe is appropriate for evaluating pseudoprogression vs. ETP."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning the use of segmentation threshold and region-growing algorithms implemented in MITK software, performed semi-automatically by a neuroradiologist. The segmented images were then reevaluated and validated by an experienced neuroradiologist."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was semi-automatic, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The segmentation in the test set was reviewed and validated by an experienced neuroradiologist, which does not reflect clinical practice."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the use of signal intensity normalization for CE-T1WI and FLAIR data using the hybrid white-stripe method. Outliers were excluded from ADC and CBV maps. These preprocessing steps are appropriate for the imaging modalities used."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not mention the use of standardized feature extraction software compliant with IBSI."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomic features extracted (first-order, shape, texture, wavelet-transformed) and provides detailed information in the Supplementary material S2."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses LASSO for feature selection, which is a dimensionality reduction technique that selects informative features by shrinking the coefficients of irrelevant features to zero."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses LASSO with 10-fold cross-validation, which is designed to avoid overfitting and provide robust generalized performance, suggesting consideration of the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "no",
+    "reason": "The study mentions using the training data to select significant features and construct the model, and then validating with external and internal datasets. However, it does not explicitly state that the training-validation-test data split was done at the very beginning of the analysis pipeline, prior to any processing step, or that data processing was done blinded to the test set data."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors such as age, sex, KPS score, IDH mutation status, and MGMT promoter methylation status, and reports whether there were significant differences between the training and validation sets regarding these factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC to evaluate diagnostic performance and reports sensitivity and specificity. It also includes confidence intervals. This is appropriate for the classification task."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals for the AUC values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiparametric imaging (CE-T1WI, FLAIR, DWI, and DSC) without a formal comparison to uni-parametric imaging to justify the need for the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the multiparametric radiomics model with single-parameter approaches using CBV and ADC values, which can be considered a non-radiomic approach representative of clinical practice. It uses Bonferroni correction for multiple comparisons."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the model's performance to a simple baseline reference model like a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study includes internal testing using a prospective registry dataset, which is sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes external testing using data from another institution (Seoul National University)."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared publicly."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of scripts related to automatic segmentation or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model in any form."
+  }
+}

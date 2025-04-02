@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates whether incorporating radiomics features from DWI and ASL into an MRI radiomics model improves the differentiation between radiation-induced brain injury (RIBI) and tumor recurrence (TR) in glioma patients. The study found that the multiparameter MRI radiomics model, which includes conventional MRI, ADC, and CBF, outperformed models based on conventional MRI or single-parameter MRI alone. The study validated the model on an independent validation set.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves manual segmentation of lesions on CE-T1WI images using ITK-SNAP software."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions manual segmentation of lesions, indicating that the segmentation process is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomics features from the images."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses radiomics features in a tabulated format for analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. It relies on hand-crafted feature extraction and machine learning classifiers."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, which helps to establish a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathological results or follow-up MRI and clinical manifestation, which are acceptable for the study."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that patients were enrolled from a single center."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source includes conventional MRI sequences and advanced techniques like DWI and ASL, which are clinically relevant for glioma assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides the MRI scan protocols and main parameters in Supplementary S1, ensuring the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that for patients with RIBI, the final judgment of continuous follow-up was determined based on the MRI and clinical manifestation. MRI follow-up was performed at intervals of 2–3 months and more than 2 times. For recurrent tumors, all were histopathologically confirmed by secondary surgery. This suggests an appropriate interval between imaging and the reference standard."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, specifying that two experienced radiologists manually segmented lesions on CE-T1WI using ITK-SNAP software, covering the visible solid part of the tumor while avoiding cystic and necrotic areas."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study involves manual segmentation, not fully automated segmentation. Therefore, formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study mentions that two radiologists performed the segmentation. Therefore, the test set segmentation masks were not produced by a single reader or automated tool."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions image registration, intensity normalization, and resampling using B-spline interpolation, which are appropriate preprocessing techniques. The study also mentions normalization of the intensity of each MR image of all patients."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the use of a standardized feature extraction software compliant with IBSI."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomics features extracted (volume and shape, first-order, texture, and wavelet transform features) and provides detailed information in Supplementary S2."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study uses ICC to test segmentation stability between two doctors. The features with ICC > 0.85 were selected for the next step."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses the Mann–Whitney U test, LASSO regression, and RFE algorithms to select important radiomics features, which are methods for dimensionality reduction and feature selection."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses LASSO regression with 10-fold cross-validation, which is designed to avoid overfitting, suggesting consideration of the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions using a training set and an independent validation set, indicating a proper data partitioning process. The study also mentions that there were no significant differences in age, sex, isocitrate dehydrogenase (IDH) status, KPS score, or WHO grade between TR and RIBI in the training set and independent validation set."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study mentions that there were no significant differences in age, sex, isocitrate dehydrogenase (IDH) status, KPS score, or WHO grade between TR and RIBI in the training set and independent validation set. This suggests that the authors considered potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports sensitivity, specificity, accuracy, precision, and AUC, which are appropriate performance evaluation metrics for the classification task. The study also includes ROC curves."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, indicating consideration of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiparametric MRI and does not provide a comparison with uni-parametric imaging or justification for the use of multiparametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value beyond the radiomics model."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent validation set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not mention testing the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention that all scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "Summary": "This study investigates clinical, molecular, and imaging characteristics of clinically-defined pseudoprogression (PsP) in newly-diagnosed glioblastoma (GBM) patients with early radiographic progression. The study found that patients with clinically-defined PsP, defined as early progression followed by long residual overall survival, have distinct clinical and imaging features compared to those with true progression. Radiomic analysis showed potential in predicting clinical PsP with reasonable accuracy.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of contrast-enhanced T1-weighted digital subtraction maps and FLAIR images to define volumes of interest (VOIs) for contrast-enhancing tumor, central necrosis, and T2 hyperintense regions."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation process involves a semi-automated thresholding method with initial VOIs created by trained lab technologists and final VOIs reviewed by a neuroradiologist, indicating human intervention."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study performs radiomic analysis, which involves extracting hand-crafted image features from the segmented regions."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, including clinical characteristics, molecular data (MGMT status), and radiomic features, organized in tables for analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted radiomic features extracted from segmented images."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, focusing on newly-diagnosed GBM patients from the control arm of a clinical trial who presented with early radiographic progressive disease."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on centrally determined progression according to clinical trial guidelines and overall survival, which are reasonable measures for the study's objective."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study utilizes data from a multicenter phase III trial (AVAglio) involving 120 institutions across 23 countries."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is based on standard clinical MR imaging protocols used for GBM diagnosis and monitoring, reflecting established standardization approaches."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the use of 1.5-T or 3-T clinical MR scanners and describes the pulse sequences used (T1-weighted, T2-weighted, FLAIR), along with contrast administration, providing some details on the image acquisition protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses the time of radiographic progression as the imaging time point and correlates it with residual overall survival (ROS), which is an appropriate interval to validate the presence or absence of target conditions."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a semi-automated thresholding method and the definition of three mutually exclusive volumes-of-interest (VOIs)."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation method used is semi-automated and requires human intervention, so a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The final VOIs were reviewed by a neuroradiologist, indicating that the test set segmentation masks were produced by a single reader."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions image registration and normalization as preprocessing steps. It also describes the creation of contrast-enhanced T1-weighted subtraction maps, indicating appropriate use of image preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state the use of a standardized feature extraction software compliant with IBSI."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study provides detailed information on the radiomic features extracted, as described in Supplementary Note 3, which is in concordance with the Imaging Biomarker Standardization Initiative (IBSI)."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study mentions feature selection processes but does not explicitly describe the removal of non-robust features via test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study mentions feature selection processes to reduce dimensionality, indicating the removal of redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size, such as statistical means or empirical evidence."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so a robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions random division of patients into training and validation cohorts while preserving the ratio of true PD and clinical PsP, indicating a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors such as age, KPS score, and MGMT status, and compares these factors between the true PD and clinical PsP groups."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, and specificity for the classification task. It also includes Kaplan-Meier survival curves and log-rank tests."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports hazard ratios with 95% confidence intervals, indicating consideration of uncertainty in the analysis."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide a justification for the use of multi-parametric imaging by comparing its performance to uni-parametric approaches."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple or classical statistical model to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent validation dataset that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention testing the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that datasets analyzed are available from the corresponding author on request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study includes a code availability statement indicating that codes used are available from the corresponding author on request."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  }
+}

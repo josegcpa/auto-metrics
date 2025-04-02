@@ -1,0 +1,143 @@
+{
+  "Summary": "This retrospective pilot study investigates the potential of textural features from O-(2-[18F]fluoroethyl)-L-tyrosine positron emission tomography (FET-PET) to differentiate between true tumor progression and pseudoprogression (PSP) in patients with high-grade glioma (HGG). The study identified three distinct clusters based on textural FET-PET features, with cluster 3 showing a significant association with PSP compared to the conventional TNRmax marker. The findings suggest that textural FET-PET feature analysis could be a valuable non-invasive tool for distinguishing PSP from true tumor progression, warranting validation in larger prospective studies.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual delineation of tumor volume on PET images, which constitutes segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually, so it is not fully automated."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study uses hand-crafted textural features extracted from PET images."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted PET features organized in a table."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It relies on hand-crafted feature extraction and clustering."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient selection, including specific MRI and PET imaging characteristics, as well as histopathological confirmation of HGG."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on follow-up MRI using RANO criteria, which is a well-established method for assessing tumor progression and pseudoprogression in clinical practice. The diagnosis was confirmed by experienced neuroradiologists."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution (University of Bonn Medical Center)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (FET-PET) is clinically translatable as it is a widely used imaging technique for brain tumor assessment. The study mentions using standard acquisition protocols."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details on the PET imaging protocol, including the injected dose of FET, the timing of image acquisition, and the reconstruction parameters."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The time interval between imaging and the reference standard (follow-up MRI) is appropriate, as the study specifies that a further contrast-enhanced MRI ensued at least 4 weeks later without change of therapy."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including manual delineation of the tumor volume on PET images and the use of a semi-automatic segmentation based on background activity with a specific cutoff value (1.6 times the mean value of background ROIs)."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The tumor volume was manually delineated on PET images. The final segmentation in the test set is produced by a single reader."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions co-registration between PET and CT images. It also describes the reconstruction parameters used for the PET data. The study uses standardized z-scores for the features."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state the use of a standardized feature extraction software compliant with IBSI. They mention using Interview Fusion Workstation (Mediso Medical Imaging System, Budapest, Hungary) but do not specify IBSI compliance."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the PET features used, including both conventional and textural features. It provides explanations for each feature and mentions that all parameters were assessed in 3-dimensional volumes."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not describe any methods for removing redundant features, such as algorithm-based feature selection or collinearity analysis."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. The sample size is small (n=14), which raises concerns about overfitting."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "no",
+    "reason": "The study does not explicitly describe the data partitioning process (training, validation, test split). It is unclear whether the data split was done at the very beginning of the analysis pipeline and whether it was random and reproducible."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges that the cohort was heterogeneous to some degree (patients included in first-line therapy and after relapse). They also mention that treatment at recurrence might further account for varying PET data."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics, such as sensitivity, specificity, positive predictive value (PPV), and negative predictive value (NPV). They also provide p-values for comparing the performance of different classifiers."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes confidence intervals (CI) for the performance metrics (sensitivity, specificity, PPV, NPV)."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiple PET features (both conventional and textural). It does not provide a comparison with a uni-parametric approach or justification for the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the cluster-based classifier with the conventional TNRmax marker, which is a non-radiomic method used in clinical practice. They provide p-values for comparing the association of pseudoprogression with each classifier."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple or classical statistical model (e.g., Zero Rules classifier). It only compares with the conventional TNRmax marker."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses an independent data set that is sampled from the same source as the training and/or validation sets. The patients were selected from the patient files of the Division of Clinical Neurooncology at the University of Bonn Medical Center."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not involve external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability or sharing of imaging, segmentation, clinical, or radiomics analysis data with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code availability or sharing of scripts related to automatic segmentation and/or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model availability or sharing of the final model in the form of a raw model file or as a ready-to-use system."
+  }
+}
