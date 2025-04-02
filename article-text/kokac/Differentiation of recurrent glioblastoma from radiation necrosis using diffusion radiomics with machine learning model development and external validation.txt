@@ -1,0 +1,166 @@
+Abstract
+The purpose of this study was to establish a high-performing radiomics strategy with machine learning from conventional and diffusion MRI to differentiate recurrent glioblastoma (GBM) from radiation necrosis (RN) after concurrent chemoradiotherapy (CCRT) or radiotherapy. Eighty-six patients with GBM were enrolled in the training set after they underwent CCRT or radiotherapy and presented with new or enlarging contrast enhancement within the radiation field on follow-up MRI. A diagnosis was established either pathologically or clinicoradiologically (63 recurrent GBM and 23 RN). Another 41 patients (23 recurrent GBM and 18 RN) from a different institution were enrolled in the test set. Conventional MRI sequences (T2-weighted and postcontrast T1-weighted images) and ADC were analyzed to extract 263 radiomic features. After feature selection, various machine learning models with oversampling methods were trained with combinations of MRI sequences and subsequently validated in the test set. In the independent test set, the model using ADC sequence showed the best diagnostic performance, with an AUC, accuracy, sensitivity, specificity of 0.80, 78%, 66.7%, and 87%, respectively. In conclusion, the radiomics models models using other MRI sequences showed AUCs ranging from 0.65 to 0.66 in the test set. The diffusion radiomics may be helpful in differentiating recurrent GBM from RN.
+
+.
+
+Similar content being viewed by others
+
+Machine learning based differentiation of glioblastoma from brain metastasis using MRI derived radiomics
+Article Open access
+18 May 2021
+
+Predicting histological grade in pediatric glioma using multiparametric radiomics and conventional MRI features
+Article Open access
+13 June 2024
+
+MRI radiomics based on machine learning in high-grade gliomas as a promising tool for prediction of CD44 expression and overall survival
+Article Open access
+03 March 2025
+Introduction
+The current gold standard treatment for glioblastoma (GBM, World Health Organization [WHO] grade IV) is maximum safe tumor resection, followed by concurrent chemoradiotherapy (CCRT) with temozolomide1,2. In cases of elderly patients with unmethylated 6-methylguanine-DNA methyltransferase (MGMT) promoter status or patients with Karnofsky performance status (KPS) index lower than 70, radiotherapy (RT) alone is the standard treatment2,3. Radiation necrosis (RN) usually occurs within 3 years after radiation therapy and is often indistinguishable from recurrent tumor because it manifests as an enhancing mass lesion with varying degrees of surrounding edema and progressive enhancement on serial magnetic resonance imaging (MRI)4,5. Thus, distinguishing between recurrent GBM and RN has clinical importance in deciding the subsequent management; recurrence indicates treatment failure and requires the use of additional anticancer therapies, whereas RN is treated conservatively.
+
+Multiple studies have made efforts to distinguish GBM recurrence from RN using various imaging methods, including conventional imaging, diffusion-weighted imaging (DWI), diffusion tensor imaging, dynamic susceptibility contrast (DSC) imaging, MR spectroscopy, amide proton transfer imaging, and positron emission tomography4,5,6,7,8,9,10,11,12,13. However, there is no gold standard imaging method for the differentiation between recurrence and RN, due to high degree of overlapping findings. Currently, the definitive diagnosis is based on histopathology which is both invasive and difficult. In addition, the pathology results may be variable depending on the surgical sampling sites due to the coexistence and admixture of recurrence and RN14.
+
+Radiomics involves the identification of ample quantitative features within images and the subsequent data mining for information extraction and application15. Recent studies have shown promising results in predicting the molecular status, grade, and prognosis of gliomas16,17,18,19,20. Because radiomics models use high-throughput features, there are prone to discover invisible information which are inaccessible with single-parameter analysis.
+
+The aim of this study was to develop and validate a high-performing radiomic strategy using machine learning classifiers from conventional imaging and apparent diffusion coefficient (ADC) to differentiate recurrent GBM from RN after concurrent CCRT or radiotherapy.
+
+Results
+Baseline characteristics of the patients
+The baseline demographic and clinical characteristics are summarized in Table 1. Of the 86 patients in the training set, 63 (73.3%) were classified as recurrent GBM and 23 (26.7%) as RN cases. The 41 patients in the test set consisted of 23 (56.1%) recurrent GBM and 18 (43.9%) RN cases. There were no significant differences in age, sex, extent of resection, first line treatment (either CCRT or RT alone/RT plus temozolomide), total radiation dose, isocitrate dehydrogenase 1 (IDH1) mutation status, and MGMT methylation status between patients with recurrent GBM and those with RN within both training and test sets.
+
+Table 1 Baseline demographic data and clinical characteristics of patients.
+Full size table
+Qualitative imaging analysis
+The radiologists’ assessment of conventional imaging features showed no significant difference between recurrent GBM and RN in maximum lesion diameter, involvement of corpus callosum, and “Swiss cheese” or “spreading wavefront” enhancement pattern in both the training set and test sets (all p-values > 0.05), respectively.
+
+Best performing machine learning models from radiomics features for differentiating recurrent GBM from RN in the training set
+Using radiomic features, in each combination of the selected MRI sequence, the 3 feature selection, 3 classification methods, and 2 oversampling methods were trained.
+
+The performance of each combination of the models is shown in Fig. 1. In the training set, the area under the curve (AUCs) of the models showing the best diagnostic performance ranged from 0.86 to 0.93 in each combination. AUCs with oversampling were higher than those without oversampling in all combinations. In the ADC sequence, the combination of least absolute shrinkage and selection operator (LASSO) feature selection, and support vector machine (SVM) showed the best diagnostic performance in the training set. The selected 18 features consisted of 3 first-order features, 10 s-order features, and 5 shape features (Detailed information at Supplementary Table 3). This model demonstrated an area under the curve (AUC), accuracy, sensitivity, specificity of 0.90 (95% confidence interval [CI] 0.84–0.95), 80.5%, 78.3%, and 82.9%, respectively. In the T2WI (T2) sequence, the combination of LASSO feature selection and SVM showed the best diagnostic performance in the training set with an AUC of 0.86 (95% CI 0.80–0.91). In the postcontrast T1WI (T1C) sequence, the combination of mutual information (MI) feature selection and SVM showed the best diagnostic performance in the training set with an AUC of 0.91 (95% CI 0.86–0.95). In the combined sequence (ADC + T2 + T1C), the combination of LASSO feature selection, and SVM showed the best diagnostic performance in the training set with an AUC of 0.93 (95% CI 0.89–0.97). (Hyperparameters for each model are summarized at Supplementary Table 4).
+
+Figure 1
+figure 1
+Heatmap depicting the diagnostic performance (AUCs) of combinations of feature selection methods, classifiers, and combination of sequences in the training set. AUC area under the curve, KNN k-nearest neighbors, MI mutual information, LASSO least absolute shrinkage and selection operator, SMOTE synthetic minority over-sampling technique, SVM support vector machine, T1C postcontrast T1WI, T2 T2WI. The best performing model in each combination of MRI sequence and mask are marked in asterisks (*).
+
+Full size image
+Robustness of radiomics models in the test set
+In the independent test set, the model using ADC sequence with the combination of LASSO feature selection and SVM showed the best diagnostic performance. This model demonstrated an AUC, accuracy, sensitivity, specificity of 0.80 (95% CI 0.65–0.95), 78%, 66.7%, and 87%, respectively.
+
+The radiomics models using other combination of MRI sequence showed poor performance (AUCs ranging from 0.65 to 0.66) in the test set, although it did not reach significant difference from the ADC radiomics model (p-values of > 0.05). Table 2 summarizes the results of best performing models in training and test sets.
+
+Table 2 Diagnostic performance of the best performing machine learning model in the training set and the test set.
+Full size table
+Discussion
+In this study, we evaluated the ability of conventional and diffusion radiomics to differentiate recurrent GBM from RN. Several MR sequences and their combination were investigated and validated externally, and among these models the diffusion radiomics model showed robustness with AUC of 0.80. RN has been reported to occur in approximately 9.8–44.4% of treated gliomas, which shows low incidence than recurrent GBM6,9,21. In our study, the data imbalance was mitigated by using a systematic algorithm, which generates synthetic samples in the minority class22. The performance was increased when synthetic minority over-sampling technique (SMOTE) was applied in our dataset (Fig. 1), showing its efficacy. Although recurrent GBM and RN have similar radiologic appearances, they harbor distinct radiomic information that can be extracted and used to build a clinically relevant predictive model that discriminates recurrent GBM from RN. Our model may aid in deciding the subsequent management of these patients.
+
+Although conventional findings such as “Swiss cheese” or “spreading wavefront” enhancement pattern have been reported to show differences between recurrent high-grade glioma and RN in earlier studies5,6, these findings have subsequently been reported that they cannot be reliably used alone in differentiating between the two conditions4,23. Moreover, these conventional imaging patterns are highly subjective. Various studies implementing advanced imaging parameters such as diffusion MRI, DSC MRI, proton MR spectroscopy (MRS), amide proton transfer (APT) imaging, and positron emission tomography (PET) have shown promising results in differentiating recurrent GBM from RN9,11,12,24,25,26. Although APT imaging has shown higher diagnostic performance than MRS27 or 11C-MET PET28 in differentiating recurrent GBM from RN, APT imaging is challenging due to long scan times and limited coverage with high radiofrequency power. On the other hand, the accuracy of MRS and PET in differentiating recurrent GBM from RN has been questioned; a meta-analysis has shown moderate sensitivity and specificity for MRS, 18F-FDG, and 11C-MET PET in distinguishing between recurrent GBM from RN29, whereas another study found no difference between recurrence and necrosis groups using 18F-FDG and 11C-MET PET12. MRS and PET also have limited value in practical clinical settings due to their limited availability and low cost-effectiveness. DSC MRI can readily distinguish between recurrent GBM and RN, as a biomarker of angiogenesis, with higher availability9,30. However, the relative cerebral blood volume from DSC MRI can produce false positive or false negative results due to volume averaging, susceptibility artifacts, and overlapping portions in RN and recurrent GBM4,31. Also, the optimal thresholds are different depending on the specific protocol9,32, and values derived from DSC imaging are relative values compared to absolute values from ADC maps. Moreover, the previous studies using advanced imaging focused on single parameters such as mean values.
+
+In contrast to extraction of single parameters, radiomics extracts high-throughput quantitative features within the regions of interest and has been reported to be a potentially useful approach for estimating the molecular status, grade, and prognosis of brain tumors16,17,19,20,33,34. Previous studies have showed promising results in identifying recurrent brain tumor from RN using radiomics35,36,37. However, these studies were focused on recurrent brain metastases rather than recurrent GBM, analyzing only conventional MRI sequences, and most datasets were small without external validation. Recent studies implemented radiomics model in differentiating recurrent glioma from RN38,39; however the studies was either performed in a smaller dataset without external validation using only conventional MRI38, or performed radiomics analysis using 18F-FDG and 11C-MET PET39, which are not routinely acquired imaging modalities. Our radiomics model implemented not only conventional MRI but also ADC map, which are recommended sequences in the glioma protocol40,41, and showed that diffusion radiomics model could robustly differentiate recurrent GBM from RN better than any other radiomics model. However, models using conventional MRI sequences (such as T2 or T1C) showed AUCs ranging from 0.650 to 0.662 in the test set. Moreover, multiparametric radiomics model did not show increased performance than the diffusion radiomics model in the external validation. The signal intensities in conventional images may differ in different MRI protocol settings, leading to poor performance in an external validation even after signal intensity normalization. On the other hand, ADC maps extract absolute values creating reliable feature extraction, which may be less affected by heterogeneous protocol settings and consequently demonstrated high diagnostic performance in the external validation. In addition, our results may emphasize the importance of domain-specific knowledge in the relatively small data settings of radiomics study42. Previous studies have shown that the ADC characteristics are more important than conventional characteristics in differentiating RN from GBM4,7. The diffusion radiomics model is promising for reflecting the tumor microenvironment, since these values can contain biological information43,44. Although ADC value can be affected by various factors, ADC in tumor is generally considered to be an index of tumor cellularity that reflects tumor burden45,46. On histopathological examination, recurrent GBM is characterized by dense glioma cells, which limit water diffusion7. In contrast, RN is characterized by extensive fibrinoid necrosis, vascular dilatation, and gliosis47. The different histopathology and spatial complexity may be reflected in diffusion radiomics, allowing the differentiation of the two entities31.
+
+In our study, the majority of significant radiomics features from the diffusion radiomics model were various second-order features, suggesting that high‐throughput characteristics can provide more accurate assessment. The hypothesis for this observation is that second-order features capture the spatial variation in signal intensity, which tend to extract information that may be incomprehensible and invisible to the naked eye. Recent studies have demonstrated that second-order features also reflect the underlying histology48,49. However, a future study with histopathologic correlation is mandatory to prove our hypothesis of the direct relationship between radiomic features in recurrent GBM and RN. Various features such as flatness, sphericity, mesh volume, and major axis length were included, suggesting that the quantitative shape features may aid in differentiating in recurrent GBM from RN. Because there was no previous study that has quantified various shape features from the whole 3D lesion, further studies are indicated to validate our results.
+
+Our study has several limitations. First, our study was retrospective with a small data size. Due to the relatively small size of the test set, the 95% CIs of the AUCs in the test set tended to have a large range and some 95% CIs of the radiomics models cross 0.5. Future studies should be performed with a larger dataset. Second, DSC imaging was not included due to lack of data in a portion of patients. Because DSC data is important in distinguishing recurrent GBM from RN50, further radiomics studies implementing DSC data are warranted to evaluate the efficacy. Third, fluid-attenuation inversion recovery (FLAIR) sequence was not utilized in this study due to mixture of both precontrast and postcontrast FLAIR sequences in the training set. Further studies are warranted to include the FLAIR sequence in radiomics analysis. Fourth, clinical factors were not integrated into the radiomics model due to statistical insignificance in our dataset. However, as previous studies have stated the relationship between radiation doses or fractionation schemes with RN51,52, future radiomics studies with larger datasets should perform multivariable analysis with clinically relevant features to differentiate recurrent GBM from RN. Fifth, cross-validation was performed separately in the feature selection stage and the machine learning classification stage, which may have led to overfitted results.
+
+In conclusion, the diffusion radiomics model may be helpful in differentiating recurrent GBM from RN.
+
+Methods
+Patient population
+The Yonsei University Institutional Review Board waived the need for obtaining informed patient consent for this retrospective study. All methods were carried out in accordance with relevant guidelines and regulation. For research limited to patients' medical records, access was cleared by the Yonsei University Institutional Review Board and was supervised by a person (S-K.L.) who was fully aware of the confidentiality requirements. All of the study protocols were approved by the Institutional Review Board (Severance Hospital, Yonsei University Health System Institutional Review Board, 2018-1472-002). Between February 2016 and February 2019, 90 patients with pathologically diagnosed GBM (WHO grade IV) from our institution were reviewed in this study. The inclusion criteria were as follows: (1) GBM confirmed by histopathology; (2) postoperative CCRT or RT, with a radiation dose ranging from 45 to 70 Gy; (3) subsequent development of a new or enlarging region of contrast enhancement within the radiation field 12 weeks after CCRT or RT; and (4) surgical resection of the enhancing lesion or adequate clinicoradiological follow-up, which enabled us to diagnose recurrent GBM or RN. For clinicoradiological diagnosis, a final diagnosis of recurrent GBM was made if the contrast-enhancing lesions gradually enlarged on more than two subsequent follow-up MRI studies performed at 2–3 month intervals (with a size criterion of an increase of > 25% of the size of a measurable [> 1 cm] enhancing lesion according to the sum of the products of perpendicular dimensions) and the clinical symptoms of patients showed gradual deterioration during follow-up28. Alternatively, a final diagnosis of RN was made if enhancing lesions gradually decreased on more than two subsequent follow-up MRI studies performed at 2–3 month intervals and clinical symptoms improved during the follow-up period. Exclusion criteria were as follows: (1) processing error (n = 3), (2) absence of MRI sequences (n = 1). Thus, a total of 86 patients were enrolled.
+
+Identical inclusion and exclusion criteria were applied and 41 patients from another institutional hospital (Asan Medical Center, Seoul, Korea) were enrolled in the test set. The clinical characteristics of the patients included age, sex, KPS, IDH mutational status, MGMT promoter methylation status, and the extent of resection of the tumor (gross total resection, subtotal resection, partial resection, or biopsy).
+
+Pathological diagnosis
+All patients underwent initial surgery, and histologic confirmation was obtained according to the 2016 WHO classification46. Peptide nucleic acid-mediated clamping polymerase chain reaction and immunohistochemical analysis were performed to detect the R132H mutation status in IDH153. MGMT promoter methylation status was diagnosed on the basis of methylation-specific polymerase chain reaction54.
+
+Twenty-two and 14 patients underwent second-look operations in the training set and test set, respectively. In second-look operations, the pathological diagnoses included 17 recurrent GBM and 5 RN cases in the training set, and 8 recurrent GBM and 6 RN cases in the test set, respectively. The diagnosis was made on the basis of histological findings in contrast-enhancing tissue obtained with surgical tumor resection or image-guided. More than 5% viable tumor diagnosed during the histological examination by neuropathologists, were classified as a recurrent GBM9.
+
+MRI protocol
+In the training set, all patients underwent MRI on a 3.0-T MRI scanner (Achieva or Ingenia, Philips Medical Systems) with an 8-channel head coil. The preoperative MRI sequences included T1WI, T2, T1C, as well as ADC scans. After 5–6 min of administration of 0.1 mL/kg of gadolinium-based contrast material (Gadovist; Bayer), T1C were acquired.
+
+In the external validation set, MRI exams were performed using a 3.0-T MRI scanner (Achieva, Philips Medical Systems) with an 8-channel head coil. Scaling and un-normalization of ADC pixel values generated at the scanner was performed as previously described55. Constant level appearance (CLEAR) processing, a technique to achieve homogeneity correction by using coil sensitivity maps acquired in the reference scan, was performed55. The acquisition protocols are described in further details in the Supplementary Table 1.
+
+Qualitative image analysis
+Conventional images were analyzed by two neuroradiologists (with 14 years and 7 years of experience) for maximum lesion diameter, involvement of corpus callosum, and “Swiss cheese” or “spreading wavefront” (ill-defined margins of the enhancement) enhancement pattern, according to previous literature5,6. Discrepancies were settled by consensus.
+
+Image preprocessing and radiomics feature extraction
+Preprocessing of T2, T1C images, and ADC map was performed to standardize the data analysis among patients. Low-frequency intensity nonuniformity was corrected by applying the N4 bias correction algorithm as implemented in the Advanced Normalization Tools (ANTs)56. Signal intensity normalization was used to reduce variance in the T2 and T1C images, by applying the WhiteStripe method from R package57. T2, T1C, and ADC images were resampled to a uniform voxel size of 1 × 1 × 1 mm. T2 and ADC images were registered to the T1C image using affine transformation with normalized mutual information as a cost function. Tumor segmentation was performed through a consensus discussion of two neuroradiologists (with 14 years and 7 years of experience), in order to select the contrast-enhancing solid portion of the tumor on T1C images. Segmentation was performed semiautomatically with an interactive level-set region of interest, using edge-based and threshold-based algorithms using 3D Slicer (version 4.11.0). There was no distortion in the ADC images that affected the segmented masks. Radiomic features were extracted from the segmented mask, with a bin size of 32, with an open-source python-based module (PyRadiomics, version 2.0)58, which was adherent to the Image Biomarker Standardization Initiative (IBSI) guideline59. A total of 93 radiomic features, including shape, first order features, and second-order features (Supplementary Table 2), were extracted from the mask. In addition, edge contrast calculation was performed, that characterizes the tumor border, as previously described (Supplementary Information S1)60. The final set consisted of 263 radiomic features (14 shape features + 83 first-order and second-order 14 features × 3 sequences) for each patient. The data were processed using a multi-platform, open-source software package (3D slicer, version 4.6.2-1; http://slicer.org).
+
+Statistical analysis
+Baseline characteristics were compared between recurrent GBM and RN patients using chi-squared or Fisher’s exact test for categorical variables, independent t-tests for normally distributed continuous variables, and Mann–Whitney U-tests for continuous variables without normal distribution. DeLong’s method was used to compare the AUCs among the ADC radiomics model and other radiomics models in the training and test sets61. Statistical significance was set at P < 0.05.
+
+Radiomic feature selection and machine learning
+The schematic of the radiomics pipeline is shown in Fig. 2. All radiomic features were normalized using z-score normalization. For feature selection, the F-score, LASSO, or MI with stratified ten-fold cross-validation were applied62. After feature selection, the machine learning classifiers were constructed separately using k-nearest neighbors (KNN), SVM, or AdaBoost, with stratified ten-fold cross-validation. The optimal hyperparameters producing the highest AUC were selected by random search during cross-validation and subsequently used to get the final model. In addition, to overcome data imbalance, each machine learning model was trained either without oversampling or with SMOTE (with a 1:1 ratio)22. Because we wanted to determine which combination of MRI sequence shows the highest performance, the identical process was performed in each sequence (ADC, T2, T1C, and combined ADC, T2, and T1C model). Thus, various combinations of classification models were trained to differentiate recurrent GBM from RN in the training set. AUC, accuracy, sensitivity, and specificity were obtained in the SMOTE generated dataset in the training set, with a cutoff value according to Youden’s index. The different feature selection, classification methods, and oversampling were computed using MatlabR2014b (Mathworks). Statistical significance was set at P < 0.05.
+
+Figure 2
+figure 2
+The radiomics pipeline of our study. KNN k-nearest neighbors, MI mutual information, LASSO least absolute shrinkage and selection operator, SVM support vector machine, T1C postcontrast T1WI, T2 T2WI.
+
+Full size image
+Diagnostic performance in the test set
+Based on the radiomics classification model in the training set, the best combination of feature selection, classification methods, and oversampling in each sequence was used in the test set. The AUC, accuracy, sensitivity, and specificity were obtained with the same cutoff from the training set.
+
+Abbreviations
+ADC:
+Apparent diffusion coefficient
+
+APT:
+Amide proton transfer
+
+CI:
+Confidence interval
+
+DWI:
+Diffusion-weighted imaging
+
+DSC:
+Dynamic susceptibility contrast
+
+IDH1:
+Isocitrate dehydrogenase1
+
+KNN:
+K-nearest neighbors
+
+KPS:
+Karnofsky performance status
+
+LASSO:
+Least absolute shrinkage and selection operator
+
+MGMT:
+Oxygen 6-methylguanine-DNA methyltransferase
+
+MI:
+Mutual information
+
+MRI:
+Magnetic resonance imaging
+
+MRS:
+Magnetic resonance spectroscopy
+
+PET:
+Positron emission tomography
+
+SMOTE:
+Synthetic minority over-sampling technique
+
+SVM:
+Support vector machine
+
+T1C:
+Postcontrast T1WI
+
+T2:
+T2WI
+
+GBM:
+Glioblastoma
+
+RN:
+Radiation necrosis
+
+RT:
+Radiation therapy
+

@@ -1,0 +1,224 @@
+Abstract
+Objectives
+To determine whether radiomics features derived from diffusion-weighted imaging (DWI) and arterial spin labeling (ASL) can improve the differentiation between radiation-induced brain injury (RIBI) and tumor recurrence (TR) in glioma patients.
+
+Methods
+A total of 4199 radiomics features were extracted from conventional MRI, apparent diffusion coefficient (ADC), and cerebral blood flow (CBF) maps, obtained from 96 pathologically confirmed WHO grade 2~4 gliomas with enhancement after standard treatment. The intraclass correlation coefficient (ICC) was used to test segmentation stability between two doctors. Radiomics features were selected using the Mann–Whitney U test, LASSO regression, and RFE algorithms. Four machine learning classifiers were adopted to establish radiomics models. The diagnostic performance of multiparameter, conventional, and single-parameter MRI radiomics models was compared using the area under the curve (AUC). The models were evaluated in the subsequent independent validation set (n = 30).
+
+Results
+Eight important radiomics features (3 from conventional MRI, 1 from ADC, and 4 from CBF) were selected. Support vector machine (SVM) was chosen as the optimal classifier. The diagnostic performance of the multiparameter MRI radiomics model (AUC 0.96) was higher than that of the conventional MRI (AUC 0.88), ADC (AUC 0.91), and CBF (AUC 0.95) radiomics models. For subgroup analysis, the multiparameter MRI radiomics model showed similar performance, with AUCs of 0.98 in WHO grade 2~3 and 0.96 in WHO grade 4.
+
+Conclusion
+The incorporation of noninvasive DWI and ASL into the MRI radiomics model improved the diagnostic performance in differentiating RIBI from TR; ASL, especially, played a significant role.
+
+Key Points
+• The multiparameter MRI radiomics model was superior to the conventional MRI radiomics model in differentiating glioma recurrence from radiation-induced brain injury.
+
+• Diffusion and perfusion MRI could improve the ability of the radiomics model in predicting the progression in patients with glioma.
+
+• Arterial spin labeling played an important role in predicting glioma progression using radiomics models.
+
+Similar content being viewed by others
+
+Radiomics in peritumoral non-enhancing regions: fractional anisotropy and cerebral blood volume improve prediction of local progression and overall survival in patients with glioblastoma
+Article 09 July 2019
+
+Radiomics prognostication model in glioblastoma using diffusion- and perfusion-weighted MRI
+Article Open access
+06 March 2020
+
+A radiomics-based comparative study on arterial spin labeling and dynamic susceptibility contrast perfusion-weighted imaging in gliomas
+Article Open access
+09 April 2020
+Explore related subjects
+Discover the latest articles, news and stories from top researchers in related subjects.
+Medical Imaging
+Introduction
+Diffuse glioma is the most common primary intra-axial tumor in adulthood [1]. Radiotherapy and temozolomide chemotherapy (TMZ), combined with 6 cycles of TMZ, are required as standard postoperative treatments for glioma [2, 3], but they are accompanied by radiation-induced brain injury (RIBI), including pseudoprogression (PsP) and radiation necrosis (RN) [4]. PsP usually occurs weeks to months after radiotherapy (usually within 12 weeks or longer [5]) and presents as an enlarged contrast-enhanced lesion due to a brief interruption of myelin synthesis in glial cells secondary to radiation injury. It has proved to be a transient self-healing process [6]. RN is a delayed radiation-induced brain injury, often occurring several months or years after treatment [4]. The imaging findings were irregular rim- or map-like enhancement caused by vascular damage, blood–brain barrier (BBB) dysfunction, and inflammatory reaction [7]. The incidence of RIBI has been reported to range from 20.6–36% [8, 9]. Clinically, pathological diagnosis is the gold standard for RIBI, but as an invasive examination, it is not universally applicable. According to the recommendation of Response Assessment in Neuro-Oncology (RANO), MRI is the standard diagnostic method for evaluating tumor response after treatment [2, 6]. However, both PsP and RN caused by radiotherapy are manifested in enhanced lesions in conventional MRI, which are similar to tumor recurrence (TR). Diagnosing and managing suspected enhancement lesions on MRI is a challenge for clinicians.
+
+Advanced MRI techniques, including diffusion- and perfusion-weighted imaging, have shown the potential to distinguish TR from RIBI [10,11,12]. Arterial spin labeling (ASL), as a noninvasive MRI perfusion imaging method, can avoid the leakage effect caused by BBB disruption and provide more accurate quantification, which proved to be a suitable alternative to dynamic susceptibility contrast-enhanced (DSC) based on contrast agents [13, 14]. However, few studies have focused on using ASL to differentiate between true tumor progression and RIBI, and they usually have small sample sizes [15,16,17,18].
+
+Radiomics is a popular method to extract massive numbers of features from images and convert them to high-dimensional features. It can comprehensively reflect the heterogeneity of tumor spatial structure from conventional MRI sequences such as T1WI, T2WI, and contrast-enhanced T1WI (CE-T1WI), and provide hidden information that cannot be obtained from non-radiomics single-parameter approaches [10, 12, 19].
+
+We assumed that the radiomics features extracted from apparent diffusion coefficient (ADC) and cerebral blood flow (CBF) maps could reflect more tumor biological information than conventional MRI, and improve the diagnostic accuracy in distinguishing TR from RIBI. Therefore, the purpose of this study was to establish a multiparameter MRI radiomics model by combining ADC and CBF maps, verify the robustness of the model on an independent validation set, and further compare it with conventional MRI and single-parameter radiomics models.
+
+Materials and methods
+Patient cohort
+The retrospective study was approved by the hospital’s ethics committee, and the requirement for written informed consent was waived. Patients from January 26, 2014, to April 30, 2020, were enrolled to construct a radiomics model in the training set. Then, cases from May 1, 2020, to August 31, 2021, were selected for model validation.
+
+Inclusion criteria: (a) glioma patients classified as WHO grade 2~4 according to the diagnostic criteria of glioma in the 2021 WHO classification of CNS tumors; (b) patients received concurrent chemoradiotherapy and 6 cycles of temozolomide adjuvant chemotherapy (radiotherapy dose 40–60 Gy) after surgery; (c) multiparameter MRI was performed, including T1WI, T2WI, CE-T1WI, DWI, and ASL; (d) new enhancement lesions or enlarged enhanced lesions on MRI examination; and (e) the final diagnosis of all included patients was based on the histopathological results or follow-up, with a follow-up interval of 3.93~59.53 m (mean 19.54 m). Enhanced lesions were defined as visible at two or more consecutive slices visible on two-dimensional images with vertical diameter ≥ 10 mm [20]. Exclusion criteria included patients with both TR and RIBI at the same time, patients without regular follow-up after treatment, claustrophobia, and metal implants. The clinical data and MRI findings of all enrolled patients were retrospectively analyzed. The flow chart of patient inclusion is shown in Fig. 1.
+
+Fig. 1
+figure 1
+Flowchart of patient inclusion
+
+Full size image
+MRI acquisition and reference criteria for diagnosis
+All MRI studies were performed on a 3.0-T MRI (Discovery MR 750, GE Healthcare). The sequences included T1WI, T2WI, T2FLAIR, DWI, ASL, and CE-T1WI. The MRI scan protocols and main parameters are shown in Supplementary S1.
+
+All recurrent tumors were histopathologically confirmed by secondary surgery. IDH status was diagnosed based on histomorphology, immunohistochemistry, and molecular detection results. For patients with RIBI, the final judgment of continuous follow-up was determined based on the MRI and clinical manifestation [20]. MRI follow-up was performed at intervals of 2–3 months and more than 2 times. The diagnostic criteria for RIBI were disappearance, reduction, or stabilization of enhanced lesions without evidence of true tumor growth [14, 20, 21].
+
+MRI segmentation and registration
+To ensure the repeatability of radiomics features, two experienced radiologists (J.Z. and X.Y.Z., with 13 and 3 years of experience in neuroradiology, respectively) used ITK-SNAP software to manually segment lesions on CE-T1WI without knowing the patients’ information. During segmentation, it is required to cover the visible solid part of the tumor, avoiding the cystic and necrotic areas. Subsequently, T1WI, T2WI, ADC, and CBF maps of all patients were registered to the corresponding CE-T1WI using the SPM plug-in unit (https://www.fil.ion.ucl.ac.uk/spm) based on MATLAB software. In the image pre-processing, the B-spline interpolation method was used to resample the image, namely, the original image was mapped to the reference image coordinate space according to the mapping matrix to complete the registration, so as to obtain a higher image resolution. The intensity of each MR image of all patients was normalized, and the MR images with any intensity range were converted to the same intensity range by using the mean and variance of all pixel values calculated on the image to reduce the generalization error. Image normalization does not affect the stored information and pixel distribution of the image.
+
+Radiomics feature extraction and reliability assessment
+Radiomics features consisted of 4 groups of features: 14 volume and shape features, 18 first-order features, 75 texture features, and 744 wavelet transform features. Detailed information is described in Supplementary S2. Thus, 851 radiomics features were extracted from each sequence of T1WI, T2WI, CE-T1WI, ADC, and CBF in each patient. The intraclass correlation coefficient (ICC) was calculated to evaluate the consistency of all radiological features. The features with ICC > 0.85 were selected for the next step.
+
+Radiomics feature selection
+In the training set, the Mann–Whitney U test, least absolute shrinkage and selection operator (LASSO) regression with 10-fold cross-validation, and recursive feature elimination (RFE) algorithms were used to select important radiomics features. The Mann–Whitney U test was applied to select features that were significantly different between groups (p < 0.05). Because of its small variance, LASSO regression is suitable for analyzing radiomics features in small samples and designed to avoid overfitting [22]. To further eliminate redundant features and avoid overfitting, the RFE algorithm with cross-validation was applied.
+
+Radiomics model construction and validation
+After feature selection, we tried to use the optimal feature subset to construct radiomics models based on the following four machine learning methods: logistic regression (LR), K-nearest neighbor (KNN) classifier, support vector machine (SVM), and Gaussian naive Bayes (NB) classifier. Detailed information is summarized in Supplementary S3. To obtain the best robustness, we applied 10-fold cross-validation and a grid search mechanism to optimize the hyperparameters on the training set to generate a stable radiomics model.
+
+The sensitivity, specificity, accuracy, and precision were calculated and compared to evaluate the diagnostic performance of the four machine learning models. Receiver operating characteristic curves (ROCs) were estimated, and the optimal thresholds of area under the curves (AUCs) were determined based on the maximum sum of sensitivity and specificity to differentiate between TR and RIBI. The optimal model obtained in the training set was validated on the prospective independent validation set.
+
+Comparison of the diagnostic performance of different radiomics models
+The diagnostic performance of the multiparameter MRI (T1WI + T2WI + CE-T1WI + ADC + CBF) radiomics model was compared with conventional MRI (T1WI + T2WI + CE-T1WI), ADC, and CBF maps using the optimal computational combination method. To verify the diagnostic performance of gliomas of different grades in differentiating TR from RIBI, we performed subgroup analysis. The diagnostic performances of WHO grade 2~3 glioma and WHO grade 4 glioma on conventional MRI, ADC, CBF, and multiparameter MRI were compared. Bonferroni correction was used to correct for multiple comparisons. A significance level of p < 0.017 was used to compare the multiparameter MRI radiomics model with conventional MRI, ADC, and CBF maps.
+
+Statistical analysis
+Python 3.8 was used for statistical analysis. ICC was used to evaluate the consistency between the features extracted from the regions of interest (ROIs) segmented by the two observers. Result interpretation: 0~0.50, poor reliability; 0.50~0.75, medium reliability; 0.75~0.90, good reliability; and 0.90~1.00, excellent reliability. Nonparametric tests and chi-square tests were applied to assess the differences of variables between the TR and RIBI groups in the training set and independent validation set. A p value of less than 0.05 was considered statistically significant.
+
+Results
+Demographic characteristics of the patient cohort
+The flow chart of patient inclusion (including the training set and independent validation set) is shown in Fig. 1. A total of 96 patients were included in the training set, 66 of whom had TR and 30 had RIBI. All 66 recurrent cases were diagnosed based on surgery. Of the 30 patients with RIBI, 29 were confirmed by follow-up and 1 was confirmed by surgery. A total of 30 cases were included in the independent validation set, including 18 cases of histopathologically confirmed TR and 12 cases of follow-up-confirmed RIBI. The demographic and clinical characteristics of the patient cohort are shown in Table 1. There were no significant differences in age, sex, isocitrate dehydrogenase (IDH) status, KPS score, or WHO grade between TR and RIBI in the training set and independent validation set.
+
+Table 1 Demographic and clinical characteristics of the patient cohort
+Full size table
+Radiomics feature extraction and ICC results
+A total of 4255 features were extracted from multiparameter MRI in the training set, including 2553 from conventional MRI (T1WI, T2WI, and CE-T1WI), 851 from ADC maps, and 851 from CBF maps. ICC was performed for all radiomics features extracted from the ROIs segmented by two radiologists, and the ICC results showed that 3810 of the above features achieved good agreement (0.85 < ICCs < 0.99). The ICC results of some major features are shown in Supplementary S4. The radiomics features with good agreement were further analyzed.
+
+Radiomics feature selection results
+The radiomics pipeline used in the study is shown in Fig. 2. The important radiomics features screened out by interobserver reproducibility (ICCs > 0.85), Mann–Whitney U test, LASSO regression, and RFE algorithm are shown in Table 2. Finally, 8 radiomics features were obtained, including 3 conventional MRI features, 1 ADC feature, and 4 CBF features. Among the features obtained by conventional MRI, one was first-order features (maximum gray-level intensity), one was gray-level co-occurrence matrix (GLCM) features (difference variance), and the other was gray-level run-length matrix (GLRLM) features (long run high gray-level emphasis). ADC was a GLCM feature (joint energy). In ASL, two were first-order features (the 10th percentile and average gray-level intensity). One was the gray-level size zone matrix (GLSZM) feature (gray level nonuniform), and one was the GLCM feature (informational measure of correlation 2). Figure 3 shows a heatmap of the selected features of TR and RIBI in the training set and independent validation set. The MRI findings of TR and RIBI are shown in Fig. 4.
+
+Fig. 2
+figure 2
+Radiomics pipeline of the study. The first step is segmentation and registration. The second step is feature extraction, including first-order features, texture analysis, and wavelet features. The third step is feature selection. The fourth step is to analyze the diagnostic performance using the selected radiomics features. Abbreviations: ADC: apparent diffusion coefficient; CBF: cerebral blood flow; LASSO: minimum absolute contraction and selection operator; ROC: receiver operating characteristic curve
+
+Full size image
+Table 2 List of important radiomics features for differentiating glioma recurrence from radiation-induced brain injury using the support vector machine (SVM) model
+Full size table
+Fig. 3.
+figure 3
+Heatmap of important radiomics features in the training set and independent validation set. Each column represents a case, and each row represents the selected radiomics features. There are eight radiomics features: 4 from conventional MRI (C), 1 from ADC (D) and 3 from ASL (P). By radiomics analysis, the heatmap was grouped into a training set and an independent validation set. The levels of the TR prediction are shown in different colors, with an increased proportion of transitions from blue to red
+
+Full size image
+Fig. 4
+figure 4
+Examples of TR and RIBI. a A 39-year-old woman with recurrent IDH mutant oligodendroglioma in the right parietal and occipital lobes. The lesion shows heterogeneous hypointensity on T1WI and hyperintensity on T2WI. CE-T1WI shows rim enhancement, and necrosis is seen in the center. On ASL, the left sidewall of the lesion shows hyperperfusion. b A 54-year-old man with recurrent IDH wild-type glioblastoma in the right parietal and occipital lobes. The lesion is characterized by hypointensity on T1WI and hyperintensity on T2WI, ring enhancement is observed on CE-T1WI, and scattered spotty hyperperfusion is shown at the edge of the lesion on ASL. c An 82-year-old female patient with RIBI from IDH mutant astrocytoma in the right parietal and occipital lobes. The lesion shows heterogeneous hypointensity on T1WI and hyperintensity on T2WI, and CE-T1WI shows rim enhancement without enhancement in the center. The ASL lesion shows hypoperfusion. Examples of segmentation show that regions of interest are delineated, while necrotic areas are avoided. Abbreviations: ADC: apparent diffusion coefficient; ASL: arterial spin labeling; TR: tumor recurrence; RIBI: radiation-induced brain injury
+
+Full size image
+Radiomics model construction on the training set
+Supplementary S5 summarizes the diagnostic performance comparison results of the four machine learning methods in the training set. Among the four machine learning methods, SVM achieved better classification performance than the others (AUC = 0.96, 95% CI: 0.92–1.00), with a sensitivity of 92.4%, specificity of 93.3%, accuracy of 92.7%, and precision of 96.8%. Thus, we chose SVM as the final machine learning classifier.
+
+Table 3 and Fig. 5 show the diagnostic performance of different MRI radiomics models using SVM in the training set and independent validation set. The multiparameter MRI radiomics model performed best, with an AUC of 0.96 (95% CI: 0.92–1.00), which was higher than those of the conventional MRI (AUC = 0.88, 95% CI: 0.81–0.95) and ADC (AUC = 0.91, 95% CI: 0.85–0.97) radiomics models (p < 0.017). The diagnostic performance of the multiparameter MRI radiographic model also appeared to be superior to that of the CBF radiographic model (AUC = 0.95, 95% CI: 0.91–0.99), but the difference was not statistically significant (p = 0.291).
+
+Table 3 Comparison of the diagnostic performances of different MR radiomics models in the training and independent validation sets
+Full size table
+Fig. 5
+figure 5
+ROC curves of different MRI radiomics models in the training set and independent validation set. a–c represent the AUC values of WHO grade 2~4, WHO grade 2~3, and WHO grade 4 gliomas on the training set. d–f represent the AUC values of WHO grade 2~4, 2~3, and 4 gliomas on the independent validation set; groups 1~4 represent T1WI + T2WI + CE-T1WI, ADC, CBF, and T1WI + T2WI + CE-T1WI + ADC + CBF, respectively. Abbreviations: ROC: receiver operating characteristic curve; AUC: area under the curve; ADC: apparent diffusion coefficient; CBF: cerebral blood flow
+
+Full size image
+Further subgroup analysis revealed that the multiparameter MRI radiomics model was significantly superior to the CBF radiomics model in WHO 2~3 glioma (p < 0.017), whereas no such difference was found in WHO 4 glioma (p = 0.98), explaining the insignificant difference in WHO 2~4 glioma. Detailed information is given in Supplementary S6.
+
+Prediction results of the radiomics model on the independent validation set
+On the independent validation set, the multiparameter MRI radiomics model also showed the best diagnostic performance, with a sensitivity of 94.4%, specificity of 91.7%, and AUC of 0.94 (95% CI: 0.88–1.00). Meanwhile, the AUCs of the conventional MRI, ADC, and CBF radiomics models were 0.82 (95% CI: 0.68–0.96), 0.77 (95% CI: 0.62–0.92), and 0.87 (95% CI: 0.75–0.99), respectively (Table 3 and Fig. 5).
+
+In the subgroup analysis, the trend of multiparameter MRI improving diagnostic performance remained unchanged. The AUCs of the multiparameter MRI radiomics model for WHO 2–3 glioma and WHO 4 glioma were 1.00 (95% CI: 1.00–1.00) and 0.95 (95% CI: 0.90–1.00), respectively. Detailed information is shown in Supplementary S6.
+
+Discussion
+In this study, the multiparameter MRI radiomics model displayed high diagnostic performance in differentiating true TR from RIBI, with an AUC of 0.96 (95% CI 0.92–1.00), and also performed well in the independent validation set, with an AUC of 0.94 (95% CI 0.88–1.00), demonstrating the model’s stability. The multiparameter MRI radiomics model achieved better results than conventional MRI or single-parameter (ADC or CBF) radiomics models, especially in lower-grade glioma (WHO grade 2~3). The incorporation of DWI and ASL into conventional MRI improved the diagnostic performance of the radiomics model, with ASL contributing the most to the differentiation between TR and RIBI.
+
+Previous studies have shown that multiparameter MRI has high diagnostic performance in differentiating TR from RIBI [12, 23,24,25,26]. Among them, Kim et al [12] adopted the radiomics model and incorporated diffusion-weighted imaging and perfusion-weighted imaging represented by DSC into the model, showing better diagnostic performance than using a single ADC, CBV, or conventional MR, with an AUC of 0.90 in the training set and 0.85 in the validation set. However, the study of the multiparameter MRI radiomics model combining ADC and CBF has not been reported. Compared with perfusion imaging using contrast agents, the noninvasive ASL is more suitable for people with renal insufficiency and intravenous injection difficulties. Its greatest advantage is that it is immune to the leaky effects of BBB disruption and can be quantified more accurately, known as CBF maps [13, 27]. After glioma treatment, the structure and function of the tissue will change. Radiotherapy can cause cell necrosis, granulation tissue formation, transparency, and degeneration. TR leads to increased cell density and reduced extracellular space, which contribute to the heterogeneity of ADC [11, 28, 29]. On perfusion-weighted imaging, the microvascular density increased, and many collateral vessels formed in TR, which was characterized by hyperperfusion, while RIBI manifested in hypoperfusion. The above may elucidate the improved diagnostic performance of the multiparameter MRI model compared with the conventional MRI model. In this study, the radiomics model of ASL alone showed high diagnostic performance, with an AUC of 0.95 in the training set, which may have an advantage of a larger sample size and similar or better diagnostic performance than previous studies [15, 18, 30]. ASL has been reported as an independent predictor and reliable alternative to DSC [15, 16, 30, 31]. The results also showed that it was equivalent to the multiparameter MRI model in all gliomas or subgroups, indicating the important role of ASL in distinguishing between TR and RIBI.
+
+The optimal feature subset of this study consists of 8 radiomics features, including 3 first-order features and 5 texture features. Among the first-order features, the most important radiomics feature is the 10th percentile. Previous studies on gliomas have showed that the mean, 10th and 90th percentiles, and energy in the first-order features displayed the highest repeatability [32], and have been proven to be associated with tumor cellularity [33]. Among texture analysis features, the most relevant imaging feature is GLCM. GLCM calculates the frequency of pixel pairs with specific values and spatial relationships in the image, which is known to reflect the heterogeneity of tumors [34, 35]. In addition, texture analysis of MRI perfusion imaging has been shown to be associated with glioma prognosis and recurrence [12, 36]. Compared with DSC, CBF of ASL has been shown to reflect tumor heterogeneity better [37]. Our results are consistent with previous studies that first-order feature and texture analysis of multiparameter MRI can reflect angiogenesis and heterogeneity in TR and differentiate it from RIBI.
+
+The multiparametric MRI radiomics model proposed in this study not only selects the most discriminative feature subset from the high-dimensional feature space, but also uses the Mann–Whitney U test, LASSO regression, and RFE algorithm to screen important features, effectively eliminating redundant and irrelevant features and improving the diagnostic performance and robustness of the model. In addition, this study attempted four machine learning methods (LR, KNN, SVM, and NB) to evaluate the diagnostic performance in the training set, and SVM outperformed other methods in classification performance with an AUC of 0.96, sensitivity of 92.4%, and specificity of 93.3%. In many previous studies on glioma, the hyperparameters of the SVM classifier were single and fixed [38, 39], which limited the discrimination power of the model. To improve classification accuracy, the kernel functions of our SVM model were selected from linear, Gaussian, and multikernel functions through a 10-fold cross-validation and grid search mechanism. Our multiparameter MRI radiomics model shows great promise in differentiating TR from RIBI, which is conducive to promoting the development of clinical research on glioma.
+
+Our study had some limitations. First, this study applied conventional MRI, DWI, and ASL, and future studies may consider more advanced MR techniques, such as diffusion tensor imaging (DTI), magnetic resonance spectroscopy (MRS), and chemical exchange saturation transfer (CEST). Second, we used four machine learning methods (SVM, LR, KNN, and NB) to choose the best model, and more machine learning methods, such as deep learning and ensemble learning methods, need to be established in the future to explore the optimal MRI radiomics model. Finally, considering the standardization of clinical treatment after glioma surgery and the regular follow-up of patients, we only included patients who met the inclusion criteria in our center. Insufficient sample size may affect the accuracy of the diagnosis, especially in the verification set, and may weaken the strength of the conclusions. Also, since all images were obtained on GE scanners, the stability and effectiveness evaluation of the radiomics model were affected to a certain extent. In the future, we need to carry out multicenter research and increase the sample size to improve the robustness of the prediction model.
+
+Conclusion
+In conclusion, the incorporation of noninvasive DWI and ASL into radiomics models, especially ASL, improved the diagnostic performance in differentiating RIBI from TR, and the robustness and accuracy of the radiomics models were validated on an independent validation set.
+
+Abbreviations
+ADC:
+Apparent diffusion coefficient
+
+ASL:
+Arterial spin labeling
+
+AUC:
+Area under the receiver operating characteristics curve
+
+BBB:
+Blood–brain barrier
+
+CBF:
+Cerebral blood flow
+
+CE:
+Contrast-enhanced
+
+DSC:
+Dynamic susceptibility contrast-enhanced
+
+DWI:
+Diffusion-weighted imaging
+
+GLCM:
+Gray-level co-occurrence matrix
+
+GLRLM:
+Gray-level run-length matrix
+
+GLSZM:
+Gray-level size zone matrix
+
+ICC:
+Intraclass correlation coefficient
+
+IDH:
+Isocitrate dehydrogenase
+
+KNN:
+K-nearest neighbor
+
+LASSO:
+Least absolute shrinkage and selection operator
+
+LR:
+Logistic regression
+
+MRS:
+Magnetic resonance spectroscopy
+
+NB:
+Naive Bayes
+
+PsP:
+Pseudoprogression
+
+RFE:
+Recursive feature elimination
+
+RIBI:
+Radiation-induced brain injury
+
+RN:
+Radiation necrosis
+
+ROC:
+Receiver operating characteristic curves
+
+ROI :
+Regions of interest
+
+SVM:
+Support vector machine
+
+TMZ:
+Temozolomide
+
+TR:
+Tumor recurrence
+
