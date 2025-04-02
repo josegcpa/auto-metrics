@@ -7,6 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "beautifulsoup4>=4.13.3",
     "google-genai>=1.8.0",
+    "jsonref>=1.1.0",
     "pydantic>=2.11.1",
     "pyperclip>=1.9.0",
     "pyyaml>=6.0.2",
