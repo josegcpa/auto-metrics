@@ -94,3 +94,33 @@ SCORES = {
     "Item29": 0.0075,
     "Item30": 0.0075,
 }
+
+
+def export_model_to_json():
+    def dig_dict(d, ref_dict: dict):
+        if isinstance(d, dict):
+            if "enum" in d:
+                d["type"] = "string"
+            if "$ref" in d:
+                ref = d["$ref"]
+                return dig_dict(ref_dict[ref], ref_dict)
+            return {k: dig_dict(v, ref_dict) for k, v in d.items()}
+        elif isinstance(d, list):
+            return [dig_dict(v, ref_dict) for v in d]
+        else:
+            return d
+
+    model_schema_with_refs = Metrics.model_json_schema()
+    refs_dict = {
+        "#/$defs/" + k: model_schema_with_refs["$defs"][k]
+        for k in model_schema_with_refs["$defs"]
+    }
+    model_schema = dig_dict(model_schema_with_refs, refs_dict)
+    del model_schema["$defs"]
+    return model_schema
+
+
+if __name__ == "__main__":
+    import json
+
+    print(json.dumps(export_model_to_json(), indent=2))
