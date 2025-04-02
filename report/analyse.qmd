@@ -17,7 +17,7 @@ code-fold: true
 
 # TL;DR
 
-It is possible --- to some extent --- to automate METRICS (a radiomics publication quality assessment tool) using large language models. You can test this [here]().
+It is possible --- to some extent --- to automate METRICS (a radiomics publication quality assessment tool) using large language models. You can test this [here](https://auto-metrics.netlify.app/) with your own Gemini API key.
 
 # Context
 
@@ -75,7 +75,7 @@ key_order <- c(paste0("Item", 1:30), paste0("Condition", 1:30))
 ```{r data-loading}
 #| warning: false
 df_original <- read_csv(
-  "../inter-rater.csv", col_types = c(rep("c", 40), "i", "i")) 
+  "../data/akinci-dantonoli/inter-rater.csv", col_types = c(rep("c", 40), "i", "i")) 
 df <- df_original %>% 
   gather(key = "key", value = "value", 
          -group, -exp, -dois, -dois_clean, -title) %>% 
@@ -386,7 +386,7 @@ class Metrics(BaseModel):
 Upon loading, we were able to verify that all the LLM outputs have, as expected, generated a correctly formatted JSON. Below we present an example for one such article. Additionally, the flexibility of our specification also allows for a small reason to be appended to each rating --- this facilitates the verification of LLM claims. Indeed, this explanation ends up being helpful at a later stage of this analysis when we start getting into possible reasons for disagreement.
 
 ```{r}
-llm_rating_files <- list.files(path = "../ratings", pattern = "*json", full.names = T)
+llm_rating_files <- list.files(path = "../ratings/akinci-dantonoli", pattern = "*json", full.names = T)
 names(llm_rating_files) <- lapply(
   llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
 )
@@ -400,7 +400,7 @@ Upon analysis of @fig-cohen-raters-llm, @fig-cohen-raters-items-llm and @fig-coh
 ```{r}
 all_llm_ratings <- list()
 for (f in llm_rating_files) {
-  title <- gsub(".json", "", str_split(f, "/")[[1]][3])
+  title <- gsub(".json", "", str_split(f, "/")[[1]][4])
   json_data <- fromJSON(file = f)
   json_df <- data.frame(
     key = names(json_data[-1]), 
@@ -736,7 +736,8 @@ get_examples_of_disagreement(19)
 Upon the analysis above, we use the same LLM with the data and the improved descriptions injected into the prompt. While not ideal, this will allow us to see --- to a very limited extent as we are lacking an external validation --- whether this can lead to an improvement. As highlighted in @fig-cohen-raters-llm-improved, @fig-cohen-raters-items-llm-improved and @fig-cohen-raters-conditions-llm-improved it is possible to see a clear improvement in performance. @fig-cohen-raters-conditions-llm-improved-subset, specific for the five items with suggestions above, this process can lead to systematic improvements. Additionally, an interesting effect non-linear effect here is that while the condition prompts where not altered, there was a notable improvement to the agreement between LLM and human rater groups for conditions (@fig-cohen-raters-conditions-llm-improved).
 
 ```{r}
-improved_llm_rating_files <- list.files(path = "../ratings_improved", pattern = "*json", full.names = T)
+improved_llm_rating_files <- list.files(path = "../ratings_improved/akinci-dantonoli", 
+                                        pattern = "*json", full.names = T)
 names(improved_llm_rating_files) <- lapply(
   improved_llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
 )
@@ -745,7 +746,7 @@ names(improved_llm_rating_files) <- lapply(
 ```{r}
 all_improved_llm_ratings <- list()
 for (f in improved_llm_rating_files) {
-  title <- gsub(".json", "", str_split(f, "/")[[1]][3])
+  title <- gsub(".json", "", str_split(f, "/")[[1]][4])
   json_data <- fromJSON(file = f)
   json_df <- data.frame(
     key = names(json_data[-1]), 
@@ -1079,6 +1080,221 @@ tukey.hsd %>%
   summarise(
     `Fraction of statistically significant Tukey HSD` = sum(`p adj` < 0.05) / length(diff),
     `Average absolute difference` = mean(abs(diff[`p adj` < 0.05])))
+```
+
+## Validation of LLM observations above with _Kocak et. al (2025)_
+
+Around the time we were developing this, Kocak and others published "Radiomics for differentiating radiation-induced brain injury from recurrence in gliomas: systematic review, meta-analysis, and methodological quality evaluation using METRICS and RQS" in European Radiology @Kocak2025-uj. Here, three different raters (identified as raters 1-3) were tasked with classifying 27 papers using METRICS. Here, we provide LLM-based METRICS scores for only 22 as the remaining 5 were behind a paywall.
+
+```{r}
+df_original <- read_csv(
+  "../data/kocak/inter-rater.csv", col_types = c(rep("c", 40), "i", "i")) 
+df <- df_original %>% 
+  gather(key = "key", value = "value", 
+         -rater, -dois, -dois_clean, -title) %>% 
+  subset(key != "Total METRICS score:") %>%
+  subset(!grepl("Quality", key)) %>%
+  mutate(key = gsub("#", "", key)) %>%
+  mutate(value = match_class[value]) %>%
+  mutate(rater = sprintf("Rater%s", rater))
+
+df_original
+```
+
+```{r}
+llm_rating_files <- list.files(path = "../ratings/kocak", pattern = "*json", full.names = T)
+names(llm_rating_files) <- lapply(
+  llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
+)
+
+all_llm_ratings <- list()
+for (f in llm_rating_files) {
+  title <- gsub(".json", "", str_split(f, "/")[[1]][4])
+  json_data <- fromJSON(file = f)
+  json_df <- data.frame(
+    key = names(json_data[-1]), 
+    llm = unlist(lapply(json_data[-1], function(x) x$rating)), title = title)
+  all_llm_ratings[[length(all_llm_ratings) + 1]] <- json_df
+}
+
+llm_df <- do.call(rbind, all_llm_ratings) %>%
+  mutate(llm = match_class[llm]) %>%
+  mutate(title = gsub("_", "/", title))
+
+improved_llm_rating_files <- list.files(path = "../ratings_improved/kocak", 
+                                        pattern = "*json", full.names = T)
+names(improved_llm_rating_files) <- lapply(
+  improved_llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
+)
+
+all_improved_llm_ratings <- list()
+for (f in improved_llm_rating_files) {
+  title <- gsub(".json", "", str_split(f, "/")[[1]][4])
+  json_data <- fromJSON(file = f)
+  json_df <- data.frame(
+    key = names(json_data[-1]), 
+    llm_changes = unlist(lapply(json_data[-1], function(x) x$rating)), title = title)
+  all_improved_llm_ratings[[length(all_improved_llm_ratings) + 1]] <- json_df
+}
+
+improved_llm_df <- do.call(rbind, all_improved_llm_ratings) %>%
+  mutate(llm_changes = match_class[llm_changes]) %>%
+  mutate(title = gsub("_", "/", title))
+
+full_df <- merge(
+  pivot_wider(df, values_from = value, names_from = c("rater")), 
+  llm_df, 
+  by = c("key", "title"))
+
+fuller_df <- merge(
+  full_df,
+  improved_llm_df, 
+  by = c("key", "title"))
+```
+
+```{r}
+#| warning: false
+all_raters <- c("Rater1", "Rater2", "Rater3",
+                "llm", "llm_changes")
+all_rater_labels <- c(
+  "Rater 1", "Rater 2", "Rater 3",
+  "LLM", "LLM + changes"
+)
+
+rater_combinations <- combn(all_raters, 2)
+
+all_cohens <- list()
+for (idx in 1:ncol(rater_combinations)) {
+  raters <- rater_combinations[, idx]
+  sub_df <- subset(fuller_df, !grepl("Condition", key))[c(raters[1], raters[2])] %>%
+    na.omit() %>%
+    as.matrix()
+  if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
+    curr_df <- data.frame(estimate = kappa2(sub_df)$value)
+    curr_df$rater1 <- raters[1]
+    curr_df$rater2 <- raters[2]
+    all_cohens[[length(all_cohens) + 1]] <- curr_df
+  }
+}
+
+all_cohens_items <- list()
+for (k in unique(fuller_df$key)) {
+  for (idx in 1:ncol(rater_combinations)) {
+    raters <- rater_combinations[, idx]
+    sub_df <- subset(fuller_df, key == k)[c(raters[1], raters[2])] %>%
+      na.omit() %>%
+      as.matrix()
+    if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
+      curr_df <- data.frame(
+        estimate = kappam.fleiss(sub_df)$value)
+      curr_df$rater1 <- raters[1]
+      curr_df$rater2 <- raters[2]
+      curr_df$item <- k
+      curr_df$n <- nrow(sub_df)
+      all_cohens_items[[length(all_cohens_items) + 1]] <- curr_df 
+    }
+  }
+}
+```
+
+```{r fig-cohen-raters-llm}
+#| fig.height: 3.0
+#| fig.width: 4.5
+#| label: fig-cohen-kocak
+#| fig-cap: Cohen's Kappa calculated across all items (1-30) between different groups of raters and the LLM for _Kocak et al. (2025)_.
+do.call(rbind, all_cohens) %>% 
+  mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
+  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
+  geom_tile(colour = "black", linewidth = 0.5) +
+  theme_classic_2(base_size = 8) +
+  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
+             colour = "black", size = 2.5,
+             label.size = unit(0, "line"),
+             label.padding = unit(0.2, "line")) + 
+  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
+        axis.title = element_blank())
+```
+
+```{r fig-cohen-raters-items-llm}
+#| fig.height: 3.0
+#| fig.width: 4.5
+#| label: fig-cohen-kocak-items
+#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific item for _Kocak et al. (2025)_.
+do.call(rbind, all_cohens_items) %>% 
+  subset(grepl("Item", item)) %>%
+  mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
+  group_by(rater1, rater2) %>%
+  na.omit() %>%
+  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
+  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
+  geom_tile(colour = "black", linewidth = 0.5) +
+  theme_classic_2(base_size = 8) +
+  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
+             colour = "black", size = 2.5,
+             label.size = unit(0, "line"),
+             label.padding = unit(0.2, "line")) + 
+  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
+        axis.title = element_blank())
+```
+
+```{r fig-cohen-raters-conditions-llm}
+#| fig.height: 3.0
+#| fig.width: 4.5
+#| label: fig-cohen-conditions
+#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition for _Kocak et al. (2025)_.
+do.call(rbind, all_cohens_items) %>% 
+  subset(grepl("Condition", item)) %>%
+  mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
+  group_by(rater1, rater2) %>%
+  na.omit() %>%
+  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
+  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
+  geom_tile(colour = "black", linewidth = 0.5) +
+  theme_classic_2(base_size = 8) +
+  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
+             colour = "black", size = 2.5,
+             label.size = unit(0, "line"),
+             label.padding = unit(0.2, "line")) + 
+  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nconditions") +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
+        axis.title = element_blank())
+```
+
+```{r}
+#| fig.height: 3.0
+#| fig.width: 4.5
+#| label: fig-cohen-kocak-subset
+#| fig-cap: Average of Cohen's Kappa for _Kocak et al. (2025)_ calculated between different groups of raters and the LLM for each specific condition and only for items 23, 7, 16, 10 and 19.
+do.call(rbind, all_cohens_items) %>% 
+  subset(item %in% c("Item23", "Item7", "Item10", "Item19")) %>%
+  mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
+  group_by(rater1, rater2) %>%
+  na.omit() %>%
+  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
+  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
+  geom_tile(colour = "black", linewidth = 0.5) +
+  theme_classic_2(base_size = 8) +
+  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
+             colour = "black", size = 2.5,
+             label.size = unit(0, "line"),
+             label.padding = unit(0.2, "line")) + 
+  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
+        axis.title = element_blank())
 ```
 
 # Conclusion and where to go from here
