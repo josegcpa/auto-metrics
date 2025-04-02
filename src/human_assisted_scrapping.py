@@ -52,9 +52,9 @@ if __name__ == "__main__":
 
     driver = get_driver(args.webdriver_path)
 
-    out_dir = "article-text"
+    out_dir = "article-text/kokac"
     Path(out_dir).mkdir(exist_ok=True)
-    with open("data/kokac/inter-rater.csv") as f:
+    with open("data/kokac/inter-rater.csv", encoding="latin-1") as f:
         reader = csv.reader(f)
         next(reader)  # skip header
         for row in reader:
