@@ -390,9 +390,10 @@ llm_rating_files <- list.files(path = "../ratings/akinci-dantonoli", pattern = "
 names(llm_rating_files) <- lapply(
   llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
-cat(sprintf("Loading and printing the JSON for %s\n\n", llm_rating_files[[1]]))
+cat(sprintf("Loading and printing the JSON for %s:\n\n", names(llm_rating_files)[[1]]))
 
-fromJSON(file = llm_rating_files[[1]])
+read_file(file = llm_rating_files[[1]]) %>%
+  cat
 ```
 
 Upon analysis of @fig-cohen-raters-llm, @fig-cohen-raters-items-llm and @fig-cohen-raters-conditions-llm, we see quite clearly that, while there is some agreement between LLMs and raters, this is very much on the lower end of the agreement spectrum which is observed for human rater groups. Indeed, it can be risky to simply deployed this sans supervision. However, we note that this is still well within what would be acceptable had this been an additional reviewer. As noted earlier, it might be a good format to have an LLM perform these assessments as a second reader which ends up reinforcing some conclusions or reanalysing others.
