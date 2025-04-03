@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const articleTextArea = document.getElementById("article-text");
   const apiKeyInput = document.getElementById("api-key");
   const outputContainer = document.getElementById("output-container");
-  const outputJson = document.getElementById("output-json");
+  const outputBody = document.getElementById("output-table-container");
   const spinner = document.querySelector(".spinner-border");
 
   analyzeBtn.addEventListener("click", async function () {
@@ -80,7 +80,29 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Display the results
-      outputJson.textContent = JSON.stringify(metricsResult, null, 2);
+      console.log("metricsResult", metricsResult);
+      var key = "";
+      var outputTable = `
+        <tr>
+          <td><b>Item</b></td><td><b>Rating</b></td><td><b>Reason</b></td>
+        </tr>`;
+      for (let idx in responseSchema.required) {
+        key = responseSchema.required.at(idx);
+        if (key === "Summary") {
+          outputBody.innerHTML = `<h2>Summary</h2><p>${metricsResult[key]}</p>`;
+        } else if (key.includes("Condition")) {
+          outputTable += `
+          <tr class="condition">
+            <td>${key}</td><td>${metricsResult[key].rating}</td><td>${metricsResult[key].reason}</td>
+          </tr>`;
+        } else if (key.includes("Item")) {
+          outputTable += `
+          <tr class="item">
+            <td>${key}</td><td>${metricsResult[key].rating}</td><td>${metricsResult[key].reason}</td>
+          </tr>`;
+        }
+      }
+      outputBody.innerHTML += `<table>${outputTable}</table>`;
       outputContainer.style.display = "block";
 
       // Store the result for download
