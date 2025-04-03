@@ -388,7 +388,7 @@ Upon loading, we were able to verify that all the LLM outputs have, as expected,
 ```{r}
 llm_rating_files <- list.files(path = "../ratings/akinci-dantonoli", pattern = "*json", full.names = T)
 names(llm_rating_files) <- lapply(
-  llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
+  llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
 cat(sprintf("Loading and printing the JSON for %s\n\n", llm_rating_files[[1]]))
 
@@ -739,7 +739,7 @@ Upon the analysis above, we use the same LLM with the data and the improved desc
 improved_llm_rating_files <- list.files(path = "../ratings_improved/akinci-dantonoli", 
                                         pattern = "*json", full.names = T)
 names(improved_llm_rating_files) <- lapply(
-  improved_llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
+  improved_llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
 ```
 
@@ -1084,7 +1084,9 @@ tukey.hsd %>%
 
 ## Validation of LLM observations above with _Kocak et. al (2025)_
 
-Around the time we were developing this, Kocak and others published "Radiomics for differentiating radiation-induced brain injury from recurrence in gliomas: systematic review, meta-analysis, and methodological quality evaluation using METRICS and RQS" in European Radiology @Kocak2025-uj. Here, three different raters (identified as raters 1-3) were tasked with classifying 27 papers using METRICS. Here, we provide LLM-based METRICS scores for only 22 as the remaining 5 were behind a paywall.
+Around the time we were developing this, Kocak and others published "Radiomics for differentiating radiation-induced brain injury from recurrence in gliomas: systematic review, meta-analysis, and methodological quality evaluation using METRICS and RQS" in European Radiology @Kocak2025-uj. Here, three different raters (identified as raters 1-3) were tasked with classifying 27 papers using METRICS. Here, we provide LLM-based METRICS scores for only 22 as the remaining 5 were behind a paywall. It should be noted that the first author (and one of the raters as far we understand it) in _Kocak et al. (2025)_ was also a co-author in @Akinci-D-Antonoli2025-ep and the first author of the original METRICS definition paper @Kocak2024-wk.
+
+As visible below across @fig-cohen-kocak, @fig-cohen-kocak-items and @fig-cohen-kocak-conditions, the inter-rater agreements are relatively stable between readers and between readers and LLMs. An interesting outcome of this is that the LLM + changes do not lead to such stark improvements as before, hinting that dataset-specific prompt tuning may not be the best way of improving scores across multiple publications.
 
 ```{r}
 df_original <- read_csv(
@@ -1104,7 +1106,7 @@ df_original
 ```{r}
 llm_rating_files <- list.files(path = "../ratings/kocak", pattern = "*json", full.names = T)
 names(llm_rating_files) <- lapply(
-  llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
+  llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
 
 all_llm_ratings <- list()
@@ -1124,7 +1126,7 @@ llm_df <- do.call(rbind, all_llm_ratings) %>%
 improved_llm_rating_files <- list.files(path = "../ratings_improved/kocak", 
                                         pattern = "*json", full.names = T)
 names(improved_llm_rating_files) <- lapply(
-  improved_llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][3])
+  improved_llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
 
 all_improved_llm_ratings <- list()
@@ -1248,7 +1250,7 @@ do.call(rbind, all_cohens_items) %>%
 ```{r fig-cohen-raters-conditions-llm}
 #| fig.height: 3.0
 #| fig.width: 4.5
-#| label: fig-cohen-conditions
+#| label: fig-cohen-kocak-conditions
 #| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition for _Kocak et al. (2025)_.
 do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Condition", item)) %>%
@@ -1271,35 +1273,9 @@ do.call(rbind, all_cohens_items) %>%
         axis.title = element_blank())
 ```
 
-```{r}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-kocak-subset
-#| fig-cap: Average of Cohen's Kappa for _Kocak et al. (2025)_ calculated between different groups of raters and the LLM for each specific condition and only for items 23, 7, 16, 10 and 19.
-do.call(rbind, all_cohens_items) %>% 
-  subset(item %in% c("Item23", "Item7", "Item10", "Item19")) %>%
-  mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
-  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
-  group_by(rater1, rater2) %>%
-  na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
-
 # Conclusion and where to go from here
 
 This was a somewhat quick analysis prompted by a concrete question --- can we facilitate what are oftentimes cumbersome analyses by getting the assistance of an LLM? The answer to this --- at least what this analysis shows --- is that:
 
-1. There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular --- METRICS --- relies quite heavily on expert knowledge, and the paper that originated this short report highlights, to extent, the differences in subjective evaluation associated with human raters @Akinci-D-Antonoli2025-ep. While more objective, LLM-based assessments may end up being too different
-2. Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small.
+1. There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular --- METRICS --- relies quite heavily on expert knowledge, and the paper that originated this short report highlights, to an extent, the differences in subjective evaluation associated with human raters @Akinci-D-Antonoli2025-ep. While more objective, LLM-based assessments may end up being too different. However, our further confirmation using @Kocak2025-uj does show that these findings --- that there is a good number of similarities between human raters and LLMs --- generalise to other datasets.
+2. Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small. Our analysis on @Kocak2025-uj showed that prompt tuning using small sample sizes is likely to result in improvements which do not generalise. However, both the tuning and its validation used relatively small dataset sizes.
