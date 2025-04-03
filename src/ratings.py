@@ -25,11 +25,6 @@ class RatingWithNA(BaseModel):
 
 class Metrics(BaseModel):
     Summary: str
-    Condition1: Rating
-    Condition2: Rating
-    Condition3: Rating
-    Condition4: Rating
-    Condition5: Rating
     Item1: Rating
     Item2: Rating
     Item3: Rating
@@ -37,12 +32,17 @@ class Metrics(BaseModel):
     Item5: Rating
     Item6: Rating
     Item7: Rating
+    Condition1: Rating
+    Condition2: Rating
     Item8: RatingWithNA
     Item9: RatingWithNA
     Item10: RatingWithNA
+    Condition3: Rating
     Item11: Rating
     Item12: RatingWithNA
     Item13: Rating
+    Condition4: Rating
+    Condition5: Rating
     Item14: RatingWithNA
     Item15: RatingWithNA
     Item16: RatingWithNA
