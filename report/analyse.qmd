@@ -6,6 +6,8 @@ format:
     df-print: paged
     toc: true
     toc-location: left
+    fig-format: png
+    fig-dpi: 300
 editor: visual
 bibliography: bibliography.bib
 csl: "ieee.csl"
@@ -38,17 +40,17 @@ It is possible --- to some extent --- to automate METRICS (a radiomics publicati
 
 Here we show a proof of concept on how it is possible to automate some aspects of scientific analysis. In particular, we will be doing this through the Methodological Radiomics Score (otherwise known as METRICS) @Kocak2024-wk. METRICS comprises a set of helpful guidelines to determine the quality of a scientific publication doing some form of radiomics analysis (i.e. the systematic extraction of imaging features from clinical images and the correlation of these features with patient-specific outcomes or image characteristics @Van_Timmeren2020-gy). These sorts of scores are not new, with the radiomics quality score (RQS) being the other main contender for scoring radiomics @Lambin2017-rn. Whether METRICS is more or less useful than RQS has been addressed in other publications and it is not the particular concern of this piece to clarify it @Kocak2024-sv. Instead, here we make use of a recent publication on the reproducibility of METRICS scores: Akinci D'Antonoli and others' "Reproducibility of methodological radiomics score (METRICS): an intra- and inter-rater reliability study endorsed by EuSoMII" @Akinci-D-Antonoli2025-ep.
 
-## Short summary of _Akinci D'Antonoli and others_
+## Short summary of *Akinci D'Antonoli and others*
 
-In this work, a set of radiologists was divided into three separate experience levels --- from 1 (less experienced) to 3 (more experienced) - based on their experience not only as radiologists but also as academics. Two experimental conditions were tested --- no training on METRICS and with training with METRICS. The overall experimental design is sound and the conclusions are quite interesting: in essence, there is low-to-moderate inter-rater reliability, and this is particularly true when comparing between no training and with training [^repeatibility]. 
+In this work, a set of radiologists was divided into three separate experience levels --- from 1 (less experienced) to 3 (more experienced) - based on their experience not only as radiologists but also as academics. Two experimental conditions were tested --- no training on METRICS and with training with METRICS. The overall experimental design is sound and the conclusions are quite interesting: in essence, there is low-to-moderate inter-rater reliability, and this is particularly true when comparing between no training and with training [^1].
 
-[^repeatibility]: The article also features repeatibility experiments, but that is not within the scope of this short report.
+[^1]: The article also features repeatibility experiments, but that is not within the scope of this short report.
 
 ## Visualizing reproducibility results from Akinci D'Antonoli and others
 
 Here we are providing only a recapitulation of what is provided as Supplementary Information 1. In particular, here we only use the Cohen's Kappa to analyse how agreement varies between different conditions and raters. As observable in @fig-cohen-raters, Cohen's Kappa (a measure of inter-rater agreement) is quite consistent and between 0.4 and 0.6. The one exception is the very high Kappa between experience level 3 (highest experience level) with and without training. This may highlight the effect of experience or it may be biased as the four radiologists annotated with experience level 3 are either editors/members of the editorial board of European Radiology (and are more exposed to this sort of analysis) or took part in developing METRICS (AP/AS/MK and LU, respectively); only three other authors are in this position of being parts of editorial teams at radiology journals/publications or having participated in METRICS. In any case it quite a stark difference in my opinion.
 
-Further analyzing how this looks for items and conditions separetely (i.e. calculating the average item-specific Cohen's Kappa) further confirms the overall analysis as illustrated in @fig-cohen-raters-items. Finally, it is interesting to see that there is little agreement as far as determining the different conditions is concerned @fig-cohen-raters-conditions. This part is crucial as some items depend on specific conditions being met for grading, otherwise they are discarded.
+Further analyzing how this looks for items and conditions separetely (i.e. calculating the average item-specific Cohen's Kappa) further confirms the overall analysis as illustrated in @fig-cohen-raters B. Finally, it is interesting to see that there is little agreement as far as determining the different conditions is concerned @fig-cohen-raters C. This part is crucial as some items depend on specific conditions being met for grading, otherwise they are discarded.
 
 ```{r}
 #| output: false
@@ -57,6 +59,7 @@ library(rjson)
 library(irr)
 library(knitr)
 library(kableExtra)
+library(patchwork)
 
 theme_classic_2 <- function(base_size = 11,
                             base_family = "",
@@ -68,6 +71,7 @@ theme_classic_2 <- function(base_size = 11,
                 base_rect_size = base_rect_size) %>%
     theme(axis.text = element_text(size = base_size,
                                    colour = "black"),
+          title = element_text(size = base_size + 1),
           axis.title = element_text(size = base_size),
           strip.background = element_blank(),
           strip.text = element_text(size = base_size,
@@ -81,6 +85,36 @@ theme_classic_2 <- function(base_size = 11,
           axis.ticks = element_line(),
           panel.grid = element_blank()) %>%
     return
+}
+
+make_heatmap <- function(df) {
+  plot_output <- ggplot(df, aes(x = rater1, y = rater2, fill = estimate)) + 
+    geom_tile(colour = "black", linewidth = 0.5) +
+    theme_classic_2(base_size = 8) +
+    geom_label(aes(label = sprintf("%.2f", estimate)), 
+               fill = "white",
+               colour = "black", 
+               size = 2.5,
+               label.size = unit(0, "line"),
+               label.padding = unit(0.3, "line"),
+               vjust = 0,
+               alpha = 0.8) + 
+    geom_label(aes(label = sprintf("[%.2f, %.2f]", lower, upper)), 
+               fill = "white",
+               colour = "black", 
+               size = 2.5,
+               label.size = unit(0, "line"),
+               label.padding = unit(0.3, "line"),
+               vjust = 1.0,
+               alpha = 0.8) + 
+    scale_x_discrete(expand = c(0,0)) +
+    scale_y_discrete(expand = c(0,0)) +
+    theme(axis.title = element_blank(),
+          legend.position = "bottom",
+          legend.key.height = unit(0.5, "line"),
+          legend.title = element_text(vjust = 1.0),
+          legend.margin = margin())
+  return(wrap_plots(plot_output))
 }
 
 match_class <- c(`n/a` = NA, no = 0, yes = 1)
@@ -105,11 +139,13 @@ df_original
 
 ```{r data-processing}
 #| warning: false
+library(psych)
+
 all_raters <- c("no training_1","no training_2","no training_3",
                 "with training_1","with training_2","with training_3")
 all_rater_labels <- c(
-  "No training (1)", "No training (2)", "No training (3)",
-  "With training (1)", "With training (2)", "With training (3)")
+  "Not\ntrained (1)", "Not\ntrained (2)", "Not\ntrained (3)",
+  "Trained (1)", "Trained (2)", "Trained (3)")
 
 long_df <- pivot_wider(df, values_from = value, names_from = c("group", "exp"))
 
@@ -122,7 +158,8 @@ for (idx in 1:ncol(rater_combinations)) {
     na.omit() %>%
     as.matrix()
   if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-    curr_df <- data.frame(estimate = kappa2(sub_df)$value)
+    kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+    curr_df <- kk
     curr_df$rater1 <- raters[1]
     curr_df$rater2 <- raters[2]
     all_cohens[[length(all_cohens) + 1]] <- curr_df
@@ -137,7 +174,8 @@ for (k in unique(long_df$key)) {
       na.omit() %>%
       as.matrix()
     if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-      curr_df <- data.frame(estimate = kappa2(sub_df)$value)
+      kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+      curr_df <- kk
       curr_df$rater1 <- raters[1]
       curr_df$rater2 <- raters[2]
       curr_df$item <- k
@@ -148,78 +186,54 @@ for (k in unique(long_df$key)) {
 }
 ```
 
-```{r fig-cohen-raters}
-#| fig.height: 3
-#| fig.width: 4
-#| label: fig-cohen-raters
-#| fig-cap: Cohen's Kappa calculated across all items (1-30) between different groups of raters.
-do.call(rbind, all_cohens) %>% 
+```{r}
+cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
-  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
 
-```{r fig-cohen-raters-items}
-#| fig.height: 2.5
-#| fig.width: 4
-#| label: fig-cohen-raters-items
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters for each specific item.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_items <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Item", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
 
-```{r fig-cohen-raters-conditions}
-#| fig.height: 2.5
-#| fig.width: 4
-#| label: fig-cohen-raters-conditions
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters for each specific condition.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_conditions <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Condition", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nconditions") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
+
+cohens_overall_plot <- make_heatmap(cohens_overall) +
+  scale_fill_distiller(palette = 3, name = "Cohen's Kappa")
+
+cohens_average_items_plot <- make_heatmap(cohens_average_items) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across items")
+
+cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across conditions")
+```
+
+```{r fig-cohen-raters}
+#| fig.height: 10.0
+#| fig.width: 5.0
+#| label: fig-cohen-raters
+#| fig-cap: Cohen's Kappa for Akinci D'Antonoli and others (2025).
+(cohens_overall_plot / 
+  cohens_average_items_plot /
+  cohens_average_conditions_plot) +
+  plot_annotation(tag_levels = c("A"))
 ```
 
 # LLMs for scientific assessment --- replacement or sidekick?
@@ -322,7 +336,7 @@ cat(sprintf("Loading and printing the JSON for %s:\n\n%s",
             read_file(file = llm_rating_files[[1]])))
 ```
 
-Upon analysis of @fig-cohen-raters-llm, @fig-cohen-raters-items-llm and @fig-cohen-raters-conditions-llm, we see quite clearly that, while there is some agreement between LLMs and raters, this is very much on the lower end of the agreement spectrum which is observed for human rater groups. Indeed, it can be risky to simply deployed this sans supervision. However, we note that this is still well within what would be acceptable had this been an additional reviewer. As noted earlier, it might be a good format to have an LLM perform these assessments as a second reader which ends up reinforcing some conclusions or reanalysing others.
+Upon analysis of @fig-cohen-raters-llm we see quite clearly that, while there is some agreement between LLMs and raters, this is very much on the lower end of the agreement spectrum which is observed for human rater groups. Indeed, it can be risky to simply deployed this sans supervision. However, we note that this is still well within what would be acceptable had this been an additional reviewer. As noted earlier, it might be a good format to have an LLM perform these assessments as a second reader which ends up reinforcing some conclusions or reanalysing others.
 
 ```{r}
 all_llm_ratings <- list()
@@ -344,8 +358,8 @@ all_raters <- c("no training_1","no training_2","no training_3",
                 "with training_1","with training_2","with training_3",
                 "llm")
 all_rater_labels <- c(
-  "No training (1)", "No training (2)", "No training (3)",
-  "With training (1)", "With training (2)", "With training (3)",
+  "Not\ntrained (1)", "Not\ntrained (2)", "Not\ntrained (3)",
+  "Trained (1)", "Trained (2)", "Trained (3)",
   "LLM"
 )
 
@@ -366,7 +380,8 @@ for (idx in 1:ncol(rater_combinations)) {
     na.omit() %>%
     as.matrix()
   if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-    curr_df <- data.frame(estimate = kappa2(sub_df)$value)
+    kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+    curr_df <- kk
     curr_df$rater1 <- raters[1]
     curr_df$rater2 <- raters[2]
     all_cohens[[length(all_cohens) + 1]] <- curr_df
@@ -381,8 +396,8 @@ for (k in unique(full_df$key)) {
       na.omit() %>%
       as.matrix()
     if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-      curr_df <- data.frame(
-        estimate = kappam.fleiss(sub_df)$value)
+      kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+      curr_df <- kk
       curr_df$rater1 <- raters[1]
       curr_df$rater2 <- raters[2]
       curr_df$item <- k
@@ -393,83 +408,59 @@ for (k in unique(full_df$key)) {
 }
 ```
 
-```{r fig-cohen-raters-llm}
-#| fig.height: 3
-#| fig.width: 4
-#| label: fig-cohen-raters-llm
-#| fig-cap: Cohen's Kappa calculated across all items (1-30) between different groups of raters and the LLM.
-do.call(rbind, all_cohens) %>% 
+```{r}
+cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
-  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
 
-```{r fig-cohen-raters-items-llm}
-#| fig.height: 2.5
-#| fig.width: 4
-#| label: fig-cohen-raters-items-llm
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific item.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_items <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Item", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
 
-```{r fig-cohen-raters-conditions-llm}
-#| fig.height: 2.5
-#| fig.width: 4
-#| label: fig-cohen-raters-conditions-llm
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_conditions <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Condition", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nconditions") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
+
+cohens_overall_plot <- make_heatmap(cohens_overall) +
+  scale_fill_distiller(palette = 3, name = "Cohen's Kappa")
+
+cohens_average_items_plot <- make_heatmap(cohens_average_items) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across items")
+
+cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across conditions")
 ```
 
-In @fig-proportions we show how these scores are somewhat variable when analysed on a per-item basis. While some items are somewhat consistent (Items 1, 2, 20, 21, 22, 29 and 30 all have percent agreements[^pct] > 70%), most are relatively scattered.
+```{r fig-cohen-raters}
+#| fig.height: 9.0
+#| fig.width: 5.0
+#| label: fig-cohen-raters-llm
+#| fig-cap: Cohen's Kappa for Akinci D'Antonoli and others (2025) with LLM.
+(cohens_overall_plot / 
+  cohens_average_items_plot /
+  cohens_average_conditions_plot) +
+  plot_annotation(tag_levels = c("A"))
+```
 
-[^pct]: here we used percent agreements as opposed to Cohen's Kappa because the latter is not defined when data has 0 variance (some questions were always answered the same) and has unintuitive behavior when it gets too close to 0 or 1.
+In @fig-proportions we show how these scores are somewhat variable when analysed on a per-item basis. While some items are somewhat consistent (Items 1, 2, 20, 21, 22, 29 and 30 all have percent agreements[^2] \> 70%), most are relatively scattered.
+
+[^2]: here we used percent agreements as opposed to Cohen's Kappa because the latter is not defined when data has 0 variance (some questions were always answered the same) and has unintuitive behavior when it gets too close to 0 or 1.
 
 ```{r}
 #| fig.height: 5
@@ -510,6 +501,8 @@ My main point of interest now was getting to know how these differences are mani
 A main point of this analysis is for us to think through of some possible improvements that can be added to the description of each item to make it as clear as possible for automated assessment.
 
 ```{r}
+#| fig.height: 5
+#| fig.width: 4
 score_agreement <- function(a, b) {
   d <- case_when(
     is.na(a) | is.na(b) ~ NA,
@@ -545,7 +538,13 @@ disagreement_df <- full_df %>%
 disagreement_df %>%
   group_by(key) %>%
   summarise(average_disagreement_score = mean(n_disagreements, na.rm = T)) %>%
-  arrange(average_disagreement_score)
+  arrange(average_disagreement_score) %>%
+  ggplot(aes(x = average_disagreement_score,
+             y = reorder(key, average_disagreement_score))) + 
+  geom_point() +
+  theme_classic_2(base_size = 8) +
+  ylab("METRICS item/condition") +
+  xlab("Average agreement\n(negative = disagreement, positive = agreement)")
 ```
 
 ### Item23
@@ -554,12 +553,12 @@ disagreement_df %>%
 
 As in the table above, we can see that the average disagreement score (the average of the scoring system noted above) is more severe for Item23 - whether uni-parametric imaging was used or proved to be inferior to multi-parametric imaging. Focusing on this, we take five papers at random where all reader groups said "yes" while the LLM said "no". We bring up the reasons provided by the LLM to further clarify this, and inspect each paper individually to better understand what the reason was. By and large, two dominant reasons appear to arise:
 
-1. The LLM mistakenly assumes that using multiple image transformations during radiomic feature extraction counts as "multi-parametric imaging"
-2. The LLM mistakenly interprets the paper and assumes that there are other categories apart from "uni-parametric imaging" and "multi-parametric imaging"
+1.  The LLM mistakenly assumes that using multiple image transformations during radiomic feature extraction counts as "multi-parametric imaging"
+2.  The LLM mistakenly interprets the paper and assumes that there are other categories apart from "uni-parametric imaging" and "multi-parametric imaging"
 
 #### Potential improvement
 
-Including the following in the item helper: "Uni-parametric imaging implies the acquisition of a single imaging modality, as opposed to multi-parametric imaging, which involves the acquisition of multiple  imaging modalities."
+Including the following in the item helper: "Uni-parametric imaging implies the acquisition of a single imaging modality, as opposed to multi-parametric imaging, which involves the acquisition of multiple imaging modalities."
 
 ```{r}
 set.seed(42)
@@ -574,6 +573,7 @@ get_examples_of_disagreement <- function(item_number, n_examples = 5) {
   }
   relevant_titles <- item_subset$title[1:n_examples]
   
+  output <- list()
   for (tt in relevant_titles) {
     reason <- fromJSON(file = llm_rating_files[[gsub("/", "_", tt)]])[[sprintf("Item%s", item_number)]]
     reason_number <- match_class[reason$rating]
@@ -581,12 +581,14 @@ get_examples_of_disagreement <- function(item_number, n_examples = 5) {
     human_raters <- unlist(
       human_raters[, Filter(function(x) grepl("training", x), colnames(human_raters))]) %>%
       paste(collapse = ", ")
-    cat(sprintf("Title: %s\nReason (human raters: %s; LLM: %s): %s\n\n", 
-                tt, 
-                human_raters,
-                reason_number, 
-                reason$reason))
+    output[[length(output) + 1]] <- tibble(
+      Title = tt,
+      `Human ratings` = human_raters,
+      `LLM rating` = reason_number,
+      `LLM reason` = unlist(reason[[2]])
+    )
   }
+  do.call(what = rbind, output)
 }
 
 get_examples_of_disagreement(23)
@@ -596,13 +598,13 @@ get_examples_of_disagreement(23)
 
 *The interval between imaging used and reference standard*
 
-Disagreements for this item are somewhat interesting --- upon closer inspection of any of the papers mentioned below, there are no errors from the LLM. However, the LLM considers these as "yes", but most radiologist groups considered this to be the opposite. We found that the interval between imaging and reference standard is acceptable (except for "Application of a comprehensive model based on CT radiomics and clinical features for postoperative recurrence risk prediction in non-small cell lung cancer", where this interval is not mentioned) and follows the helping criteria [^item7help]; however, there may be slight aspects of METRICS which we are not fully understanding.
+Disagreements for this item are somewhat interesting --- upon closer inspection of any of the papers mentioned below, there are no errors from the LLM. However, the LLM considers these as "yes", but most radiologist groups considered this to be the opposite. We found that the interval between imaging and reference standard is acceptable (except for "Application of a comprehensive model based on CT radiomics and clinical features for postoperative recurrence risk prediction in non-small cell lung cancer", where this interval is not mentioned) and follows the helping criteria [^3]; however, there may be slight aspects of METRICS which we are not fully understanding.
 
-[^item7help]: "Whether the time interval between the diagnostic imaging exams (used as an input for the radiomics analysis) and the outcome measure/reference standard acquisition is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+[^3]: "Whether the time interval between the diagnostic imaging exams (used as an input for the radiomics analysis) and the outcome measure/reference standard acquisition is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
 
 #### Potential improvement
 
-Inclusion of the following in the item helper: "If there is no mention of when the reference standard was acquired relative to the diagnostic imaging  exams, the answer should be "no"."
+Inclusion of the following in the item helper: "If there is no mention of when the reference standard was acquired relative to the diagnostic imaging exams, the answer should be"no"."
 
 ```{r}
 get_examples_of_disagreement(7)
@@ -626,9 +628,9 @@ get_examples_of_disagreement(16)
 
 *Test set segmentation masks produced by a single reader or automated tool*
 
-Here, the LLM considers a senior radiologist reviewing segmentations to be standard clinical practice, and given that the helper note[^item10helper] does not specifically address what "clinical practice" is or isn't, the LLM (very wrongfully) assumes that segmentation reviews are a standard part of it. 
+Here, the LLM considers a senior radiologist reviewing segmentations to be standard clinical practice, and given that the helper note[^4] does not specifically address what "clinical practice" is or isn't, the LLM (very wrongfully) assumes that segmentation reviews are a standard part of it.
 
-[^item10helper]: "Whether final segmentation in the test set is produced by a single reader (manually or with a semi-automated tool) or an entirely automated tool, to better reflect clinical practice."
+[^4]: "Whether final segmentation in the test set is produced by a single reader (manually or with a semi-automated tool) or an entirely automated tool, to better reflect clinical practice."
 
 #### Potential improvement
 
@@ -642,13 +644,13 @@ get_examples_of_disagreement(10)
 
 *Handling of confounding factors*
 
-Here, the disagreements are, as far as I can tell, stemming from a difficulty I myself face when considering questions such as this. The helper note for this item [^item19helper] is somewhat hard to consider in strict terms. For instance: 
+Here, the disagreements are, as far as I can tell, stemming from a difficulty I myself face when considering questions such as this. The helper note for this item [^5] is somewhat hard to consider in strict terms. For instance:
 
-- In 'A Radiomic “Warning Sign” of Progression on Brain MRI in Individuals with MS', the authors offer an analysis of a pipeline-specific confounder which could affect how predictions were obtained or are interpreted. However, this confounder does not represent anything inherent to the patient or to the acquisition process, but rather to the algorithm developed during this work
-- In "CNN-based multi-modal radiomics analysis of pseudo-CT utilization in MRI-only brain stereotactic radiotherapy: a feasibility study", the authors do offer an analysis of how MRI contrast presence affects model performance, but then again this is not really a confounder in the traditional sense
-- In the remaining articles were the LLM answered "yes" and reader groups tended towards "no", there are some more confounding factors which _could_ be considered confounders but it is understandable that they are not _necessarily_ regarded as such by most people.
+[^5]: "Whether potential confounding factors were analyzed, identified if present, and removed if necessary (e.g., if it has a strong influence on generalizability). These may include different distributions of patient characteristics (e.g., gender, lesion stage or grade) across sites or scanners."
 
-[^item19helper]: "Whether potential confounding factors were analyzed, identified if present, and removed if necessary (e.g., if it has a strong influence on generalizability). These may include different distributions of patient characteristics (e.g., gender, lesion stage or grade) across sites or scanners."
+-   In 'A Radiomic "Warning Sign" of Progression on Brain MRI in Individuals with MS', the authors offer an analysis of a pipeline-specific confounder which could affect how predictions were obtained or are interpreted. However, this confounder does not represent anything inherent to the patient or to the acquisition process, but rather to the algorithm developed during this work
+-   In "CNN-based multi-modal radiomics analysis of pseudo-CT utilization in MRI-only brain stereotactic radiotherapy: a feasibility study", the authors do offer an analysis of how MRI contrast presence affects model performance, but then again this is not really a confounder in the traditional sense
+-   In the remaining articles were the LLM answered "yes" and reader groups tended towards "no", there are some more confounding factors which *could* be considered confounders but it is understandable that they are not *necessarily* regarded as such by most people.
 
 #### Potential improvement
 
@@ -660,7 +662,7 @@ get_examples_of_disagreement(19)
 
 ### Reanalysis with improved prompt
 
-Upon the analysis above, we use the same LLM with the data and the improved descriptions injected into the prompt. While not ideal, this will allow us to see --- to a very limited extent as we are lacking an external validation --- whether this can lead to an improvement. As highlighted in @fig-cohen-raters-llm-improved, @fig-cohen-raters-items-llm-improved and @fig-cohen-raters-conditions-llm-improved it is possible to see a clear improvement in performance. @fig-cohen-raters-conditions-llm-improved-subset, specific for the five items with suggestions above, this process can lead to systematic improvements. Additionally, an interesting effect non-linear effect here is that while the condition prompts where not altered, there was a notable improvement to the agreement between LLM and human rater groups for conditions (@fig-cohen-raters-conditions-llm-improved).
+Upon the analysis above, we use the same LLM with the data and the improved descriptions injected into the prompt. While not ideal, this will allow us to see --- to a very limited extent as we are lacking an external validation --- whether this can lead to an improvement. As highlighted in @fig-cohen-raters-llm-improved it is possible to see a clear improvement in performance. @fig-cohen-raters-conditions-llm-improved-subset, specific for the five items with suggestions above, this process can lead to systematic improvements. Additionally, an interesting effect non-linear effect here is that while the condition prompts where not altered, there was a notable improvement to the agreement between LLM and human rater groups for conditions.
 
 ```{r}
 improved_llm_rating_files <- list.files(path = "../ratings_improved/akinci-dantonoli", 
@@ -690,8 +692,8 @@ all_raters <- c("no training_1","no training_2","no training_3",
                 "with training_1","with training_2","with training_3",
                 "llm", "llm_changes")
 all_rater_labels <- c(
-  "No training (1)", "No training (2)", "No training (3)",
-  "With training (1)", "With training (2)", "With training (3)",
+  "Not\ntrained (1)", "Not\ntrained (2)", "Not\ntrained (3)",
+  "Trained (1)", "Trained (2)", "Trained (3)",
   "LLM", "LLM + changes"
 )
 
@@ -712,7 +714,8 @@ for (idx in 1:ncol(rater_combinations)) {
     na.omit() %>%
     as.matrix()
   if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-    curr_df <- data.frame(estimate = kappa2(sub_df)$value)
+    kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+    curr_df <- kk
     curr_df$rater1 <- raters[1]
     curr_df$rater2 <- raters[2]
     all_cohens[[length(all_cohens) + 1]] <- curr_df
@@ -727,8 +730,8 @@ for (k in unique(fuller_df$key)) {
       na.omit() %>%
       as.matrix()
     if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-      curr_df <- data.frame(
-        estimate = kappam.fleiss(sub_df)$value)
+      kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+      curr_df <- kk
       curr_df$rater1 <- raters[1]
       curr_df$rater2 <- raters[2]
       curr_df$item <- k
@@ -739,83 +742,77 @@ for (k in unique(fuller_df$key)) {
 }
 ```
 
-```{r fig-cohen-raters-llm}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-raters-llm-improved
-#| fig-cap: Cohen's Kappa calculated across all items (1-30) between different groups of raters and the LLM.
-do.call(rbind, all_cohens) %>% 
+```{r}
+cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
-  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
 
-```{r fig-cohen-raters-items-llm}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-raters-items-llm-improved
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific item.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_items <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Item", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
 
-```{r fig-cohen-raters-conditions-llm}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-raters-conditions-llm-improved
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_conditions <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Condition", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nconditions") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
+
+inside_legend_theme <- theme(
+  legend.position = c(0.99, 0.05),
+  legend.justification = c(1.0, 0.0),
+  legend.direction = "horizontal",
+  legend.title = element_text(hjust = 1.0))
+
+colourbar_guides <- guides(fill = guide_colorbar(title.position = "top",
+                                                 frame.colour = "black",
+                                                 ticks.colour = "black",
+                                                 ticks.size = 0.5,
+                                                 frame.size = 0.5))
+
+cohens_overall_plot <- make_heatmap(cohens_overall) +
+  scale_fill_distiller(palette = 3, name = "Cohen's Kappa") +
+  inside_legend_theme + 
+  colourbar_guides
+
+cohens_average_items_plot <- make_heatmap(cohens_average_items) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across items") +
+  inside_legend_theme + 
+  colourbar_guides
+
+cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across conditions") +
+  inside_legend_theme + 
+  colourbar_guides
+```
+
+```{r fig-cohen-raters-llm-improved}
+#| fig.height: 8.5
+#| fig.width: 6.0
+#| label: fig-cohen-raters-llm-improved
+#| fig-cap: Cohen's Kappa for Akinci D'Antonoli and others (2025) with LLM.
+(cohens_overall_plot / 
+  cohens_average_items_plot /
+  cohens_average_conditions_plot) +
+  plot_annotation(tag_levels = c("A"))
 ```
 
 ```{r}
 #| fig.height: 3.0
-#| fig.width: 4.5
+#| fig.width: 6.0
 #| label: fig-cohen-raters-conditions-llm-improved-subset
 #| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition and only for items 23, 7, 16, 10 and 19.
 do.call(rbind, all_cohens_items) %>% 
@@ -824,19 +821,16 @@ do.call(rbind, all_cohens_items) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop") %>%
+  make_heatmap() +
+  scale_fill_distiller(palette = 3, 
+                       name = "Average Cohen's Kappa\nacross items 23, 7, 16, 10 and 19") +
+  inside_legend_theme + 
+  colourbar_guides
 ```
 
 ## Analysing whether radiomic scores are similar between different rater groups and LLMs
@@ -894,8 +888,8 @@ scores_df_long <- fuller_df %>%
 scores_df <- scores_df_long %>%
   spread(key = "group", value = score) %>%
   gather(key = "group", value = "value", 
-         `No training (1)`, `No training (2)`, `No training (3)`,
-         `With training (1)`, `With training (2)`, `With training (3)`) 
+         `Not\ntrained (1)`, `Not\ntrained (2)`, `Not\ntrained (3)`,
+         `Trained (1)`, `Trained (2)`, `Trained (3)`) 
 
 scores_df_wide <- scores_df_long %>% 
   spread(key = "group", value = "score")
@@ -907,8 +901,16 @@ for (idx in 1:ncol(rater_combinations_pretty)) {
   sub_df <- scores_df_wide[,c(raters[1], raters[2])] %>%
     na.omit() %>%
     as.matrix()
-  curr_df <- data.frame(estimate = cor.test(sub_df[,1], sub_df[,2])$estimate,
-                        mae = mean(abs(sub_df[,1] - sub_df[,2])))
+  corr_output <- cor.test(sub_df[,1], sub_df[,2])
+  mae <- mean(abs(sub_df[,1] - sub_df[,2]))
+  mae_half_interval = sd(abs(sub_df[,1] - sub_df[,2])) / sqrt(nrow(sub_df)) * qnorm(1 - 0.025)
+  curr_df <- data.frame(estimate = corr_output$estimate,
+                        lower = corr_output$conf.int[1],
+                        upper = corr_output$conf.int[2],
+                        mae = mae,
+                        mae_lower = mae - mae_half_interval,
+                        mae_upper = mae + mae_half_interval
+                        )
   curr_df$rater1 <- raters[1]
   curr_df$rater2 <- raters[2]
   all_corr[[length(all_corr) + 1]] <- curr_df
@@ -916,70 +918,55 @@ for (idx in 1:ncol(rater_combinations_pretty)) {
 ```
 
 ```{r}
-#| fig.height: 4.5
-#| fig.width: 6
+#| fig.height: 2.7
+#| fig.width: 4
 #| warning: false
 #| label: fig-corr
 #| fig-cap: Association between LLM with and without changes and human rater groups.
 
 scores_df %>%
-  ggplot(aes(colour = group)) + 
+  ggplot(aes(colour = gsub("\n", " ", group))) + 
   geom_abline(slope = 1) +
   geom_point(aes(x = value, y = LLM, shape = "LLM")) +
   geom_point(aes(x = value, y = `LLM + changes`, shape = "LLM + changes")) +
   geom_segment(aes(x = value, xend = value, 
                    y = `LLM`, yend = `LLM + changes`)) +
   theme_classic_2(base_size = 8) + 
-  scale_shape_manual(values = c(1, 16)) +
+  scale_shape_manual(values = c(1, 16), name = "LLM") +
   coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
-  scale_colour_brewer(palette = "Set2") +
-  theme(legend.key.size = unit(0, "lines"))
+  scale_colour_brewer(palette = "Set2", name = "Group") +
+  theme(legend.key.size = unit(0, "lines")) + 
+  ylab("METRICS score from LLM rater") +
+  xlab("METRICS score from human rater")
 ```
 
 ```{r}
-#| fig.height: 3
-#| fig.width: 4
+#| fig.height: 6
+#| fig.width: 5.5
 #| warning: false
 #| label: fig-corr-matrix
-#| fig-cap: Correlation values (R) between LLM with and without changes and human rater groups.
-do.call(rbind, all_corr) %>% 
+#| fig-cap: Correlation values (Pearson's R; higher is better) and mean absolute erorr (lower is better) between LLM with and without changes and human rater groups.
+pearsons_r_plot <- do.call(rbind, all_corr) %>% 
   mutate(rater1 = factor(rater1, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_rater_labels)) %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  make_heatmap() +
+  scale_fill_distiller(palette = 3, name = "Pearson's R") +
+  inside_legend_theme + 
+  colourbar_guides
 
-```{r}
-#| fig.height: 3
-#| fig.width: 4
-#| warning: false
-#| label: fig-mae
-#| fig-cap: Correlation values (R) between LLM with and without changes and human rater groups.
-do.call(rbind, all_corr) %>% 
+mae_plot <- do.call(rbind, all_corr) %>% 
   mutate(rater1 = factor(rater1, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_rater_labels)) %>%
-  ggplot(aes(x = rater1, y = rater2, fill = mae)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", mae)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
+  mutate(estimate = mae,
+         lower = mae_lower,
+         upper = mae_upper) %>%
+  make_heatmap() +
+  scale_fill_distiller(palette = 3, name = "Mean absolute error") +
+  inside_legend_theme + 
+  colourbar_guides
+
+(pearsons_r_plot / mae_plot) +
+  plot_annotation(tag_levels = c("A"))
 ```
 
 However, and dispite some similarities, we show that there are more statistically significant differences when performing human-LLM comparisons than when comparing human-human comparisons. We do this through a post-hoc analysis with a Tukey HSD following a statistically significant ANOVA.
@@ -1000,20 +987,22 @@ comparisons <- rownames(tukey.hsd)
 
 tukey.hsd %>%
   mutate(comparisons = case_when(
-    !grepl("training", comparisons) ~ "LLM-LLM",
+    !grepl("rained", comparisons) ~ "LLM-LLM",
     !grepl("LLM", comparisons) ~ "Human-Human",
     .default = "Human-LLM")) %>%
   group_by(comparisons) %>%
   summarise(
     `Fraction of statistically significant Tukey HSD` = sum(`p adj` < 0.05) / length(diff),
+    `Number of stat. sig. comparisons` = sum(`p adj` < 0.05),
+    `Total number of comparisons` = length(diff),
     `Average absolute difference` = mean(abs(diff[`p adj` < 0.05])))
 ```
 
-## Validation of LLM observations above with _Kocak et. al (2025)_
+## Validation of LLM observations above with *Kocak et. al (2025)*
 
-Around the time we were developing this, Kocak and others published "Radiomics for differentiating radiation-induced brain injury from recurrence in gliomas: systematic review, meta-analysis, and methodological quality evaluation using METRICS and RQS" in European Radiology @Kocak2025-uj. Here, three different raters (identified as raters 1-3) were tasked with classifying 27 papers using METRICS. Here, we provide LLM-based METRICS scores for only 22 as the remaining 5 were behind a paywall. It should be noted that the first author (and one of the raters as far we understand it) in _Kocak et al. (2025)_ was also a co-author in @Akinci-D-Antonoli2025-ep and the first author of the original METRICS definition paper @Kocak2024-wk.
+Around the time we were developing this, Kocak and others published "Radiomics for differentiating radiation-induced brain injury from recurrence in gliomas: systematic review, meta-analysis, and methodological quality evaluation using METRICS and RQS" in European Radiology @Kocak2025-uj. Here, three different raters (identified as raters 1-3) were tasked with classifying 27 papers using METRICS. Here, we provide LLM-based METRICS scores for only 22 as the remaining 5 were behind a paywall. It should be noted that the first author (and one of the raters as far we understand it) in *Kocak et al. (2025)* was also a co-author in @Akinci-D-Antonoli2025-ep and the first author of the original METRICS definition paper @Kocak2024-wk.
 
-As visible below across @fig-cohen-kocak, @fig-cohen-kocak-items and @fig-cohen-kocak-conditions, the inter-rater agreements are relatively stable between readers and between readers and LLMs. An interesting outcome of this is that the LLM + changes do not lead to such stark improvements as before, hinting that dataset-specific prompt tuning may not be the best way of improving scores across multiple publications.
+As visible below across @fig-cohen-kocak, the inter-rater agreements are relatively stable between readers and between readers and LLMs. An interesting outcome of this is that the LLM + changes do not lead to such stark improvements as before, hinting that dataset-specific prompt tuning may not be the best way of improving scores across multiple publications.
 
 ```{r}
 df_original <- read_csv(
@@ -1099,7 +1088,8 @@ for (idx in 1:ncol(rater_combinations)) {
     na.omit() %>%
     as.matrix()
   if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-    curr_df <- data.frame(estimate = kappa2(sub_df)$value)
+    kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+    curr_df <- kk
     curr_df$rater1 <- raters[1]
     curr_df$rater2 <- raters[2]
     all_cohens[[length(all_cohens) + 1]] <- curr_df
@@ -1114,8 +1104,8 @@ for (k in unique(fuller_df$key)) {
       na.omit() %>%
       as.matrix()
     if ((nrow(sub_df) > 10) & (var(sub_df[,1]) > 0) & (var(sub_df[,2]) > 0)) { # guarantee that at least 10 articles were graded
-      curr_df <- data.frame(
-        estimate = kappam.fleiss(sub_df)$value)
+      kk <- as.data.frame(cohen.kappa(sub_df)$confid)
+      curr_df <- kk
       curr_df$rater1 <- raters[1]
       curr_df$rater2 <- raters[2]
       curr_df$item <- k
@@ -1126,83 +1116,103 @@ for (k in unique(fuller_df$key)) {
 }
 ```
 
-```{r fig-cohen-raters-llm}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-kocak
-#| fig-cap: Cohen's Kappa calculated across all items (1-30) between different groups of raters and the LLM for _Kocak et al. (2025)_.
-do.call(rbind, all_cohens) %>% 
+```{r}
+cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
-  mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Cohen's\nkappa") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
 
-```{r fig-cohen-raters-items-llm}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-kocak-items
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific item for _Kocak et al. (2025)_.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_items <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Item", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nitems") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
-```
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
 
-```{r fig-cohen-raters-conditions-llm}
-#| fig.height: 3.0
-#| fig.width: 4.5
-#| label: fig-cohen-kocak-conditions
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition for _Kocak et al. (2025)_.
-do.call(rbind, all_cohens_items) %>% 
+cohens_average_conditions <- do.call(rbind, all_cohens_items) %>% 
   subset(grepl("Condition", item)) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
   na.omit() %>%
-  summarise(estimate = sum(estimate * n) / sum(n), .groups = "drop") %>%
-  ggplot(aes(x = rater1, y = rater2, fill = estimate)) + 
-  geom_tile(colour = "black", linewidth = 0.5) +
-  theme_classic_2(base_size = 8) +
-  geom_label(aes(label = sprintf("%.2f", estimate)), fill = "white",
-             colour = "black", size = 2.5,
-             label.size = unit(0, "line"),
-             label.padding = unit(0.2, "line")) + 
-  scale_fill_distiller(palette = 3, name = "Average cohen's\nkappa across\nconditions") +
-  scale_x_discrete(expand = c(0,0)) +
-  scale_y_discrete(expand = c(0,0)) +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1.0, vjust = 1.0),
-        axis.title = element_blank())
+  summarise(se = sd(estimate) / sqrt(length(estimate)),
+            estimate = mean(estimate), 
+            lower = max(estimate - abs(qnorm(0.025)) * se, 0),
+            upper = min(estimate + abs(qnorm(0.025)) * se, 1),
+            .groups = "drop")
+
+cohens_overall_plot <- make_heatmap(cohens_overall) +
+  scale_fill_distiller(palette = 3, name = "Cohen's Kappa") +
+  inside_legend_theme + 
+  colourbar_guides
+
+cohens_average_items_plot <- make_heatmap(cohens_average_items) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across items") +
+  inside_legend_theme + 
+  colourbar_guides
+
+cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
+  scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across conditions") +
+  inside_legend_theme + 
+  colourbar_guides
+```
+
+```{r}
+#| fig.height: 6.0
+#| fig.width: 4.2
+#| label: fig-cohen-kocak
+#| fig-cap: Cohen's Kappa calculated between different groups of raters and the LLM for _Kocak et al. (2025)_.
+
+(cohens_overall_plot / 
+  cohens_average_items_plot /
+  cohens_average_conditions_plot) +
+  plot_annotation(tag_levels = c("A"))
+```
+
+```{r}
+scores_df_long <- fuller_df %>%
+  gather(key = "group", value = "value", 
+         Rater1, Rater2, Rater3,
+         llm, llm_changes) %>%
+  subset(grepl("Item", key)) %>%
+  mutate(multiplier = ifelse(is.na(value), NA, SCORES[key]),
+         score = multiplier * value) %>%
+  group_by(group, title) %>%
+  summarise(score = sum(score, na.rm = T) / sum(multiplier, na.rm = T),
+            .groups = "drop") %>%
+  mutate(group = factor(group, all_raters, all_rater_labels))
+
+scores.aov <- aov(lm(score ~ group, data = scores_df_long))
+
+print(summary(scores.aov))
+
+tukey.hsd <- scores.aov %>%
+  TukeyHSD()
+
+tukey.hsd <- tukey.hsd$group %>%
+  as.data.frame
+comparisons <- rownames(tukey.hsd)
+
+tukey.hsd %>%
+  mutate(comparisons = case_when(
+    !grepl("Rater", comparisons) ~ "LLM-LLM",
+    !grepl("LLM", comparisons) ~ "Human-Human",
+    .default = "Human-LLM")) %>%
+  group_by(comparisons) %>%
+  summarise(
+    `Fraction of statistically significant Tukey HSD` = sum(`p adj` < 0.05) / length(diff),
+    `Number of stat. sig. comparisons` = sum(`p adj` < 0.05),
+    `Total number of comparisons` = length(diff),
+    `Average absolute difference` = mean(abs(diff[`p adj` < 0.05])))
 ```
 
 # Conclusion and where to go from here
 
 This was a somewhat quick analysis prompted by a concrete question --- can we facilitate what are oftentimes cumbersome analyses by getting the assistance of an LLM? The answer to this --- at least what this analysis shows --- is that:
 
-1. There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular --- METRICS --- relies quite heavily on expert knowledge, and the paper that originated this short report highlights, to an extent, the differences in subjective evaluation associated with human raters @Akinci-D-Antonoli2025-ep. While more objective, LLM-based assessments may end up being too different. However, our further confirmation using @Kocak2025-uj does show that these findings --- that there is a good number of similarities between human raters and LLMs --- generalise to other datasets.
-2. Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small. Our analysis on @Kocak2025-uj showed that prompt tuning using small sample sizes is likely to result in improvements which do not generalise. However, both the tuning and its validation used relatively small dataset sizes.
+1.  There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular --- METRICS --- relies quite heavily on expert knowledge, and the paper that originated this short report highlights, to an extent, the differences in subjective evaluation associated with human raters @Akinci-D-Antonoli2025-ep. While more objective, LLM-based assessments may end up being too different. However, our further confirmation using @Kocak2025-uj does show that these findings --- that there is a good number of similarities between human raters and LLMs --- generalise to other datasets.
+2.  Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small. Our analysis on @Kocak2025-uj showed that prompt tuning using small sample sizes is likely to result in improvements which do not generalise. However, both the tuning and its validation used relatively small dataset sizes.
