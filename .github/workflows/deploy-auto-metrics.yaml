@@ -30,7 +30,7 @@ jobs:
             uv-venv-${{ runner.os }}-
 
       - name: Create virtualenv and install dependencies using uv
-        run: |
+        run: >
           uv run python src/make_static_app.py 
           --config_path config-enhanced.yaml 
           --additional_files_to_copy report/analyse.html report/analyse_files
