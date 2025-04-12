@@ -836,7 +836,7 @@ do.call(rbind, all_cohens_items) %>%
 
 ## Analysing whether radiomic scores are similar between different rater groups and LLMs
 
-Finally, we consider the final quantity of METRICS (i.e. a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (@fig-corr-matrix). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (@fig-corr-matrix). Mean absolute errors are also not particularly higher than others (@fig-mae).
+Finally, we consider the final quantity of METRICS (i.e. a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (@fig-corr-matrix). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (@fig-corr-matrix). Mean absolute errors are also not particularly higher than others (@fig-corr-matrix).
 
 ```{r}
 #| warning: false
