@@ -5,6 +5,9 @@ on:
     branches:
       - main  # Or your trigger branch
 
+permissions:
+  contents: write
+
 jobs:
   run-command:
     runs-on: ubuntu-latest
