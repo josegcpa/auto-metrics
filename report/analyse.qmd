@@ -60,6 +60,8 @@ library(irr)
 library(knitr)
 library(kableExtra)
 library(patchwork)
+library(psych)
+library(stats)
 
 theme_classic_2 <- function(base_size = 11,
                             base_family = "",
@@ -139,7 +141,6 @@ df_original
 
 ```{r data-processing}
 #| warning: false
-library(psych)
 
 all_raters <- c("no training_1","no training_2","no training_3",
                 "with training_1","with training_2","with training_3")
@@ -972,8 +973,6 @@ mae_plot <- do.call(rbind, all_corr) %>%
 However, and dispite some similarities, we show that there are more statistically significant differences when performing human-LLM comparisons than when comparing human-human comparisons. We do this through a post-hoc analysis with a Tukey HSD following a statistically significant ANOVA.
 
 ```{r}
-library(stats)
-
 scores.aov <- aov(lm(score ~ group, data = scores_df_long))
 
 print(summary(scores.aov))
