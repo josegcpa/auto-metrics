@@ -1305,7 +1305,7 @@ You have to output:
 </section>
 <section id="analysing-whether-radiomic-scores-are-similar-between-different-rater-groups-and-llms" class="level2">
 <h2 class="anchored" data-anchor-id="analysing-whether-radiomic-scores-are-similar-between-different-rater-groups-and-llms">Analysing whether radiomic scores are similar between different rater groups and LLMs</h2>
-<p>Finally, we consider the final quantity of METRICS (i.e.&nbsp;a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (<a href="#fig-corr-matrix">Figure&nbsp;7</a>). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (<a href="#fig-corr-matrix">Figure&nbsp;7</a>). Mean absolute errors are also not particularly higher than others (<strong>?@fig-mae</strong>).</p>
+<p>Finally, we consider the final quantity of METRICS (i.e.&nbsp;a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (<a href="#fig-corr-matrix">Figure&nbsp;7</a>). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (<a href="#fig-corr-matrix">Figure&nbsp;7</a>). Mean absolute errors are also not particularly higher than others (<a href="#fig-corr-matrix">Figure&nbsp;7</a>).</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1758,6 +1758,53 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular — METRICS — relies quite heavily on expert knowledge, and the paper that originated this short report highlights, to an extent, the differences in subjective evaluation associated with human raters <span class="citation" data-cites="Akinci-D-Antonoli2025-ep"><a href="#ref-Akinci-D-Antonoli2025-ep" role="doc-biblioref">[5]</a></span>. While more objective, LLM-based assessments may end up being too different. However, our further confirmation using <span class="citation" data-cites="Kocak2025-uj"><a href="#ref-Kocak2025-uj" role="doc-biblioref">[6]</a></span> does show that these findings — that there is a good number of similarities between human raters and LLMs — generalise to other datasets.</li>
 <li>Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches — which require a good number of examples — quite tricky to handle when sample sizes are small. Our analysis on <span class="citation" data-cites="Kocak2025-uj"><a href="#ref-Kocak2025-uj" role="doc-biblioref">[6]</a></span> showed that prompt tuning using small sample sizes is likely to result in improvements which do not generalise. However, both the tuning and its validation used relatively small dataset sizes.</li>
 </ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.4.2 (2024-10-31)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sequoia 15.1.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Lisbon
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] psych_2.5.3      patchwork_1.3.0  kableExtra_1.4.0 knitr_1.49      
+ [5] irr_0.84.1       lpSolve_5.6.23   rjson_0.2.23     lubridate_1.9.4 
+ [9] forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4      purrr_1.0.2     
+[13] readr_2.1.5      tidyr_1.3.1      tibble_3.2.1     ggplot2_3.5.1   
+[17] tidyverse_2.0.0 
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6       xfun_0.49          htmlwidgets_1.6.4  lattice_0.22-6    
+ [5] tzdb_0.4.0         vctrs_0.6.5        tools_4.4.2        generics_0.1.3    
+ [9] parallel_4.4.2     fansi_1.0.6        pkgconfig_2.0.3    Matrix_1.7-1      
+[13] RColorBrewer_1.1-3 lifecycle_1.0.4    compiler_4.4.2     farver_2.1.2      
+[17] munsell_0.5.1      mnormt_2.1.1       htmltools_0.5.8.1  yaml_2.3.10       
+[21] pillar_1.9.0       crayon_1.5.3       nlme_3.1-166       tidyselect_1.2.1  
+[25] digest_0.6.37      stringi_1.8.4      labeling_0.4.3     fastmap_1.2.0     
+[29] grid_4.4.2         colorspace_2.1-1   cli_3.6.3          magrittr_2.0.3    
+[33] utf8_1.2.4         withr_3.0.2        scales_1.3.0       bit64_4.5.2       
+[37] timechange_0.3.0   rmarkdown_2.29     bit_4.5.0.1        reticulate_1.40.0 
+[41] png_0.1-8          hms_1.1.3          evaluate_1.0.1     viridisLite_0.4.2 
+[45] rlang_1.1.4        Rcpp_1.0.13-1      glue_1.8.0         xml2_1.3.6        
+[49] svglite_2.1.3      rstudioapi_0.17.1  vroom_1.6.5        jsonlite_1.8.9    
+[53] R6_2.5.1           systemfonts_1.1.0 </code></pre>
+</div>
+</div>
 
 </section>
 

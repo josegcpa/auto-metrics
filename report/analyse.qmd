@@ -1215,3 +1215,7 @@ This was a somewhat quick analysis prompted by a concrete question --- can we fa
 
 1.  There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular --- METRICS --- relies quite heavily on expert knowledge, and the paper that originated this short report highlights, to an extent, the differences in subjective evaluation associated with human raters @Akinci-D-Antonoli2025-ep. While more objective, LLM-based assessments may end up being too different. However, our further confirmation using @Kocak2025-uj does show that these findings --- that there is a good number of similarities between human raters and LLMs --- generalise to other datasets.
 2.  Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small. Our analysis on @Kocak2025-uj showed that prompt tuning using small sample sizes is likely to result in improvements which do not generalise. However, both the tuning and its validation used relatively small dataset sizes.
+
+```{r}
+sessionInfo()
+```
