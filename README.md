@@ -25,3 +25,5 @@ Not everyone likes or feels comfortable using the command line, so we have provi
 For now we are not planning any expansions to this methodology, but if you find any issues or have any suggestions, please open an issue or contact us.
 
 ## Citation
+
+de Almeida JG, Papanikolaou, N (2025) Auto-METRICS: LLM-assisted scientific quality control for radiomics research. medRxiv [Preprint] doi: [10.1101/2025.04.22.25325873](https://www.medrxiv.org/content/10.1101/2025.04.22.25325873v1)
