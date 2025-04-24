@@ -14,11 +14,11 @@
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study uses data from a single center."
+    "reason": "The study involves data from a single institution."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is CT, a standard imaging technique for NSCLC, and the acquisition parameters are provided."
+    "reason": "The imaging data source is CT, a standard imaging technique for NSCLC, and the acquisition parameters are reported."
   },
   "Item6": {
     "rating": "yes",
@@ -26,7 +26,7 @@
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study defines the endpoint as disease-free survival (DFS) and specifies the follow-up schedule, indicating an appropriate interval between imaging and the reference standard."
+    "reason": "The study defines the endpoint as disease-free survival (DFS), measured from the date of surgery to the date of failure, with follow-up completed in March 2023. This indicates an appropriate time interval between imaging and the reference standard."
   },
   "Condition1": {
     "rating": "yes",
@@ -38,7 +38,7 @@
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of 3D Slicer software, lung window settings, and manual outlining of the ROI slice by slice, with review and modification by a senior thoracic surgeon."
+    "reason": "The study describes the segmentation methodology, including the use of 3D Slicer software, manual outlining of the ROI slice by slice, and review by a senior thoracic surgeon."
   },
   "Item9": {
     "rating": "n/a",
@@ -46,7 +46,7 @@
   },
   "Item10": {
     "rating": "no",
-    "reason": "The segmentation masks in the test set were reviewed and modified by a senior thoracic surgeon, so it was not produced by a single reader or automated tool."
+    "reason": "The final segmentation in the test set is reviewed and modified by a senior thoracic surgeon, which does not reflect clinical practice."
   },
   "Condition3": {
     "rating": "yes",
@@ -62,15 +62,15 @@
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the extracted features, including first-order statistical features, shape features, and texture features, and mentions the use of a default configuration statement."
+    "reason": "The study describes the extracted features, including first-order statistical features, shape features, and texture features. It also mentions the use of the internal feature analysis module of Pyradiomics."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of extracted radiomic features."
+    "reason": "The study includes tabular data in the form of extracted radiomic features and clinical data organized in tables."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning pipeline."
+    "reason": "The study does not use end-to-end deep learning; it relies on hand-crafted feature extraction and traditional machine learning models."
   },
   "Item14": {
     "rating": "no",
@@ -82,63 +82,63 @@
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size."
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, either statistically or empirically."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+    "reason": "The study does not use end-to-end deep learning, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions random division of patients into training and test cohorts in an 8:2 ratio."
+    "reason": "The study mentions random division of patients into training and test cohorts in an 8:2 ratio. However, it does not explicitly state whether the data split was done at the patient level or whether stratified splitting was used."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study analyzes the effects of clinical features on the risk of recurrence using univariate and multivariate Cox proportional hazards regression models."
+    "rating": "no",
+    "reason": "The study mentions that the baseline data of the two cohorts were balanced, but there were statistically significant differences in age and smoking history. However, it does not explicitly address the handling of these confounding factors in the modeling process."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC values, sensitivity, specificity, C-index, and uses ROC curves for model evaluation."
+    "reason": "The study reports AUC values for ROC curves and C-index values to evaluate the predictive performance of the models. It also includes sensitivity and specificity."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for AUC values."
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "The study assesses the calibration of the final model using the Hosmer-Lemeshow test and calibration curves."
+    "reason": "The study includes calibration curves and the Hosmer-Lemeshow test to assess the calibration of the models."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the performance of uni-parametric imaging with multi-parametric imaging."
+    "reason": "The study does not compare the performance of uni-parametric imaging with multi-parametric imaging to justify the need for the latter."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the radiomics-clinical model with a clinical model based on N staging."
+    "reason": "The study compares the performance of the radiomics-clinical model with a clinical model based on N staging, which can be considered a non-radiomic approach."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the model with a simple baseline reference model."
+    "reason": "The study does not compare the performance of the models with a simple baseline reference model."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent test set sampled from the same source as the training set."
+    "reason": "The model is tested on an independent test cohort sampled from the same source as the training cohort."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The model is not tested with independent data from other institutions."
+    "reason": "The study does not involve external testing with data from other institutions."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention sharing any imaging, segmentation, clinical, or radiomics analysis data with the public."
+    "reason": "The study does not mention any data availability."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention sharing any scripts related to automatic segmentation and/or modeling with the public."
+    "reason": "The study does not mention any code availability."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention sharing the final model in any form with the public."
+    "reason": "The study does not mention any model availability."
   },
-  "elapsed_time": 10.319016218185425
+  "elapsed_time": 10.776350021362305
 }

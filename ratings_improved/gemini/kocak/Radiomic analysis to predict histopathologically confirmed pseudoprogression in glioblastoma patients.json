@@ -1,8 +1,8 @@
 {
-  "Summary": "This study developed a radiomic classifier using contrast-enhanced T1-weighted and perfusion MRI images to differentiate pseudoprogression from recurrent tumor in patients with IDH wild-type glioblastoma. The classifier, enhanced with MGMT methylation status, achieved an AUC of 0.89 in cross-validation, suggesting its potential to improve diagnostic accuracy and inform treatment decisions.",
+  "Summary": "This study developed a radiomic classifier using contrast-enhanced T1-weighted and perfusion MRI images to differentiate pseudoprogression from recurrent tumor in patients with IDH wild-type glioblastoma. The classifier, enhanced with MGMT methylation status, achieved an AUC of 0.89 in cross-validation, suggesting potential for improving diagnostic accuracy and treatment decisions.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
   },
   "Item2": {
     "rating": "yes",
@@ -10,7 +10,7 @@
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is histopathology, which is a robust and well-established method for differentiating between recurrent tumor and pseudoprogression."
+    "reason": "The reference standard is histopathology, which is a robust and well-established method for differentiating tumor recurrence from pseudoprogression."
   },
   "Item4": {
     "rating": "no",
@@ -18,15 +18,15 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source (contrast-enhanced T1-weighted and DCE perfusion MRI) reflects established standardization approaches as part of the institutional standard of care for glioma imaging."
+    "reason": "The imaging data source (contrast-enhanced T1-weighted and DCE perfusion MRI) reflects established standardization approaches in glioma imaging."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides details of MRI acquisition parameters in the supplemental methods."
+    "reason": "The study provides details of MRI acquisition parameters, including scanner types and field strengths, although specific parameters are in the supplement."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study mentions that MRI scans were acquired within 6 weeks before repeat resection, which is appropriate to validate the presence or absence of target conditions at the moment of the diagnostic imaging exams."
+    "reason": "The study mentions that MRI scans were acquired within 6 weeks before repeat resection, which is appropriate to validate the presence or absence of target conditions at the moment of diagnostic imaging exams."
   },
   "Condition1": {
     "rating": "yes",
@@ -34,19 +34,19 @@
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study does not explicitly state whether the segmentation was fully automated. The supplemental methods would need to be reviewed to confirm."
+    "reason": "The study does not explicitly state that the segmentation was fully automated. The methods section implies manual or semi-automated segmentation."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study mentions details of MRI acquisition and segmentation in the supplemental methods."
+    "reason": "The study mentions details of MRI acquisition and segmentation in Supplemental Methods."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The study does not explicitly state whether the segmentation was fully automated, so this is not applicable."
+    "reason": "The study does not use fully automated segmentation."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The study does not specify whether the test set segmentation masks were produced by a single reader or automated tool."
+    "reason": "The study does not specify that the test set segmentation masks were produced by a single reader or automated tool."
   },
   "Condition3": {
     "rating": "yes",
@@ -54,19 +54,19 @@
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions image preprocessing and radiomic feature extraction in the supplemental methods."
+    "reason": "The study mentions the use of CERR software for radiomic feature extraction and refers to details in the Supplemental Methods. It also mentions z-score normalization."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses the open-source CERR software for feature extraction, which can be considered a standardized software."
+    "reason": "The study uses the open-source CERR software for feature extraction, which is IBSI compliant, and mentions this compliance in the text."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first order histogram features and second order features using gray level correlation matrix, gray level size zone, gray level run length matrix, shape-based metrics, and edge descriptors including Sobel and directional Gabor edge filters) and mentions using default settings for feature extraction."
+    "reason": "The study describes the feature types (first order histogram features, second order features using gray level correlation matrix, etc.) and mentions using default settings for feature extraction."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of radiomic features."
+    "reason": "The study uses tabular data in the form of radiomic features."
   },
   "Condition5": {
     "rating": "no",
@@ -74,31 +74,31 @@
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features."
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses MRMR for feature preselection, which can be considered a method for removing redundant features."
+    "reason": "The study uses MRMR for feature selection to reduce dimensionality by selecting informative features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size."
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning pipeline, so this is not applicable."
+    "reason": "The study does not use an end-to-end deep learning pipeline."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study uses nested cross-validation, which involves splitting the data into distinct folds and holding out data for testing."
+    "reason": "The study uses nested cross-validation, which involves splitting the data into distinct folds and holding out data for testing, ensuring reasonable generalization to unseen data."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study does not explicitly address or analyze potential confounding factors."
+    "reason": "The study does not explicitly address or analyze potential confounding factors related to scanner type or patient characteristics."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUROC, sensitivity, specificity, PPV, and NPV."
+    "reason": "The study reports AUC, sensitivity, specificity, PPV, and NPV, which are appropriate performance evaluation metrics for the classification task."
   },
   "Item21": {
     "rating": "yes",
@@ -106,11 +106,11 @@
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not mention calibration assessment of the final model."
+    "reason": "The study does not include a calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform a uni-parametric evaluation to justify the use of multi-parametric imaging."
+    "reason": "The study uses multi-parametric imaging (contrast T1-weighted, Ktrans, and VP maps) without a comparison to uni-parametric imaging."
   },
   "Item24": {
     "rating": "yes",
@@ -118,7 +118,7 @@
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the model with a simple baseline reference model."
+    "reason": "The study does not compare the model against a simple baseline reference model like a Zero Rules classifier."
   },
   "Item26": {
     "rating": "yes",
@@ -134,11 +134,11 @@
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention code availability."
+    "reason": "The study does not mention any code availability."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention model availability."
+    "reason": "The study does not mention any model availability."
   },
-  "elapsed_time": 12.19762921333313
+  "elapsed_time": 11.491728067398071
 }

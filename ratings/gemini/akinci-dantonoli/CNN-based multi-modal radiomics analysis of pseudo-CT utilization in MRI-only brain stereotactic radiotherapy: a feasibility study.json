@@ -1,16 +1,16 @@
 {
-  "Summary": "This study investigates the feasibility of using CNN-based pseudo-CT (pCT) images, generated from planning MRI, for stereotactic radiotherapy (SRT) of small brain lesions. The study compares pCT with planning CT in terms of image quality, dose validation, radiomic features, and treatment efficacy evaluation. The authors found similar performance between pCT and planning CT for RT plan design and TCP/NTCP evaluation, but caution against using pCT for imaging analysis and diagnosis.",
+  "Summary": "This study investigates the feasibility of using CNN-based pseudo-CT (pCT) images, generated from planning MRI, for stereotactic radiotherapy (SRT) of small brain lesions. The study compares pCT with planning CT in terms of image quality, dose validation, radiomic features, and treatment efficacy evaluation. The results suggest that pCT shows similar performance to planning CT for RT plan design and TCP/NTCP evaluation, but caution is needed when using pCT for imaging analysis and diagnosis.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population. The exclusion criteria are well-defined."
+    "reason": "The study includes eligibility criteria for patient selection, such as the absence of implanted metallic objects, cranial deformities, or specific cranial pathologies."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is based on planning CT scans, which are standard practice for radiotherapy planning. The GTV was defined as the macroscopic contrast enhanced lesion from MRI, delineated by a clinical RT doctor."
+    "reason": "The reference standard is the planning CT, which is standard clinical practice for SRT planning. The GTV was manually delineated by a clinical RT doctor, with the GTV being defined as the macroscopic contrast enhanced lesion from MRI."
   },
   "Item4": {
     "rating": "no",
@@ -18,91 +18,91 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is planning MRI, which is increasingly used in MRI-only radiotherapy workflows. The use of a 3T MRI unit and specific sequences like T1W and T2W are standard clinical practice."
+    "reason": "The imaging data source is planning MRI and CT, which are standard techniques in radiotherapy planning. The MRI protocol includes conventional T1W and T2W scans followed by a MRCAT Brain protocol, which is a 3D T1W mDIXON MR sequence."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides detailed imaging protocols, including parameters for both CT and MRI acquisition, such as slice thickness, matrix size, tube current, tube voltage, repetition time, echo time and bandwidth."
+    "reason": "The imaging protocol with acquisition parameters is clearly reported, including details of the CT and MRI scans, such as slice thickness, matrix size, tube current, tube voltage, repetition time, echo time, and bandwidth."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The planning CT and MRI scans were performed at simulation, indicating a short interval between imaging and treatment planning, which is appropriate for validating the presence of target conditions at the time of imaging."
+    "reason": "The planning MRI was acquired on the same day as the planning CT acquisition, which is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study involves segmentation of gross tumor volume (GTV) and organs at risk (OARs) for radiotherapy planning. The GTV was defined as the macroscopic contrast enhanced lesion from MRI."
+    "reason": "The study includes segmentation of the gross tumor volume (GTV) and organs at risk (OARs), which were manually delineated by a clinical RT doctor."
   },
   "Condition2": {
     "rating": "yes",
-    "reason": "The study uses a CNN to generate pseudo-CT images from MRI, which is a fully automated segmentation process."
+    "reason": "The study utilizes a CNN to generate pCT from MRI, which involves fully automated segmentation."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the manual delineation of GTV and OARs by a clinical RT doctor, with the GTV being defined as the macroscopic contrast enhanced lesion from MRI. The planning target volume (PTV) was based on the GTV, with a 2 mm isotropic margin."
+    "reason": "The study mentions that GTV and OARs were manually delineated by a clinical RT doctor, with the GTV being defined as the macroscopic contrast enhanced lesion from MRI. The planning target volume (PTV) was based on the GTV, with a 2 mm isotropic margin."
   },
   "Item9": {
     "rating": "no",
-    "reason": "The study mentions validation steps are performed after the CNN to ensure the pCT images are suitable for radiation treatment, including sanity checks to ensure the imaging field of view has been positioned correctly and that the pCT body outline matches that of the MRI source images. However, there is no formal evaluation of the fully automated segmentation accuracy compared to domain expert annotations (e.g., DICE score or Jaccard index)."
+    "reason": "The study does not include a formal evaluation of the fully automated segmentation accuracy of the CNN-based pCT generation compared to domain expert annotations. The study mentions validation steps are performed after the CNN to ensure the pCT images are suitable for radiation treatment, but it does not provide a formal assessment of its accuracy compared to domain expert annotations."
   },
   "Item10": {
-    "rating": "yes",
-    "reason": "The GTV and OARs were manually delineated by a clinical RT doctor. The PTV was based on the GTV, with a 2 mm isotropic margin."
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final segmentation in the test set is produced by a single reader or automated tool. The study mentions that GTV and OARs were manually delineated by a clinical RT doctor."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts original image features, which are considered hand-crafted radiomic features."
+    "reason": "The study extracts original image features for radiomic analysis, which can be considered hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions pre-processing steps to ensure consistent scales in signal intensity for MRCAT source images. It also describes the use of fat and water 2D images as input to the CNN. However, the description of gray level discretization parameters is not explicitly provided."
+    "reason": "The study describes the preprocessing steps involved in pCT generation, including intensity normalization and body mask generation. It also mentions the use of rigid registration between planning CT and planning MRI."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses the PyRadiomics package for feature extraction, which is a standardized software. However, the version number is not explicitly mentioned."
+    "reason": "The study used PyRadiomics package (python3.7) to extract radiomic features."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the radiomics features extracted, including first order statistics, 2D/3D shape-based, gray level cooccurrence matrix, gray level run length matrix, gray level size zone matrix, neighboring gray tone difference matrix, and gray level dependence matrix. However, a default configuration statement or a file presenting the complete configuration of these settings is not included in the study materials."
+    "reason": "The study describes the radiomics features extracted, including first order statistics, 2D/3D shape-based, gray level cooccurrence matrix, gray level run length matrix, gray level size zone matrix, neighboring gray tone difference matrix, and gray level dependence matrix."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of extracted radiomic features and DVH metrics."
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses a CNN to generate pseudo-CT images from MRI, which is an end-to-end deep learning approach."
+    "reason": "The study uses a CNN to generate pCT images from MRI, which is an example of end-to-end deep learning."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features via test-retest, reproducibility analysis, or stability analysis."
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
   },
   "Item15": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of redundant features using algorithm-based feature selection, univariate correlation, collinearity, or variance analysis."
+    "reason": "The study does not explicitly mention the removal of redundant features through algorithm-based feature selection, univariate correlation, collinearity, or variance analysis."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size, either by statistical means, empirical consistency, or previous evidence in the literature."
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not assess the robustness of the end-to-end deep learning pipeline in a test-retest setting, by use of segmentations by different readers, or stability analysis."
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or through stability analysis."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that all patient data were de-identified and kept confidential throughout the study. However, the data partitioning process is not explicitly described."
+    "reason": "The study mentions that the data was split into training and test sets. All patient data were de-identified and kept confidential throughout the study."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study acknowledges that various factors, including patient positioning, scanning parameters, and image reconstruction techniques, can impact HU values. It also discusses the potential influence of contrast agents, fractionation of treatment, and the number and morphology of lesions on dose deviations."
+    "reason": "The study analyzes the impact of contrast agents on dose deviation and finds that the pCT derived from the T1W sequence outperformed the T1W-CE sequence. The study also considers the influence of the number of lesions and fractions on dose deviation."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as DVH metrics, gamma passing rates, TCP, and NTCP. It also includes p-values for statistical comparisons."
+    "reason": "The study uses appropriate performance evaluation metrics for the task, such as DVH metrics, gamma index, TCP, and NTCP. The study also provides p-values for statistical comparisons."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes ranges for gamma passing rates and provides mean values for TCP/NTCP. However, it does not explicitly mention the use of confidence intervals or standard deviations."
+    "reason": "The study includes uncertainty measures such as ranges for gamma passing rates and absolute deviations for TCP/NTCP."
   },
   "Item22": {
     "rating": "no",
@@ -110,11 +110,11 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the performance of uni-parametric imaging with multi-parametric imaging or provide justification for the use of multi-parametric imaging."
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide proof of its inferiority compared to multi-parametric imaging."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value compared to standard clinical practice."
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value."
   },
   "Item25": {
     "rating": "no",
@@ -122,23 +122,23 @@
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study uses data from their institution, which can be considered internal testing."
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not involve external testing with independent data from other institutions."
+    "reason": "The model is not tested with independent data from other institution(s)."
   },
   "Item28": {
-    "rating": "yes",
-    "reason": "The study includes a data availability statement indicating that the data supporting the findings are available from the corresponding author upon reasonable request."
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+    "reason": "The study does not mention the availability of scripts related to automatic segmentation and/or modeling."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+    "reason": "The study does not mention the availability of the final model in any form."
   },
-  "elapsed_time": 12.170023202896118
+  "elapsed_time": 11.934306621551514
 }

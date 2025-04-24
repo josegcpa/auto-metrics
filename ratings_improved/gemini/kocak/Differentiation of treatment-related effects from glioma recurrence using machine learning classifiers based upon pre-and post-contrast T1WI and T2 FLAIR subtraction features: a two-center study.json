@@ -1,16 +1,16 @@
 {
-  "Summary": "This study proposes and evaluates three SVM classifiers using pre- and post-contrast T2 FLAIR and T1WI subtraction to differentiate treatment-related effects (TRE) from glioma recurrence. The results showed that the SVM classifier based on a combination of T1WI and T2 FLAIR subtraction maps was superior to the sole use of T1WI or T2 FLAIR for differentiating TRE from recurrence.",
+  "Summary": "This study investigates the use of support vector machine (SVM) classifiers with pre- and post-contrast T2 FLAIR and T1WI subtraction to differentiate treatment-related effects (TRE) from glioma recurrence. The results suggest that combining T1WI and T2 FLAIR subtraction maps improves diagnostic accuracy compared to using either modality alone, offering a potential tool for treatment management of postoperative glioma patients.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are explicitly stated in the Materials and Methods section under 'Patients'."
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria include pathological confirmation of glioma, initial appearance or enlargement of T1WI enhancement during follow-ups, and sufficient MRI quality. Exclusion criteria are also defined, such as unavailable pathological results or insufficient diagnostic proof."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard includes pathological confirmation of recurrence by second surgical resections and clinical diagnosis criteria for TRE based on stability or regression without additional treatment, no progression on conventional MRI and MRS/MRP, and a minimum 6-month follow-up. These criteria are relatively robust and representative of clinical practice."
+    "reason": "The reference standard includes pathological confirmation of recurrence by second surgical resections, which is a high-quality standard. For TRE, clinical diagnosis criteria are defined based on stability or regression without additional treatment, no progression on conventional MRI and MRS/MRP, and a minimum 6-month follow-up, which represents a reasonable clinical practice-based standard."
   },
   "Item4": {
     "rating": "yes",
@@ -18,35 +18,35 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source for radiomics analysis is based on conventional T1WI and T2 FLAIR sequences, which are widely used and relatively standardized imaging techniques in clinical practice for glioma diagnosis and follow-up."
+    "reason": "The imaging data source is based on conventional T1WI and T2 FLAIR sequences, which are widely used and easily accessible imaging methods for glioma diagnosis and clinical follow-up. The use of contrast-enhanced T1WI and T2 FLAIR also reflects established practices in glioma imaging."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The imaging protocol with acquisition parameters is described in the Materials and Methods section under 'Imaging Protocol,' providing details on the MRI scanners, sequences, voxel size, FOV, and contrast agent administration."
+    "reason": "The study reports the imaging protocol with acquisition parameters, including the type of scanners, sequences used (TSE for T1WI, dark fluid for T2 FLAIR), voxel size, FOV, and contrast administration details. This level of detail ensures replicability of the method."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study mentions that patients were eligible when T1WI enhancement initially appeared or enlarged during follow-ups, suggesting that the imaging was performed at the time when TRE or recurrence was noticeable. For recurrence, pathological confirmation was obtained via second surgical resections. For TRE, clinical diagnosis required stability or regression without progression on conventional MRI and MRS/MRP, and a minimum 6-month follow-up coverage. This suggests an appropriate interval between imaging and reference standard acquisition."
+    "reason": "The study mentions that patients were eligible when T1WI enhancement initially appeared or enlarged during follow-ups, indicating that the imaging was performed when TRE or recurrence was noticeable for the first time. The clinical diagnosis criteria for TRE included a minimum 6-month follow-up coverage. This suggests an appropriate interval between imaging and reference standard acquisition."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the lesions on the subtraction maps, as described in the 'Image Preprocessing and Segmentation' section. The regions of interest (ROIs) were manually segmented by neuroradiologists."
+    "reason": "The study involves segmentation of the region of interest (ROI) on the subtraction maps, as described in the \"Image Preprocessing and Segmentation\" section and illustrated in Figure 2. This segmentation is performed manually by neuroradiologists."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation was performed manually by neuroradiologists, not through a fully automated process."
+    "reason": "The segmentation is performed manually by neuroradiologists, indicating that it is not a fully automated process."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, mentioning that every 2D subtraction map with a visible enhancement lesion was segmented manually by two neuroradiologists using ITK-SNAP. The segmentations were then scrutinized by a neuroradiology professor. Intra- and interobserver reproducibility assessments were also conducted."
+    "reason": "The study describes the segmentation methodology, mentioning that every 2D subtraction map with a visible enhancement lesion was segmented manually by two neuroradiologists using ITK-SNAP. The segmentations were then scrutinized by a neuroradiology professor. This provides a transparent description of the segmentation process."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually, not through a fully automated process, so this item is not applicable."
+    "reason": "The segmentation is performed manually, not fully automated, so this item is not applicable."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The final segmentation was reviewed by a neuroradiology professor, which does not reflect clinical practice."
+    "reason": "The final segmentation is reviewed by a neuroradiology professor, so it is not produced by a single reader or automated tool."
   },
   "Condition3": {
     "rating": "yes",
@@ -54,19 +54,19 @@
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions co-registration of pre- and post-contrast images using SPM8 and normalization of images by centering at the mean intensity and dividing by one standard deviation. These are appropriate image preprocessing techniques. However, the study does not explicitly address the appropriateness of upsampling or isotropy, given the voxel size."
+    "reason": "The study mentions image preprocessing techniques, including co-registration of T1WI and T2 FLAIR sequences using SPM8 and subtraction map calculation using the SPM8 \"ImaCalc\" tool function. Images were normalized by centering at the mean intensity and dividing by one standard deviation. This indicates appropriate use of image preprocessing techniques with a transparent description."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study mentions the use of Pyradiomics for feature extraction, which is a standardized software. The URL is provided."
+    "reason": "The study used Pyradiomics for feature extraction, which is a standardized software. The URL is provided."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the classes of features extracted (Shape, First Order, GLCM, GLZSM, GLRLM, NGTDM, GLDM) and mentions that images were normalized by centering at the mean intensity and dividing by one standard deviation. However, a complete configuration file is not provided."
+    "reason": "The study describes the feature types extracted, including Shape, First Order, Gray Level Co-occurrence Matrix, Gray Level Size Zone Matrix, Gray Level Run Length Matrix, Neighboring Gray Tone Difference Matrix, and Gray Level Dependence Matrix. This provides transparent reporting of feature extraction parameters."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study uses radiomic features in a tabulated format, which constitutes tabular data."
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
   },
   "Condition5": {
     "rating": "no",
@@ -74,15 +74,15 @@
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study mentions the use of Pearson correlation coefficient to remove highly correlated features (threshold > 0.86), which can be considered a method for removing non-robust features."
+    "reason": "The study mentions removal of redundant features using Pearson correlation coefficient. If the Pearson correlation coefficient value of the feature pair was larger than 0.86, one of them was removed."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses recursive feature elimination (RFE) to select the best feature subsets, which is a method for dimensionality reduction and removing redundant features."
+    "reason": "The study mentions the use of recursive feature elimination (RFE) to select features before building the model. This indicates the removal of redundant features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. While feature selection is performed, there is no explicit discussion or statistical analysis to demonstrate that the final number of features is appropriate for the sample size and modeling algorithm."
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size. There is no statistical means to demonstrate this."
   },
   "Item17": {
     "rating": "n/a",
@@ -90,39 +90,39 @@
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that the dataset was randomly split into training and testing sets at a 7:3 ratio. However, it does not explicitly state whether the split was stratified or if a fixed random seed was used to ensure reproducibility. It also does not explicitly mention whether data processing was done blinded to the test set data."
+    "reason": "The study mentions that the dataset was randomly split into training and testing sets at a 7:3 ratio. This indicates a proper data partitioning process."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study mentions avoiding multicenter MRI standardization bias by using similar scan setups on similar Siemens scanners. However, it does not explicitly analyze or address other potential confounding factors, such as different distributions of patient characteristics or scanner parameters."
+    "reason": "The study mentions avoiding multicenter MRI standardization bias by enrolling patients in the two affiliations who underwent a similar scan set up on similar Siemens scanners. However, there is no explicit analysis or removal of potential confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC, accuracy, sensitivity, specificity, PPV, and NPV, which are appropriate performance evaluation metrics for a classification task. However, it does not include the confusion matrix."
+    "reason": "The study reports appropriate accuracy metrics, such as AUC, accuracy, sensitivity, specificity, PPV, and NPV, for the classification task. ROC curves are also presented."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study calculates 95% confidence intervals (CI) using a non-parametric bootstrap method, which is a consideration of uncertainty."
+    "reason": "The study includes uncertainty measures in the form of 95% confidence intervals (CI) for the AUC values. The method to derive the distribution is bootstrapping."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not include any assessment of the final model's calibration."
+    "reason": "The study does not mention any calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses both T1WI and T2 FLAIR, and does not justify the use of both by comparing it to the performance of each alone."
+    "reason": "The study uses both T1WI and T2 FLAIR, and does not compare it to single imaging set. Therefore, it is not possible to assess whether the use of multi-parametric imaging is justified."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the radiomic approach with a non-radiomic method that is representative of clinical practice. It also does not provide proof of improved diagnostic accuracy or patient outcome."
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value. The comparison is only between different radiomic models."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model or justify the use of machine learning methods by proof of increased performance compared to such a baseline."
+    "reason": "The study does not include a comparison with simple or classical statistical models. The comparison is only between different radiomic models."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent data set that is sampled from the same source as the training set."
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
   },
   "Item27": {
     "rating": "yes",
@@ -130,15 +130,15 @@
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data being shared with the public."
+    "reason": "The study does not mention any data availability."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code being shared with the public."
+    "reason": "The study does not mention any code availability."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the model being shared with the public."
+    "reason": "The study does not mention any model availability."
   },
-  "elapsed_time": 14.350284814834595
+  "elapsed_time": 13.698802947998047
 }

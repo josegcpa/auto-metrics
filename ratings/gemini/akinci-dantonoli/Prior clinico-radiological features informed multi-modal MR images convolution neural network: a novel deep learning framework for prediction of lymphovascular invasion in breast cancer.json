@@ -1,72 +1,72 @@
 {
-  "Summary": "The study introduces PCMM-Net, a deep learning framework integrating clinico-radiological features and multi-modal MRI for LVI prediction in breast cancer. PCMM-Net demonstrates improved diagnostic performance compared to clinico-radiological features alone, a multi-modal MR images convolutional neural network (MM-Net), and radiomics.",
+  "Summary": "The study introduces PCMM-Net, a deep learning framework integrating clinico-radiological features and multi-modal MRI for LVI prediction in breast cancer, demonstrating superior diagnostic performance compared to clinico-radiological features, MM-Net, and radiomics.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to radiomics or machine learning-specific checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming for a representative study population. The criteria are clearly stated in the Methods section."
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is histopathological evaluation of surgical specimens, which is a high-quality reference standard for LVI confirmation."
+    "reason": "The reference standard is histopathological evaluation of surgical specimens, which is a high-quality reference standard."
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study uses data from a single institution, as stated in the Methods section: 'We included 341 consecutive female patients with confirmed invasive breast cancer who underwent pretreatment contrast-enhanced MRI at our hospital between January 2019 and June 2023.'"
+    "reason": "The study uses data from a single institution."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The study uses MRI sequences (T1-weighted, T2-weighted, and contrast-enhanced T1-weighted) that are part of standard breast imaging protocols."
+    "reason": "The study uses MRI sequences that are part of standard breast imaging protocols."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the image acquisition parameters for the MRI sequences used, including repetition time, echo time, field of view, matrix size, and slice thickness."
+    "reason": "The study reports the image acquisition parameters for the MRI sequences used."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study mentions that mastectomy or lumpectomy was performed within 14 days of the MRI examination, which is an appropriate interval to validate the presence or absence of LVI at the time of imaging."
+    "reason": "The study specifies that mastectomy or lumpectomy was performed within 14 days of the MRI examination, which is appropriate for validating the presence or absence of LVI at the time of imaging."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes manual segmentation of the tumor volume of interest (VOI) by a radiologist, as described in the MRI segmentation section."
+    "reason": "The study includes manual delineation of the tumor volume of interest (VOI) for radiomics feature extraction."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation was performed manually by a radiologist, not in a fully automated manner."
+    "reason": "The study involves manual segmentation of the tumor VOI, so it is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, mentioning that a radiologist manually delineated the 3D VOI around the tumor on transverse cT1WI images using 3D Slicer."
+    "reason": "The study describes the manual delineation of the 3D VOI around the tumor by a board-certified radiologist."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually, not in a fully automated manner, so this item is not applicable."
+    "reason": "The segmentation is not fully automated, so this item is not applicable."
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The study mentions that a single radiologist performed the manual segmentation, which reflects clinical practice."
+    "reason": "The test set segmentation masks are produced by a single reader."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts radiomic features using PyRadiomics, which involves hand-crafted feature extraction."
+    "reason": "The study extracts hand-crafted radiomic features using Pyradiomics."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions z-score normalization of patient feature values before feature selection, which is an appropriate preprocessing technique. They also mention registering T1WI and T2WI images into cT1WI images."
+    "reason": "The study mentions z-score normalization and image registration, which are appropriate preprocessing techniques. However, the description of gray level discretization parameters is missing."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used PyRadiomics (version 3.0) for feature extraction, which is a standardized software."
+    "reason": "The study uses Pyradiomics for feature extraction and specifies the version number."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first order, intensity histogram statistics, 2D and 3D shape descriptors, and texture features) and mentions using a three-step procedure for feature selection."
+    "reason": "The study describes the feature types and classes and mentions using a default configuration statement."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of clinico-radiological features and radiomics features."
+    "reason": "The study includes tabular data in the form of radiomic features."
   },
   "Condition5": {
     "rating": "yes",
@@ -78,31 +78,31 @@
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses Spearman's or Pearson's correlation analyses to eliminate redundant features and LASSO for feature selection, which are dimensionality reduction techniques."
+    "reason": "The study uses Spearman's or Pearson's correlation analyses to eliminate redundant features and LASSO for feature selection."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for it."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+    "reason": "The study does not assess the robustness of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions random stratified sampling for creating training and validation datasets, which is a proper data partitioning process. They split the data into 7:3 ratio."
+    "reason": "The study mentions random stratified sampling for creating training and validation datasets."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study analyzes clinico-radiological features and performs univariate and multivariate logistic regression to identify independent predictors, which addresses potential confounding factors."
+    "reason": "The study analyzes clinico-radiological features and performs univariate and multivariate logistic regression to identify independent predictors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC, accuracy, sensitivity, and specificity for evaluating the performance of the models, which are appropriate metrics for a classification task. They also provide ROC curves."
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity for evaluating the performance of the models."
   },
   "Item21": {
     "rating": "no",
-    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations."
   },
   "Item22": {
     "rating": "no",
@@ -110,35 +110,35 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform a uni-parametric imaging evaluation or provide a justification for using multi-parametric imaging by comparing its performance to uni-parametric imaging."
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the PCMM-Net with clinico-radiological features assessed by radiologists, which can be considered a non-radiomic approach. They use DeLong's test to compare AUCs."
+    "reason": "The study compares the performance of the PCMM-Net with clinico-radiological features assessed by radiologists."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the performance of the models with a simple baseline reference model like a Zero Rules classifier."
+    "reason": "The study does not compare the performance with simple or classical statistical models."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study tests the model on an independent validation dataset that is sampled from the same source as the training set."
+    "reason": "The model is tested on an independent validation dataset sampled from the same source as the training set."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not perform external testing with data from other institutions."
+    "reason": "The model is not tested with independent data from other institutions."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data being shared publicly."
+    "reason": "The study does not mention any data being shared with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code being shared publicly."
+    "reason": "The study does not mention any code being shared with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the model being shared publicly."
+    "reason": "The study does not mention the model being shared with the public."
   },
-  "elapsed_time": 10.70978593826294
+  "elapsed_time": 10.035070896148682
 }

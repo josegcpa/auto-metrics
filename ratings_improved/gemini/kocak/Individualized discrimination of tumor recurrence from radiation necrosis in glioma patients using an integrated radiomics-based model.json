@@ -1,8 +1,8 @@
 {
-  "Summary": "This study developed and validated an integrated model incorporating radiomics features from 18F-FDG PET, 11C-MET PET, and MRI images, along with clinical risk factors, to differentiate between tumor recurrence and radiation necrosis in glioma patients. The model demonstrated good discrimination in both primary and validation cohorts, suggesting its potential clinical utility for individualized diagnosis.",
+  "Summary": "This study developed and validated an integrated model incorporating radiomics features from 18F-FDG PET, 11C-MET PET, and MRI images, along with clinical risk factors, to discriminate between tumor recurrence and radiation necrosis in glioma patients. The model demonstrated good discrimination in both primary and validation cohorts, suggesting its potential clinical utility for individualized diagnosis.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
   },
   "Item2": {
     "rating": "yes",
@@ -14,7 +14,7 @@
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study uses data from a single institution (Beijing Tiantan Hospital)."
+    "reason": "The study uses data from a single institution (Beijing Tiantan Hospital), so it is not a multi-center study."
   },
   "Item5": {
     "rating": "yes",
@@ -22,11 +22,11 @@
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides details on the MRI and PET acquisition parameters, including scanner models, contrast agent timing, and PET tracer doses, enhancing the replicability of the study."
+    "reason": "The study reports the image acquisition parameters for both MRI and PET scans, enhancing the replicability of the method."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study mentions that postoperative PET scans were performed according to the onset of worsening symptoms, suggesting an appropriate time interval between imaging and the reference standard (pathological confirmation)."
+    "reason": "The study mentions that postoperative PET scans were performed according to the onset of worsening symptoms, suggesting an attempt to validate the presence or absence of target conditions at the time of imaging. The time between MRI and PET scans was less than 2 weeks."
   },
   "Condition1": {
     "rating": "yes",
@@ -34,15 +34,15 @@
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation is performed manually by experienced neuroradiologists, indicating that it is not a fully automated process."
+    "reason": "The segmentation was performed manually by two experienced neuroradiologists, so it is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the manual segmentation process performed by two neuroradiologists using T1 contrast-enhanced or FLAIR MR images as reference, with hidden patient information using ITK-SNAP software."
+    "reason": "The study describes the manual segmentation process performed by two neuroradiologists using T1 contrast-enhanced or FLAIR MR images as reference. They also mention using ITK-SNAP software and hiding patient information during the process."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually, not fully automatically, so this item is not applicable."
+    "reason": "The segmentation is not fully automated, so this item is not applicable."
   },
   "Item10": {
     "rating": "no",
@@ -54,55 +54,55 @@
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions resampling and normalization of PET and MR images to the same dimensions and grayscale level. It also mentions the use of IBSI guidelines."
+    "reason": "The study mentions resampling and normalizing the PET and MR images to the same dimensions and grayscale level. They also mention standardizing the texture features. However, the specific details of gray level discretization parameters are not fully described."
   },
   "Item12": {
     "rating": "no",
-    "reason": "The study mentions the use of an in-house texture analysis software called AnalysisKit (GE Healthcare, China), but does not explicitly state whether it is a standardized software compliant with IBSI."
+    "reason": "The study mentions using an in-house texture analysis software called AnalysisKit (GE Healthcare, China), but does not explicitly state whether it is compliant with IBSI."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (textural features) and mentions that the IBSI was regarded as reference and taken into consideration in most of the data processing, images feature, and biomarker selection procedure."
+    "reason": "The study describes the feature types (textural features) and mentions that the IBSI was regarded as a reference. However, a complete configuration file or statement for all feature extraction parameters is not explicitly provided."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study uses tabular data in the form of extracted radiomic features and clinical parameters organized for analysis."
+    "reason": "The study includes tabular data in the form of radiomic features and clinical parameters organized for analysis."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach. It relies on hand-crafted feature extraction and traditional machine learning techniques."
+    "reason": "The study does not use an end-to-end deep learning approach. It relies on hand-crafted feature extraction and logistic regression."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study calculates the intra-class coefficient correlation (ICC) index to obtain relatively stable radiomics features, retaining characteristics with ICC > 0.8, which indicates removal of non-robust features."
+    "reason": "The study calculates the intra-class coefficient correlation (ICC) index to retain relatively stable radiomics features with ICC > 0.8, indicating an attempt to remove non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses Spearman\u2019s rank correlation coefficient redundancy analysis to reduce dimensionality by removing redundant features with a correlation coefficient r \u2265 0.9."
+    "reason": "The study uses Spearman\u2019s rank correlation coefficient redundancy analysis to remove redundant features, with a threshold of r >= 0.9."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of features used in the final model."
+    "reason": "The study does not explicitly demonstrate the appropriateness of dimensionality compared to data size by statistical means or empirical evidence. It only mentions reducing the number of features."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not employ an end-to-end deep learning pipeline, making this item not applicable."
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that the data was split into primary and validation cohorts using stratified sampling. However, it does not explicitly state that the data split was done at the very beginning of the analysis pipeline, prior to any processing step."
+    "reason": "The study mentions assigning patients to primary and validation cohorts using stratified sampling. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step. It also does not mention whether the data split was on the patient level, not the scan level."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study does not explicitly address the handling of potential confounding factors such as scanner type or patient characteristics."
+    "reason": "The study does not explicitly discuss the analysis and handling of potential confounding factors, such as scanner type or patient characteristics, that may influence generalizability."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC values for ROC curves to evaluate the diagnostic performance of the models. However, confusion matrix-derived accuracy metrics are not included."
+    "reason": "The study reports AUC values for ROC curves to evaluate the diagnostic performance of the models. However, it does not include confusion matrix-derived accuracy metrics or loss curves."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
   },
   "Item22": {
     "rating": "no",
@@ -110,11 +110,11 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multi-parametric imaging (18F-FDG PET, 11C-MET PET, and MRI) without a formal comparison to uni-parametric imaging to justify the need for the multi-parametric approach."
+    "reason": "The study uses multi-parametric imaging (both 18F-FDG and 11C-MET PET, along with MRI) but does not provide a comparison with uni-parametric imaging or proof of its inferiority. The study does compare the model with three modalities to models with two modalities, but does not justify the use of multiple modalities over a single modality."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the radiomics-based model with a non-radiomic method representative of clinical practice, such as RECIST scoring or simple volume measurements."
+    "reason": "The study does not include a comparison with a non-radiomic approach representative of clinical practice. It also does not provide proof of improved diagnostic accuracy or patient outcome with the model's output."
   },
   "Item25": {
     "rating": "no",
@@ -126,19 +126,19 @@
   },
   "Item27": {
     "rating": "no",
-    "reason": "The model is not tested with independent data from other institutions."
+    "reason": "The model is not tested with independent data from other institutions. The validation cohort is from the same institution as the primary cohort."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data sharing."
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code sharing."
+    "reason": "The study does not mention any scripts related to automatic segmentation and/or modeling being shared with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention any model sharing."
+    "reason": "The study does not mention the final model being shared in any form (raw model file or ready-to-use system)."
   },
-  "elapsed_time": 12.75023889541626
+  "elapsed_time": 12.623256206512451
 }

@@ -1,144 +1,144 @@
 {
-  "Summary": "This study developed a combined radiomics and clinical model to predict postoperative recurrence risk in patients with stage IA-IIIA operable NSCLC. The model, incorporating CT radiomics features and clinical factors, demonstrated improved predictive accuracy compared to clinical models alone, offering a potential tool for personalized treatment planning.",
+  "Summary": "This study developed a combined radiomics and clinical model to predict postoperative recurrence risk in patients with operable stage IA-IIIA non-small cell lung cancer (NSCLC). The model, incorporating CT radiomics features and clinical factors, demonstrated improved predictive accuracy compared to standalone clinical or radiomics models, offering a potential tool for personalized treatment planning.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are explicitly stated in the Patients and Methods section."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is based on pathological diagnosis and follow-up information, which are well-established methods in clinical practice."
+    "reason": "The reference standard is based on pathological diagnosis of NSCLC and follow-up for disease-free survival (DFS), which is a well-established outcome measure in clinical practice."
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study uses data from a single institution."
+    "reason": "The study uses data from a single institution, as stated in the Patients and Methods section: \"This study retrospectively analyzed clinical, pathological, and imaging data from ... the Department of Thoracic Surgery in the Hospital\"."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is CT, a standard imaging technique for NSCLC, reflecting established standardization approaches."
+    "reason": "The imaging data source is chest CT, which is a standard imaging technique for lung cancer diagnosis and staging. The study reports the use of a multi-detector row spiral CT (Revolution CT, GE)."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the image acquisition parameters, including pitch, rotation speed, tube voltage, automatic tube current modulation, slice thickness, interval, detector rows, matrix, reconstruction interval, and reconstruction slice thickness."
+    "reason": "The study provides detailed imaging protocol parameters, including pitch, rotation speed, tube voltage, tube current modulation, slice thickness, interval, detector rows, matrix, reconstruction interval, and reconstruction slice thickness."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study uses the time from surgery to recurrence as the endpoint, which is appropriate for validating the presence or absence of recurrence at the time of imaging."
+    "reason": "The study uses preoperative CT images to predict postoperative recurrence, and the follow-up period is sufficient to assess recurrence. The time interval between imaging and the reference standard (DFS) is appropriate for the study aim."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study involves manual delineation of regions of interest (ROI) for all lesions, which constitutes segmentation."
+    "reason": "The study includes manual delineation of regions of interest (ROI) for all lesions using 3D Slicer, which constitutes segmentation."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study mentions manual delineation of the ROI, indicating that the segmentation is not fully automated."
+    "reason": "The study explicitly states that the regions of interest (ROIs) were manually delineated, indicating that the segmentation was not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of 3D Slicer software and manual outlining of the ROI slice by slice, with adjustments made by a senior thoracic surgeon."
+    "reason": "The study describes the segmentation methodology, including the use of 3D Slicer software, manual outlining of the ROI slice by slice, and review/modification by a senior thoracic surgeon. The lung window settings used for segmentation are also specified."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation is not fully automated, so this item is not applicable."
+    "reason": "The segmentation was performed manually, not fully automatically. Therefore, a formal evaluation of fully automated segmentation is not applicable."
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The delineation results were reviewed and modified by a senior thoracic surgeon."
+    "reason": "The delineation results were reviewed and modified by a senior thoracic surgeon, indicating that the final segmentation in the test set was produced by a single reader."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts radiomics features using the internal feature analysis module of Pyradiomics, indicating the use of hand-crafted feature extraction."
+    "reason": "The study extracts radiomics features using the internal feature analysis module of Pyradiomics, which implies the use of hand-crafted feature extraction."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions image preprocessing techniques, including image standardization and resampling, to reduce the influence of inter-image variations."
+    "reason": "The study mentions image preprocessing techniques, including image standardization and resampling to a consistent scale and spatial resolution (1mm x 1mm x 1mm). This addresses the need for appropriate preprocessing considering the imaging modality and feature extraction techniques."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used Pyradiomics for feature extraction."
+    "reason": "The study used Pyradiomics for feature extraction, which is a standardized software. However, the version number is not explicitly stated."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first-order statistical features, shape features, and texture features) and feature classes (GLCM, GLRLM, GLSZM, GLDM, and NGTDM)."
+    "reason": "The study describes the types of extracted features (first-order statistical, shape, and texture features) and feature classes (GLCM, GLRLM, GLSZM, GLDM, and NGTDM). It also mentions using the internal feature analysis module of Pyradiomics, implying a default configuration statement."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
+    "reason": "The study extracts 1562 radiomic features and uses LASSO regression for feature selection, indicating the presence of tabular data."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use end-to-end deep learning."
+    "reason": "The study does not use end-to-end deep learning. It relies on hand-crafted feature extraction and traditional machine learning models like logistic regression."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study used t-tests and Mann-Whitney U tests to retain features with a p-value < 0.05. Then, for highly repetitive features, the Spearman's rank correlation coefficient was used to calculate the correlation between features, and one of the features with a correlation coefficient greater than 0.9 between any two features was retained. Finally, the least absolute shrinkage and selection operator (LASSO) regression model with five-fold cross-validation was used to reduce the dimensionality of the extracted features in training cohort and retain the features with non-zero coefficients for model construction."
+    "reason": "The study uses t-tests and Mann-Whitney U tests to retain features with significant inter-cohort differences (p < 0.05). It also uses Spearman's rank correlation coefficient to remove highly repetitive features, retaining one feature from pairs with a correlation coefficient greater than 0.9."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study used Spearman's rank correlation coefficient to calculate the correlation between features, and one of the features with a correlation coefficient greater than 0.9 between any two features was retained. To retain the ability to depict features to the greatest extent, we used a greedy recursive deletion strategy for feature filtering, meaning the feature with the greatest redundancy in the current set was deleted each time. Finally, the least absolute shrinkage and selection operator (LASSO) regression model with five-fold cross-validation was used to reduce the dimensionality of the extracted features in training cohort and retain the features with non-zero coefficients for model construction."
+    "reason": "The study employs LASSO regression with five-fold cross-validation to reduce the dimensionality of the extracted features, selecting features with non-zero coefficients for model construction. This is a form of algorithm-based feature selection."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size."
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size. It does not provide statistical justification or empirical evidence to support the number of instances and features in the final training dataset."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use end-to-end deep learning."
+    "reason": "The study does not use an end-to-end deep learning pipeline, so a robustness assessment of such pipelines is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study randomly divides the patients into a training cohort and a test cohort in an 8:2 ratio."
+    "reason": "The study mentions randomly dividing patients into training and test cohorts in an 8:2 ratio. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step, or whether a fixed random seed was used for reproducibility. It also does not mention whether the data split was stratified to maintain outcome variable distribution in the test set. It does mention median/mean imputation before splitting."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study analyzes the effects of clinical features on the risk of recurrence using univariate and multivariate Cox proportional hazards regression models."
+    "rating": "no",
+    "reason": "The study acknowledges statistically significant differences in age and smoking history between the training and test cohorts but does not explicitly address how these potential confounding factors were analyzed or removed to ensure generalizability."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC values and ROC curves for evaluating the predictive performance of the models."
+    "reason": "The study reports AUC values for ROC curves to evaluate the performance of the models. It also provides sensitivity and specificity values. However, it does not include confusion matrices."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "Calibration curves for the training and test cohorts were plotted as shown in Figure 8. In the training cohort, the HL test showed a p-value of 1.000 for the clinical nomogram, a p-value of 0.949 for the radiomics nomogram, and a p-value of 0.467 for the radiomics-clinical combined nomogram. In the test cohort, the HL test showed a p-value of 0.621 for the clinical nomogram, a p-value of 0.206 for the radiomics nomogram, and a p-value of 0.125 for the radiomics-clinical combined nomogram."
+    "reason": "The study includes calibration curves and the Hosmer-Lemeshow test to assess the calibration of the models."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+    "reason": "The study does not explicitly compare the performance of a uni-parametric imaging approach with the multi-parametric approach used. It does not justify the need for multi-parametric imaging by formally comparing its performance with a simpler alternative."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the radiomics-clinical combined model with a clinical model based on N stage."
+    "reason": "The study compares the performance of the radiomics-clinical model with a clinical model based on N staging, which can be considered a non-radiomic approach representative of clinical practice. It uses the DeLong test to compare the AUC values of the models."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the model with a simple baseline reference model."
+    "reason": "The study does not explicitly compare the performance of the models with a simple baseline reference model such as a Zero Rules/No Information Rate classifier. It does not provide proof of increased performance compared to such a baseline."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent test cohort sampled from the same source as the training cohort."
+    "reason": "The study tests the model on an independent test cohort sampled from the same source as the training cohort."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The model is not tested with independent data from other institutions."
+    "reason": "The study does not include external testing with independent data from other institutions. The data is from a single center."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention sharing any imaging, segmentation, clinical, or radiomics analysis data with the public."
+    "reason": "The study does not mention any sharing of imaging, segmentation, clinical, or radiomics analysis data with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention sharing any scripts related to automatic segmentation and/or modeling with the public."
+    "reason": "The study does not mention any sharing of scripts related to automatic segmentation and/or modeling with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention sharing the final model in any form with the public."
+    "reason": "The study does not mention any sharing of the final model in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 11.250739812850952
+  "elapsed_time": 13.511991024017334
 }

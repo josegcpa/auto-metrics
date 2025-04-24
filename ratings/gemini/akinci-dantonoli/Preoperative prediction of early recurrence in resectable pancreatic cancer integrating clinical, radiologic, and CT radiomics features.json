@@ -1,32 +1,32 @@
 {
-  "Summary": "This study develops and validates a model integrating clinical, radiologic, and CT radiomics features (CRR) for preoperative prediction of early pancreatic cancer recurrence. The CRR model outperformed radiomics-only and clinical-radiologic (CR) models, demonstrating enhanced predictive accuracy in both development and external validation cohorts. The study concludes that the CRR model provides valuable information for risk stratification and treatment guidance.",
+  "Summary": "This study develops and validates a preoperative prediction model for early recurrence of pancreatic cancer using clinical, radiologic, and CT radiomics features. The clinical-radiologic-radiomics (CRR) model outperformed radiomics and clinical-radiologic (CR) models in predicting early recurrence, providing valuable information for risk stratification and treatment guidance.",
   "Item1": {
     "rating": "yes",
-    "reason": "The study mentions adherence to the Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis guidelines [12]."
+    "reason": "The study mentions adherence to the Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study explicitly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient selection, leading to a representative study sample."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is the recurrence of pancreatic cancer within 12 months after surgery, which is a clinically relevant outcome. The recurrence was defined as the presence of radiologic evidence of recurrent disease either at or adjacent to the surgical bed, including the remnant pancreas and locoregional nodes, or as evidence of recurrence detected outside these areas [14]."
+    "reason": "The reference standard (early recurrence within 12 months) is clearly defined and based on radiologic evidence, which is a reasonable clinical practice."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study involves three tertiary referral centers, indicating a multi-center approach."
+    "reason": "The study involves three tertiary referral centers, making it a multi-center study."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The radiomics data is derived from contrast-enhanced CT, a standard imaging technique for pancreatic cancer, suggesting clinical translatability."
+    "reason": "The radiomics data is derived from contrast-enhanced CT, a standard imaging technique for pancreatic cancer, reflecting established standardization approaches."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides details of CT imaging techniques in Table S1, including the portal venous phase timing, which helps ensure replicability."
+    "reason": "The study provides details of CT imaging techniques, including the portal venous phase timing, and refers to Table S1 for further details, ensuring replicability."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study specifies that preoperative CT scans were obtained within 3 months of surgery, which is appropriate for validating the presence or absence of target conditions at the time of imaging."
+    "reason": "The study specifies that preoperative CT scans were obtained within 3 months of surgery, which is an appropriate interval to validate the presence or absence of target conditions at the time of imaging."
   },
   "Condition1": {
     "rating": "yes",
@@ -34,19 +34,19 @@
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study mentions manual segmentation performed by a radiologist, indicating that the segmentation is not fully automated."
+    "reason": "The segmentation was performed manually by a radiologist, so it is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, mentioning that a radiologist manually segmented the pancreatic masses by tracing along the tumor margins to create a volume of interest (VOI)."
+    "reason": "The study describes the segmentation methodology, specifying that a radiologist manually segmented the pancreatic masses by tracing along the tumor margins using commercial software."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually, so this item is not applicable."
+    "reason": "The segmentation was performed manually, not fully automatically, so this item is not applicable."
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The study mentions that a radiologist (J.H.M.) manually segmented the pancreatic masses in both cohorts, indicating that the test set segmentation masks were produced by a single reader."
+    "reason": "The segmentation in both cohorts was performed by a single radiologist, which reflects clinical practice."
   },
   "Condition3": {
     "rating": "yes",
@@ -54,15 +54,15 @@
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions the use of Laplacian of Gaussian (LoG) and wavelet-filtered images for feature extraction, indicating the use of image preprocessing techniques. They also specify the sigma values for LoG filtering."
+    "reason": "The study mentions the use of Laplacian of Gaussian (LoG) and wavelet-filtered images for feature extraction, which are appropriate preprocessing techniques. They also specify the sigma values for LoG filtering."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used PyRadiomics software (version 3.0.1), which is a standardized software for feature extraction, and mentions compliance with the Imaging Biomarker Standardization Initiative."
+    "reason": "The study used PyRadiomics software for feature extraction and mentions compliance with the Imaging Biomarker Standardization Initiative."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first-order, shape, and higher-order features) and mentions the use of original, LoG-filtered, and wavelet-filtered images for feature extraction. They also provide the version of PyRadiomics used."
+    "reason": "The study describes the feature types (first-order, shape, higher-order) and refers to the use of original, LoG-filtered, and wavelet-filtered images. It also mentions the number of extracted features."
   },
   "Condition4": {
     "rating": "yes",
@@ -70,75 +70,75 @@
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and traditional machine learning algorithms."
+    "reason": "The study does not use an end-to-end deep learning approach; it relies on hand-crafted feature extraction and traditional machine learning algorithms."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study calculates the intraclass correlation coefficient (ICC) for all extracted features using data from 20 cases segmented independently by two radiologists. Features with an interobserver ICC value > 0.75 were selected for subsequent processing, indicating the removal of non-robust features."
+    "reason": "The study performs interobserver ICC analysis to select robust features with ICC > 0.75, effectively removing non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses the exhaustive variant of the minimum redundancy maximum relevance ensemble to select the top five features for the radiomics model, indicating the removal of redundant features."
+    "reason": "The study uses the minimum redundancy maximum relevance ensemble method to select the top five features, reducing dimensionality by selecting informative features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size. While they perform feature selection, they do not provide a statistical justification for the number of features selected in relation to the sample size."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for it."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+    "reason": "The study does not use end-to-end deep learning, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that the development and test cohorts were from different centers. The data split was done at the patient level. They used bootstrap resampling for internal validation."
+    "reason": "The study splits the data into development and test cohorts from different centers. The split is done at the patient level. However, it does not explicitly mention a fixed random seed or stratified splitting."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study acknowledges potential confounding factors, such as variations in CT scanners and protocols, as well as differences in patient and tumor characteristics across different cohorts. They also mention that the cohorts exhibited a high average CA19-9 level, which was a significant variable in the final model."
+    "reason": "The study analyzes potential confounding factors by comparing demographic features, CA19-9 levels, CT radiologic features, and pathological tumor stages between the development and test cohorts."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses appropriate accuracy metrics such as AUC, Brier score, sensitivity, and specificity for evaluating the performance of the models. They also provide confidence intervals for these metrics."
+    "reason": "The study uses appropriate performance evaluation metrics such as AUC, Brier score, sensitivity, and specificity. However, it does not include confusion matrices."
   },
   "Item21": {
     "rating": "yes",
     "reason": "The study includes uncertainty measures such as 95% confidence intervals (CI) for the performance metrics."
   },
   "Item22": {
-    "rating": "yes",
-    "reason": "The study uses the generalized threshold shifting technique to set the thresholds for each model, which can be considered a form of calibration assessment."
+    "rating": "no",
+    "reason": "The study does not explicitly assess the calibration of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the performance of uni-parametric imaging with multi-parametric imaging. They use contrast-enhanced CT, which involves multiple phases, but they do not justify the need for this multi-parametric approach by comparing it with a single-phase approach."
+    "reason": "The study uses multi-parametric imaging (contrast-enhanced CT) without a comparison to uni-parametric imaging or justification for the multi-parametric approach."
   },
   "Item24": {
-    "rating": "no",
-    "reason": "The study does not compare the performance of the radiomics-based models with a non-radiomic method that is representative of clinical practice. They do not include semantic features, RADS or RECIST scoring, or simple volume/size evaluations for comparison."
+    "rating": "yes",
+    "reason": "The study includes a clinical-radiologic (CR) model for comparison, which can be considered a non-radiomic approach representative of clinical practice. The study compares the performance of CR and CRR models."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the performance of the models with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier). They do not justify the use of machine learning methods by proof of increased performance compared to a simple baseline."
+    "reason": "The study does not compare the models with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
   },
   "Item26": {
-    "rating": "yes",
-    "reason": "The study performs internal validation using 1,000-fold bootstrap samples with 0.632+ method, indicating that the model is tested on an independent data set sampled from the same source as the training set."
+    "rating": "no",
+    "reason": "The model is not tested on an internal independent dataset."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The study includes external validation using data from two other institutions, indicating that the model is tested with independent data from other institution(s)."
+    "reason": "The model is tested with independent data from other institutions (external testing)."
   },
   "Item28": {
     "rating": "yes",
-    "reason": "The study mentions that the data supporting the conclusions of this article is available in the author\u2019s github repository, although patient data is not included but available upon reasonable request."
+    "reason": "The study mentions that the data supporting the conclusions is available in the author's GitHub repository, although patient data is available upon reasonable request."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The study mentions that the data supporting the conclusions of this article is available in the author\u2019s github repository, [https://github.com/sigjhl/pdac_prognosis]."
+    "reason": "The study mentions that the data supporting the conclusions is available in the author's GitHub repository."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system. While the code is available, the trained model itself is not explicitly mentioned as being shared."
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 12.228674173355103
+  "elapsed_time": 11.073614120483398
 }

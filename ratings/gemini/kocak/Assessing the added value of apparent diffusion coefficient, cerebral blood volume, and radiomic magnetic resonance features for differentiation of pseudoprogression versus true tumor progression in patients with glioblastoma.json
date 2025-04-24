@@ -2,143 +2,143 @@
   "Summary": "This study investigates the utility of conventional and advanced imaging techniques, including radiomics and deep learning, in differentiating pseudoprogression (PsPD) from true progressive disease (PD) in glioblastoma patients post-chemoradiotherapy. The study found that currently available imaging biomarkers, including ADC, nrCBV, and radiomic features, did not reliably differentiate PsPD from PD and did not improve models built with clinical data and MGMT methylation status. The authors conclude that larger, multi-institutional studies are needed to build more reliable models.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to radiomics or machine learning-specific checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. Inclusion criteria are listed in the Materials and Methods, under the Participants subsection."
+    "reason": "The study defines clear inclusion and exclusion criteria for patient selection, aiming for a representative study population. Inclusion criteria are explicitly defined in the 'Participants' section."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The study uses follow-up MRI scans based on RANO criteria to classify patients into true PD or PsPD, which is a reasonable reference standard given the challenges in obtaining histological confirmation for all patients. True PD was defined as a further lesion increase at 1 of the 2 subsequent follow-up MRI scans (performed at least 4 weeks after the MRI of initial suspicion) or as a tumor-related fatal outcome within 6 months after the initial enhancement increase. Patients were classified as PsPD if the initial enhancement increase was stable or reduced within the 2 subsequent follow-up MRI scans and in absence of death at 6 months."
+    "reason": "The reference standard is based on follow-up MRI scans according to RANO criteria, which is a reasonable approach given the difficulty in obtaining histological confirmation for all patients. The classification of patients into either true PD or PsPD was set through the evaluation of follow-up MRI scans, as previously reported."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study involves two institutions as diagnostic imaging data sources: the Department of Neuroradiology of the Heidelberg University Hospital and the Department of Radiology of the German Cancer Research Center (DKFZ), both in Heidelberg, Germany."
+    "reason": "The study involves two institutions as diagnostic imaging data sources: the Department of Neuroradiology of the Heidelberg University Hospital and the Department of Radiology of the German Cancer Research Center (DKFZ)."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is MRI, which has established standardization approaches and acquisition protocols, making it clinically translatable."
+    "reason": "The imaging data source is MRI, which is a standard imaging technique for glioblastoma assessment. The study uses standard MRI anatomical sequences, ADC, and normalized relative cerebral blood volume (nrCBV) maps."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides details on MRI acquisition parameters, including the MR system used (3 Tesla Siemens scanners) and specific sequences (T1-weighted, FLAIR, T2-weighted, DWI, DSC). More details are available in the supplementary materials."
+    "reason": "The study provides details on MRI acquisition parameters in the Supplementary Materials, ensuring replicability of the method. Details on MRI acquisition parameters are available in Supplementary Materials."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study specifies that the evaluated time period was set to 7 months after the end of RT, following the results of a previous study conducted at their institution. This timeframe is appropriate for validating the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+    "reason": "The time interval between imaging and reference standard is appropriate, as the study focuses on early PD and PsPD within the first 7 months after the end of RT. The evaluated time period was set to 7 months after the end of RT, following the results of a previous study conducted at our institution, in which PsPD suspicion was recorded in 11.1% of patients until 7 months after chemoradiotherapy and no other occurrences were observed at later timepoints."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the tumor using a DL-based tool (HD-GLIO) to delineate the contrast-enhancing and T2-FLAIR components."
+    "reason": "The study includes segmentation of the tumor using a DL-based approach. Automated DL based segmentation of the CE and T2-FLAIR components of the tumor using HD-GLIO"
   },
   "Condition2": {
     "rating": "yes",
-    "reason": "The study utilizes a fully automated DL-based segmentation tool (HD-GLIO) for tumor segmentation, without human intervention."
+    "reason": "The study utilizes fully automated segmentation based on deep learning without human intervention. Automated DL based segmentation of the CE and T2-FLAIR components of the tumor using HD-GLIO"
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, mentioning the use of the HD-GLIO-AUTO pipeline and the HD-GLIO tool for automated DL-based segmentation of the CE and T2-FLAIR components of the tumor."
+    "reason": "The study describes the segmentation methodology, including the use of HD-GLIO-AUTO pipeline and neural-network based brain extraction. The subsequent processing steps for anatomical sequences were performed using the previously developed processing pipeline of HD-GLIO-AUTO (https://github.com/NeuroAI-HD/HD-GLIO-AUTO);22,23 briefly, this included (1) neural-network based brain extraction through the HD-BET24 tool (https://github.com/MIC-DKFZ/HD-BET), (2) rigid registration of the image volumes to the native T1-w image using FSL (FMRIB, Oxford, UK), and (3) automated DL based segmentation of the CE and T2-FLAIR components of the tumor using HD-GLIO22 (https://github.com/NeuroAI-HD/HD-GLIO)."
   },
   "Item9": {
     "rating": "no",
-    "reason": "The study does not include a formal evaluation of the fully automated segmentation accuracy (e.g., DICE score or Jaccard index) compared to domain expert annotations."
+    "reason": "The study does not include a formal evaluation of the fully automated segmentation accuracy compared to domain expert annotations. There is no mention of DICE score or Jaccard index calculation."
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The study uses an entirely automated tool (HD-GLIO) to produce the final segmentation, which better reflects clinical practice."
+    "reason": "The test set segmentation masks are produced by an automated tool (HD-GLIO), reflecting clinical practice. Automated DL based segmentation of the CE and T2-FLAIR components of the tumor using HD-GLIO"
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features using PyRadiomics."
+    "reason": "The study includes hand-crafted feature extraction in the form of radiomic features. Radiomics features were calculated using PyRadiomics"
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions appropriate image preprocessing techniques, including N4 bias field correction and intensity normalization using ANTsR and WhiteStripe packages. They also describe gray level discretization parameters by mentioning a binwidth of 25."
+    "reason": "The study describes the image preprocessing techniques used, including N4 bias field correction and intensity normalization. N4 bias field correction and intensity normalization were performed prior to radiomic feature extraction on the anatomical sequences using the ANTsR and WhiteStripe packages"
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses PyRadiomics for feature extraction, which is a standardized software. The version is accessible via the link provided."
+    "reason": "The study uses PyRadiomics for feature extraction, which is a standardized software. Radiomics features were calculated using PyRadiomics27 (https://pyradiomics.readthedocs.io/)"
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (radiomics features) and mentions that they calculated shape-based and intensity-based features. They also provide a default configuration statement by referring to the PyRadiomics documentation."
+    "reason": "The study reports the feature extraction parameters, including the use of PyRadiomics and a binwidth of 25. Radiomics features were calculated using PyRadiomics27 (https://pyradiomics.readthedocs.io/) at a binwidth of 25."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of radiomic features and clinical data organized in tables."
+    "reason": "The study includes tabular data in the form of radiomic features and clinical data organized in tables. Table 1 shows the basic demographics, clinical features, and MGMT promoter methylation status of the included patients"
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study includes end-to-end deep learning by training ResNet architectures directly on image data for classification."
+    "reason": "The study includes end-to-end deep learning pipelines using ResNet architectures. Different variants of the ResNet architecture (ResNet18, ResNet34, ResNet50, ResNet101, WideResNet50, and WideResNet101) were trained using a single 2D image selected at the midpoint between the maximum and minimum z-coordinate of the tumor segmentation volume."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis. There is no mention of instability analysis due to random noise introduced by manual or even automated image segmentation or exposed in a scan-rescan setting."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses LASSO (least absolute shrinkage and selection operator) as an embedded feature-selection method within the generalized linear models to reduce dimensionality by selecting more informative features."
+    "reason": "The study uses LASSO for feature selection, which is a method for removing redundant features. ML models were then developed using the caret package.32 To mitigate the problem of class imbalance, as patients with PsPD were less than those with early PD, a synthetic minority oversampling technique was used.33 ML algorithms of increasing complexity were trained through the combination of clinical-molecular and/or imaging features by implementing generalized linear models with the least absolute shrinkage and selection operator as an embedded feature-selection method (GLM-LASSO) and using the standard parameters provided by the caret package."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, either statistically or empirically."
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size, either statistically or empirically. There is no discussion of the number of instances and features in the final training data set being appropriate according to the research question and modeling algorithm."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or through stability analysis."
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or through stability analysis. There is no mention of DL pipeline consistency of performance assessed in a test-retest setting, for example by a scan-rescan approach, use of segmentations by different readers, or stability analysis [i.e., image perturbations]."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study uses a 5-times repeated 5-fold crossvalidation resampling procedure. To mitigate the problem of class imbalance, as patients with PsPD were less than those with early PD, a synthetic minority oversampling technique was used."
+    "reason": "The study describes the data partitioning process, including the use of cross-validation. Model performances were assessed based on a 5-times repeated 5-fold crossvalidation resampling procedure."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study considers potential confounding factors by including clinical data such as age, sex, and extent of surgical resection in the models. They also use ComBat to counteract batch effects."
+    "reason": "The study considers potential confounding factors, such as the use of proton therapy, and attempts to address them by building models on a subsample of patients who did not undergo proton therapy. Another possible limitation is that we chose to also include patients who underwent proton therapy, as this is a common treatment strategy (25% of patients underwent this type of treatment) in our Center, but we acknowledge that this treatment option might not be available in all Centers and thus limit the generalizability of our results. Nonetheless, we counteracted this possible limitation by building models only on the subsample of patients who did not undergo proton therapy, and we showed that the same trend of reduced model performance when adding radiomics features is observed, and also that model performance is not significantly better compared to that of models trained in the whole cohort."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUC for ROC curves, sensitivity, and specificity for classification tasks. Confidence intervals are also reported."
+    "reason": "The study uses appropriate performance evaluation metrics for the task, including AUC, sensitivity, and specificity. The held-out predictions in each of the resampling iterations were used to calculate the areas under the receiver operating characteristic curve, sensitivity and specificity, along with their 95% confidence intervals by using the MLeval package (https://github.com/crj32/MLeval) implemented in R."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures by reporting 95% confidence intervals (CI) for the performance metrics."
+    "reason": "The study includes uncertainty measures in the form of 95% confidence intervals. The held-out predictions in each of the resampling iterations were used to calculate the areas under the receiver operating characteristic curve, sensitivity and specificity, along with their 95% confidence intervals by using the MLeval package (https://github.com/crj32/MLeval) implemented in R."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not explicitly mention or assess the calibration of the final models."
+    "reason": "The study does not assess the calibration of the final models. There is no mention of calibration assessment."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform a uni-parametric imaging evaluation or provide proof of its inferiority compared to multi-parametric imaging. They do not justify the need for a multi-parametric approach by formally comparing its performance to uni-parametric evaluations."
+    "reason": "The study does not explicitly compare the performance of uni-parametric imaging to multi-parametric imaging or justify the need for a multi-parametric approach. The study uses multiple MRI sequences without a direct comparison to single-sequence performance."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of radiomic models with a non-radiomic approach (clinical data and MGMT methylation status alone) to demonstrate added clinical value. DeLong's test is used to compare AUCs."
+    "reason": "The study compares the performance of radiomic models to a non-radiomic approach based on clinical data and MGMT methylation status. A model built on the recorded clinical data and MGMT promoter methylation status yielded an AUC of 0.69 (0.55\u20130.83), with sensitivity of 0.60 (0.39\u20130.78) and specificity of 0.75 (0.65\u20130.83). This model was considered as a reference, and we further refer to it as the reference model."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the models with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier) to justify the use of machine learning methods by proof of increased performance."
+    "reason": "The study does not explicitly compare the models to a simple or classical statistical model such as a Zero Rules/No Information Rate classifier. There is no mention of comparison with a simple baseline reference model."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study uses internal testing through cross-validation, which involves testing the model on an independent data set sampled from the same source as the training and validation sets."
+    "reason": "The model is tested using cross-validation, which can be considered a form of internal testing. Model performances were assessed based on a 5-times repeated 5-fold crossvalidation resampling procedure."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not include external testing with independent data from other institutions."
+    "reason": "The study does not include external testing on independent data from other institutions. There is no mention of external testing."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared publicly."
+    "reason": "The study does not explicitly state that imaging, segmentation, clinical, or radiomics analysis data is shared with the public. There is no mention of data availability."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+    "reason": "The study mentions the use of publicly available tools and pipelines, but does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public. The subsequent processing steps for anatomical sequences were performed using the previously developed processing pipeline of HD-GLIO-AUTO (https://github.com/NeuroAI-HD/HD-GLIO-AUTO)"
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the availability of the final model in any form (raw model file or ready-to-use system) or the automated segmentation model."
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system. There is no mention of model availability."
   },
-  "elapsed_time": 13.026803970336914
+  "elapsed_time": 16.753551244735718
 }

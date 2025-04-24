@@ -10,7 +10,7 @@
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is biopsy-proven diagnosis of pseudoprogression or true progression, which is a high-quality standard."
+    "reason": "The reference standard is biopsy-proven diagnosis of pseudoprogression or true progression, which is a robust and clinically relevant outcome measure."
   },
   "Item4": {
     "rating": "no",
@@ -22,51 +22,51 @@
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study mentions the use of pre-contrast T1-weighted, post-contrast T1-weighted, T2-weighted, FLAIR, and ADC images, providing some details of the imaging protocol. They also mention the MR scanners used (Philips and GE)."
+    "reason": "The study mentions the use of pre-contrast T1-weighted, post-contrast T1-weighted, T2-weighted FSE, T2-FLAIR, and ADC maps, providing some information on the imaging protocol. However, specific acquisition parameters are not detailed."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study uses MRI data closest to the follow-up operation confirming PsP or PD, which is appropriate for validating the presence or absence of target conditions at the moment of imaging."
+    "reason": "The study uses MRI data at a time point closest to the follow-up operation confirming PsP or PD, which is appropriate for validating the presence or absence of target conditions at the moment of diagnostic imaging."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation in the form of region of interest (ROI) delineation, as shown in Figure 4H."
+    "reason": "The study includes a region of interest (ROI) around the tumor, effectively segmenting the area for analysis."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the segmentation was fully automated. The methods section does not describe any automated segmentation techniques."
+    "reason": "The study does not explicitly state whether the segmentation was fully automated. The methods section does not describe any automated segmentation techniques."
   },
   "Item8": {
-    "rating": "no",
-    "reason": "The study mentions the use of ROIs but does not provide a transparent description of the segmentation methodology, such as margin shrinkage or peri-tumoral sampling details."
+    "rating": "yes",
+    "reason": "The study mentions the use of a region of interest (ROI) as shown on a post-contrast T1 image. However, the method of segmentation is not described in detail."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The study does not use fully automated segmentation, so this item is not applicable."
+    "reason": "The study does not include fully automated segmentation."
   },
   "Item10": {
-    "rating": "no",
-    "reason": "The study does not specify whether the test set segmentation masks were produced by a single reader or an automated tool."
+    "rating": "n/a",
+    "reason": "The study does not include fully automated segmentation."
   },
   "Condition3": {
     "rating": "no",
-    "reason": "The study uses deep learning features extracted by CNN layers, not hand-crafted features."
+    "reason": "The study uses deep learning features, not hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions normalization using white-stripe normalization, which is an appropriate preprocessing technique for MRI data. They also describe the resizing of images to 224x224 pixels."
+    "reason": "The study mentions normalization using white-stripe normalization, which is an appropriate preprocessing technique for MRI data. They also create engineered sequences by subtracting different MRI contrasts."
   },
   "Item12": {
     "rating": "n/a",
-    "reason": "The study does not use hand-crafted features, so this item is not applicable."
+    "reason": "The study does not use hand-crafted features."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the deep learning architecture (VGG16 and CNN-LSTM) and provides details on the layers, kernel sizes, and activation functions used. They also mention the use of binary cross-entropy loss and stochastic gradient descent optimizer."
+    "reason": "The study describes the CNN and LSTM architectures used, including the number of layers, filter sizes, and activation functions. However, a complete configuration file is not provided."
   },
   "Condition4": {
     "rating": "no",
-    "reason": "The study does not explicitly use tabular data in the traditional sense of radiomic features in a table. The input to the CNN-LSTM is image data."
+    "reason": "The study does not include tabular data."
   },
   "Condition5": {
     "rating": "yes",
@@ -74,35 +74,35 @@
   },
   "Item14": {
     "rating": "n/a",
-    "reason": "The study does not use tabular data, so this item is not applicable."
+    "reason": "The study does not include tabular data."
   },
   "Item15": {
     "rating": "n/a",
-    "reason": "The study does not use tabular data, so this item is not applicable."
+    "reason": "The study does not include tabular data."
   },
   "Item16": {
     "rating": "n/a",
-    "reason": "The study does not use tabular data, so this item is not applicable."
+    "reason": "The study does not include tabular data."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+    "reason": "The study does not assess the robustness of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study performs threefold cross-validation, which is a proper data partitioning process. However, the study does not explicitly mention whether the data split was done at the patient level or if a stratified data split was used."
+    "reason": "The study performs threefold cross-validation, which is a proper data partitioning process. However, it does not explicitly mention whether the data split was done at the patient level or whether stratified splitting was used."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study does not explicitly address the handling of potential confounding factors such as different distributions of patient characteristics across sites or scanners."
+    "reason": "The study does not explicitly address potential confounding factors such as different distributions of patient characteristics across sites or scanners."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports accuracy and AUC as performance evaluation metrics for the classification task. ROC curves are also presented."
+    "reason": "The study reports accuracy and AUC, which are appropriate performance evaluation metrics for a classification task. ROC curves are also presented."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes 95% confidence intervals for the AUC values, which is a measure of uncertainty."
+    "reason": "The study reports 95% confidence intervals for the AUC values, which provides a measure of uncertainty."
   },
   "Item22": {
     "rating": "no",
@@ -110,7 +110,7 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multiparametric MRI data without a comparison to uni-parametric imaging or a justification for the need for a multi-parametric approach."
+    "reason": "The study does not perform a uni-parametric evaluation to justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
@@ -118,11 +118,11 @@
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study compares the CNN-LSTM model with VGG16, but it does not compare with a simple baseline reference model such as a Zero Rules/No Information Rate classifier."
+    "reason": "The study compares the CNN-LSTM model with VGG16, but it does not compare with a simple baseline reference model."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study uses threefold cross-validation, which involves internal testing on an independent data set sampled from the same source as the training set."
+    "reason": "The study uses threefold cross-validation, which includes internal testing on an independent data set sampled from the same source as the training set."
   },
   "Item27": {
     "rating": "no",
@@ -130,15 +130,15 @@
   },
   "Item28": {
     "rating": "yes",
-    "reason": "The study includes a data availability statement indicating that the datasets generated during and/or analyzed during the current study are available from the corresponding author on reasonable request."
+    "reason": "The study includes a data availability statement indicating that the datasets generated during the study are available from the corresponding author on reasonable request."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the code is available."
+    "reason": "The study does not include a code availability statement."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the availability of the final model."
+    "reason": "The study does not include a model availability statement."
   },
-  "elapsed_time": 10.752555847167969
+  "elapsed_time": 10.461129903793335
 }

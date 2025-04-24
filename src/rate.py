@@ -36,6 +36,8 @@ if __name__ == "__main__":
     if args.ollama_model is None:
         config = types.GenerateContentConfig(
             temperature=0.0,
+            top_p=0.0,
+            seed=42,
             response_mime_type="application/json",
             response_schema=Metrics,
         )
@@ -57,7 +59,7 @@ if __name__ == "__main__":
                 },
             ],
             model=args.ollama_model,
-            options={"temperature": 0.0},
+            options={"temperature": 0.0, "top_p": 0.0, "seed": 42},
             format=Metrics.model_json_schema(),
             stream=True,
         )

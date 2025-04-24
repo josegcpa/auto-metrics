@@ -1,5 +1,5 @@
 {
-  "Summary": "This study develops a CT-based whole lung radiomics nomogram to identify the risk of cardiovascular disease (CVD) in patients with chronic obstructive pulmonary disease (COPD). The nomogram, incorporating radiomics features and clinical factors, demonstrates improved performance compared to a clinical factors model alone in training, internal validation, and external validation cohorts.",
+  "Summary": "This study develops and validates a CT-based whole lung radiomics nomogram to identify the risk of cardiovascular disease (CVD) in patients with chronic obstructive pulmonary disease (COPD). The nomogram, incorporating radiomics features and clinical factors, demonstrates improved performance compared to a clinical factors-only model in training, internal validation, and external validation cohorts.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
@@ -22,7 +22,7 @@
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides the CT acquisition protocols, including scanner models and parameters, in Table 1, enhancing the replicability of the study."
+    "reason": "The study provides a table (Table 1) outlining the CT acquisition protocols for different scanners used, including parameters like tube voltage, tube current, and slice thickness."
   },
   "Item7": {
     "rating": "yes",
@@ -30,19 +30,19 @@
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the whole lung using a deep learning model (U-net) and subsequent correction by a radiologist."
+    "reason": "The study includes segmentation of the whole lung using a deep learning model (U-net) and subsequent manual correction by a radiologist."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study uses an automated segmentation method (U-net), but the results are then corrected by a radiologist, indicating that the segmentation is not fully automated."
+    "reason": "Although the study uses a U-net model for initial lung segmentation, the segmentation results are then reviewed and corrected by a radiologist, indicating that the segmentation process is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of a U-net model for initial segmentation and subsequent correction by a radiologist using ITK-SNAP software."
+    "reason": "The study describes the segmentation methodology, including the use of a U-net model for initial segmentation and subsequent manual correction by a radiologist using ITK-SNAP software."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation is not fully automated as it involves manual correction by a radiologist. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+    "reason": "The segmentation is not fully automated, as it involves manual correction by a radiologist. Therefore, a formal evaluation of fully automated segmentation accuracy is not applicable."
   },
   "Item10": {
     "rating": "no",
@@ -50,19 +50,19 @@
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts radiomic features using PyRadiomics, which are hand-crafted features."
+    "reason": "The study extracts radiomic features using PyRadiomics, which involves hand-crafted feature extraction."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions preprocessing steps such as voxel resampling, gray discretization, and image intensity normalization, which are appropriate for CT images and radiomic feature extraction. The resampling to 1x1x1 mm and adjusting the gray value to 25 Gy levels are described."
+    "reason": "The study mentions preprocessing steps including voxel resampling, gray level discretization, and image intensity normalization. They resample the image to 1 mm * 1 mm * 1 mm, and adjust the gray value of the image to 25 Gy levels."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses PyRadiomics (version 3.0.1), which is a standardized feature extraction software."
+    "reason": "The study uses PyRadiomics (version 3.0.1), which is a standardized software for feature extraction."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first-order, shape, and texture) and mentions the use of Z-score normalization. The software and version are also specified."
+    "reason": "The study describes the feature types (first-order, shape, and texture features) and mentions using Z-score normalization. They also specify the software and version used (PyRadiomics 3.0.1)."
   },
   "Condition4": {
     "rating": "yes",
@@ -70,19 +70,19 @@
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach. It uses a pre-trained U-net for segmentation and hand-crafted radiomic features for model building."
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it uses a combination of traditional machine learning techniques and radiomic feature extraction."
   },
   "Item14": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+    "rating": "yes",
+    "reason": "The study performs feature selection using mRMR to eliminate redundant and irrelevant features, which can be considered a method for removing non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses mRMR and LASSO for feature selection, which are methods for reducing dimensionality by selecting informative features."
+    "reason": "The study uses LASSO regression for feature selection, which is a dimensionality reduction technique that selects the most informative features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, such as statistical evidence or consistency of performance in validation and testing."
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of features selected."
   },
   "Item17": {
     "rating": "n/a",
@@ -90,19 +90,19 @@
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions dividing the patients into training, internal validation, and external validation cohorts. The split is done randomly, and the cohorts are used to develop and assess the model's effectiveness."
+    "reason": "The study mentions dividing the patients into training, internal validation, and external validation cohorts. The split is done randomly. The data split is done on the patient level."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study considers potential confounding factors by analyzing clinical information and laboratory examination indicators. It excludes factors with missing values greater than 30% and uses univariate and multivariate logistic regression to identify independent risk factors."
+    "reason": "The study considers potential confounding factors by excluding patients with comorbid thoracic diseases, malignant tumors, or spine implants. They also exclude laboratory examination factors and smoking status with missing values greater than 30%."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses AUC for ROC curves to evaluate the prediction performance of the model. It also mentions the Hosmer-Lemeshow test for calibration."
+    "reason": "The study uses AUC to evaluate the prediction performance of the model and compares the AUCs of different models using the Delong test. They also report the Hosmer-Lemeshow test for calibration."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for odds ratios (OR) in the regression analysis."
+    "reason": "The study reports 95% confidence intervals (CI) for the odds ratios (OR) in the regression analysis."
   },
   "Item22": {
     "rating": "yes",
@@ -110,35 +110,35 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not compare the performance of the combined model with a uni-parametric approach. It uses multi-parametric imaging (non-contrast CT) without justifying the need for it over a simpler approach."
+    "reason": "The study uses non-contrast CT images, but it does not justify the choice of using only non-contrast images or compare its performance to using other imaging modalities or contrast phases."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the radiomics nomogram with a clinical factors model, which can be considered a non-radiomic approach representative of clinical practice. It uses DeLong's test to compare AUCs and decision curve analysis to compare net benefits."
+    "reason": "The study compares the performance of the radiomics nomogram to a clinical factors model, which can be considered a non-radiomic approach representative of clinical practice. They use the Delong test to compare the AUCs of the models and decision curve analysis to compare the net benefit."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the performance of the model with a simple or classical statistical model like a Zero Rules classifier. It only compares with a clinical factors model."
+    "reason": "The study does not compare the performance of the radiomics model to a simple baseline reference model like a Zero Rules classifier or No Information Rate classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an internal validation cohort, which is sampled from the same source as the training set."
+    "reason": "The study includes an internal validation cohort, which is an independent data set sampled from the same source as the training set."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The model is tested on an external validation cohort from a different institution."
+    "reason": "The study includes an external validation cohort from a different hospital, indicating external testing of the model."
   },
   "Item28": {
-    "rating": "no",
-    "reason": "The study states that data are available from the corresponding author upon request, but it does not explicitly state that any data is publicly shared."
+    "rating": "yes",
+    "reason": "The study includes a data sharing statement indicating that data generated or analyzed during the study are available from the corresponding author by request."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention the availability of scripts related to automatic segmentation or modeling."
+    "reason": "The study does not explicitly state that the code used for automatic segmentation and/or modeling is publicly available."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the availability of the final model in any form."
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or a ready-to-use system."
   },
-  "elapsed_time": 12.720520973205566
+  "elapsed_time": 12.130370616912842
 }

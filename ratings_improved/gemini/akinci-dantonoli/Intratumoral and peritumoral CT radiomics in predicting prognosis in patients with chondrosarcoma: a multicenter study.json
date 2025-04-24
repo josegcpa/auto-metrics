@@ -6,19 +6,19 @@
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are clearly stated in the Materials and methods section."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is progression-free survival (PFS), which is a clinically relevant and well-defined outcome measure. The definition of PFS is clearly stated."
+    "reason": "The reference standard is progression-free survival (PFS), which is a clinically relevant and well-defined outcome measure. The follow-up period and methods for data collection are also described."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study is a multicenter study, involving data from two different institutions (The Affiliated Hospital of Qingdao University and Shandong Provincial Hospital Affiliated to Shandong First Medical University)."
+    "reason": "The study is a multi-center study, involving two institutions as diagnostic imaging data sources."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is non-contrast-enhanced CT, which is a standard imaging technique used in the clinical management of chondrosarcoma. The study provides details on CT data acquisition."
+    "reason": "The imaging data source is non-contrast-enhanced CT, which is a standard imaging technique for chondrosarcoma evaluation. The study provides details on CT acquisition parameters."
   },
   "Item6": {
     "rating": "yes",
@@ -30,115 +30,115 @@
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the tumor and peritumoral regions of interest (ROIs) on CT images."
+    "reason": "The study includes segmentation of the tumor and peritumoral region of interest (ROI) on CT images."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study mentions that the three-dimensional (3-D) region of interest of the tumor (ROI region) was segmented on axial CT images by two radiologists, therefore the segmentation is not fully automated."
+    "reason": "The study mentions manual segmentation of the tumor ROI by two radiologists using ITK-SNAP software. Therefore, the segmentation is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of ITK-SNAP software and the expansion of the tumor ROI by 3 mm to generate the peritumoral ROI. The radiologists' experience is also mentioned."
+    "reason": "The study describes the segmentation methodology, including the use of ITK-SNAP software and the expansion of the peritumoral ROI by 3 mm outwards from the tumor boundary using the RIAS software."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually by radiologists, not using a fully automated method. Therefore, formal evaluation of fully automated segmentation is not applicable."
+    "reason": "The segmentation was performed manually, not fully automatically. Therefore, formal evaluation of fully automated segmentation is not applicable."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The image segmentations were performed by two radiologists, therefore the test set segmentation masks were not produced by a single reader or automated tool."
+    "reason": "The final segmentation was performed by Reader 1 after assessing inter-observer and intra-observer reproducibility. This does not reflect clinical practice."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomics features from the CT images."
+    "reason": "The study extracts hand-crafted radiomic features from the intratumoral and peritumoral ROIs, including first-order statistics, shape- and size-based features, texture features, and higher-order statistical features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions that CT images were resampled, grayscale discretized, and normalized before feature extraction. This indicates appropriate use of image preprocessing techniques. The gray level discretization parameters are not fully described."
+    "reason": "The study mentions resampling, grayscale discretization, and normalization of CT images before feature extraction. This is appropriate for multi-center data to reduce the impact of scanner differences. The gray level discretization and normalization are mentioned."
   },
   "Item12": {
-    "rating": "no",
-    "reason": "The study mentions the use of the RadCloud platform for feature extraction but does not explicitly state whether it is a standardized software compliant with IBSI or provide the version number."
+    "rating": "yes",
+    "reason": "The study mentions the use of the RadCloud platform for feature extraction. While it doesn't explicitly state compliance with IBSI, it is a standardized software."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first-order statistics, shape- and size-based features, texture features, and higher-order statistical features) and mentions that details of the radiomics features are shown in supplementary methods."
+    "reason": "The study describes the types of radiomics features extracted (first-order statistics, shape- and size-based features, texture features, and higher-order statistical features). The details of the radiomics features are shown in supplementary methods."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study uses tabular data in the form of extracted radiomics features."
+    "reason": "The study uses tabular data in the form of extracted radiomics features organized in a table."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and subsequent modeling."
+    "reason": "The study does not use end-to-end deep learning. It relies on hand-crafted feature extraction and traditional machine learning methods."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study uses intra- and inter-class correlation coefficients (ICCs) to assess reproducibility and excludes features with ICC < 0.75, indicating removal of non-robust features."
+    "reason": "The study uses intra- and inter-class correlation coefficients (ICCs) to evaluate intra- and inter-observer reproducibility and excludes radiomics features with ICC < 0.75."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses Pearson correlation analysis to reduce redundancy, univariate Cox regression to select features, and LASSO Cox regression to select optimal features, indicating removal of redundant features."
+    "reason": "The study uses Pearson correlation analysis to reduce the redundancy of radiation signatures, univariate Cox proportional regression analysis to select the radiomics features with p < 0.05, and LASSO Cox regression model to select the optimal features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of instances and features used."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of features selected relative to the number of patients."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+    "reason": "The study does not use end-to-end deep learning pipelines, so robustness assessment of such pipelines is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that patients were enrolled into training and test cohorts from two centers. The baseline characteristics of the patients with chondrosarcoma are shown in Table 1. There was no significant difference in clinical and pathological characteristics between the training and test cohorts."
+    "reason": "The study splits the data into training and test cohorts based on the institution. The split is done at the patient level. However, it does not explicitly mention whether the data split was random and reproducible with a fixed random seed or whether stratified data split was used."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study acknowledges the potential for differences in scanner parameters due to the multicenter nature of the study and mentions the need for standardization to avoid the impact of this discrepancy."
+    "rating": "no",
+    "reason": "The study does not explicitly address potential confounding factors, such as differences in patient characteristics or scanner parameters between the two centers, and how these factors were analyzed and removed if necessary."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses appropriate performance evaluation metrics such as C-index, time-dependent AUC, and time-dependent C-index for survival prediction. Kaplan-Meier survival analysis was also used."
+    "reason": "The study uses appropriate performance evaluation metrics for the task, including C-index, time-dependent area under the receiver operating characteristics curve (time-AUC), and time-dependent C-index. Kaplan-Meier survival analysis was also performed."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the C-index, indicating consideration of uncertainty."
+    "reason": "The study reports 95% confidence intervals (CI) for the C-index."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "The study generates calibration curves to compare signature-predicted survival with actual survival."
+    "reason": "The study generates calibration curves to compare the signature-predicted survival with the actual survival."
   },
   "Item23": {
-    "rating": "no",
-    "reason": "The study uses non-contrast-enhanced CT, but it does not justify its use compared to other imaging modalities or sequences. It does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+    "rating": "yes",
+    "reason": "The study uses non-contrast-enhanced CT, which is a single imaging set. The study does not use multi-parametric imaging."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice. It does not provide proof of improved diagnostic accuracy or patient outcome compared to existing clinical methods."
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice, such as semantic features or RECIST scoring. It also does not provide proof of improved diagnostic accuracy or patient outcome with the radiomics model."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the radiomics models with simple or classical statistical models to justify the use of machine learning methods."
+    "reason": "The study does not compare the radiomics model with a simple baseline reference model or justify the use of machine learning methods by proof of increased performance compared to simpler alternatives."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent data set (test cohort) that is sampled from the same source as the training set."
+    "reason": "The model is tested on an independent data set from another institution."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The model is tested with independent data from another institution (Shandong Provincial Hospital Affiliated to Shandong First Medical University), indicating external testing."
+    "reason": "The model is tested with independent data from another institution."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study states that the datasets used and/or analyzed during the current study are available from the corresponding author on reasonable request, but it does not indicate that the data is publicly shared."
+    "reason": "The study states that the datasets used and/or analyzed during the current study are available from the corresponding author on reasonable request, but it does not indicate that any data is publicly shared."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention the availability of code or scripts related to automatic segmentation or modeling."
+    "reason": "The study does not mention the availability of scripts related to automatic segmentation and/or modeling."
   },
   "Item30": {
     "rating": "no",
     "reason": "The study does not mention the availability of the final model in any form."
   },
-  "elapsed_time": 13.84988284111023
+  "elapsed_time": 11.616198062896729
 }

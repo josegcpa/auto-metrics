@@ -1,16 +1,16 @@
 {
-  "Summary": "This study uses machine learning to analyze multiparametric MRI (mpMRI) scans of glioblastoma patients after chemoradiation to distinguish between true progression (TP) and pseudo-progression (PsP). The results show that quantitative mpMRI analysis can reveal distinctive noninvasive signatures of TP versus PsP, with an accuracy of 75% in an interinstitutional validation cohort. The method and models are made freely available through the Cancer Imaging Phenomics Toolkit.",
+  "Summary": "This study uses machine learning to analyze multiparametric MRI (mpMRI) scans of glioblastoma patients after treatment to distinguish between true progression (TP) and pseudo-progression (PsP). The results show that quantitative analysis of mpMRI can identify imaging signatures that differentiate TP from PsP with high accuracy, which could improve clinical decision-making.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population. The criteria are detailed in the Materials and Methods section under 'Study Patient Population'."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are detailed in the Materials and Methods section under 'Study Patient Population'."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is histopathological tissue evaluation, which is a high-quality reference standard. The methods for histopathological assessment are described in detail, and the assessment was performed by two board-certified neuropathologists blinded to imaging assessment."
+    "reason": "The reference standard is histopathological tissue evaluation, which is a high-quality standard. The methods for histopathological assessment are well-defined, and the assessment was performed by two board-certified neuropathologists blinded to the imaging assessment."
   },
   "Item4": {
     "rating": "yes",
@@ -18,27 +18,27 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is multiparametric MRI (mpMRI), which is a clinically translatable imaging technique. The sequences used are standard for glioblastoma surveillance."
+    "reason": "The imaging data source is multiparametric MRI (mpMRI), which includes standard sequences used in glioblastoma imaging. The use of standard sequences increases the clinical translatability of the radiomics analysis."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The imaging protocol with acquisition parameters is clearly reported in the 'MRI Acquisition Protocol' section, ensuring replicability of the method. Details such as matrix size, resolution, TR, TE, and other parameters are provided for each sequence."
+    "reason": "The study provides detailed imaging protocols with acquisition parameters for MRI scans, including specific parameters for T1, T1-Gd, T2, T2-FLAIR, DTI, and DSC-MRI sequences. This level of detail ensures the replicability of the method."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The interval between imaging and the reference standard (second resection for histopathological evaluation) is within 15 days, which is appropriate to validate the presence or absence of target conditions at the moment of diagnostic imaging."
+    "reason": "The study specifies that mpMRI was acquired within 15 days prior to the second resection, which is an appropriate time interval to validate the presence or absence of target conditions at the moment of diagnostic imaging."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the resected tissue on MRI to define the region of interest (ROI) for feature extraction. This is described in the 'Defining Target Tissue' section."
+    "reason": "The study includes segmentation of the resected tissue on MRI images to define the region of interest (ROI) for feature extraction. This is described in the 'Defining Target Tissue' section."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the segmentation was fully automated. The description of the segmentation methodology suggests that it involved registration of pre- and post-operative images and delineation of the resected tissue, which may involve manual steps."
+    "reason": "The study does not explicitly state that fully automated segmentation was used. The method describes registration of pre- and post-operative images and delineation of the ROI, which implies manual or semi-automated segmentation."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology in the 'Defining Target Tissue' section, explaining how the ROI was delineated based on pre- and post-operative images. The registration method (DRAMMS) is also mentioned."
+    "reason": "The study describes the methodology for defining the target region of interest (ROI) by registering pre- and post-operative images and delineating the resected tissue. This provides a transparent description of the segmentation methodology."
   },
   "Item9": {
     "rating": "n/a",
@@ -46,63 +46,63 @@
   },
   "Item10": {
     "rating": "no",
-    "reason": "The study does not explicitly state whether the test set segmentation masks were produced by a single reader or an automated tool. The description of the segmentation process implies that it may involve manual delineation, but it is not explicitly stated for the test set."
+    "reason": "The study does not explicitly state that the test set segmentation masks were produced by a single reader or automated tool. The description of the segmentation process suggests that it may involve multiple readers or a semi-automated approach."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts a priori selected (APS) radiomic features, which are hand-crafted features. These features are described in the 'APS Radiomic Features' section."
+    "reason": "The study uses a priori selected (APS) radiomic features, which are hand-crafted features extracted using the Cancer Imaging Phenomics Toolkit (CaPTk)."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study describes the image preprocessing techniques used, including affine coregistration, smoothing, correction for magnetic field inhomogeneities, and skull-stripping. The methods are mentioned in the 'MRI Preprocessing' section."
+    "reason": "The study describes appropriate image preprocessing techniques, including affine coregistration, smoothing, correction for magnetic field inhomogeneities, and skull-stripping. These techniques are relevant for the imaging modalities used and the feature extraction methods."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses the Cancer Imaging Phenomics Toolkit (CaPTk) for feature extraction, which is a standardized software. The toolkit is mentioned in the 'APS Radiomic Features' section, and the URL is provided."
+    "reason": "The study uses the Cancer Imaging Phenomics Toolkit (CaPTk) for feature extraction, which is a standardized software. The toolkit is mentioned in the 'APS Radiomic Features' section, and its website is provided."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (deep learning features and APS radiomic features) and provides details on the feature extraction process. For APS features, the types of features extracted (first-order statistics, texture features) are mentioned, and the parameters used for texture feature extraction (quantization levels, directions, neighborhood size) are provided."
+    "reason": "The study provides a description of the feature types (deep learning and APS radiomic features) and feature classes (first-order statistics, texture features). It also mentions the use of z-score normalization and sequential feature selection, indicating transparent reporting of feature extraction parameters."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of extracted radiomic features and deep learning features, which are then used in a tabulated format for machine learning analysis."
+    "reason": "The study includes tabular data in the form of extracted radiomic features and deep learning features, which are organized in a table for analysis."
   },
   "Condition5": {
-    "rating": "yes",
-    "reason": "The study uses a pre-trained convolutional neural network (CNN) model to extract deep learning features from the mpMRI images, which can be considered a form of end-to-end deep learning."
+    "rating": "no",
+    "reason": "The study uses deep learning to extract features but does not implement an end-to-end deep learning pipeline for classification. The deep learning features are used in conjunction with SVM for classification."
   },
   "Item14": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis. While feature selection is performed, it is based on predictive value rather than feature stability."
+    "rating": "yes",
+    "reason": "The study mentions the use of sequential feature selection in the training data to identify features with predictive value, which can be considered a method for removing non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study applies sequential feature selection in the training data to identify features with predictive value, which is a method for dimensionality reduction and removal of redundant features. This is mentioned in the 'APS Radiomic Features' section."
+    "reason": "The study uses sequential feature selection to reduce dimensionality by selecting informative features based on accuracy improvement. This is a method for removing redundant features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of features used. While feature selection is performed, there is no explicit assessment of whether the final number of features is appropriate for the sample size."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of instances and features used in the final training dataset."
   },
   "Item17": {
-    "rating": "no",
-    "reason": "The study does not explicitly assess the robustness of the deep learning pipeline in a test-retest setting or through stability analysis. While the model is validated on independent cohorts, there is no specific evaluation of the consistency of performance under image perturbations or with different segmentations."
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that the data was randomly divided into independent discovery and replication cohorts at the beginning of the analysis. The split was done on the patient level. However, it does not explicitly state whether the data split was stratified or if a fixed random seed was used to ensure reproducibility."
+    "reason": "The study mentions that the data was randomly divided into independent discovery and replication cohorts at the beginning of the analysis. It also uses a leave-one-out cross-validation (LOOCV) schema, which ensures that all data processing is done blinded to the test set data."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study does not explicitly address the handling of potential confounding factors such as different distributions of patient characteristics across sites or scanners. While the study includes data from two institutions, there is no specific analysis or removal of confounding factors related to site or scanner differences."
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across sites or scanners."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics for the classification task, including accuracy, sensitivity, specificity, and AUC. The results are presented in Table 1, and ROC curves are shown in Figure 4."
+    "reason": "The study reports appropriate accuracy metrics for the classification task, such as accuracy, sensitivity, specificity, and AUC. It also includes ROC curves to visualize the performance of the models."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures such as 95% confidence intervals (CIs) for the regression lines in Figure 3, indicating consideration of uncertainty in the analysis."
+    "reason": "The study includes uncertainty measures such as 95% confidence intervals (CIs) for the regression lines in the histopathologic characteristics versus machine learning estimates."
   },
   "Item22": {
     "rating": "no",
@@ -110,19 +110,19 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multi-parametric imaging and does not provide a comparison with uni-parametric imaging or justification for the use of multi-parametric imaging over simpler alternatives."
+    "reason": "The study uses multi-parametric imaging and does not compare it to uni-parametric imaging or provide proof of its inferiority. Therefore, it does not justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a non-radiomic approach that is representative of clinical practice. The comparison is primarily between different feature extraction methods (deep learning vs. APS features) rather than with a standard clinical assessment method."
+    "reason": "The study does not include a non-radiomic method for comparison or provide proof of added clinical value through improved diagnostic accuracy or patient outcome. It only compares different radiomic feature extraction methods."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model such as a Zero Rules/No Information Rate classifier. The focus is on comparing different feature extraction and machine learning approaches."
+    "reason": "The study does not compare the results with simple or classical statistical models. The use of machine learning methods is not explicitly justified by proof of increased performance compared to a baseline model."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study includes internal testing by using a replication cohort that is sampled from the same source as the training cohort (Hospital of the University of Pennsylvania)."
+    "reason": "The study tests the model on an independent replication cohort that is sampled from the same source as the training data (Hospital of the University of Pennsylvania)."
   },
   "Item27": {
     "rating": "yes",
@@ -133,12 +133,12 @@
     "reason": "The study does not explicitly state that any imaging, segmentation, clinical, or radiomics analysis data is shared with the public."
   },
   "Item29": {
-    "rating": "yes",
-    "reason": "The study mentions that the methods and models are made freely available through the Cancer Imaging Phenomics Toolkit (CaPTk), which is a publicly available open-source software platform. This implies that the code related to the analysis is shared."
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
   },
   "Item30": {
-    "rating": "no",
-    "reason": "While the study mentions that the methods and models are available through CaPTk, it does not explicitly state whether the final model is shared in the form of a raw model file or as a ready-to-use system. The availability of the model for replication is not clearly specified."
+    "rating": "yes",
+    "reason": "The study mentions that the methods and models are freely available through the Cancer Imaging Phenomics Toolkit (CaPTk), a publicly available open-source software platform. This implies that the final model is shared in a usable form."
   },
-  "elapsed_time": 14.970279932022095
+  "elapsed_time": 13.024535894393921
 }

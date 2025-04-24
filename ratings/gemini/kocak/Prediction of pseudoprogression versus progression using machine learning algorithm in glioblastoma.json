@@ -10,95 +10,95 @@
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard for classifying lesions as PD or PsPD includes pathological confirmation, follow-up MRI, and PET imaging, aligning with clinical practice."
+    "reason": "The reference standard for classifying lesions as PD or PsPD includes pathological confirmation, follow-up MRI, and PET imaging, aligning with current clinical practice."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study involves data from two institutions (SNUH and SNUBH), indicating a multi-center approach."
+    "reason": "The study uses data from two institutions (SNUH and SNUBH), indicating a multi-center approach."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is gadolinium-enhanced T1-weighted MRI, a conventional imaging technique in clinical practice for GBM follow-up."
+    "reason": "The study uses conventional T1-weighted MRI, which is a standard imaging technique in clinical practice for GBM follow-up."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides detailed information on the image acquisition protocol, including MRI parameters and normalization steps."
+    "reason": "The study provides detailed information on the imaging protocol, including the MRI sequence (3D-MPRAGE), scanner types (1.5-T and 3-T), matrix size, and slice thickness, with additional parameters in Supplementary Table S1."
   },
   "Item7": {
     "rating": "yes",
     "reason": "The study includes the interval between the end of CCRT and the appearance of CE lesion as a clinical feature, suggesting consideration of the appropriate time interval between imaging and reference standard."
   },
   "Condition1": {
-    "rating": "no",
-    "reason": "The study does not include explicit segmentation of the tumor or region of interest. The CNN processes the entire image or cropped image without manual or automated delineation of tumor boundaries."
+    "rating": "yes",
+    "reason": "The study involves selecting nine axial post-contrast T1-weighted images, effectively cropping the image around a region of interest."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "Since Condition 1 is no, this condition is also no."
+    "reason": "The study does not include fully automated segmentation. The selection of the nine axial images is performed by clinicians."
   },
   "Item8": {
     "rating": "n/a",
-    "reason": "Since Condition 1 is no, this item is not applicable."
+    "reason": "The study does not describe a segmentation methodology. Therefore, this item is not applicable."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "Since Condition 1 and 2 are no, this item is not applicable."
+    "reason": "The study does not use fully automated segmentation. Therefore, this item is not applicable."
   },
   "Item10": {
     "rating": "n/a",
-    "reason": "Since Condition 1 is no, this item is not applicable."
+    "reason": "The study does not describe a segmentation methodology. Therefore, this item is not applicable."
   },
   "Condition3": {
     "rating": "no",
-    "reason": "The study uses a CNN-LSTM architecture, which automatically extracts features from the images, rather than relying on hand-crafted feature extraction."
+    "reason": "The study uses a CNN-LSTM model, which automatically extracts features from the images, rather than relying on hand-crafted feature extraction."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study describes the image preprocessing techniques, including resizing, resampling, and intensity scaling, with clear justification."
+    "reason": "The study describes the image preprocessing techniques used, including resizing, resampling, and intensity scaling, with clear details on how these steps were performed."
   },
   "Item12": {
     "rating": "n/a",
-    "reason": "Since Condition 3 is no, this item is not applicable."
+    "reason": "The study uses a deep learning approach (CNN-LSTM) for feature extraction, rather than relying on hand-crafted features and standardized software. Therefore, this item is not applicable."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the CNN-LSTM architecture, including the number of layers, kernel sizes, activation functions, and optimization parameters."
+    "reason": "The study provides a detailed description of the CNN-LSTM architecture, including the number of layers, kernel sizes, activation functions, and optimization algorithm. The clinical features used are also clearly defined."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes clinical features organized in a table, which constitutes tabular data."
+    "reason": "The study includes clinical features such as age, gender, MGMT methylation status, IDH mutation status, radiation dose, number of fractions, and the interval between CCRT and CE appearance, which are tabular data."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses an end-to-end deep learning approach with a CNN-LSTM model to directly process image data and clinical features for classification."
+    "reason": "The study uses a CNN-LSTM model, which is an end-to-end deep learning approach that directly processes image data and clinical features to predict PsPD or PD."
   },
   "Item14": {
-    "rating": "no",
-    "reason": "The study does not mention any removal of non-robust features based on test-retest, reproducibility, or stability analysis."
+    "rating": "n/a",
+    "reason": "The study does not explicitly discuss the removal of non-robust features. Therefore, this item is not applicable."
   },
   "Item15": {
-    "rating": "no",
-    "reason": "The study does not describe any specific methods for removing redundant features or reducing dimensionality."
+    "rating": "n/a",
+    "reason": "The study does not explicitly discuss the removal of redundant features. Therefore, this item is not applicable."
   },
   "Item16": {
-    "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+    "rating": "n/a",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size. Therefore, this item is not applicable."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline, such as a test-retest setting or stability analysis."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study splits the data into training and testing sets based on the institution, which is done at the beginning of the analysis. However, it does not explicitly mention whether the data split was random and reproducible, or whether stratified splitting was used."
+    "reason": "The study splits the data into training and testing sets based on the institution (SNUH and SNUBH, respectively). The data split is done at the patient level. The study also acknowledges the non-uniform distribution of binary cases and uses appropriate metrics (AUC and AUPRC) to evaluate the model."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study acknowledges potential confounding factors, such as differences in IDH mutation status between training and testing sets, and includes clinical parameters in the model to account for these factors."
+    "reason": "The study considers potential confounding factors by including clinical parameters such as age, gender, MGMT methylation status, and IDH mutation status in the model. The study also acknowledges the significant difference in IDH mutation status between the training and testing sets."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses appropriate performance evaluation metrics for the classification task, including AUC, AUPRC, precision, recall, and F1-score. It also includes a confusion matrix."
+    "reason": "The study uses appropriate performance evaluation metrics for the task, including AUC, AUPRC, precision, recall, and F1-score. The confusion matrix is also provided."
   },
   "Item21": {
     "rating": "no",
@@ -110,35 +110,35 @@
   },
   "Item23": {
     "rating": "yes",
-    "reason": "The study uses only one MRI sequence (enhanced T1-weighted), which aligns with the preference for uni-parametric imaging."
+    "reason": "The study uses only enhanced T1-weighted MRI, justifying the choice by its widespread use and applicability across different MR scanners."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the model's performance with a non-radiomic approach or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
+    "reason": "The study does not compare the model's performance with a non-radiomic approach or provide proof of added clinical value. The comparison is only done between different models using radiomic and clinical data."
   },
   "Item25": {
-    "rating": "yes",
-    "reason": "The study includes a negative control by training the model with a scrambled training set, which can be considered a comparison with a simple baseline reference model."
+    "rating": "no",
+    "reason": "The study does not compare the model's performance with a simple or classical statistical model. The comparison is only done between different models using radiomic and clinical data."
   },
   "Item26": {
-    "rating": "yes",
-    "reason": "The model is tested on an independent data set (SNUBH) that is sampled from the same source as the training set (SNUH)."
+    "rating": "no",
+    "reason": "The model is tested on an independent dataset from another institution, so it is not internal testing."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The model is tested with independent data from another institution (SNUBH), indicating external testing."
+    "reason": "The model is tested on an independent dataset from another institution (SNUBH), indicating external testing."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study states that the analyzed datasets cannot be opened publicly due to the law for handling of medical information in Korea."
+    "reason": "The analyzed datasets cannot be opened publicly due to the law for handling of medical information in Korea."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The study provides a link to the Python source codes of the process on GitHub."
+    "reason": "The Python source codes of the process are free and available at https://github.com/bigwiz83/PsPDvsPD."
   },
   "Item30": {
     "rating": "no",
     "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 11.004887104034424
+  "elapsed_time": 12.261989116668701
 }

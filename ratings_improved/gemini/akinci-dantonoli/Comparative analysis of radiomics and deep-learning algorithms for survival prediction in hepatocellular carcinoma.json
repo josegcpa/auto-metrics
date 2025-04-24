@@ -1,32 +1,32 @@
 {
-  "Summary": "This study compares the robustness of CT-based conventional radiomics and deep-learning CNNs in predicting overall survival (OS) in HCC patients. The results showed that CNN algorithms outperformed conventional radiomics approaches, but the clinical Cox-regression model achieved the best validation performance. The study included patients of all tumor stages and several applied therapies, aiming to address the heterogeneity often encountered in clinical settings.",
+  "Summary": "This retrospective study compares the robustness of CT-based conventional radiomics and deep-learning CNNs in predicting overall survival (OS) in HCC patients. The study found that CNN models generally outperformed conventional radiomics models, but the clinical Cox-regression model achieved the best validation performance. The authors conclude that deep-learning algorithms have superior prognostic potential compared to conventional radiomics approaches and could provide important information in the clinical setting, especially when clinical data is limited.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to radiomics or machine learning-specific checklists or guidelines such as the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. Inclusion criteria: (1) HCC patients who received a contrast-enhanced CT scan of the liver before therapy initiation; (2) diagnosis of HCC confirmed by a second imaging modality or histopathological findings; (3) initial therapy and at least one follow-up imaging at the hospital. Exclusion criteria: (1) incomplete CT scans; (2) CT scans with severe artifacts; (3) patients with another active tumor disease."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, which helps to establish a representative study population. The criteria are detailed in the Materials and methods section under 'Study population'."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard includes histopathological findings and confirmation by a second imaging modality, which are acceptable reference standards."
+    "reason": "The reference standard is based on histopathological findings or imaging patterns according to the German HCC guideline, which is a reasonable standard for HCC diagnosis."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The CT scans were acquired on a total of 24 different scanners at 21 medical centers."
+    "reason": "The CT scans were acquired on a total of 24 different scanners at 21 medical centers, indicating a multi-center study."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The study uses contrast-enhanced CT scans of the liver, which is a common and standardized imaging technique for HCC diagnosis and staging."
+    "reason": "The imaging data source is contrast-enhanced CT, which is a standard imaging technique for HCC diagnosis and staging, reflecting established standardization approaches."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the imaging protocol, including contrast media methods and acquisition parameters, with additional details in Supplementary Table S1."
+    "reason": "The study provides some information on the imaging protocol, including contrast media methods and timing. Supplementary Table S1 provides more details on the variability of scan parameters."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "Overall survival was calculated as the period from the initial CT scan to the time of either death or last contact to our hospital."
+    "reason": "Overall survival was calculated from the initial CT scan to the time of death or last contact, which is appropriate for assessing the prognostic value of the imaging data."
   },
   "Condition1": {
     "rating": "yes",
@@ -34,19 +34,19 @@
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study mentions manual contouring of the liver parenchyma and HCC lesions, so the segmentation is not fully automated."
+    "reason": "The segmentations were performed manually by a resident, so the segmentation is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study mentions that a resident with two years of experience in liver imaging contoured the liver parenchyma and the largest HCC-lesion in both contrast phases using the open-source software 3D Slicer. All segmentations were verified by the same resident 4 weeks later."
+    "reason": "The study mentions that a resident contoured the liver parenchyma and the largest HCC lesion using 3D Slicer. An example of segmentation is shown in Supplementary Fig. S1."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The study does not use fully automated segmentation."
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
   },
   "Item10": {
-    "rating": "no",
-    "reason": "The segmentations were performed by a resident and verified by the same resident 4 weeks later. This does not reflect clinical practice."
+    "rating": "yes",
+    "reason": "All segmentations were derived manually by a single radiologist."
   },
   "Condition3": {
     "rating": "yes",
@@ -54,19 +54,19 @@
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study describes the standardization procedure, including scaling CT numbers and interpolating to an isotropic voxel size. They also mention the use of an anti-aliasing filter and re-segmentation to density values between \u2212 200 and 500 Hounsfield units (HU)."
+    "reason": "The study describes a standardization procedure to address variations in contrast medium injection parameters and compensates for different slice thicknesses by interpolating to an isotropic voxel size. They also mention the HU range used for re-segmentation."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used the publicly available open-source Medical Image Radiomics Processor (MIRP) for feature extraction."
+    "reason": "The study used MIRP, a publicly available open-source software, for feature extraction and mentions that the extraction was implemented according to the recommendations by the Image Biomarker Standardization Initiative (IBSI)."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature subgroups (HCC_art, HCC_ven, HCC_diff, liver_art, liver_ven, liver_diff) and mentions that feature extraction was implemented according to the recommendations by the Image Biomarker Standardization Initiative (IBSI)."
+    "reason": "The study mentions the extraction of six feature subgroups and refers to Supplementary Table S3 for the utilized settings for feature extraction and model building. The deep learning architecture is also described and a reference to Supplementary Fig. S2 is provided."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of clinical variables and radiomic features."
+    "reason": "The study uses tabular data in the form of clinical variables and radiomics features."
   },
   "Condition5": {
     "rating": "yes",
@@ -74,71 +74,71 @@
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features."
+    "reason": "The study does not mention any explicit removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses FAMILIAR framework which includes feature processing steps such as feature transformation, filtering and clustering."
+    "reason": "The study uses feature importance evaluation within the FAMILIAR framework, which includes feature filtering and clustering, suggesting removal of redundant features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of features used."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not explicitly assess the robustness of the end-to-end deep learning pipelines in a test-retest setting or with image perturbations."
+    "reason": "The study does not explicitly mention a robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study divides the patients into a development and a validation cohort by stratified randomization."
+    "reason": "The study mentions dividing the patients into development and validation cohorts by stratified randomization based on the initial therapy concept. They also mention that transformation parameters for clinical data were applied to the validation cohort unchanged, indicating that processing was done blinded to the test set data."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study mentions that development and validation cohort were balanced in terms of clinical parameters and baseline demographics."
+    "reason": "The study mentions that development and validation cohort were balanced in terms of clinical parameters and baseline demographics, suggesting an attempt to handle confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses the concordance index (C-index) to evaluate prognostic performance and log-rank tests to assess risk stratification."
+    "reason": "The study uses the concordance index (C-index) to evaluate prognostic performance, which is appropriate for survival analysis. They also use log-rank tests to compare risk groups."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the C-index."
+    "reason": "The study reports 95% confidence intervals (CI) for the C-index values."
   },
   "Item22": {
-    "rating": "no",
-    "reason": "The study includes calibration plots of the best performing image-based models from both the conventional radiomics and deep-learning approaches in Figure S3."
+    "rating": "yes",
+    "reason": "Figure S3 shows the calibration plots of the best performing image-based models from both the conventional radiomics and deep-learning approaches."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+    "reason": "The study uses both arterial and venous contrast phases, but does not provide a comparison to uni-parametric imaging or justification for the use of multi-parametric imaging."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the radiomic approach with a non-radiomic method that is representative of the clinical practice."
+    "reason": "The study does not compare the radiomics or deep learning approaches to a non-radiomic method representative of clinical practice. The clinical model is based on clinical parameters, not a non-radiomic imaging method."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model."
+    "reason": "The study does not explicitly compare the models to a simple baseline reference model like a Zero Rules classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent validation cohort."
+    "reason": "The model is tested on an independent validation cohort that is sampled from the same source as the development cohort."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The model is not tested with independent data from other institutions."
+    "reason": "The study does not include external testing with data from other institutions."
   },
   "Item28": {
     "rating": "yes",
-    "reason": "The datasets used and analyzed during the current study are available from the corresponding author on reasonable request."
+    "reason": "The study includes a data availability statement indicating that the datasets used and analyzed are available from the corresponding author on reasonable request."
   },
   "Item29": {
-    "rating": "yes",
-    "reason": "The study mentions the use of open-source software like 3D Slicer, MIRP, and FAMILIAR, and provides links to the code repositories."
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 13.111479043960571
+  "elapsed_time": 12.32912278175354
 }

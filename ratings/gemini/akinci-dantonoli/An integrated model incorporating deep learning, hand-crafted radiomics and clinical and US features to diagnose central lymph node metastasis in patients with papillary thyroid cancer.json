@@ -6,7 +6,7 @@
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The authors explicitly define inclusion and exclusion criteria for patient enrollment."
+    "reason": "The authors define inclusion and exclusion criteria for patient selection."
   },
   "Item3": {
     "rating": "yes",
@@ -14,47 +14,47 @@
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study involves two institutions as diagnostic imaging data sources."
+    "reason": "The study includes data from two institutions."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The study uses ultrasound (US) imaging, which is a commonly used and relatively standardized imaging technique for thyroid cancer assessment."
+    "reason": "The study uses ultrasound (US) imaging, which is a common and standardized imaging technique for thyroid cancer assessment. The US features are based on C-TIRADS and ATA guidelines."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The authors mention the use of various US machines (Siemens, Supersonic, Toshiba) and state that the data was stored in DICOM format. They also describe the US features based on C-TIRADS and ATA guidelines. This provides some information about the imaging protocol, although specific acquisition parameters are not detailed."
+    "reason": "The authors mention the US machines used and that the data was stored in DICOM format. They also describe the US features based on C-TIRADS and ATA guidelines."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The authors state that \"the thyroid US examination was performed at our hospital within one month before the operation.\""
+    "reason": "The thyroid US examination was performed within one month before the operation, which is an appropriate interval to validate the presence or absence of target conditions."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the primary lesion images for both the hand-crafted radiomics model and the deep learning model. The images were cropped based on the delineated ROIs."
+    "reason": "The study includes manual segmentation of the primary lesion images to develop the deep learning and hand-crafted radiomics models."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation was performed manually by radiologists, so it is not fully automated."
+    "reason": "The segmentation was performed manually by radiologists."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The authors describe the manual segmentation process using ITK-SNAP, with a radiologist performing the initial segmentation and another radiologist reviewing and reaching a consensus. They also mention a consistency analysis with a Dice coefficient of 0.946."
+    "reason": "The authors describe the manual segmentation process using ITK-SNAP and the consensus reached by two radiologists. They also mention the consistency analysis with a Dice coefficient of 0.946."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was not fully automated, so this item is not applicable."
+    "reason": "The segmentation was performed manually, not fully automatically."
   },
   "Item10": {
-    "rating": "no",
-    "reason": "Two radiologists were involved in the segmentation process to reach a consensus."
+    "rating": "yes",
+    "reason": "The ROIs were reviewed by a radiologist with seven years of experience reaching a consensus. This reflects clinical practice."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study explicitly mentions the use of hand-crafted radiomics features, such as first-order statistics, texture features, and shape features."
+    "reason": "The study includes the development of a hand-crafted radiomics model."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The authors mention that the US images were cropped based on the delineated ROIs, resized to 224x224, and then normalized the grayscale to [0, 1] in the pre-processing stage. This indicates the use of image preprocessing techniques."
+    "reason": "The authors describe the pre-processing steps for the deep learning model, including resizing and normalization. For the radiomics model, they mention the extraction of wavelet decompositions and Laplacian of Gaussian features."
   },
   "Item12": {
     "rating": "yes",
@@ -62,7 +62,7 @@
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The authors describe the feature types (hand-crafted radiomics and deep learning features) and mention the use of LASSO for feature selection. They also provide details on the CNN architecture and training parameters."
+    "reason": "The authors describe the feature types (first-order statistics, texture features, shape features, wavelet decompositions, and Laplacian of Gaussian features) and provide a supplementary material listing the definitions of each feature group. They also describe the CNN architecture and image augmentation techniques."
   },
   "Condition4": {
     "rating": "yes",
@@ -70,55 +70,55 @@
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses a convolutional neural network (CNN) to extract deep features from US images, indicating the use of end-to-end deep learning."
+    "reason": "The study includes the development of a deep learning model using a CNN."
   },
   "Item14": {
-    "rating": "no",
-    "reason": "The authors do not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+    "rating": "yes",
+    "reason": "The authors used LASSO logistic regression to select radiomics features, which can be considered a method for removing non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The authors used LASSO logistic regression to select radiomics features, which is a method for dimensionality reduction and feature selection."
+    "reason": "The authors used LASSO logistic regression to select the most informative features."
   },
   "Item16": {
-    "rating": "no",
-    "reason": "The authors do not provide a clear justification for the appropriateness of the dimensionality compared to the data size. They do not explicitly discuss statistical means or empirical evidence to support their choice of the number of features."
+    "rating": "yes",
+    "reason": "The authors performed multivariate analysis to select clinical and US features, and used LASSO for feature selection in radiomics. This suggests consideration of the appropriateness of dimensionality compared to data size."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The authors do not mention any specific robustness assessment of the end-to-end deep learning pipeline, such as a test-retest setting or stability analysis."
+    "reason": "The authors do not explicitly mention a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The authors state that \"The participants were randomly divided into training and independent test cohorts for further analysis.\" They do not explicitly mention stratification or a fixed random seed, but the random split is a good start."
+    "reason": "The authors state that \"The participants were randomly divided into training and independent test cohorts for further analysis.\""
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The authors performed multivariate analysis to identify independent risk factors for CLNM, which can be considered as an attempt to handle confounding factors."
+    "reason": "The authors performed multivariate analysis to identify independent risk factors for CLNM, which can be considered an attempt to handle confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The authors report AUC, accuracy, sensitivity, specificity, PPV, and NPV for evaluating the performance of the predictive models. They also include a comparison of these metrics."
+    "reason": "The authors report AUC, accuracy, sensitivity, specificity, PPV, and NPV for evaluating the performance of the models. They also include ROC curves."
   },
   "Item21": {
     "rating": "no",
-    "reason": "The authors do not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+    "reason": "The authors do not include uncertainty measures such as confidence intervals or standard deviations."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The authors do not mention any calibration assessment of the final model."
+    "reason": "The authors do not mention calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not include a uni-parametric imaging analysis or a justification for the use of multi-parametric imaging."
+    "reason": "The study does not compare the performance of the integrated model with uni-parametric imaging or provide justification for the use of multi-parametric imaging."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the integrated model with junior and senior radiologists, which can be considered a comparison with a non-radiomic approach representative of clinical practice. They also use DeLong's test for AUC comparison."
+    "reason": "The study compares the performance of the integrated model with junior and senior radiologists, which can be considered a non-radiomic approach representative of clinical practice. They also use DeLong's test to compare the AUCs."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model or justify the use of machine learning methods with proof of increased performance compared to such a baseline."
+    "reason": "The study does not include a comparison with a simple baseline reference model."
   },
   "Item26": {
     "rating": "yes",
@@ -126,11 +126,11 @@
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The study includes data from two institutions."
+    "reason": "The study includes data from two institutions, and the model is tested on an independent dataset."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The authors state that \"Other analyzed datasets from the current study are not publicly available because the data contain information that may compromise patients, but are available from the corresponding author upon reasonable request.\""
+    "reason": "The authors state that \"Other analyzed datasets from the current study are not publicly available because the data contain information that may compromise patients\""
   },
   "Item29": {
     "rating": "yes",
@@ -138,7 +138,7 @@
   },
   "Item30": {
     "rating": "no",
-    "reason": "The authors do not explicitly state that the final model is shared in a ready-to-use format."
+    "reason": "The authors do not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 11.626360893249512
+  "elapsed_time": 11.321559190750122
 }

@@ -1,144 +1,144 @@
 {
-  "Summary": "This study develops and compares a radiomics model and a fusion model, combining radiomics features with serum fibrosis biomarkers (APRI and FIB-4), for staging liver fibrosis using multiparametric MRI in patients with chronic liver disease. The study found that both models are feasible for staging liver fibrosis, and the fusion model showed improved diagnostic performance in differentiating F1-3 vs. F4 and F1-2 vs. F4 stages in the testing cohort.",
+  "Summary": "This study develops and compares a radiomics model and a fusion model, combining radiomics features with serum fibrosis biomarkers (APRI and FIB-4), based on multiparametric MRI for staging liver fibrosis in patients with chronic liver disease. The study found that both models exhibited feasibility for staging liver fibrosis, with the fusion model showing improved diagnostic performance in differentiating F1-3 vs. F4 and F1-2 vs. F4 in the testing cohort.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, contributing to a representative study population."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are detailed in the Methods section under 'Study population'."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "Histopathological examination of liver tissue is used as the reference standard for liver fibrosis staging, which is a well-established and robust method."
+    "reason": "The reference standard is histopathologic evaluation of liver fibrosis stage, which is the gold standard for liver fibrosis staging. The method is clearly defined using hematoxylin-eosin staining and Masson\u2019s trichrome staining based on the Metavir fibrosis staging system."
   },
   "Item4": {
-    "rating": "no",
-    "reason": "The study involves data from a single institution."
+    "rating": "yes",
+    "reason": "The study mentions using two 3.0-T MR systems from different vendors (GE Healthcare and Siemens Healthcare), indicating a multi-center approach, although the data comes from a single institution."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The study uses multiparametric MRI, a clinically translatable imaging technique, for radiomics analysis."
+    "reason": "The study uses multiparametric MRI, including conventional MR sequences and gadoxetic acid contrast-enhanced MRI, which are standard imaging techniques for liver evaluation. The use of these established techniques enhances the clinical translatability of the imaging data."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides a detailed summary of the MR protocol, including the parameters used for image acquisition."
+    "reason": "The study provides a detailed summary of the MR protocol, including specific parameters for each sequence (T1WI-IP & T1WI-OP, T2WI-FS, DWI, and gadoxetic acid-enhanced MRI) in Table 2, enhancing the replicability of the method."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study mentions that histopathologic evaluation for liver fibrosis stage was performed within 4 weeks after the MR examination."
+    "reason": "The study mentions that the interval between MRI and histopathologic examination was within 4 weeks, which is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study involves drawing bounding boxes on MR images, which constitutes a form of segmentation."
+    "reason": "The study includes segmentation by drawing bounding boxes on MR images to define regions of interest (ROIs) in the right hepatic lobe."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation was performed manually by a radiologist."
+    "reason": "The segmentation was performed manually by a radiologist, so it is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, mentioning that bounding boxes were drawn on MR images by a radiologist to define regions of interest in the right hepatic lobe, excluding major vessels and hepatic masses."
+    "reason": "The study describes the segmentation methodology, mentioning that a radiologist drew bounding boxes on MR images using 3D-slicer software to define ROIs in the right hepatic lobe, excluding major vessels and hepatic masses."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually, so this item is not applicable."
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The segmentation in this study was performed by a single reader."
+    "reason": "The segmentation was performed by a single radiologist with 10 years of experience, which better reflects clinical practice."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features using SlicerRadiomics."
+    "reason": "The study extracts radiomics features using SlicerRadiomics, which implies the use of hand-crafted feature extraction."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study uses z-score normalization for post-processing radiomics features, which is an appropriate image preprocessing technique. They mention the different image types used (original, wavelet)."
+    "reason": "The study mentions using z-score normalization for post-processing radiomics features, which is an appropriate preprocessing technique. They also describe the different image types used (T1WI-IP, T1WI-OP, T2WI-FS, DWI, and HBP)."
   },
   "Item12": {
-    "rating": "yes",
-    "reason": "The study uses SlicerRadiomics, a standardized software, for feature extraction."
+    "rating": "no",
+    "reason": "The study mentions using SlicerRadiomics, but does not explicitly state whether it is IBSI compliant or provide the version number."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first-order statistics, GLCM, GLDM, GLRLM, GLSZM, NGTDM, shape, and shape 2D) and mentions the use of z-score normalization. It also provides the coefficients for the selected features after LASSO."
+    "reason": "The study describes the feature types (first-order statistics, GLCM, GLDM, GLRLM, GLSZM, NGTDM, shape, and shape 2D) and mentions the use of SlicerRadiomics for feature extraction. They also provide information on selected features after the LASSO process, including coefficients."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of radiomics features and serum fibrosis biomarkers."
+    "reason": "The study includes tabular data in the form of radiomics features and serum fibrosis biomarkers (APRI and FIB-4)."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach."
+    "reason": "The study does not use an end-to-end deep learning approach. It relies on hand-crafted feature extraction and traditional machine learning techniques."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study evaluates the intra- and inter-observer agreement of radiomics features using ICC and selects features with ICC > 0.8, indicating removal of non-robust features."
+    "reason": "The study performs an ICC analysis to assess the intra- and inter-observer agreement of radiomics features and selects features with ICC > 0.8, indicating a removal of non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses LASSO for feature selection, which is a method for removing redundant features."
+    "reason": "The study uses LASSO for feature selection, which is a method for reducing dimensionality by selecting significant radiomics features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for it."
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. There is no statistical means or empirical evidence provided to support this."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning approach, so this item is not applicable."
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study randomly divides the patients into training and testing cohorts with a ratio of 7 to 3."
+    "reason": "The study mentions randomly dividing the patients into training and testing cohorts with a ratio of 7 to 3. However, it does not explicitly state whether the data split was done at the patient level or whether a fixed random seed was used to ensure reproducibility."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study mentions that there were no significant differences in age, gender, fibrosis stages, and serum markers between the training and testing cohorts, suggesting an attempt to handle potential confounding factors."
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across scanners or sites."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses AUC for ROC analysis to measure diagnostic performance and reports sensitivity, specificity, and accuracy. They also provide confidence intervals."
+    "reason": "The study uses appropriate performance evaluation metrics for the task, including AUC for ROC analysis, sensitivity, specificity, and accuracy. They also provide 95% confidence intervals for the AUC values."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, which is a measure of uncertainty."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not include a calibration assessment of the final model."
+    "reason": "The study does not mention any calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multiparametric MRI without comparing it to uni-parametric imaging or justifying the need for a multi-parametric approach."
+    "reason": "The study uses multiparametric MRI but does not compare its performance with uni-parametric imaging or provide justification for the need for a multi-parametric approach."
   },
   "Item24": {
-    "rating": "yes",
-    "reason": "The study compares the radiomics model with a fusion model that includes serum fibrosis biomarkers (APRI and FIB-4), which can be considered a non-radiomic approach representative of clinical practice. The DeLong test was used to compare AUCs between radiomics model and fusion model."
+    "rating": "no",
+    "reason": "The study compares the radiomics model with a fusion model that includes serum fibrosis biomarkers (APRI and FIB-4), but it does not compare with a non-radiomic method that is representative of clinical practice, such as semantic features or RADS/RECIST scoring."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the models with a simple or classical statistical model as a baseline reference."
+    "reason": "The study does not compare the performance of the radiomics model with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent testing cohort sampled from the same source as the training cohort."
+    "reason": "The study tests the model on an independent testing cohort that is sampled from the same source as the training cohort."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not include external testing with data from other institutions."
+    "reason": "The study does not test the model with independent data from other institutions."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data sharing."
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention sharing the code used for radiomics analysis."
+    "reason": "The study does not mention any scripts related to automatic segmentation and/or modeling being shared with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention sharing the final model."
+    "reason": "The study does not mention the final model being shared in any form."
   },
-  "elapsed_time": 11.583007097244263
+  "elapsed_time": 12.060341119766235
 }

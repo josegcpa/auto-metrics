@@ -140,5 +140,5 @@
     "rating": "yes",
     "reason": "The study mentions that the final model is implemented in a web-user interface (http://radiation-oncology-lab.ml:5000), which suggests that the model is shared as a ready-to-use system."
   },
-  "elapsed_time": 13.852155923843384
+  "elapsed_time": 14.786910772323608
 }

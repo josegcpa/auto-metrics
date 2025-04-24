@@ -1,88 +1,88 @@
 {
-  "Summary": "This study investigates the potential of radiomics features extracted from normal-appearing white matter (NAWM) to predict the progression of multiple sclerosis (MS) on MRI. The authors trained a machine learning model (XGBoost) to differentiate between \"prelesion\" areas and control samples in NAWM, achieving high accuracy in internal testing and moderate accuracy in external validation using the MSSEG2 dataset. The study suggests that radiomics features could serve as imaging biomarkers for MS progression.",
+  "Summary": "This study investigates the potential of radiomics features extracted from normal-appearing white matter (NAWM) on MR images to predict the future development of MS lesions. The authors trained a machine learning model (XGBoost) to differentiate between \"prelesion\" areas and control samples within the NAWM. The model achieved high accuracy on the test set and moderate accuracy on an external validation set, suggesting that radiomics features could serve as an imaging biomarker for MS progression.",
   "Item1": {
     "rating": "yes",
-    "reason": "The study mentions adherence to the ARISE guideline and the Checklist for Artificial Intelligence in Medical Imaging."
+    "reason": "The authors state that the article was prepared using the Checklist for Artificial Intelligence in Medical Imaging and conforms to the Assessment of RadiomIcS rEsearch (ARISE) guideline."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study explicitly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+    "reason": "The inclusion and exclusion criteria are clearly defined in the Materials and Methods section: \"Consecutive patients who had at least 2 MR imaging brain studies for MS at our institution between January 2019 and December 2022 were reviewed (Fig 1). Those with a new lesion on follow-up imaging were included in this study.\""
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard (radiologic progression) is defined according to the MAGNIMS consensus guidelines, which is a well-established standard in MS imaging."
+    "reason": "The reference standard (radiologic progression) is defined according to the Magnetic Resonance Imaging in MS (MAGNIMS) consensus guidelines, which is a well-established standard."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study uses data from an internal cohort and an external validation cohort (MSSEG2) which includes multiple institutions."
+    "reason": "The study includes an external validation dataset (MSSEG2) which includes data from multiple institutions."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source (MRI) and sequences (3D T2-FLAIR) are commonly used in clinical practice for MS diagnosis and monitoring."
+    "reason": "The imaging data source is MR imaging, which is a standard technique for MS diagnosis and monitoring."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the image acquisition parameters for the 3D T2-FLAIR sequence, enhancing the replicability of the method."
+    "reason": "The imaging protocol with acquisition parameters is clearly reported in the Materials and Methods section."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study projects new lesion segmentations backward in time to the prior MR imaging study, which is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+    "reason": "The study includes longitudinal MR imaging data, and the prelesion radiomics features are extracted from the prior MR imaging study at the future location of a new lesion. This approach validates the presence or absence of target conditions at the moment of the diagnostic imaging exams."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of MS lesions and normal-appearing white matter (NAWM)."
+    "reason": "The study includes segmentation of MS lesions and normal-appearing white matter (NAWM) to extract radiomics features."
   },
   "Condition2": {
-    "rating": "yes",
-    "reason": "The study uses DeepMedic for initial automated segmentation, which is then manually corrected."
+    "rating": "no",
+    "reason": "The study mentions that a baseline automated segmentation was manually corrected by radiologists."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of DeepMedic for initial segmentation and manual correction by radiologists."
+    "reason": "The segmentation methodology is described in the Materials and Methods section: \"A baseline automated segmentation of MS lesions was generated using DeepMedic (https://github.com/deepmedic/deepmedic).31 These baseline segmentations were then manually corrected by 1 of 2 certified radiologists in their first year post-board examination using ITK-Snap Version 3.8.0 (www.itksnap.org).32\""
   },
   "Item9": {
-    "rating": "no",
-    "reason": "The study mentions manual correction of the automated segmentation, but does not provide a formal evaluation of the fully automated segmentation before the manual correction."
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, as it involved manual correction by radiologists."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The test set segmentation masks are produced by radiologists, not by a single reader or automated tool."
+    "reason": "The test set segmentation masks were produced by manual correction of automated segmentations by two readers, which does not reflect clinical practice."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features using PyRadiomics."
+    "reason": "The study extracts radiomics features, which are hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions coregistration of images and excludes shape-related radiomic features because the shapes of the control segmentations were dependent on the original lesion segmentations."
+    "reason": "The study mentions image preprocessing steps such as defacing and coregistration using FSL. The parameters for the 3D T2-FLAIR sequence are also provided."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses PyRadiomics for feature extraction and mentions the version number."
+    "reason": "The study used PyRadiomics for feature extraction and mentions the version number (Version 3.01)."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (radiomics features) and mentions that shape-related features were excluded. The study also provides a link to the code used for the experiments."
+    "reason": "The study describes the feature types (radiomics features) and provides a link to the code repository where the feature extraction parameters are likely defined."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study uses tabular data in the form of radiomic features."
+    "reason": "The study uses radiomics features, which are tabular data."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning pipeline."
+    "reason": "The study does not use an end-to-end deep learning pipeline. Instead, it extracts radiomics features and uses machine learning models for classification."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features."
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
   },
   "Item15": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of redundant features."
+    "reason": "The study mentions feature importance extraction from the best-performing model for feature selection, but it does not explicitly describe the removal of redundant features using algorithm-based feature selection, correlation analysis, or variance analysis."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a justification for the appropriateness of dimensionality compared to data size."
+    "reason": "The study does not provide a statistical justification or empirical evidence to demonstrate the appropriateness of the dimensionality compared to the data size."
   },
   "Item17": {
     "rating": "n/a",
@@ -90,27 +90,27 @@
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions training, test, and external validation sets. The code is available on github."
+    "reason": "The study mentions that the data was split into training, test, and external validation sets. The code is available, which would allow for verification of the data partitioning process."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study mentions failure analysis on external validation showed that in many instances, a potential cause for misclassified cases was misregistration of images rather than the machine learning model."
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors such as scanner type, manufacturer, or scanner parameters."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports accuracy, precision, recall, and F1-score as performance evaluation metrics."
+    "reason": "The study reports appropriate accuracy metrics such as accuracy, precision, recall, and F1-score for the classification task."
   },
   "Item21": {
     "rating": "no",
-    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations."
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not assess the calibration of the final model."
+    "reason": "The study does not mention calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not compare the performance of uni-parametric imaging with multi-parametric imaging."
+    "reason": "The study uses a single imaging set (3D T2-FLAIR sequence), but it does not explicitly justify the use of this sequence or compare its performance to other sequences."
   },
   "Item24": {
     "rating": "yes",
@@ -130,15 +130,15 @@
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the imaging, segmentation, clinical, or radiomics analysis data is shared with the public."
+    "reason": "The study does not explicitly state that the imaging, segmentation, clinical, or radiomics analysis data is shared with the public, although the external validation data is publicly available."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The study provides a link to the code used for the experiments."
+    "reason": "The study provides a link to the code repository where the scripts related to automatic segmentation and modeling are available."
   },
   "Item30": {
     "rating": "no",
     "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 10.656176805496216
+  "elapsed_time": 12.240199089050293
 }

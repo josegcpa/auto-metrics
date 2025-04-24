@@ -14,7 +14,7 @@
   },
   "Item4": {
     "rating": "no",
-    "reason": "The imaging data was acquired from five MRI systems at a single institution (Beijing Tiantan Hospital, Capital Medical University)."
+    "reason": "The imaging data were acquired from five MRI systems at a single institution (Beijing Tiantan Hospital, Capital Medical University)."
   },
   "Item5": {
     "rating": "yes",
@@ -22,7 +22,7 @@
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides specifications of the imaging data acquired from different MRI systems, including field of view, slice thickness, slice spacing, and matrix size."
+    "reason": "The study provides detailed specifications of the imaging data acquired from different MRI systems, including field of view, slice thickness, slice spacing, and matrix size."
   },
   "Item7": {
     "rating": "yes",
@@ -30,7 +30,7 @@
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study involves identifying MRI slices presenting enhancing lesions, which can be considered a form of rough delineation or cropping around a region of interest."
+    "reason": "The study involves identifying and marking the MRI slices presenting enhancing lesions, which can be considered a form of rough delineation or cropping around a region of interest."
   },
   "Condition2": {
     "rating": "no",
@@ -38,63 +38,63 @@
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the process of identifying MRI slices containing lesions by neuroradiologists or neurosurgeons, using 3D Slicer to place a marker on axial slices with suspected recurrent lesions."
+    "reason": "The study describes the process of identifying MRI slices presenting enhancing lesions by neuroradiologists or neurosurgeons, using 3D Slicer to place a marker on the axial slices if they saw a suspected recurrent lesion. This is a transparent description of the methodology used for slice identification."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was not fully automated."
+    "reason": "The segmentation (slice identification) was not fully automated, as it involved manual identification and review by experts. Therefore, a formal evaluation of fully automated segmentation is not applicable."
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The MRI slices containing the lesion were identified manually by an experienced neurosurgeon and further reviewed by an imaging analyst."
+    "reason": "The final selection of slices in the test set was performed by a single neurosurgeon and imaging analyst, reflecting clinical practice."
   },
   "Condition3": {
     "rating": "no",
-    "reason": "The study uses deep learning to automatically learn features from the images, rather than relying on hand-crafted features."
+    "reason": "The study uses a deep learning approach that automatically learns features from the images, rather than relying on hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study describes the preprocessing steps, including bias field correction and co-registration of T1c and T2 images to the T1 space. It also mentions linear mapping and resampling to the Montreal Neurological Institute 152 template."
+    "reason": "The study describes the preprocessing steps applied to standardize the MRI data across multiple MRI systems, including bias field correction and co-registration. This demonstrates appropriate use of image preprocessing techniques with transparent description."
   },
   "Item12": {
     "rating": "n/a",
-    "reason": "The study does not use hand-crafted features."
+    "reason": "The study does not use hand-crafted features, so this item is not applicable."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the architecture of the proposed ERN-Net model and benchmarks it against other DNN models. It also mentions the use of ImageNet pretrained weights and the TensorFlow framework."
+    "reason": "The study describes the architecture of the proposed ERN-Net model and provides details about the other DNN models used for comparison. It also mentions the use of ImageNet pretrained weights and the TensorFlow framework. This provides transparent reporting of the feature extraction parameters and network architectures."
   },
   "Condition4": {
     "rating": "no",
-    "reason": "The study does not explicitly present radiomic features in a tabulated format."
+    "reason": "The study does not explicitly use tabular data in the form of extracted radiomic features or other tabulated data."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses an end-to-end deep learning approach to directly process the image data and produce a classification model."
+    "reason": "The study uses end-to-end deep learning, where the DNN models directly process the image data to produce a classification."
   },
   "Item14": {
     "rating": "n/a",
-    "reason": "The study does not use tabular data."
+    "reason": "The study does not use tabular data, so this item is not applicable."
   },
   "Item15": {
     "rating": "n/a",
-    "reason": "The study does not use tabular data."
+    "reason": "The study does not use tabular data, so this item is not applicable."
   },
   "Item16": {
     "rating": "n/a",
-    "reason": "The study does not use tabular data."
+    "reason": "The study does not use tabular data, so this item is not applicable."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline using test-retest, different segmentations, or stability analysis."
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study splits the data into training and test sets at the beginning of the analysis. The split is done randomly, and the ratio is approximately 80:20."
+    "reason": "The study splits the data into training and test sets at the beginning of the analysis. The split is random, and the ratio is approximately 80:20."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study does not explicitly address or analyze potential confounding factors."
+    "reason": "The study does not explicitly address or analyze potential confounding factors such as scanner differences or patient characteristics."
   },
   "Item20": {
     "rating": "yes",
@@ -102,7 +102,7 @@
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures in the analysis, such as 95% confidence intervals for the performance metrics."
+    "reason": "The study includes uncertainty measures in the form of 95% confidence intervals for the performance metrics."
   },
   "Item22": {
     "rating": "no",
@@ -110,15 +110,15 @@
   },
   "Item23": {
     "rating": "yes",
-    "reason": "The study compares the performance of single-modal and multimodal MRI, demonstrating that multimodal MRI outperforms single-modal MRI."
+    "reason": "The study compares the performance of single-modal and multimodal MRI, demonstrating that multimodal MRI outperforms single-modal MRI. This justifies the use of multi-parametric imaging."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the DNN models to that of experienced neurosurgeons, demonstrating that the DNN models achieve significantly better performance."
+    "reason": "The study compares the performance of the DNN models to that of experienced neurosurgeons, which represents a non-radiomic approach. The DNN models significantly outperform the neurosurgeons."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the performance of the DNN models to simple or classical statistical models."
+    "reason": "The study does not compare the DNN models to a simple or classical statistical model."
   },
   "Item26": {
     "rating": "yes",
@@ -130,15 +130,15 @@
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data availability."
+    "reason": "The study does not mention any data sharing."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code availability."
+    "reason": "The study does not mention any code sharing."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention any model availability."
+    "reason": "The study does not mention any model sharing."
   },
-  "elapsed_time": 10.783226013183594
+  "elapsed_time": 11.88411808013916
 }

@@ -1,44 +1,44 @@
 {
-  "Summary": "This study develops and assesses a radiomics-based nomogram for distinguishing T2/T3 staging of laryngeal and hypopharyngeal squamous cell carcinoma (LHSCC) using contrast-enhanced CT images. The nomogram, incorporating a radiomic signature and morphological imaging characteristics, demonstrates good diagnostic performance and clinical usefulness for guiding treatment decisions.",
+  "Summary": "This study develops and assesses a radiomics-based nomogram derived from contrast-enhanced CT images for distinguishing T2/T3 staging of laryngeal and hypopharyngeal squamous cell carcinoma (LHSCC). The nomogram, incorporating a radiomic signature and morphological imaging characteristics, demonstrates good diagnostic performance and clinical usefulness for guiding treatment decisions.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population. The criteria are clearly stated in the Materials and Methods section."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population. The criteria are well-defined and relevant to the study's objective."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard (T staging) is based on the AJCC TNM Staging System Guidelines, which is a well-established clinical standard. The otolaryngologist assessment is also a standard practice."
+    "reason": "The reference standard (T staging) is based on the AJCC TNM Staging System Guidelines, which is a well-established and widely used standard in clinical practice. The otolaryngologist assessment ensures a robust reference."
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study mentions that contrast-enhanced CT images were acquired by one of the scanners, implying that the data comes from a single center."
+    "reason": "The study is a single-center retrospective study, meaning all data comes from one institution."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "Contrast-enhanced CT is a clinically translatable imaging technique for LHSCC assessment. The study uses CT images, which are standard in clinical practice for staging LHSCC."
+    "reason": "Contrast-enhanced CT is a standard imaging technique for assessing LHSCC, reflecting established standardization approaches in clinical practice."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study mentions that the details of the scanning parameters are described in Supplementary A1."
+    "reason": "The study mentions that the details of the scanning parameters are described in Supplementary A1, indicating that the image acquisition protocol is reported."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study specifies that histopathological examination was performed within 2 weeks after CT scanning, which is an appropriate interval to validate the presence or absence of target conditions at the moment of diagnostic imaging."
+    "reason": "The study specifies that histopathological examination was performed within 2 weeks after CT scanning, which is an appropriate interval to validate the presence or absence of target conditions at the moment of imaging."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes manual delineation of regions of interest (ROIs) on CT images, which constitutes segmentation."
+    "reason": "The study involves manual delineation of regions of interest (ROIs) on CT images, which constitutes segmentation."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study explicitly states that the images were manually delineated, indicating that the segmentation was not fully automated."
+    "reason": "The study explicitly states that the image segmentation was performed manually, indicating that it is not a fully automated process."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study provides delineation criteria in Supplementary A3."
+    "reason": "The study mentions that the delineation criteria are described in Supplementary A3, indicating a transparent description of the segmentation methodology."
   },
   "Item9": {
     "rating": "n/a",
@@ -46,7 +46,7 @@
   },
   "Item10": {
     "rating": "yes",
-    "reason": "The test set segmentation masks were produced by two readers, which reflects clinical practice."
+    "reason": "The test set segmentation masks were produced by two readers, reflecting clinical practice."
   },
   "Condition3": {
     "rating": "yes",
@@ -54,35 +54,35 @@
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions that all images underwent standardization preprocessing prior to feature extraction and provides additional information in Supplementary A4."
+    "reason": "The study mentions that all images underwent standardization preprocessing prior to feature extraction, and additional information is provided in Supplementary A4. This suggests appropriate use of image preprocessing techniques with transparent description."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used PyRadiomics package for feature extraction."
+    "reason": "The study used the PyRadiomics package for feature extraction, which is a standardized software. The version number (3.0.1) is also provided."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (original image features and wavelet decomposition features) and provides information on the feature extraction parameters and software used (PyRadiomics)."
+    "reason": "The study describes the feature types (original image features and wavelet decomposition features) and provides information on the feature extraction parameters. The use of PyRadiomics package implies a certain level of standardization and defined parameters."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study uses radiomic features in a tabulated format (CSV format) and performs feature processing steps."
+    "reason": "The study uses radiomic features in a CSV format, which is a form of tabular data."
   },
   "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning pipeline. It relies on hand-crafted feature extraction and machine learning classifiers."
+    "reason": "The study does not use an end-to-end deep learning pipeline. Instead, it relies on hand-crafted feature extraction and machine learning classifiers."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study assesses the reproducibility of extracted features using ICCs and only includes features with ICCs > 0.75 for subsequent analyses."
+    "reason": "The study assessed the reproducibility of extracted features using intra-/interclass correlation coefficients (ICCs) and only used features with ICCs > 0.75 for subsequent analyses. This indicates a removal of non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses the Kruskal-Wallis test to remove features showing significant statistical differences among different scanners and Pearson\u2019s correlation coefficient for dimensionality reduction."
+    "reason": "The study used Pearson\u2019s correlation coefficient (PCC) for dimensionality reduction, which is a method for removing redundant features."
   },
   "Item16": {
-    "rating": "yes",
-    "reason": "The study uses multiple feature selection methods and machine learning algorithms to identify the most robust analytic models."
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of features used in the final model."
   },
   "Item17": {
     "rating": "n/a",
@@ -90,35 +90,35 @@
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study randomly splits the data into training and test sets at a ratio of 7:3. The data split is done prior to feature processing."
+    "reason": "The study mentions that the data was randomly split into training and test sets at a ratio of 7:3. They also used SMOTE for data balancing, which should be done before the split. However, it is not explicitly stated whether the split was done at the patient level or whether a fixed random seed was used."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study analyzes potential confounding factors, such as different scanners, and attempts to remove their effects through feature processing (Kruskal-Wallis test)."
+    "reason": "The study analyzed potential confounding factors such as scanner type and performed a Kruskal-Wallis test to remove features showing significant statistical differences among different scanners."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, and specificity. It also includes confidence intervals."
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity to assess the performance of the models. ROC curves are also presented. This indicates the use of appropriate performance evaluation metrics for the task."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes 95% confidence intervals (CI) for the AUC values."
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, indicating consideration of uncertainty."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "The Hosmer\u2013Lemeshow goodness-of-fit test was performed to evaluate the calibration of the nomogram, and a calibration curve was plotted."
+    "reason": "The study performed the Hosmer\u2013Lemeshow goodness-of-fit test and plotted a calibration curve to assess the calibration of the nomogram."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the performance of uni-parametric imaging with multi-parametric imaging. It uses contrast-enhanced CT images, but it does not justify the need for contrast enhancement by comparing it to non-contrast CT."
+    "reason": "The study does not perform a uni-parametric imaging evaluation or provide a justification for using contrast-enhanced CT over other imaging modalities."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study incorporates a morphological imaging characteristic (suspicious thyroid cartilage invasion) evaluated by radiologists into the nomogram and compares the performance of the nomogram with and without this characteristic through decision curve analysis."
+    "reason": "The study incorporates a morphological imaging characteristic (suspicious thyroid cartilage invasion) evaluated by radiologists into the nomogram, which can be considered a comparison with a non-radiomic approach. Decision curve analysis is used to evaluate the clinical application value of the nomogram."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the performance of the radiomic model with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+    "reason": "The study does not explicitly compare the performance of the radiomics model with a simple or classical statistical model (e.g., Zero Rules classifier)."
   },
   "Item26": {
     "rating": "yes",
@@ -140,5 +140,5 @@
     "rating": "no",
     "reason": "The study does not mention the model being shared with the public."
   },
-  "elapsed_time": 10.378901958465576
+  "elapsed_time": 12.577311992645264
 }

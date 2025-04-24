@@ -1,44 +1,44 @@
 {
-  "Summary": "This study compares handcrafted radiomics (HCR) and deep learning radiomics (DLR) models for predicting chemoradiotherapy (CRT) response in locally advanced cervical cancer (LACC) using pretreatment MRI data. The study found that both HCR and DLR models could predict CRT responses, with DLR models generally outperforming HCR models. The integration of clinical factors tended to improve performance, particularly in HCR analysis. The authors conclude that these findings may contribute to personalized treatment strategies for LACC patients.",
+  "Summary": "This study compares handcrafted radiomics (HCR) and deep learning radiomics (DLR) models, with and without clinical factors, for predicting the response to concurrent chemoradiotherapy (CRT) in patients with locally advanced cervical cancer (LACC). The study found that both HCR and DLR models could predict CRT responses, with DLR models generally outperforming HCR models. The integration of clinical factors tended to improve performance, particularly in HCR analysis. The authors conclude that their findings may contribute to the development of personalized treatment strategies for LACC patients.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines eligibility criteria for patient inclusion, aiming for a representative study population. The inclusion and exclusion criteria are clearly stated in the methods section."
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming for a representative study population. The eligibility criteria are described in the methods section under 'Study population'."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is based on RECIST 1.1 criteria assessed 3 months after CRT by pelvic MRI and biopsy, which is a reasonable clinical practice for evaluating treatment response."
+    "reason": "The reference standard is based on pelvic MRI and biopsy using RECIST criteria version 1.1, which is a well-established method for assessing treatment response in solid tumors."
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study uses data from a single institution (Kyungpook National University Chilgok Hospital)."
+    "reason": "The study mentions that the data comes from a single institution (Kyungpook National University Chilgok Hospital)."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source (MRI) is clinically translatable as MRI is a standard imaging technique used in the management of cervical cancer. The use of contrast-enhanced T1-weighted and T2-weighted images is also standard practice."
+    "reason": "The imaging data source is contrast-enhanced T1-weighted and T2-weighted MRI, which are standard imaging techniques for cervical cancer assessment."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study mentions the use of contrast-enhanced T1-weighted and T2-weighted MRI, and further details are provided in the supplementary material, indicating an attempt to report the image acquisition protocol."
+    "reason": "The study mentions the use of contrast-enhanced T1-weighted and T2-weighted MRI and refers to supplementary material for detailed information about the image acquisition process."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The interval between imaging and response evaluation (3 months) is appropriate for assessing CRT response in cervical cancer."
+    "reason": "The response evaluation was performed 3 months after CRT, which is a clinically relevant time interval to assess treatment response."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes segmentation of the primary tumor on MRI images for handcrafted radiomics analysis."
+    "reason": "The study involves segmentation of the primary tumor on MRI images for handcrafted radiomics analysis."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation was performed semi-manually by two radiation oncologists, so it is not fully automated."
+    "reason": "The segmentation was performed semi-manually by two radiation oncologists, indicating that it was not a fully automated process."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The segmentation methodology is described as semi-manual segmentation performed by two radiation oncologists using the Eclipse treatment planning system."
+    "reason": "The study mentions that the primary tumor was semi-manually segmented by two radiation oncologists using the Eclipse treatment planning system."
   },
   "Item9": {
     "rating": "n/a",
@@ -46,7 +46,7 @@
   },
   "Item10": {
     "rating": "no",
-    "reason": "Two radiation oncologists performed the segmentation. It is not clear if the test set segmentation masks were produced by a single reader."
+    "reason": "The segmentation was performed by two radiation oncologists, not a single reader or automated tool."
   },
   "Condition3": {
     "rating": "yes",
@@ -54,75 +54,75 @@
   },
   "Item11": {
     "rating": "no",
-    "reason": "The study does not provide detailed information on image preprocessing techniques, such as gray level normalization or image registration. It is unclear whether these steps were performed and how."
+    "reason": "The study does not provide detailed information about image preprocessing techniques, such as gray level normalization or image registration. It only mentions the use of CE-T1WI and T2WI."
   },
   "Item12": {
     "rating": "no",
-    "reason": "The study does not mention the use of standardized feature extraction software compliant with IBSI. The software used for segmentation (Eclipse) is mentioned, but not for feature extraction."
+    "reason": "The study does not explicitly mention the use of a standardized feature extraction software compliant with IBSI. The Eclipse treatment planning system was used for segmentation, but not necessarily for feature extraction."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (handcrafted and deep learning features) and mentions the number of extracted features (1890). The neural network architecture is also described."
+    "reason": "The study describes the feature types (handcrafted and deep learning features) and mentions that 1890 imaging features were extracted for HCR analysis. For DLR, the neural network architecture is described."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of clinical factors (tumor size, FIGO stage, HPV status) and radiomic features."
+    "reason": "The study uses tabular data in the form of clinical factors (tumor size, FIGO stage, and HPV status) that are incorporated into the models."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses a 3D convolutional neural network (CNN) for deep learning radiomics, which is an end-to-end deep learning approach."
+    "reason": "The study uses a 3D convolutional neural network for deep learning radiomics (DLR), which is an end-to-end deep learning approach."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+    "reason": "The study does not mention any specific methods for removing non-robust features, such as test-retest analysis or stability analysis."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study applies logistic regression and recursive feature elimination to select 20 imaging features for the HCR analysis, indicating removal of redundant features."
+    "reason": "The study applies logistic regression and recursive feature elimination to select 20 imaging features for the HCR analysis, indicating a method for dimensionality reduction."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification or statistical evidence that the number of instances and features in the final training dataset is appropriate for the modeling algorithm."
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of features used."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or through stability analysis."
+    "reason": "The study does not mention any specific robustness assessment of the end-to-end deep learning pipeline, such as a scan-rescan approach or stability analysis."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions random data partitioning into training and test datasets using the 'createDataPartition' function in R, aiming for equal frequency of cases in each dataset. This suggests a proper data partitioning process."
+    "reason": "The study mentions that the dataset was randomly divided into training and test datasets using the 'createDataPartition' function in R, which suggests a proper data partitioning process."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study considers potential confounding factors by analyzing clinical factors (tumor size, FIGO stage, HPV status) and integrating them into the models. They excluded age and pathologic type due to weak correlation or imbalanced class proportion."
+    "reason": "The study considers potential confounding factors by analyzing the relationship between several factors (tumor size, HPV status, FIGO stage, age, pathology, lymph node metastasis status, and parametrial invasion) and CRT response."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUC, balanced accuracy, sensitivity, specificity, positive predictive value, negative predictive value, and F1-score for the classification task. Confusion matrices are also presented."
+    "reason": "The study reports AUC, balanced accuracy, sensitivity, specificity, positive predictive value, negative predictive value, and F1-score for classification tasks. ROC curves and confusion matrices are also presented."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures by reporting 95% confidence intervals (CI) for the AUC values."
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "The study assesses the model's calibration by reporting Brier scores for HCR and DLR models."
+    "reason": "The study uses Brier score to assess the calibration of the model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses both T1-weighted and T2-weighted MRI data without explicitly justifying the need for multi-parametric imaging or comparing it to uni-parametric evaluations."
+    "reason": "The study uses both T1-weighted and T2-weighted MRI data without explicitly justifying the need for a multi-parametric approach by comparing it to a uni-parametric evaluation."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the radiomics approach with a non-radiomic method representative of clinical practice (e.g., RECIST scoring). It only compares HCR and DLR models."
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice. It only compares HCR and DLR models."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the models with a simple baseline reference model (e.g., Zero Rules classifier) to justify the use of machine learning methods."
+    "reason": "The study does not compare the models with a simple baseline reference model such as a Zero Rules/No Information Rate classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent data set that is sampled from the same source as the training set."
+    "reason": "The study tests the model on an independent data set that is sampled from the same source as the training set."
   },
   "Item27": {
     "rating": "no",
@@ -138,7 +138,7 @@
   },
   "Item30": {
     "rating": "no",
-    "reason": "While the code is available, the study does not explicitly state that the final model (raw model file or ready-to-use system) is shared."
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
   },
-  "elapsed_time": 11.40375804901123
+  "elapsed_time": 11.791568040847778
 }

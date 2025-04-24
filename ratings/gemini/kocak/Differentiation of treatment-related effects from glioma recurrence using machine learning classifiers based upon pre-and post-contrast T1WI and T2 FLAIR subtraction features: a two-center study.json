@@ -10,7 +10,7 @@
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard for recurrence is histopathological confirmation via second surgical resections, which is a high-quality standard. For TRE, clinical diagnosis criteria are defined based on stability or regression without additional treatment, no progression on conventional MRI and MRS/MRP, and a minimum 6-month follow-up, which represents a reasonable clinical practice-based standard."
+    "reason": "The reference standard for recurrence is pathological confirmation by second surgical resections, which is a high-quality standard. The clinical diagnosis criteria for TRE are also defined, including stability or regression without additional treatment, no progression on conventional MRI and MRS/MRP, and a minimum 6-month follow-up."
   },
   "Item4": {
     "rating": "yes",
@@ -22,51 +22,51 @@
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The imaging protocol with acquisition parameters is described in the 'Imaging Protocol' section, including details on the MRI scanners, sequences, voxel size, FOV, contrast agent administration, and timing of post-contrast scans."
+    "reason": "The imaging protocol with acquisition parameters is described in the 'Imaging Protocol' section, including details about the scanners, sequences, voxel size, FOV, and contrast administration."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The time interval between imaging and the reference standard is appropriate, as the imaging is performed when TRE or recurrence is first noticeable, and the reference standard (pathological confirmation or clinical criteria) is applied subsequently to validate the diagnosis."
+    "reason": "The time interval between imaging and the reference standard is appropriate, as the imaging was performed when TRE or recurrence was first noticeable, and recurrence was confirmed by second surgical resections. The clinical criteria for TRE also include follow-up imaging to assess stability or regression."
   },
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes manual segmentation of the lesions on the subtraction maps, as described in the 'Image Preprocessing and Segmentation' section."
+    "reason": "The study includes segmentation of the lesions on the subtraction maps, as described in the 'Image Preprocessing and Segmentation' section. The regions of interest (ROIs) were manually segmented by neuroradiologists."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation is performed manually by neuroradiologists, indicating that it is not a fully automated process."
+    "reason": "The segmentation was performed manually by neuroradiologists, not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The segmentation methodology is described, including the use of ITK-SNAP for manual segmentation by two neuroradiologists, followed by scrutiny by a neuroradiology professor. The criteria for intra- and interobserver reproducibility are also mentioned."
+    "reason": "The segmentation methodology is described, including the use of ITK-SNAP for manual segmentation by two neuroradiologists, followed by scrutiny by a neuroradiology professor. Intra- and interobserver reproducibility assessments were also conducted."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "Since the segmentation is not fully automated, this item is not applicable."
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The final ROIs were completed by reader 1 after testing the ICC. This does not reflect clinical practice."
+    "reason": "Two neuroradiologists performed the segmentation, so it was not produced by a single reader or automated tool."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features using PyRadiomics, indicating the use of pre-defined feature extraction methods."
+    "reason": "The study extracts hand-crafted radiomic features from the ROIs."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions normalization of images by centering at the mean intensity and dividing by one standard deviation, which is an appropriate preprocessing technique. They also describe the classes of features extracted."
+    "reason": "The study mentions normalization of images by centering at the mean intensity and dividing by one standard deviation. Coregistration and subtraction are also performed. This suggests appropriate use of image preprocessing techniques with transparent description."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses PyRadiomics for feature extraction and provides the URL. This indicates the use of standardized feature extraction software."
+    "reason": "The study used PyRadiomics for feature extraction, which is a standardized software. The URL is provided."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (hand-crafted radiomic features) and classes (Shape, First Order, GLCM, GLZSM, GLRLM, NGTDM, GLDM). They also mention using default settings in pyradiomics."
+    "reason": "The study describes the classes of features extracted (Shape, First Order, GLCM, GLSZ, GLRLM, NGTDM, GLDM). The parameters are set by default in pyradiomics."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study uses tabular data in the form of extracted radiomic features organized in a table."
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
   },
   "Condition5": {
     "rating": "no",
@@ -78,31 +78,31 @@
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses recursive feature elimination (RFE) to select the most important features, which is a method for dimensionality reduction and removing redundant features."
+    "reason": "The study uses recursive feature elimination (RFE) to select the best feature subsets, which is a method for dimensionality reduction by selecting informative features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly justify the appropriateness of the dimensionality compared to the data size using statistical means or empirical evidence. They mention the discrepancy between sample size and feature size but do not provide a robust justification for the final number of features selected."
+    "reason": "The study does not explicitly justify the appropriateness of the dimensionality compared to the data size using statistical means or empirical evidence. While feature selection is performed, there's no discussion on whether the final number of features is appropriate for the sample size."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "Since the study does not use end-to-end deep learning, this item is not applicable."
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions randomly splitting the dataset into training and testing sets at a 7:3 ratio. However, it does not explicitly state whether the split was stratified or if a fixed random seed was used to ensure reproducibility. It also does not mention whether the data split was done on the patient level, not the scan level. It does mention up-sampling to deal with class imbalance."
+    "reason": "The study mentions that the dataset was randomly split into training and testing sets at a 7:3 ratio. This indicates a proper data partitioning process."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study attempts to address potential confounding factors by performing the study in two affiliations using similar Siemens scanners. They also mention that to avoid multicenter MRI standardization bias, the enrolled patients in the two affiliations underwent a similar scan set up on similar Siemens scanners."
+    "reason": "The study attempts to address potential confounding factors by using data from two different hospitals in China and taking measures to avoid multicenter MRI standardization bias. They used similar scanners and scan setups."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, specificity, PPV, and NPV for the classification task. They also provide ROC curves."
+    "reason": "The study reports appropriate accuracy metrics for the classification task, such as AUC, accuracy, sensitivity, specificity, PPV, and NPV. ROC curves are also presented."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, calculated using a non-parametric bootstrap method."
+    "reason": "The study includes uncertainty measures by calculating 95% confidence intervals (CI) using a non-parametric bootstrap method."
   },
   "Item22": {
     "rating": "no",
@@ -110,19 +110,19 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses both T1WI and T2 FLAIR, and does not provide a comparison with uni-parametric imaging or justification for the use of both."
+    "reason": "The study uses both T1WI and T2 FLAIR, and does not provide a uni-parametric evaluation or proof of its inferiority. The authors do justify the use of both sequences by stating that T2 FLAIR provides complementary information to T1WI."
   },
   "Item24": {
-    "rating": "yes",
-    "reason": "The study compares the performance of the radiomic approach with results from previous studies using conventional MRI and advanced MRI sequences, providing a context for the added clinical value of the proposed method."
+    "rating": "no",
+    "reason": "The study does not compare the radiomic approach with a non-radiomic method representative of clinical practice. There is no comparison to semantic features or RADS/RECIST scoring."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+    "reason": "The study does not compare the SVM model with a simple baseline reference model. There is no comparison to a Zero Rules/No Information Rate classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training set."
   },
   "Item27": {
     "rating": "yes",
@@ -130,15 +130,15 @@
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data being shared with the public."
+    "reason": "The study does not mention any data availability."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code being shared with the public."
+    "reason": "The study does not mention any code availability."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the model being shared with the public."
+    "reason": "The study does not mention any model availability."
   },
-  "elapsed_time": 12.458712100982666
+  "elapsed_time": 12.151573896408081
 }
