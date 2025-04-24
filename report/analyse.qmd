@@ -328,7 +328,7 @@ class Metrics(BaseModel):
 Upon loading, we were able to verify that all the LLM outputs have, as expected, generated a correctly formatted JSON. Below we present an example for one such article. Additionally, the flexibility of our specification also allows for a small reason to be appended to each rating --- this facilitates the verification of LLM claims. Indeed, this explanation ends up being helpful at a later stage of this analysis when we start getting into possible reasons for disagreement.
 
 ```{r}
-llm_rating_files <- list.files(path = "../ratings/akinci-dantonoli", pattern = "*json", full.names = T)
+llm_rating_files <- list.files(path = "../ratings/gemini/akinci-dantonoli", pattern = "*json", full.names = T)
 names(llm_rating_files) <- lapply(
   llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
@@ -1019,7 +1019,7 @@ df_original
 ```
 
 ```{r}
-llm_rating_files <- list.files(path = "../ratings/kocak", pattern = "*json", full.names = T)
+llm_rating_files <- list.files(path = "../ratings/gemini/kocak", pattern = "*json", full.names = T)
 names(llm_rating_files) <- lapply(
   llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][4])
 )
