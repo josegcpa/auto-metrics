@@ -1,0 +1,144 @@
+{
+  "Summary": "This study introduces PCMM-Net, a deep learning framework integrating prior clinico-radiological features for LVI prediction in breast cancer, demonstrating superior diagnostic performance compared to clinico-radiological features alone, MM-Net, and radiomics.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, ensuring a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathological evaluation of surgical specimens, which is a high-quality reference standard for LVI."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study uses data from a single center."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced MRI, which is a standard imaging technique for breast cancer assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The imaging protocol with acquisition parameters is clearly reported, enhancing the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that mastectomy or lumpectomy was performed within 14 days of the MRI examination, which is an appropriate interval."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the tumor volume of interest (VOI) on MRI images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study uses manual segmentation, not fully automated segmentation."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual delineation of the 3D VOI around the tumor by a board-certified radiologist."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not use fully automated segmentation."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were produced by a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features using PyRadiomics."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions z-score normalization and the use of different image types (T1WI, T2WI, cT1WI). However, the description of gray level discretization parameters is missing."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses PyRadiomics for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first order, shape, texture) and mentions the use of PyRadiomics. However, a file presenting the complete configuration of these settings is not included in the study materials."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses an end-to-end deep learning architecture called PCMM-Net."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study implements a three-step procedure to ensure the selection of robust radiomics features, including univariate analysis, correlation analysis, and LASSO."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses Spearman's or Pearson's correlation analyses to eliminate redundant features and LASSO for feature selection."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions random stratified sampling for creating training and validation datasets."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity, which are appropriate performance evaluation metrics for the classification task. Confusion matrices are not included."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of PCMM-Net with clinico-radiological features assessed by radiologists, which is representative of clinical practice."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance with simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent validation dataset sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data sharing."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code sharing."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model sharing."
+  },
+  "elapsed_time": 9.941588163375854
+}

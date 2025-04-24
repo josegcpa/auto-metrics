@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the use of a support vector machine (SVM) classifier to differentiate between stable disease (SD), pseudoprogression (PsP), and progressive disease (PD) in patients with high-grade glioma (HGG) using longitudinal structural and perfusion MRI data. The results indicate that the SVM classifier, particularly when using combined structural and perfusion features and longitudinal data, outperforms radiologists in classification accuracy.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria include histologically confirmed HGG, availability of DSC MR perfusion, and structural MRI before and after perfusion, while excluding patients with inadequate imaging or interventions between perfusion time points."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histology following repeat surgery or biopsy where available (20% of cases). In the remaining cases, classification is based on prolonged radiological and clinical surveillance, with expert consensus from a multidisciplinary team, which can be considered a reasonable reference standard in the absence of histology."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study appears to be conducted at a single institution, as all imaging studies were performed at the department of the authors."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source, using structural and perfusion MRI, reflects established standardization approaches. The MRI protocols are described, and the use of DSC perfusion MRI is a common technique in glioma surveillance."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed imaging protocols with acquisition parameters for both structural and perfusion MRI, enhancing the replicability of the method. Specific parameters such as TR, TE, slice thickness, and FOV are reported."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes longitudinal data with time intervals between imaging and treatment response assessment. The time interval between initial and final imaging studies is reported for both groups, which is appropriate for validating the presence or absence of target conditions at the moment of diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of lesion areas, including hyperintensity on FLAIR and contrast enhancement on post-contrast T1W images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was conducted manually by a neuroradiologist, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, specifying that areas of enhancing tissue on post-contrast T1W images and non-enhancing T2 hyperintensity were manually segmented, based on T2 FLAIR images overlaid on post-contrast T1W images, excluding resection cavities and areas of macroscopic necrosis."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation in this study was performed by a single reader (neuroradiologist) and supervised by another, which reflects clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from the segmented regions, including distribution and textural features from structural and perfusion MRI sequences."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps, including co-registration, log-transformation, normalization, bias field correction, and intensity matching of skull-stripped images. It also describes the calculation of normalized rCBV and rCBF values relative to the ipsilateral basal ganglia. These steps are appropriate for the imaging modalities used."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state the use of a standardized feature extraction software compliant with IBSI. While Olea Sphere 3.0 is used for DSC perfusion analysis, it's not clear if this software was used for all feature extraction or if it is IBSI compliant."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (structural and perfusion features) and mentions the extraction of distribution and textural features. It also mentions the use of LASSO for feature selection, which implies some level of parameter reporting. The github repository link is provided, which may contain more details."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features from the images, which are then used in the SVM classifier."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses an SVM classifier, which is not an end-to-end deep learning pipeline. The features are extracted separately and then fed into the SVM model."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study uses LASSO for feature selection, which can be considered a method for removing non-robust features by selecting the most informative ones."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study employs LASSO for feature selection, which is a method for dimensionality reduction by selecting the most informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size. While LASSO is used for feature selection, there is no discussion on whether the number of instances and features is appropriate for the modeling algorithm."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions the use of K-fold cross-validation for SVM training and validation, which implies a proper data partitioning process. However, the details of the data splitting (e.g., stratified split, patient-level split) are not explicitly mentioned."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors. There is no mention of analyzing or removing confounding factors such as different distributions of patient characteristics across sites or scanners."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports sensitivity, specificity, and accuracy for classification tasks, which are appropriate performance evaluation metrics. However, confusion matrices are not explicitly included."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (both structural and perfusion MRI) without a clear justification for its superiority over uni-parametric imaging. There is no comparison with uni-parametric evaluations to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the SVM classifier's performance against radiologists' interpretation, which can be considered a non-radiomic method representative of clinical practice. Statistical significance is assessed using McNemar\u2019s test."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with simple or classical statistical models. There is no mention of comparing the SVM classifier's performance against a baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses K-fold cross-validation, which involves internal testing on a subset of the data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that imaging, segmentation, clinical, or radiomics analysis data is shared with the public."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study provides a link to a GitHub repository (https://github.com/csudre/LongPerfusion) where the code used to generate results is available."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system. While the code is available, the trained model itself is not explicitly shared."
+  },
+  "elapsed_time": 13.336974143981934
+}

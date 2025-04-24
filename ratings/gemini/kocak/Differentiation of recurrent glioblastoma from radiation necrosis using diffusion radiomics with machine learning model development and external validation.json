@@ -1,0 +1,144 @@
+{
+  "Summary": "This study aimed to develop and validate a radiomics strategy using machine learning classifiers from conventional imaging and ADC to differentiate recurrent GBM from RN after CCRT or radiotherapy. The diffusion radiomics model showed robustness with an AUC of 0.80 in the independent test set.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient enrollment, aiming for a representative study population. The criteria are clearly stated in the Methods section."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histopathology or clinicoradiological follow-up, which are acceptable methods for diagnosing recurrent GBM or RN. The criteria for clinicoradiological diagnosis are also defined."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from two institutions, Yonsei University and Asan Medical Center, making it a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source includes conventional MRI sequences (T2-weighted and postcontrast T1-weighted images) and ADC, which are standard sequences in glioma protocols."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details of the MRI protocol, including the scanner type, field strength, and specific parameters for each sequence. Supplementary Table 1 provides further details on the acquisition protocols."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes a criterion that the new or enlarging region of contrast enhancement should occur within the radiation field 12 weeks after CCRT or RT, which is appropriate for validating the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the contrast-enhancing solid portion of the tumor on T1C images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed semi-automatically with an interactive level-set region of interest, requiring human intervention."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of interactive level-set region of interest and edge-based and threshold-based algorithms using 3D Slicer."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The segmentation was performed through a consensus discussion of two neuroradiologists, so it was not produced by a single reader or automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from the images."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image preprocessing techniques, including N4 bias correction and signal intensity normalization. It also mentions resampling to a uniform voxel size."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics, version 2.0, which is a standardized software for feature extraction, and mentions adherence to the IBSI guideline."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (shape, first order features, and second-order features) and provides a supplementary table listing the extracted features."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. It uses hand-crafted feature extraction and machine learning classifiers."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses feature selection methods such as F-score, LASSO, or MI to reduce dimensionality and select informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, either statistically or empirically."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study uses stratified ten-fold cross-validation for feature selection and machine learning, which is a proper data partitioning process. The data split is done at the patient level."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study mentions that clinical factors were not integrated into the radiomics model due to statistical insignificance in their dataset, but it does not explicitly analyze or remove potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, and specificity for the classification task. It also provides confidence intervals for the AUC."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study investigates multiple MRI sequences and their combination, but it does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice. It also does not provide proof of improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not perform a comparison with a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution (Asan Medical Center), indicating external testing."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data sharing with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code sharing with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model sharing with the public."
+  },
+  "elapsed_time": 10.88649320602417
+}

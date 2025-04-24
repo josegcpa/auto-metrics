@@ -1,0 +1,144 @@
+{
+  "Summary": "This study developed a deep learning model (Radio-GCN) based on multi-sequence MRI to simultaneously predict EGFR mutation status (WT, 19Del, and 21L858R) in NSCLC patients with brain metastases. The model achieved high AUCs in both lesion-wise and patient-wise analyses on an independent testing cohort, demonstrating its potential as a diagnostic tool for personalized treatment.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on genetic testing results of EGFR mutation, which is a robust and well-established clinical marker."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is a single-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (3.0-T brain MRI with standard sequences) reflects established standardization approaches for brain metastasis diagnosis."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition protocol with specific parameters for each MRI sequence, ensuring replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses brain MRI data acquired before any treatment, ensuring the imaging reflects the EGFR mutation status at the time of diagnosis."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of brain metastases on MRI images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by radiologists, not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual segmentation process, including the experience level of the radiologists and the criteria for lesion exclusion."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, so formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The test set segmentation masks were produced by radiologists, reflecting clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features using the PyRadiomics package, indicating the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of the Elastix toolbox for registration and resampling to reduce image anisotropy, which are appropriate preprocessing techniques. They also mention normalization to [0, 255]."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics package (version 2.2.0) for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order, shape, GLCM, GLRLM, GLSZM, NGTDM, GLDM) and mentions the use of L2-norm and MinMax methods for feature standardization."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study extracts 1,290 radiomics features, which are then used as input for the model, indicating the presence of tabular data."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses a hybrid approach combining radiomics features with a graph convolutional network (GCN), rather than an end-to-end deep learning pipeline."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility, or stability analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of redundant features through feature selection methods."
+  },
+  "Item16": {
+    "rating": "n/a",
+    "reason": "Since feature selection was not performed, this item is not applicable."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study divides the data into training and testing cohorts based on timepoints. They performed 5-fold cross validation on the training set."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes clinical parameters such as age, sex, smoking, and alcohol consumption as potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC, sensitivity, specificity, and accuracy to evaluate model performance, which are appropriate metrics for the classification task. They also report the kappa coefficient."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports AUC errors using bootstrapping."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (T1-CE, T2WI, DWI, and T2-FLAIR) without a uni-parametric evaluation to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the Radio-GCN model with a non-radiomic method representative of clinical practice. The study does not provide proof of improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set sampled from a different time period but the same institution."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The model is not tested with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are available from the corresponding author on reasonable request, but does not indicate public sharing."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the code related to automatic segmentation and/or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form."
+  },
+  "elapsed_time": 10.030220031738281
+}

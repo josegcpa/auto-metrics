@@ -1,0 +1,144 @@
+{
+  "Summary": "This study develops and validates a radiomics-based machine learning model to predict the EGFR T790M mutation in NSCLC patients at diagnosis using CT images. The model integrates radiomic features and clinical factors, achieving an AUC of 0.86, demonstrating potential for non-invasive prediction of this mutation to aid in targeted treatment planning.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are detailed in the Materials and methods section."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is the EGFR T790M mutation status determined by ARMS-PCR or NGS on relapsed tumor tissue or cfDNA, which is a well-established method for detecting this mutation in clinical practice."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study uses data from a single institution, the First Affiliated Hospital of Shandong First Medical University."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is CT, a standard imaging technique in NSCLC diagnosis and staging. The study mentions using mediastinal and lung window settings, which are common practices in CT imaging protocols for lung cancer."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the CT acquisition parameters, including tube voltage, tube current, detector collimation, field of view, pitch, and matrix size. It also mentions the reconstruction section thickness and window settings."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses CT scans performed prior to any treatment for lung cancer, ensuring that the imaging data reflects the tumor characteristics at the time of diagnosis, which is appropriate for predicting the development of T790M mutation after TKI treatment."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves manual segmentation of tumor regions of interest (ROIs) on CT images, indicating the inclusion of segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study explicitly states that tumor ROIs were manually segmented, indicating that the segmentation process was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that ROIs were manually segmented slice by slice by a senior radiologist using ITK-SNAP. It also mentions verification by another radiologist and the use of ICC to assess consistency."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study involves manual segmentation, so a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that the tumor regions were manually segmented by a senior radiologist, which means the test set segmentation masks were produced by a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features from CT images, which are hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes image preprocessing steps, including converting pixel values to Hounsfield Units (HU) and resampling to standardize image representations. The spacing between slices and pixel spacing were set to 1 mm and [1.0, 1.0] mm, respectively. This indicates an attempt to appropriately preprocess the images."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the pyradiomics library for feature extraction, which is IBSI compliant. The library is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomic features extracted (first-order statistics, shape-based, and textural features) and mentions the use of wavelet and Laplacian of Gaussian filters. It also provides information on the parameters used for these filters (sigma values for LoG)."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images and clinical features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses machine learning models (RF, SVM, etc.) with extracted radiomic features, rather than an end-to-end deep learning approach that directly processes image data."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study assesses the consistency of segmentation between two radiologists using ICC and only retains features with an ICC greater than 0.85, indicating an attempt to remove non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses the LASSO algorithm for feature selection, which is a method for dimensionality reduction by selecting the most informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of features selected."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly assigned to a training cohort and a validation cohort. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step, or whether a fixed random seed was used. It also does not mention whether the data split was stratified or on the patient level."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study includes clinical factors such as age, gender, smoking status, performance status, stage of disease, and serum level of tumor markers in the analysis, indicating an attempt to handle potential confounding factors. The Chi-square and Student\u2019s t-tests were first used to screen clinical factors related to EGFR T790M mutation and those with a P-value lower than 0.05 were retained for further analysis."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, sensitivity, and specificity for evaluating the performance of the models, which are appropriate metrics for a classification task. The study also includes confidence intervals for the AUC."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, which is a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study includes calibration curves for the nomogram model, indicating an assessment of the model's calibration."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of the model using a single imaging set versus multiple imaging sets or provide justification for the use of multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics-based model with a non-radiomic approach that is representative of clinical practice. It also does not provide proof of improved diagnostic accuracy or patient outcome compared to a non-radiomic method."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of the machine learning models with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses an independent validation cohort to test the model, which is sampled from the same source as the training cohort."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not test the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that the original data supporting the conclusions of the paper will be provided unreservedly by the authors to any qualified researcher and that the datasets used and/or analyzed during the current study are available from the corresponding author."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 12.392080068588257
+}

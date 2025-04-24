@@ -1,0 +1,144 @@
+{
+  "Summary": "This study developed a radiomics nomogram based on multi-slice computed tomography (MSCT) and clinical factors to predict intestinal fibrosis in inflammatory bowel disease (IBD) patients. The nomogram, which integrates radiomics score, engorged vasa recta, AP-CT value, and lesion location, demonstrated superior discriminative ability compared to logistic regression and clinical models in the validation sets. The study highlights the potential of the nomogram as a valuable tool for accurately stratifying fibrosis in IBD patients, although further validation and addressing identified limitations are necessary to enhance its applicability.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. Inclusion criteria consisted of patients who have been diagnosed as CD or UC and have the qualification of MSCT images. Exclusion criteria included pregnant or nursing women, hyperthyroidism or iodine allergy, severe diseases affecting vital signs, mental illness or low cognitive ability, liver diseases, kidney diseases, digestive tract cancer, unqualified images, and images outside the colon and rectum."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for intestinal fibrosis is based on histological tissue samples evaluated by a skilled pathologist with 15 years of experience, using Masson's trichrome staining and H&E staining. A semi-quantitative scoring system was employed to assign scores ranging from 0 to 4, representing the severity of fibrosis and inflammation."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study was conducted at a single institution, The Second Affiliated Hospital of Harbin Medical University."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is MSCT, which is a clinically translatable imaging technique for assessing IBD. The study mentions quality control was conducted following the guidelines for imaging examination and reporting of IBD in China."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition protocol, including the type of CT machine used, scan parameters (5 mm thick scan with a 0.75 mm thick thin layer reconstruction), contrast medium details (dosage of 60\u201380 mL of the contrast medium containing 300 mg/mL of iodine was injected at a rate of 3.0\u20133.5 ml/s), and timing of arterial and intravenous phase scans (25\u201335 s after and 65\u201390 s after, respectively)."
+  },
+  "Item7": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the time interval between the MSCT scans and the acquisition of histological tissue samples used as the reference standard. The text only mentions that histological tissue samples were obtained through endoscopic biopsies or surgical resections performed at their hospitals."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the bowel wall on MSCT images to define the region of interest (ROI) for radiomic feature extraction."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by an experienced abdominal radiologist, indicating that it was not a fully automated process."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, stating that an experienced abdominal radiologist performed manual segmentation on the axial slices of the MSCT images using ITK-SNAP software. The radiologist was blinded to clinical and pathological data and took care to include the entire thickness of the bowel wall in the ROI while excluding adjacent fat and vascular structures."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that the ROI was delineated by an experienced abdominal radiologist, indicating that the final segmentation in the test set was produced by a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts a large number of quantitative image features from MSCT images, indicating the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of B-spline interpolation for image resampling to a target resolution of 1mm x 1mm x 1mm. It also describes the application of various image preprocessing methods, such as gray level co-occurrence matrix (GLCM), gray level run length matrix (GLRLM), gray level size zone matrix (GLSZM), and gray level dependence matrix (GLDM). The study specifies that the image grayscale values were quantized into 64 discrete levels and a window size of 5mm x 5mm was utilized for image preprocessing methods. For GLCM features, a pixel pair distance of 1 was set, and features were calculated in all four principal directions (0\u00b0, 45\u00b0, 90\u00b0, and 135\u00b0)."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics, an open-source platform implemented in Python, for processing and extracting radiomic features from medical images. This indicates the use of a standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature naming convention, detailing the image preprocessing method and associated parameters (e.g., log-sigma-1-0-mm), the type of feature (e.g., first-order, sphericity, GLDM), and the specific feature extraction method (e.g., run length non-uniformity). This provides a transparent reporting of feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, as it extracts 1,450 standardized radiomic features and combines them with clinical factors in a multivariate logistic regression analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. Instead, it relies on hand-crafted feature extraction and traditional machine learning algorithms."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs feature selection using various machine learning algorithms, including Logistic Regression (LR), Support Vector Machine (SVM), Random Forest (RF), Stochastic Gradient Descent (SGD), and Linear Discriminative Analysis (LDA), to identify the most relevant and informative features for constructing the radiomics score (Rscore). This indicates the removal of redundant features through algorithm-based feature selection."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. There is no statistical demonstration or empirical evidence provided to support the chosen number of features in relation to the number of instances in the training data set."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that the dataset was divided into training (n\u2009=\u2009145) and testing (n\u2009=\u200973) sets using a random split method (2:1 ratio). However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step, or whether the data split was stratified to maintain outcome variable distribution in the test set. It also does not mention whether the data split was on the patient level, not the scan level. The study does not explicitly mention that all data processing (e.g., scaling, missing value imputation, oversampling or undersampling) is done blinded to the test set data."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers clinical factors such as engorged vasa recta, AP-CT value, and lesion location, which can be potential confounding factors. The study performs single-factor analysis to determine the significance of clinical factors and includes those showing significant differences in the nomogram."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC for Receiver Operating Characteristics (ROC) curves to evaluate the discriminative ability of the models. It also reports accuracy, sensitivity, and specificity. The study includes calibration curves to assess the agreement between the predicted probabilities from the nomogram and the actual probabilities observed in the data. Decision curve analysis was performed to evaluate the clinical usefulness of the nomogram by assessing the net benefits at different threshold probabilities."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study includes calibration curves to assess the agreement between the predicted probabilities from the nomogram and the actual probabilities observed in the data."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of the nomogram using a single imaging set versus multiple imaging sets. The study uses MSCT images and clinical factors, but it does not justify the need for a multi-parametric approach by formally comparing its performance with a uni-parametric evaluation."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics nomogram with a clinical model (based on clinical factors alone) and a logistic regression (LR) model. The nomogram demonstrates superior predictive accuracy compared to both the LR model and the clinical model. The study uses AUC as a metric for comparison."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of the radiomics nomogram with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier. The study compares the nomogram with a clinical model and a logistic regression model, but it does not include a comparison with a simpler baseline model to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent data set (test set) that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not test the model with independent data from other institutions. The data used in the study comes from a single institution."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement, indicating that the datasets used and/or analyzed during the current study are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public. The data availability statement mentions that the datasets are available upon request, but it does not mention the availability of code or scripts."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention whether the final model is shared in the form of a raw model file or as a ready-to-use system. The data availability statement mentions that the datasets are available upon request, but it does not mention the availability of the model."
+  },
+  "elapsed_time": 16.37320375442505
+}

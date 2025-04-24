@@ -1,0 +1,144 @@
+{
+  "Summary": "This study developed and validated a multiparametric MRI radiomics model to differentiate pseudoprogression from early tumor progression (ETP) in glioblastoma patients after standard treatment. The model, incorporating contrast-enhanced T1-weighted imaging, FLAIR, ADC, and CBV maps, demonstrated improved diagnostic performance compared to single-parameter or single-imaging modality approaches and showed robustness in external and internal validation cohorts.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are detailed in the Materials and Methods section."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for final diagnosis (pseudoprogression vs. ETP) involves a consensus between a neuro-oncologist and a neuroradiologist, incorporating Response Assessment in Neuro-Oncology (RANO) criteria and, when available, pathological diagnoses from second-look operations. This represents a robust and clinically relevant reference standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from two different tertiary centers (one for training and one for external validation), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source includes standard MRI sequences (T1-weighted, FLAIR, DWI, DSC) commonly used in clinical practice for glioblastoma assessment, reflecting established standardization approaches."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed acquisition protocols for MRI in the supplementary material, enhancing the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The time interval between imaging and the reference standard is within 12 weeks of completing CCRT, which is appropriate for validating the presence or absence of pseudoprogression or ETP at the time of imaging."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of the contrast-enhancing tumor region, indicating that Condition 1 is met."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed semi-automatically, requiring human intervention, so it is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning the use of segmentation threshold and region-growing algorithms implemented in MITK software, along with validation by experienced neuroradiologists."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "Since the segmentation is semi-automatic and not fully automated, this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation in the test set was performed by a single reader, which better reflects clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features, indicating that Condition 3 is met."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions signal intensity normalization for CE-T1WI and FLAIR data using the hybrid white-stripe method. It also describes outlier exclusion from ADC and CBV maps. These preprocessing steps are appropriate for the imaging modalities used."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study mentions the use of MITK software for segmentation but does not explicitly state the use of standardized feature extraction software compliant with IBSI. Therefore, this criterion is not met."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomic features extracted (first-order, shape, texture, wavelet-transformed) and provides detailed information in the supplementary material. This constitutes transparent reporting of feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features organized for analysis, so Condition 4 is met."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach; it relies on hand-crafted feature extraction and a generalized linear model, so Condition 5 is not met."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study uses LASSO for feature selection, which inherently removes non-robust features by shrinking their coefficients to zero. This addresses the removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study employs LASSO for feature selection, which is a method for dimensionality reduction by selecting the most informative features and setting the coefficients of irrelevant features to zero. This addresses the removal of redundant features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses LASSO with 10-fold cross-validation, which is designed to avoid overfitting and provide robust generalized performance, suggesting an appropriate balance between dimensionality and data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "Since the study does not use an end-to-end deep learning pipeline, this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into training and validation sets. The training set is used for feature selection and model construction, and the external validation set is used to test the model's generalizability. The study also mentions using 10-fold cross-validation within the training set for robust model building."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors such as age, sex, KPS score, IDH mutation status, MGMT promoter methylation status, and extent of surgical treatment. It reports on differences between the training and validation sets regarding these factors and adjusts for them in survival analysis."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC for ROC analysis to evaluate diagnostic performance, which is appropriate for the classification task. It also reports sensitivity and specificity. The study includes confidence intervals for the AUC values."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals for the AUC values, providing a measure of uncertainty in the performance evaluation."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform a uni-parametric imaging evaluation to justify the need for a multi-parametric approach. It compares the multiparametric model with single-parameter approaches but does not demonstrate the inferiority of using a single imaging set."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the radiomics model with a non-radiomic approach using single parameters (mean and minimum ADC, mean and maximum CBV), which are representative of clinical practice. It uses statistical methods (Bonferroni correction) to evaluate the added value of the model."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier) to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses 10-fold cross validation on the training set, which constitutes internal testing."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes external testing using data from another institution, demonstrating the model's generalizability."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data sharing with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the code used for automatic segmentation or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form with the public."
+  },
+  "elapsed_time": 12.841545104980469
+}

@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the potential of CT radiomics in differentiating between Wilms tumor (WT) and clear cell sarcoma of the kidney (CCSK) in pediatric patients. The study retrospectively analyzed contrast-enhanced CT images, extracting radiomics features from the corticomedullary phase. A radiomics model was constructed using logistic regression and evaluated on both training and test sets. The results suggest that CT radiomics can be diagnostically valuable for distinguishing between WT and CCSK.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population. Inclusion criteria included pathological confirmation of CCSK or WT and undergoing preoperative contrast-enhanced CT examinations. Exclusion criteria included noticeable artifacts in CT images, prior chemotherapy or radiotherapy before pathological diagnosis, and unclear pathological diagnoses."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is pathological examination, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution, Children's Hospital of Chongqing Medical University."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a common and standardized imaging technique in clinical practice."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the CT scanning parameters, including slice thickness, slice spacing, automatic voltage, automatic tube current, contrast agent type and dose, and timing of corticomedullary and nephrographic phase scans."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that patients underwent preoperative contrast-enhanced CT examinations, implying that the imaging was performed before the reference standard (pathological examination) was obtained. This suggests an appropriate time interval between imaging and the reference standard."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual delineation of tumor boundaries on CT images, which constitutes segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions manual delineation of tumor boundaries by a radiologist, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that a radiologist manually delineated the tumor boundaries using ITK-SNAP software, and a senior radiologist reviewed and verified these areas."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were reviewed by a senior radiologist, which does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features, which are hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions resampling CT images to a uniform resolution and discretizing CT images with a binwidth set to 25. These procedures are implemented to ensure the reproducibility of radiomics features."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used FeAture Explorer (version 0.5.5) for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomics features extracted (first-order, morphological, and texture features) and provides details on the feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomics features extracted from CT images."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it relies on hand-crafted feature extraction and a logistic regression model."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study retained radiomics features with an ICC greater than 0.80 between double annotations to ensure the robustness of the radiomics features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used Pearson correlation coefficient (PCC) values to mitigate correlations among radiomics features, eliminating features with a PCC value exceeding 0.90. The Least Absolute Shrinkage and Selection Operator (LASSO) method was also employed for feature selection."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. There is no statistical evidence or reference to previous literature to support the chosen number of features in relation to the sample size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions randomly stratifying patients into training and test sets using a 7:3 ratio. They also used SMOTE to address imbalanced class distribution in the training set."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address or analyze potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, specificity, and F1 score for the classification task. ROC curves are also presented."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study includes calibration curves to evaluate the model's goodness of fit."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses contrast-enhanced CT images from the corticomedullary phase. There is no discussion or comparison with uni-parametric imaging or justification for using multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study includes an analysis of qualitative and semi-quantitative imaging characteristics, such as maximum tumor diameter, CTmax/CT renal vein, and the presence of dilated peritumoral cysts, which can be considered a non-radiomic approach for comparison."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model or justify the use of machine learning methods with proof of increased performance compared to such a baseline."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent test set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets generated or analyzed are not publicly available."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the scripts related to automatic segmentation or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form."
+  },
+  "elapsed_time": 11.140711069107056
+}

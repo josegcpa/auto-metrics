@@ -1,0 +1,144 @@
+{
+  "Summary": "This study develops a radiomics model based on MRV shape features to predict high trans-stenotic pressure gradients (TPG) in IIH patients with venous sinus stenosis. The model, incorporating clinical features, shows good performance in predicting high TPG, potentially aiding in identifying patients who would benefit from stenting.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are based on established diagnostic criteria for IIH and specific imaging requirements."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard, TPG measurement via catheter venography with venous manometry, is a well-established method for assessing the severity of venous sinus stenosis, making it a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution (Beijing Tiantan Hospital, Capital Medical University)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source, contrast-enhanced MRV, is a clinically relevant imaging technique for assessing venous sinus stenosis in IIH patients. While specific standardization approaches like PI-RADS are not applicable here, MRV is a standard imaging modality for this purpose."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the MRV acquisition parameters, including matrix size, slice thickness, echo time, repetition time, and flip angle, as well as contrast agent details, which allows for potential replication of the imaging protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses preprocedural MRV to predict TPG, which is measured during catheter venography. This temporal relationship is appropriate for validating the presence or absence of target conditions at the moment of diagnostic imaging."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the stenotic regions in MRV images, fulfilling the condition for segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by neuroradiologists, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study mentions that the stenotic regions were manually segmented by neuroradiologists using 3D Slicer, providing a transparent description of the segmentation methodology."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automatically, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The stenotic regions were manually segmented by neuroradiologists, indicating that the final segmentation in the test set was produced by a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts shape features using the PyRadiomics package, which are hand-crafted radiomic features."
+  },
+  "Item11": {
+    "rating": "no",
+    "reason": "The study mentions the use of contrast-enhanced MRV but does not provide detailed information on image preprocessing techniques, such as gray level normalization or image registration. The description lacks specifics regarding gray level discretization parameters or details of different image types used."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics package (version 3.0) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (shape features) and provides information on the feature extraction parameters by mentioning the use of PyRadiomics. However, a complete configuration file is not included in the study materials."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features and clinical characteristics organized in tables."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It relies on hand-crafted feature extraction and traditional machine learning techniques."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses the LASSO algorithm for feature selection, which is a method for removing redundant features by selecting the more informative ones."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification for the number of instances and features used in the final training dataset."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that the data was randomly divided into training and test datasets with a 7:3 ratio. However, it does not explicitly state whether the data split was done at the patient level or whether stratified splitting was used to maintain outcome variable distribution."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors by performing univariable analysis to identify clinical features associated with TPG. Sex, cervicodynia, and anticoagulant use were identified as significant predictors and incorporated into the nomogram."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports the AUROC for assessing the discrimination performance of the radiomics score and nomogram, which is an appropriate metric for classification tasks. The study also calculates metrics derived from the confusion matrix."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUROC values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the nomogram using a calibration curve, which visually represents how close the predicted probabilities are to the actual outcomes."
+  },
+  "Item23": {
+    "rating": "yes",
+    "reason": "The study uses a single imaging set (contrast enhanced-MRV) for radiomics analysis. The study does not compare the performance of multi-parametric imaging with uni-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a non-radiomic method for comparison purposes. It does not compare the performance of the radiomics model with semantic features, RADS or RECIST scoring, or simple volume/size evaluations."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the radiomics model with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent test dataset that is sampled from the same source as the training dataset."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a statement on the availability of data and material, indicating that the datasets generated or analyzed during the study are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public. The availability of code is not mentioned."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 11.503825902938843
+}

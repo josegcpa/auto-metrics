@@ -1,0 +1,144 @@
+{
+  "Summary": "This study develops and validates CT-based intratumoral, peritumoral, and combined radiomics signatures to predict progression-free survival (PFS) in patients with chondrosarcoma (CS). The combined radiomics signature, incorporating both intratumoral and peritumoral features, demonstrates superior predictive performance compared to individual signatures, potentially aiding clinicians in individualized treatment planning.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is progression-free survival (PFS), which is a clinically relevant and well-defined outcome measure."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from two different institutions, making it a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is non-contrast-enhanced CT, a standard imaging technique used in the clinical management of chondrosarcoma."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed CT scanning protocols in Table S1, ensuring replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that CT scans were performed within 2 weeks prior to obtaining surgical or biopsy pathology, which is appropriate for validating the presence or absence of target conditions at the time of imaging."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the tumor and peritumoral regions of interest (ROIs) on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by two radiologists using ITK-SNAP software, so it is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of ITK-SNAP software and the expansion of the peritumoral ROI by 3 mm using the RIAS software."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The remaining image segmentations were performed by Reader 1 after reproducibility analysis, reflecting clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomics features from the intratumoral and peritumoral ROIs."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions resampling, grayscale discretization, and normalization of CT images before feature extraction, which are appropriate preprocessing techniques. However, the specific parameters for gray level discretization are not fully detailed."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions the use of the RadCloud platform for feature extraction, which can be considered a standardized software. However, the version number is not provided."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomics features extracted (first-order statistics, shape- and size-based features, texture features, and higher-order statistical features). However, a complete configuration file or statement for all feature extraction parameters is not explicitly provided."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomics features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study mentions the use of intra- and inter-class correlation coefficients (ICCs) to evaluate reproducibility and exclude features with ICC < 0.75, indicating removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses Pearson correlation analysis to reduce redundancy and LASSO Cox regression to select optimal features, indicating removal of redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for it."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions the use of training and test cohorts from two different centers, which implies a data partitioning process. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline or whether it was random and reproducible."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges the potential for differences in scanner parameters between centers and attempts to address this through standardization techniques. However, it does not explicitly analyze or remove other potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics such as C-index, time-dependent AUC, and time-dependent C-index for survival prediction."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the C-index, indicating consideration of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study generates calibration curves to compare signature-predicted survival with actual survival, indicating calibration assessment."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the combined signature with uni-parametric imaging or provide justification for the use of multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method representative of clinical practice or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics models with simple or classical statistical models to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set from another institution."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study includes a statement on data availability, but it indicates that the datasets are available from the corresponding author on reasonable request, not publicly shared."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the code used for radiomics analysis."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model or providing a ready-to-use system."
+  },
+  "elapsed_time": 10.736035108566284
+}

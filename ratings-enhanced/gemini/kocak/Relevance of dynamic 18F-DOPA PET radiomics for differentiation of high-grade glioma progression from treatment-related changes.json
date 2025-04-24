@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the utility of static and dynamic 18F-DOPA PET radiomics for differentiating high-grade glioma (HGG) progression from treatment-related changes (TRC). The study compares the diagnostic performance of radiomics-based machine learning models to the current PET imaging standard of care, using data from two institutions. The results suggest that radiomics features provide only a marginal improvement over classical analysis based on TBR values.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient selection, including histological confirmation of HGG and a minimum interval between radiation therapy and PET acquisition."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histopathology or clinical-radiology follow-up based on RANO criteria, which is a well-established standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from two different institutions (CHRU of Nancy and Piti\u00e9-Salp\u00eatri\u00e8re hospital in Paris, France)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is 18F-FDOPA PET, which is recommended by RANO for assessment of gliomas."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition parameters for each of the four different imaging systems used."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes only patients with a minimum 3-month interval between the end of radiation therapy and the 18F-FDOPA PET acquisition to reduce the risk of false positives. Final diagnoses were determined from the histopathology or from the clinical-radiology follow-up during the 6-month follow-up period, based on the RANO working group criteria."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of healthy brain and tumor VOIs."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed by a nuclear physician, so it is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of LifeX software and a threshold-based semi-automatic segmentation approach."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The VOI segmentations were performed by a single nuclear medicine physician (L.R.)."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image pre-processing techniques used, including resampling to a consistent voxel size, correction for patient movements, and denoising using the HYPR-LR method. They also normalize static images to the SUVmean of healthy brain VOIs."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the pyradiomics package for feature extraction, which is a standardized software. The version is not explicitly mentioned in the text, but the link to the github repository is provided."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (statistical, histogram-based, local-intensity, and textural features) and mentions the use of an in-house software for local-intensity features not available in pyradiomics. They also mention the absolute discretization of the images with fixed bin sizes."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs dimensionality reduction using hierarchical clustering based on Spearman correlation coefficient."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into training and test sets from different hospital centers. All transformations and algorithms were fitted using only the training set and were subsequently applied to the test set."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study harmonizes the radiomic features with the modified ComBat method to remove effects introduced by the use of different PET systems."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, precision, F1 score, and balanced accuracy."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses both static and dynamic PET images and does not compare the performance of each one separately."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the radiomics models to a reference model based on TBRmean, which is representative of the clinical practice."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the models to a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study provides the extracted data in a supplementary table."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study mentions the use of pyradiomics package and provides a link to the github repository. The in-house software is not available."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not make the final model available."
+  },
+  "elapsed_time": 12.748740196228027
+}

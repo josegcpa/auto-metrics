@@ -1,0 +1,144 @@
+{
+  "Summary": "This study aimed to develop a combined model based on radiomics and CT imaging features for the differential diagnosis of benign and malignant subcentimeter solid pulmonary nodules (SSPNs). The study retrospectively analyzed 324 patients with SSPNs and developed a combined model using logistic regression, incorporating radiomics features and CT imaging features. The combined model demonstrated excellent discriminative ability, with an AUC of 0.942 in the training group and 0.930 in the testing group, suggesting its potential to aid radiologists in diagnosing malignant from benign SSPNs.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria include nodule size, confirmation of benign or malignant status, and image quality."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is well-defined, with malignant nodules confirmed by pathology and benign nodules confirmed by follow-up or pathology. The follow-up period of 2 years is reasonable for determining benignity."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is a single-center retrospective study, as the data was collected from one hospital."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a standard imaging technique for evaluating pulmonary nodules. The study mentions using standard reconstruction algorithms."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the CT acquisition parameters, including tube voltage, tube current, helical pitch, rotation time, and slice thickness, which is important for replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions the median interval time between CT scans and surgery, which is relevant for validating the presence or absence of target conditions at the moment of imaging. The median interval time was 16 days."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the regions of interest (ROIs) of the nodules on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by a radiologist, so it is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the radiologist delineating the ROIs slice by slice and avoiding the inclusion of adjacent vessels, bronchi, and normal lung tissue."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not fully automatically, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation in the test set was performed by a single radiologist, which better reflects clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features, including first-order, shape, and texture features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization and resampling during image pre-processing with a fixed bin width of 25, and all images were resampled to [1,1,0] after B-spline interpolation sampling. This indicates appropriate use of image preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the Deepwise Multimodal Research Platform version 2.0.1.4, which is based on the Pyradiomics (version 3.0.1) and Scikit-learn (version 0.22) packages, indicating the use of standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order, shape, and texture features) and mentions the three-level naming method for features, which provides transparent reporting of feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features and clinical/CT characteristics."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. It uses hand-crafted radiomic features and logistic regression."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study assesses the interobserver reproducibility of the segmentation using ICCs and only includes features with ICC values > 0.75 in subsequent analysis, indicating removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study mentions removing less significant features when the linear correlation coefficient between any two features was greater than 0.9 and uses the analysis of variance F-test for feature selection, indicating removal of redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of instances and features in the final training data set."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study randomly divides the dataset into training and testing cohorts in a 7:3 ratio. It also uses fivefold cross-validation on the training set. However, it does not explicitly mention whether the data split was stratified or if it was done on the patient level."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across sites or scanners."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics, such as AUC, accuracy, sensitivity, specificity, positive predictive value, and negative predictive value. ROC curves are also presented."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, which provides a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses contrast-enhanced CT images, but it does not compare the performance with non-contrast-enhanced CT or justify the use of contrast enhancement through formal comparison."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the combined model with clinical and radiomics models, which can be considered a comparison with non-radiomic approaches. The study uses the Delong test to compare the AUCs of different models and decision curve analysis to calculate the clinical impact of the models."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set (testing cohort) that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study is a single-center study and does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are not publicly available due to data sharing not obtaining the informed consent of the patients."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the scripts related to automatic segmentation and/or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form."
+  },
+  "elapsed_time": 13.092474937438965
+}

@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the feasibility of using a convolutional neural network combined with a long short-term memory (CNN-LSTM) machine learning structure to distinguish pseudoprogression (PsPD) from progression (PD) in glioblastoma (GBM) patients after gross total resection and concurrent chemoradiotherapy. The model, incorporating MRI data and clinical features, achieved an AUC of 0.83 in the testing set, outperforming models using only MRI data or clinical features.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for classifying lesions as PD or PsPD includes pathological confirmation, follow-up MRI, and PET imaging, aligning with clinical practice."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from two institutions (SNUH and SNUBH), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is gadolinium-enhanced T1-weighted MRI, a conventional imaging technique in clinical practice for GBM follow-up."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed information on the image acquisition protocol, including MRI parameters and normalization steps."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes the interval between the end of CCRT and the appearance of CE lesion as a clinical feature, suggesting consideration of the appropriate time interval between imaging and reference standard."
+  },
+  "Condition1": {
+    "rating": "no",
+    "reason": "The study does not include explicit segmentation of the tumor or region of interest. The CNN processes the entire image or cropped image without manual or automated delineation of tumor boundaries."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "Since Condition 1 is no, this condition is also no."
+  },
+  "Item8": {
+    "rating": "n/a",
+    "reason": "Since Condition 1 is no, this item is not applicable."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "Since Condition 1 and 2 are no, this item is not applicable."
+  },
+  "Item10": {
+    "rating": "n/a",
+    "reason": "Since Condition 1 is no, this item is not applicable."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses a CNN-LSTM architecture, which automatically extracts features from the images, rather than relying on hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image preprocessing techniques, including resizing, resampling, and intensity scaling, with clear justification."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "Since Condition 3 is no, this item is not applicable."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the CNN-LSTM architecture, including the number of layers, kernel sizes, activation functions, and optimization parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes clinical features organized in a table, which constitutes tabular data."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses an end-to-end deep learning approach with a CNN-LSTM model to directly process image data and clinical features for classification."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features based on test-retest, reproducibility, or stability analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not describe any specific methods for removing redundant features or reducing dimensionality."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into training and testing sets based on the institution, which is done at the beginning of the analysis. However, it does not explicitly mention whether the data split was random and reproducible, or whether stratified splitting was used."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges potential confounding factors, such as differences in IDH mutation status between training and testing sets, and includes clinical parameters in the model to account for these factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the classification task, including AUC, AUPRC, precision, recall, and F1-score. It also includes a confusion matrix."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "yes",
+    "reason": "The study uses only one MRI sequence (enhanced T1-weighted), which aligns with the preference for uni-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the model's performance with a non-radiomic approach or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "yes",
+    "reason": "The study includes a negative control by training the model with a scrambled training set, which can be considered a comparison with a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set (SNUBH) that is sampled from the same source as the training set (SNUH)."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution (SNUBH), indicating external testing."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the analyzed datasets cannot be opened publicly due to the law for handling of medical information in Korea."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study provides a link to the Python source codes of the process on GitHub."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 11.004887104034424
+}

@@ -1,0 +1,144 @@
+{
+  "Summary": "This study explores the potential of FET PET radiomics for differentiating pseudoprogression from early tumor progression in glioma patients after chemoradiation. The radiomics model, based on static FET PET scans, achieved 100% sensitivity and negative predictive value in the test cohort, suggesting its potential as a diagnostic tool. The model uses only four parameters, enhancing interpretability and clinical acceptance. Further validation in a large multicentric dataset and combination with MRI radiomics are warranted.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, specifying the type of glioma, confirmation of diagnosis according to WHO classification, and MRI findings suspicious for tumor progression within 12 weeks after completion of chemoradiation."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard includes histomolecular confirmation in some patients and clinicoradiological follow-up in others, based on established criteria by Young et al. While histopathology is a high-quality reference standard, clinicoradiological follow-up is less robust but acceptable in the absence of pathological confirmation for all cases."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study appears to be single-center, as all patients were investigated using dynamic FET PET at a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "FET PET imaging is increasingly used in clinical practice for brain tumor imaging, and the study uses established protocols for FET production and application."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed information on the FET PET imaging protocol, including the injected dose, scan duration, scanner model, reconstruction parameters, and voxel size."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The time interval between MRI and FET PET was 7-10 days, which is appropriate for validating the presence or absence of target conditions at the moment of diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of tumor volumes using a threshold-based method (TBR of 1.6 or more) for radiomics analysis."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation method uses a threshold-based approach, which can be considered automated, but it is not a fully automated segmentation technique without any human intervention, as the VOI placement is done manually."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a TBR threshold of 1.6 or more for segmenting the tumor volume. It also mentions the use of different TBR thresholds (1.4 and 1.8) for data augmentation."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation technique is not fully automated, as it requires manual placement of a VOI. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study does not explicitly state whether the test set segmentation masks were produced by a single reader or an automated tool. However, given that the segmentation is based on a thresholding method, it is likely that the segmentation process is consistent across the dataset."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features using pyradiomics."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of absolute intensity resampling with a bin width of 0.15, which is appropriate for PET studies. It also describes the use of Laplacian-of-Gaussian and wavelet transformation filters to enhance edges in the images."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used pyradiomics (version 3.0), which is a standardized software for feature extraction. The version number is also provided."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order statistics, shape features, GLCM, GLRLM, GLSZM, NGLDM, and GLDM) and mentions that a detailed mathematical description of each feature is available in the pyradiomics documentation."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it extracts hand-crafted radiomic features and uses a random forest classifier for model generation."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features via test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs feature selection using recursive feature elimination with random forest classifiers to reduce the number of features and identify a useful subset for differentiating early tumor progression and pseudoprogression."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study limits the number of features for model generation to four to avoid data overfitting, which suggests consideration of the appropriateness of dimensionality compared to data size. They also performed 5-fold cross validation."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly assigned to a training and test dataset in a ratio of 70/30, with a balanced distribution of pseudoprogression and early tumor progression diagnoses. This suggests a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes the MGMT promoter methylation status as a potential confounding factor and finds no statistical difference between the presence of MGMT promoter methylation in the groups of patients with pseudoprogression and early tumor progression."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, sensitivity, specificity, and p-values for evaluating the diagnostic performance of FET PET parameters and the machine learning model."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as 95% confidence interval (CI), standard deviation (SD), or standard error (SE)."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach. It uses static and dynamic PET parameters but does not compare their performance to justify the use of both."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics model with conventional FET PET parameters (TBRmax) and combinations of static and dynamic PET parameters. It also uses statistical methods (ROC analysis) to evaluate the diagnostic performance."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the machine learning model with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent test dataset that is sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not test the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code being shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the model being shared with the public."
+  },
+  "elapsed_time": 12.721429109573364
+}

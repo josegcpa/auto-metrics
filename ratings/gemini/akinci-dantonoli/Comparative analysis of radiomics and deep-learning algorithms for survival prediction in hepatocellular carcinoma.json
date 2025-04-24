@@ -1,0 +1,144 @@
+{
+  "Summary": "This study compares the performance of conventional radiomics and deep learning (CNN) models in predicting overall survival (OS) in HCC patients using CT data. The study found that CNN models generally outperformed conventional radiomics, but the clinical Cox-regression model achieved the best validation performance. The study highlights the potential of deep learning in clinical prognosis of HCC, especially when clinical data is limited.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are clearly stated in the Materials and methods section under 'Study population'."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "Overall survival (OS) is used as the reference standard, which is a well-established clinical outcome measure. The OS was calculated from the initial CT scan to the time of death or last contact."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses CT scans acquired from 21 different medical centers, indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses contrast-enhanced CT scans of the liver, which is a common and standardized imaging technique for HCC diagnosis and staging. The imaging data source is clinically translatable."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides information on the imaging protocol, including contrast media methods and acquisition parameters. Supplementary Table S1 provides more details on the variability of scan parameters."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "Overall survival was calculated as the period from the initial CT scan to the time of either death or last contact. This is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the liver parenchyma and tumor findings on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions that a resident contoured the liver parenchyma and the largest HCC-lesion, indicating manual segmentation."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that a resident with two years of experience contoured the liver parenchyma and the largest HCC-lesion using 3D Slicer. The segmentations were verified 4 weeks later."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not use fully automated segmentation, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentations were performed by a single reader (a resident with two years of experience), which reflects clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features using MIRP, which indicates the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image preprocessing techniques used, including standardization of CT datasets to address variations in contrast medium injection and interpolation to an isotropic voxel size. They also mention the HU range."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used MIRP, a standardized software, for feature extraction and mentions that the extraction was implemented according to the recommendations by the Image Biomarker Standardization Initiative (IBSI)."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature subgroups extracted (HCC_art, HCC_ven, HCC_diff, liver_art, liver_ven, liver_diff) and mentions that the extraction was implemented according to the recommendations by the Image Biomarker Standardization Initiative (IBSI). The utilized settings for feature extraction and model building can be found in Supplementary Table S3. The neural network architecture is described and a reference to supplementary figure S2 is provided."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, as radiomics features and clinical variables are organized in a table format for analysis."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study includes end-to-end deep learning, as it uses CNN models to directly process image data and predict overall survival."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study mentions feature processing steps, including filtering, which can be interpreted as a method for removing non-robust features. The overall importance of a feature was assessed by its occurrence within the top five highest ranked features in all 45 internal models."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study mentions feature processing steps, including clustering, which can be interpreted as a method for removing redundant features. The overall importance of a feature was assessed by its occurrence within the top five highest ranked features in all 45 internal models."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of instances and features used."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention a robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were divided into development and validation cohorts by stratified randomization, with stratification being performed on the initial therapy concept. This indicates a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study mentions that demographic data and routine lab tests were obtained for all patients, and tumor characteristics and initial therapy concepts were recorded. This suggests an attempt to account for potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses the concordance index (C-index) to evaluate prognostic performance, which is an appropriate metric for survival analysis. They also use log-rank tests to test model-based patient stratification into high/low-risk groups."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the C-index values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "Figure S3 shows the calibration plots of the best performing image-based models from both the conventional radiomics and deep-learning approaches."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of uni-parametric imaging to multi-parametric imaging or justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a non-radiomic method for comparison purposes. It compares radiomics and deep learning approaches but does not compare against clinical practice standards."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the models with simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set (validation cohort) that is sampled from the same source as the training set (development cohort)."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The model is not tested with independent data from other institutions. All data comes from the same university hospital, even though the CT scans were acquired on a total of 24 different scanners at 21 medical centers."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that the datasets used and analyzed during the current study are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 12.955463171005249
+}

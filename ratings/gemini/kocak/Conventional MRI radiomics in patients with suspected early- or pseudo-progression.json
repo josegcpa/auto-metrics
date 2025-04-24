@@ -1,0 +1,144 @@
+{
+  "Summary": "This retrospective study investigates the diagnostic and prognostic value of conventional MRI radiomics in differentiating between early progression (EP) and pseudoprogression (Psp) in glioblastoma patients after radiochemotherapy. The study found that radiomics, especially when combined with MGMT promoter status, shows promising diagnostic value but with moderate specificity. Additionally, radiomics may have potential in predicting overall survival (OS) and progression-free survival (PFS).",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, including histological diagnosis of GBM, age, treatment history, availability of radiological and clinical surveillance data, and the presence of radiological progression within 6 months of radiochemotherapy."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is well-defined, using histological analysis or radioclinical follow-up based on RANO criteria to diagnose EP and Psp. The use of consensus by a neuro-oncologist and a radiologist strengthens the reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is monocentric, with data collected from a single institution's radiological database."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is conventional MRI, which is a standard imaging technique for glioblastoma evaluation, reflecting established standardization approaches."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition parameters for both 1.5 Tesla and 3 Tesla MRI scans, including specific values for TI, TE, TR, section thickness, interslice gap, and flip angle, ensuring replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The time interval between imaging and the reference standard is appropriate, as the study focuses on radiological progression within 6 months of radiochemotherapy, aligning the imaging data with the clinical question of differentiating EP from Psp."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of MRI images to define volumes of interest (VOIs) for radiomics feature extraction, including the contrast-enhanced tumoral portion and peritumoral parenchymal area."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed manually by an expert reader, indicating that the segmentation process was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, specifying that each MRI slice was manually delimited by an expert reader to define four volumes of interest (T1CE, FT, FO, and FOT)."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, not using a fully automated technique. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The segmentation in this study was performed by a single expert reader, which aligns with the criterion of test set segmentation masks produced by a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features using a dedicated software (LifeX), indicating the use of hand-crafted feature extraction methods."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of radiomics features to z-scores, which is an appropriate preprocessing technique. However, it lacks detailed information regarding gray level discretization or other specific preprocessing steps."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study mentions the use of LifeX software but does not explicitly state whether it is IBSI compliant or provide the version number."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (radiomics features) and mentions that 39 radiomics features were extracted per volume. However, it does not provide a detailed configuration file or statement for all feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of radiomics features organized in a table, which are then used for statistical analysis and model construction."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not employ end-to-end deep learning. Instead, it uses hand-crafted radiomics features and machine learning algorithms like random forest and supervised principal component analysis."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any specific methods for removing non-robust features, such as test-retest analysis or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study employs a Wilcoxon-test-based method for feature selection, which can be considered a form of dimensionality reduction by selecting the more informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification or statistical evidence to demonstrate the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning pipelines, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study describes a data partitioning process where patients were randomly assigned to training and validation groups in a 2:1 ratio, maintaining the EP/Psp ratio. This indicates a proper data partitioning process at the beginning of the analysis pipeline."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as differences in patient characteristics across sites or scanners, which could affect generalizability."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the classification task (accuracy, sensitivity, specificity) and survival analysis (C-index, IBS). It also includes ROC curves for the classification model."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for accuracy, sensitivity, and specificity, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final models."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (FLAIR and T1CE) without providing a comparison to uni-parametric imaging or justification for the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with simple or classical statistical models to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent validation dataset sampled from the same source as the training set, indicating internal testing."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data sharing with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the scripts related to radiomics analysis with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form with the public."
+  },
+  "elapsed_time": 12.199063062667847
+}

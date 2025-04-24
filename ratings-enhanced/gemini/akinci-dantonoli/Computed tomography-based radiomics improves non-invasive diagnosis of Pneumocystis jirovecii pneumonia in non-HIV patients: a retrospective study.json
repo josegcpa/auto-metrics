@@ -1,0 +1,144 @@
+{
+  "Summary": "This retrospective study develops a CT-based radiomics model to identify Pneumocystis jirovecii pneumonia (PCP) in non-HIV patients. The model, combining radiomics features and serum \u03b2-D-glucan levels, demonstrates high accuracy in differentiating PCP from other types of pneumonia, offering a potential non-invasive diagnostic approach.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard, using real-time qPCR and IF staining tests on BAL fluid samples, aligns with established diagnostic criteria for PCP, as recommended by ECIL guidelines."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is a single-center retrospective analysis."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is CT, a standard imaging technique, and the study reports the use of a fixed lung window, which contributes to standardization."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed CT scanning parameters, enhancing the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that BAL examination was received within three days after CT scans, which is an appropriate time interval."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of pneumonia regions on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions that an independent senior respiratory physician reviewed the segmentation results and made modifications if necessary, so the segmentation is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a deep learning algorithm to identify pneumonia regions and subsequent manual review and modification by a senior respiratory physician."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were reviewed and modified by a senior respiratory physician, so it was not produced by a single reader or automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts 1316 radiomic features, including shape, first order features, texture features, and features extracted from filtered images, which are hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions resampling the region of interest at 1 mm \u00d7 1 mm \u00d7 1 mm and normalizing the features through the Z-Score method. The study also describes the different image types used (original, wavelet, and Laplacian of Gaussian filtered images) and the fixed lung window used for CT image evaluation."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the use of a standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (shape, first order, texture, wavelet, and LoG features) and mentions that the features were normalized through the Z-Score method."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features and clinical characteristics organized in tables."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. The deep learning algorithm is only used for segmentation."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention the removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses LASSO regression to select features with non-zero coefficients, which is a method for removing redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomized into training and validation cohorts at a 7:3 ratio. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step, or whether the data split was on the patient level, not the scan level. But it is likely that the data split was done at the patient level, as the study is retrospective."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors such as age, sex, smoking history, underlying diseases, medication use, clinical symptoms, and laboratory findings."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC values to evaluate the diagnostic performance of the models. The study also calculates accuracy, sensitivity, specificity, positive predictive value (PPV), and negative predictive value (NPV)."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the radiomics model using calibration curves."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the radiomics model with a traditional model consisting of serum \u03b2-D-glucan levels, which is a non-radiomic method representative of clinical practice. The study uses the Delong test to compare the AUCs of the ROC curves of different models."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics model with a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent validation cohort that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a statement that the datasets used and analyzed during the current study are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing all scripts related to automatic segmentation and/or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 11.235304832458496
+}

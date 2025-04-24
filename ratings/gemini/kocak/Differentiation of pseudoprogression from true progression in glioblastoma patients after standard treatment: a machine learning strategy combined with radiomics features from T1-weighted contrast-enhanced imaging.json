@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the use of a radiomics model based on T1-weighted contrast-enhanced (T1CE) MRI to differentiate pseudoprogression from true progression in glioblastoma (GBM) patients after standard treatment. The radiomics model, utilizing texture features extracted from manually segmented tumors and a random forest classifier, demonstrated better classification performance compared to radiologists' assessment, suggesting its potential as a tool for early and accurate diagnosis.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population. The criteria are detailed in the Methods section under 'Patient population'."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on pathology after reoperation or clinical radiologic follow-up according to RANO criteria, which is an acceptable reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study involves data from a single institution (Tangdu hospital)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "T1CE imaging is a standard imaging technique widely used in clinical practice for GBM diagnosis and follow-up."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed imaging acquisition parameters for the MRI protocol, including TR, TE, matrix size, FOV, NEX, slice thickness, and gap, ensuring replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that the second round of MR imaging was performed within 2 months after CCRT with TMZ, which is an appropriate interval to assess pseudoprogression versus true progression."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves manual segmentation of the whole tumor enhancement on T1CE images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed semi-automatically by neuroradiologists, indicating human intervention."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, specifying that VOIs covering the enhanced lesion were drawn slice by slice on T1CE, avoiding regions of macroscopic necrosis, cystic areas, edema, and non-tumor macrovessels."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was semi-automatic, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were produced by two readers, not a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted texture features (histogram, GLSZM, Haralick, RLM) from the T1CE images."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization as a preprocessing step. They also describe the wavelet transformation. However, more details on gray level discretization would be beneficial."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used Analysis-Kinetics (A.K., GE Healthcare) software for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (texture features) and classes (histogram, GLSZM, Haralick, RLM). However, a complete configuration file is not provided."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. It relies on hand-crafted feature extraction and a random forest classifier."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study performs feature selection to remove highly correlated features using Pearson correlation analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses a random forest classifier to rank feature importance and select the most informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly justify the appropriateness of the dimensionality compared to the data size using statistical means or empirical evidence."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study uses five-fold cross validation method performed 3 times to avoid bias and overfitting."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors, such as clinical characteristics, and reports that none showed significant differences between the true progression and pseudoprogression groups."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports accuracy, sensitivity, and specificity, which are appropriate metrics for a classification task. Confidence intervals are also provided."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals for the accuracy metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study focuses on T1CE imaging but does not justify its use over other imaging modalities or sequences through a formal comparison."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics model with radiologists' assessment, which represents a non-radiomic approach."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics model with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses five-fold cross validation, which can be considered a form of internal testing."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not involve external testing with data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study states that the datasets used are available from the corresponding author upon reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the code used for segmentation and modeling is publicly available."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or a ready-to-use system."
+  },
+  "elapsed_time": 10.604095935821533
+}

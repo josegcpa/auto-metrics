@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the potential of combining CT-based radiomics with genomics to predict the risk of grade \u22652 radiation pneumonitis (RP) in patients with unresectable stage III non-small cell lung cancer (NSCLC) undergoing chemoradiotherapy. The study found that a model integrating radiomics features, clinical factors, and genomic data (specifically XRCC1 rs25487 allele mutation) significantly improved the prediction of RP compared to models based on any of these factors alone. The integrated model demonstrates potential for individualized risk assessment and decision-making in radiotherapy for NSCLC.",
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions compliance with the TRIPOD guidelines for prediction models."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient eligibility, contributing to a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard (grade \u22652 RP within 6 months after RT) is based on established toxicity criteria (RTOG/EORTC) and clinical evaluation, representing a robust outcome measure."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study mentions that data was collected from multiple centers."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "CT imaging is a standard clinical practice for lung cancer management, indicating clinical translatability."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the extraction of CT images from the PACS system, implying the use of a standardized imaging protocol. However, specific acquisition parameters are not detailed."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that RP was assessed within 6 months after RT, which is an appropriate interval to validate the presence of RP related to the treatment."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of the entire lung as the region of interest (ROI) for radiomics analysis."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation process involves semi-automatic delineation followed by manual modification, indicating human intervention."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the exclusion of tumors, diaphragms, trachea, and mainstem bronchi, and the involvement of two radiation oncologists to ensure accuracy."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The final segmentation was reviewed by two radiation oncologists, which does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features using a defined set of mathematical calculations, indicating the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization (z-score transformation) of image intensity, which is an appropriate preprocessing technique. However, more details on other preprocessing steps would be beneficial."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions the use of 3D Slicer software for feature extraction, which is a standardized software. The version number is also provided."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomic features extracted (first-order statistics, shape, texture, wavelet features) and provides some details on the feature extraction parameters. However, a complete configuration file is not provided."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses radiomic features in a tabulated format for analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study performs reproducibility analysis using the intraclass correlation coefficient (ICC) to remove non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses the LASSO algorithm for feature selection, which is a method for removing redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size or provide statistical justification."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the data partitioning process (training, validation, test split) or whether it was done at the beginning of the analysis pipeline. It is unclear if the data split was random and reproducible, and if data processing was blinded to the test set data."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study mentions that there was a difference in histology between the RP and non-RP groups, but this difference was not statistically significant. The study does not explicitly discuss the handling of other potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC to evaluate the predictive capacity of the model and includes ROC curves. However, the confusion matrix is not included."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not report uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the final model using calibration curves and the Hosmer-Lemeshow test."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the integrated model with uni-parametric imaging or provide justification for the use of multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics-based model with a non-radiomic approach representative of clinical practice. There is no proof of added clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple baseline reference model or provide proof of increased performance compared to such a model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses internal testing."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study lacks external validation with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that the datasets used and analyzed are available from the corresponding author upon reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of code or scripts related to automatic segmentation or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model in any form."
+  },
+  "elapsed_time": 11.27898383140564
+}

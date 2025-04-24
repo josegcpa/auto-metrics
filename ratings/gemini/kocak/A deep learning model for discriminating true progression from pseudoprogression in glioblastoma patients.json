@@ -1,0 +1,144 @@
+{
+  "Summary": "This study developed a deep learning model to distinguish pseudoprogression (PsP) from true progression (TP) in glioblastoma (GBM) patients using routine follow-up MRI sequences (T2 and CET1). The model achieved a mean accuracy of 76.4% and an AUROCC of 0.7560 using five-fold cross-validation.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming for a representative study population. Table 1 lists these criteria."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard (TP vs PsP) is based on clinical and imaging follow-up, and in a subset of patients, histopathological diagnosis, which are considered high-quality reference standards."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study uses data from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (MRI) reflects established standardization approaches, as it uses commonly acquired MRI sequences in the follow-up of GBM patients."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the MRI sequences used (T1, CET1, T2, FLAIR) and provides some details about the acquisition parameters, such as the use of a conventional fraction (2GY per fraction) for radiotherapy."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study reviews radiology reports and clinical notes for one year after progression to determine if the lesion and patient's clinical status stabilized, improved, or progressed further after the index MRI, which is an appropriate interval to validate the presence or absence of target conditions."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation using HD-GLIO-AUTO to segment the MRI exams, resulting in enhancing lesion volumes."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study uses HD-GLIO-AUTO for segmentation, but mentions that the extracted masks were manually checked and corrected when necessary, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning the use of HD-GLIO-AUTO and manual corrections when necessary."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated, as manual corrections were applied. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study mentions that the segmentation masks were manually checked and corrected, indicating that the final segmentation in the test set was not produced by a single reader or an entirely automated tool."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses a deep learning model (DenseNet121) for feature extraction, rather than hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of voxel intensity and co-registration of images, which are appropriate preprocessing techniques. They also describe the resizing and padding applied to the images."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted features."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the neural network architecture (3D-DenseNet-121) and image operations used, including the augmentation methods applied."
+  },
+  "Condition4": {
+    "rating": "no",
+    "reason": "The study uses end-to-end deep learning and does not extract tabular data."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses a 3-D Densenet121 model to directly process the image data and produce a classification model."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data."
+  },
+  "Item15": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data."
+  },
+  "Item16": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention any robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the dataset at the patient level into 5 folds stratified by class status using the Scikit-learn library, which is a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors such as age, gender, IDH mutational status, and RT dose, and acknowledges the difference in MGMT promoter methylation status between the groups."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as accuracy, AUROCC, sensitivity, and specificity for the classification task."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes uncertainty measures such as standard deviation (SD) for the reported metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses two MRI sequences (T2 and CET1) without providing a comparison to using a single sequence or justification for the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a non-radiomic method for comparison or provide proof of added clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses five-fold cross-validation, which involves internal testing on an independent data set sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study provides a link to the HD-GLIO-AUTO tool on GitHub, indicating code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model."
+  },
+  "elapsed_time": 10.936282873153687
+}

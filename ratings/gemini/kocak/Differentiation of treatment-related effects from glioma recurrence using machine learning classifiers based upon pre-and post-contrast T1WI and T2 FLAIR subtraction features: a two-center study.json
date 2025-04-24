@@ -1,0 +1,144 @@
+{
+  "Summary": "This study proposes and evaluates three SVM classifiers using pre- and post-contrast T2 FLAIR and T1WI subtraction to differentiate treatment-related effects (TRE) from glioma recurrence. The results showed that the SVM classifier based on a combination of T1WI and T2 FLAIR subtraction maps was superior to the sole use of T1WI or T2 FLAIR for differentiating TRE from recurrence.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are explicitly stated in the Materials and Methods section under 'Patients'."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard for recurrence is histopathological confirmation via second surgical resections, which is a high-quality standard. For TRE, clinical diagnosis criteria are defined based on stability or regression without additional treatment, no progression on conventional MRI and MRS/MRP, and a minimum 6-month follow-up, which represents a reasonable clinical practice-based standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from two different centers, indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (T1WI and T2 FLAIR) reflects established standardization approaches, as these are conventional MRI sequences widely used in clinical practice for glioma diagnosis and follow-up."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The imaging protocol with acquisition parameters is described in the 'Imaging Protocol' section, including details on the MRI scanners, sequences, voxel size, FOV, contrast agent administration, and timing of post-contrast scans."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The time interval between imaging and the reference standard is appropriate, as the imaging is performed when TRE or recurrence is first noticeable, and the reference standard (pathological confirmation or clinical criteria) is applied subsequently to validate the diagnosis."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the lesions on the subtraction maps, as described in the 'Image Preprocessing and Segmentation' section."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation is performed manually by neuroradiologists, indicating that it is not a fully automated process."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The segmentation methodology is described, including the use of ITK-SNAP for manual segmentation by two neuroradiologists, followed by scrutiny by a neuroradiology professor. The criteria for intra- and interobserver reproducibility are also mentioned."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "Since the segmentation is not fully automated, this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The final ROIs were completed by reader 1 after testing the ICC. This does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features using PyRadiomics, indicating the use of pre-defined feature extraction methods."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of images by centering at the mean intensity and dividing by one standard deviation, which is an appropriate preprocessing technique. They also describe the classes of features extracted."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses PyRadiomics for feature extraction and provides the URL. This indicates the use of standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (hand-crafted radiomic features) and classes (Shape, First Order, GLCM, GLZSM, GLRLM, NGTDM, GLDM). They also mention using default settings in pyradiomics."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of extracted radiomic features organized in a table."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses SVM, which is not an end-to-end deep learning approach."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study removes features based on Pearson correlation coefficient, which can be considered a method for removing non-robust features by assessing their stability and redundancy."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses recursive feature elimination (RFE) to select the most important features, which is a method for dimensionality reduction and removing redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly justify the appropriateness of the dimensionality compared to the data size using statistical means or empirical evidence. They mention the discrepancy between sample size and feature size but do not provide a robust justification for the final number of features selected."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "Since the study does not use end-to-end deep learning, this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions randomly splitting the dataset into training and testing sets at a 7:3 ratio. However, it does not explicitly state whether the split was stratified or if a fixed random seed was used to ensure reproducibility. It also does not mention whether the data split was done on the patient level, not the scan level. It does mention up-sampling to deal with class imbalance."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study attempts to address potential confounding factors by performing the study in two affiliations using similar Siemens scanners. They also mention that to avoid multicenter MRI standardization bias, the enrolled patients in the two affiliations underwent a similar scan set up on similar Siemens scanners."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, specificity, PPV, and NPV for the classification task. They also provide ROC curves."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, calculated using a non-parametric bootstrap method."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses both T1WI and T2 FLAIR, and does not provide a comparison with uni-parametric imaging or justification for the use of both."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomic approach with results from previous studies using conventional MRI and advanced MRI sequences, providing a context for the added clinical value of the proposed method."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from two institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code being shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the model being shared with the public."
+  },
+  "elapsed_time": 12.458712100982666
+}

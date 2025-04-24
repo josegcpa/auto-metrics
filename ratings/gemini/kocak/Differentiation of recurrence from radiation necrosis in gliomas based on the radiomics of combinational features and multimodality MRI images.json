@@ -1,0 +1,144 @@
+{
+  "Summary": "This study proposes a radiomics model to classify radiation necrosis versus recurrence in glioma patients using a combination of handcrafted and deep features extracted from multimodality MRI images (T1, T1C, T2, and FLAIR). The model achieved high classification accuracy in the validation set, suggesting its potential as a valuable tool for distinguishing between glioma necrosis and recurrence.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are based on pathological confirmation, imaging follow-up, and availability of MRI modalities."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on the consensus of two neuroradiologists with significant experience (>9 and >20 years) and confirmed by imaging and clinical follow-up (>6 months), which is a reasonable standard for this type of study."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that MRI images were obtained using 3.0 T MRI machines (Philips, Achieva) at a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (MRI) is clinically translatable as it uses standard MRI sequences (T1, T1C, T2, FLAIR) commonly used in clinical practice for glioma follow-up."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides a table (Table 2) detailing the MRI protocols for each modality, including slice thickness, TR, TE, FA, matrix, and acquisition time, which allows for replication of the imaging protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes patients with a follow-up of no less than 6 months after radiotherapy to confirm recurrence or necrosis, which is appropriate to validate the presence or absence of the target conditions at the time of imaging. The mean time interval from first radiotherapy to diagnosis of necrosis or recurrence is 1.8 years."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of the tumor region on MRI images using ITK-SNAP software."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study explicitly mentions manual segmentation of the tumor region, indicating that the segmentation process is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that the tumor region was manually segmented slice-by-slice by a neuroradiologist and confirmed by another senior neuroradiologist. The segmentations were drawn on T1C images and covered the entire tumor, avoiding cystic changes, edema, and blood vessels."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study uses manual segmentation, so a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that all manual segmentations of the tumor region were drawn slice-by-slice by a neuroradiologist with over 9 years of experience in neuroradiology. To avoid mistakes, another senior neuroradiologist with 20 years of experience in brain tumor diagnosis confirmed the final tumor region."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts a total of 41,284 handcrafted features for each patient."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions using linear registration in FSL to register T1, T2, and FLAIR images to T1C images. This suggests appropriate preprocessing techniques were used. The supplementary information contains the texture extraction parameters."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study mentions the use of MATLAB 2017b packages to analyze the radiomics data, but it does not explicitly state whether a standardized feature extraction software (e.g., IBSI compliant) was used."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (handcrafted and deep features) and mentions that the methodology used to extract handcrafted features from the tumor region and texture extraction parameters is described in the Supplementary Information. The architectures of AlexNet and Inception v3 are also illustrated in the Supplementary Information."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data as the features are extracted and then used in a table for analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses pre-trained CNN models (AlexNet and Inception v3) to extract deep features, but it does not involve end-to-end deep learning where the entire model is trained from scratch to directly process image data and produce a classification or regression model."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features via test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs feature reduction using a stepwise forward feature selection scheme based on Spearman's rank correlation and maximal information coefficient."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, such as statistical evidence or empirical validation."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning pipelines, so robustness assessment of such pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention a training-validation-test data split at the beginning of the analysis pipeline. The 0.632+ bootstrap method is used, which involves resampling the data, but it's not clear if a separate test set was held out from the beginning."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors such as different distributions of patient characteristics across sites or scanners."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, sensitivity, specificity, and accuracy as performance evaluation metrics for the classification task. The results are presented in Table 4."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports the mean and standard deviations of the evaluation metrics in Table 4, which provides some measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (T1, T1C, T2, FLAIR) but does not provide a comparison with uni-parametric imaging or justification for the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value, such as improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier) to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses a validation set to test the model, which can be considered an internal testing approach."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not mention testing the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing all scripts related to automatic segmentation and/or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form with the public."
+  },
+  "elapsed_time": 12.65009093284607
+}

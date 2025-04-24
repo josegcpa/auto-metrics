@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the use of a CNN-LSTM deep learning model with multiparametric MRI data to differentiate between pseudoprogression (PsP) and true tumor progression (PD) in diffuse infiltrating gliomas. The proposed model, which incorporates multiple MRI sequences as a spatial sequence input, demonstrates improved diagnostic performance compared to a conventional CNN model with a single MRI sequence.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion criteria as biopsy-proven diffuse infiltrating gliomas (astrocytoma or oligodendroglioma) presenting originally as high grade glioma (WHO grade 3 or 4), who underwent adjuvant chemoradiation therapy after gross total surgical tumor resection and multiple follow up MRI scans between 2010 and 2018."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is biopsy-proven pathological confirmation of PsP or PD, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that all patients were imaged using both Philips and GE MR scanners, but all data comes from a single institution (University of Michigan)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is MRI, which is a clinically translatable imaging technique for glioma assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the MRI sequences used (pre-contrast T1-weighted, post-contrast T1-weighted, T2-weighted, FLAIR, and ADC maps) and the scanners used (Philips and GE), but does not provide detailed acquisition parameters."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that the imaging dataset were selected at a time point closest to the follow-up operation confirming PsP or PD."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation as a region of interest (ROI) is drawn around the tumor for analysis, as shown in Figure 4H."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study does not explicitly state whether the segmentation was fully automated. The methods section does not describe any automated segmentation techniques. Figure 4H shows manual segmentation."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study mentions that a region of interest (ROI) is drawn around the tumor, but does not provide details on the segmentation methodology."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not use fully automated segmentation, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "n/a",
+    "reason": "The study does not use fully automated segmentation, so this item is not applicable."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses a deep learning approach (CNN-LSTM) that automatically learns features from the image data, rather than relying on hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization using white-stripe normalization in R, which is an appropriate image preprocessing technique. They also describe the creation of engineered sequences (T1post-T1pre and T2-FLAIR)."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted feature extraction, so this item is not applicable."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the CNN-LSTM architecture, including the layers used, kernel sizes, and activation functions. It also mentions the use of binary cross-entropy loss and stochastic gradient descent optimizer."
+  },
+  "Condition4": {
+    "rating": "no",
+    "reason": "The study does not explicitly use tabular data in the traditional sense of hand-crafted radiomic features. The input to the CNN-LSTM model is image data."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses a CNN-LSTM deep learning model, which is an end-to-end deep learning approach."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data, so this item is not applicable."
+  },
+  "Item15": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data, so this item is not applicable."
+  },
+  "Item16": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data, so this item is not applicable."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipeline, such as test-retest analysis or stability analysis."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions performing threefold cross-validation, which implies a data partitioning process. However, the study does not explicitly state whether the data split was done at the patient level or whether the training data was completely blind to the test data."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address potential confounding factors, such as scanner type or patient characteristics."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports accuracy and AUC values, which are appropriate performance evaluation metrics for a classification task. ROC curves are also presented."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals for the AUC values, which is a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiparametric MRI data but does not compare its performance to that of uni-parametric imaging or justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study compares the proposed CNN-LSTM model with a VGG16 model, but does not compare it with a non-radiomic method that is representative of clinical practice."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study compares the proposed CNN-LSTM model with a VGG16 model, but does not compare it with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study performs threefold cross-validation, which involves testing the model on an independent data set that is sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not test the model with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets generated during the study are available from the corresponding author on reasonable request, but does not explicitly state that the data is publicly shared."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention whether the scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention whether the final model is shared in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 13.948089122772217
+}

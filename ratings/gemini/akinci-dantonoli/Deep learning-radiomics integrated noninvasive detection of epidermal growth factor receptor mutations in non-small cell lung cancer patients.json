@@ -1,0 +1,144 @@
+{
+  "Summary": "This study presents a deep learning and radiomics approach to predict EGFR mutations in NSCLC patients using contrast-enhanced CT images. The model combines radiomics features, clinical data, and tumor images, achieving AUC values of approximately 0.81 and 0.78 in internal and external validation, respectively. The study suggests that this hybrid radiomics model is a noninvasive tool for classifying EGFR mutations and improving personalized treatment strategies.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient selection, including undergoing EGFR mutation testing and having pretreatment CT scans, which helps to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is EGFR mutation testing, which is a well-established clinical marker for NSCLC."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from three different hospitals (Ajou University Hospital, Inha University Hospital, and Chungnam National University Hospital), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a standard imaging technique in clinical practice for NSCLC diagnosis and staging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the use of CT images and provides some details about image preprocessing, such as normalization and application of modality and VOI LUTs, which contributes to the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses pretreatment CT scans, which are appropriate for predicting EGFR mutations before treatment decisions are made."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of tumor regions from CT images, as mentioned in the radiomics feature extraction section."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study mentions using a fully automatic segmentation technique with a U-Net model, indicating a fully automated segmentation process."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology by mentioning the use of a U-Net model pretrained on the Lung-PET-CT-Dx dataset."
+  },
+  "Item9": {
+    "rating": "no",
+    "reason": "The study does not provide a formal evaluation of the fully automated segmentation accuracy compared to domain expert annotations (e.g., DICE score or Jaccard index)."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The study does not explicitly state whether the test set segmentation masks were produced by a single reader or an automated tool. It only mentions the use of a fully automatic segmentation technique."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features using the PyRadiomics module, indicating the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps such as normalization, modality and VOI LUTs, and histogram flattening, which are appropriate for CT images. It also describes the normalization of pixel values between 0 and 1."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics module for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order statistics and secondary statistical features) and mentions the use of the PyRadiomics module. It also provides information on the number of extracted features (107)."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomics features and clinical data organized in tables."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses convolutional neural networks (CNNs) to directly process tumor images and extract image features, indicating an end-to-end deep learning approach."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of redundant features through algorithm-based feature selection, univariate correlation, collinearity, or variance analysis."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide any statistical justification or empirical evidence to demonstrate the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or through stability analysis."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study describes the data partitioning process, mentioning the use of training, internal validation, and external validation datasets. It also specifies the source of data for each set (Ajou University Hospital, Chungnam National University Hospital, and Inha University Hospital)."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges that sex, height, weight, smoking history, and clinical stage were significantly different between the EGFR-mutant patient groups, indicating an awareness of potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, specificity, precision, sensitivity, F1-score, and accuracy for the classification task."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as 95% confidence interval (CI), standard deviation (SD), or standard error (SE)."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention any calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of uni-parametric imaging with multi-parametric imaging to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an internal validation dataset sampled from the same source as the training data (Ajou University Hospital and Chungnam National University Hospital)."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution (Inha University Hospital), indicating external testing."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study states that the datasets are available from the corresponding author upon reasonable request, but it does not explicitly mention sharing any data with the public."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study provides a link to a publicly available pytorch training script on GitHub, indicating code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 11.155586957931519
+}

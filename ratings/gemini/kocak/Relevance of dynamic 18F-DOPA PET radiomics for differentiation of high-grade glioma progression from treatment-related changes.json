@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the utility of static and dynamic 18F-DOPA PET radiomics in differentiating high-grade glioma (HGG) progression from treatment-related changes (TRC). The study compares the diagnostic performance of radiomics-based machine learning models to the current PET imaging standard of care, using data from two institutions. The results suggest that radiomic features provide only a marginal improvement over classical analysis based on TBR values.",
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions adherence to IBSI guidelines for radiomic feature extraction."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histopathology or clinical-radiology follow-up based on RANO criteria, which are well-established."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from two different institutions (CHRU of Nancy and Piti\u00e9-Salp\u00eatri\u00e8re hospital in Paris, France)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is 18F-DOPA PET, which is a clinically relevant imaging technique for glioma assessment."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the image acquisition parameters for each of the four different imaging systems used."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes only patients with a minimum 3-month interval between the end of radiation therapy and the 18F-FDOPA PET acquisition to reduce false positives. The final diagnoses were determined from the histopathology or from the clinical-radiology follow-up during the 6-month follow-up period."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of healthy brain and tumor VOIs."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed by a nuclear physician, so it is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of LifeX software and a threshold-based semi-automatic segmentation approach."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were not produced by a single reader or automated tool. The segmentation was performed by a nuclear physician (L.R.)."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the image pre-processing techniques used, including resampling to correct for different voxel sizes, correction for patient movements, and denoising using the HYPR-LR method."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the pyradiomics package for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (statistical, histogram-based, local-intensity, and textural features) and mentions the use of an in-house software for local-intensity features not available in pyradiomics."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study performs dimensionality reduction using hierarchical clustering based on an absolute spearman correlation coefficient."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs dimensionality reduction using hierarchical clustering based on an absolute spearman correlation coefficient."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses different machine learning algorithms and performs hyperparameter tuning to limit model overfitting."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into training and test sets from different hospital centers. All transformations and algorithms were fitted using only the training set and were subsequently applied to the test set."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considered clinical features, including age, sex, histopathological WHO grade, IDH mutation status, 1p/19q codeletion status, previous tumor resection and contrast enhancement on MRI."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, precision, F1 score, and balanced accuracy."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics models to a reference model based on TBRmean, which is representative of the clinical practice."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the models to a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study provides the extracted data in a supplementary table."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not share the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 10.754904985427856
+}

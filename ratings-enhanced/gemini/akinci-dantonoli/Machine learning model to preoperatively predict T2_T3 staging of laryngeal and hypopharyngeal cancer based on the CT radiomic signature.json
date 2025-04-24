@@ -1,0 +1,144 @@
+{
+  "Summary": "This study develops and assesses a radiomics-based nomogram derived from contrast-enhanced CT images for distinguishing between T2 and T3 stages of laryngeal and hypopharyngeal squamous cell carcinoma (LHSCC). The nomogram, incorporating a radiomic signature and morphological imaging characteristics, demonstrates good diagnostic performance and clinical usefulness for guiding treatment decisions.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population. The criteria are well-defined and relevant to the study's objective."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathological examination, which is a high-quality reference standard for cancer studies. The histopathological examination was performed within 2 weeks after CT scanning."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is a single-center study, as the contrast-enhanced CT images of the neck were acquired at a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses contrast-enhanced CT, which is a clinically relevant imaging technique for assessing LHSCC. The study mentions the use of contrast-enhanced CT images of the neck, which is a standard imaging modality for this type of cancer."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details of the scanning parameters in Supplementary A1, which helps ensure the replicability of the method."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that histopathological examination was performed within 2 weeks after CT scanning, which is an appropriate time interval to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual delineation of regions of interest (ROIs) on CT images, which constitutes segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study explicitly states that the ROIs were manually delineated, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study provides delineation criteria in Supplementary A3, which describes the rules or method of the segmentation."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The ROIs were manually delineated and validated by two readers, so the final segmentation in the test set was not produced by a single reader or an automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts 851 radiomic features from CT images using the PyRadiomics package, which are hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions that all images underwent standardization preprocessing prior to feature extraction, and provides additional information in Supplementary A4."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the PyRadiomics package (version 3.0.1) for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (original image features and wavelet decomposition features) and provides explanatory information in Supplementary A7."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study imports the radiomic feature files (CSV format) into FeAture Explorer software (FAE) for feature processing, which indicates the use of tabular data."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses traditional machine learning classifiers (SVM, LDA, LR, etc.) rather than end-to-end deep learning."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study assessed the reproducibility of all extracted features by intra-/interclass correlation coefficients (ICCs), and features with ICCs > 0.75 were screened for subsequent analyses."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study used the Kruskal-Wallis nonparametric test to remove the features showing significant statistical differences among different scanners after feature extraction. Then, the techniques of data balancing (synthetic minority over-sampling technique, SMOTE), standardization (Z-score), and dimensionality reduction (Pearson\u2019s correlation coefficient, PCC) were combined to preprocess the feature data in the training set."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning pipelines, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that the data were randomly split into a training set and a test set at a ratio of 7:3."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study used the Kruskal-Wallis nonparametric test to remove the features showing significant statistical differences among different scanners after feature extraction."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity to assess the performance of the models."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The Hosmer\u2013Lemeshow goodness-of-fit test was performed to evaluate the calibration of the nomogram. Then, a calibration curve was plotted to compare the agreement between the predicted probability of the model and the observed probability."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the model with uni-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study incorporates morphological imaging characteristics evaluated by radiologists into the nomogram, which can be considered a non-radiomic method."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the model with simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent test set that is sampled from the same source as the training and validation sets."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study is a single-center study, so there is no external testing."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any imaging, segmentation, clinical, or radiomics analysis data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any scripts related to automatic segmentation and/or modeling being shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the final model being shared in any form."
+  },
+  "elapsed_time": 11.172490119934082
+}

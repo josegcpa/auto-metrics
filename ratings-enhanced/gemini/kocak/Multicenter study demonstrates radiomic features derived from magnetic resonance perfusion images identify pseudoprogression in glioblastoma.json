@@ -1,0 +1,144 @@
+{
+  "Summary": "This retrospective, multi-center study investigates the ability of MR perfusion-based radiomics to discriminate pseudoprogression (PsP) from progressive disease (PD) in glioblastoma patients. The study demonstrates that radiomic features extracted from Ktrans and rCBV maps, when coupled with support vector machines, can achieve high accuracy in differentiating between PsP and PD, offering a noninvasive alternative for identification of PsP versus PD.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are detailed in the Methods section under 'Study population'."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathologic diagnosis of PD or PsP, which is a robust and well-established standard. The pathology status was decided and reviewed in consensus by two experienced board-certified pathologists blinded to the MRI data."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from three different institutions (The University of Texas MD Anderson Cancer Center, Baylor College of Medicine, and University of Southern California Keck School of Medicine), making it a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is MR perfusion, which is a clinically translatable imaging technique used to assess vascular properties of tumors. Although there is a lack of standardization, it is still a common practice."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details of the MRI acquisition parameters for each institution (MDACC, USC, BCM) in the Methods section, including TR, TE, slice thickness, and acquisition matrix for conventional MRI sequences and parameters for DCE and DSC sequences in Supplementary Table 3."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that pathologic confirmation of PD or PsP was obtained within 3 months after detection of a questionable enhancing lesion on MRI, which is an appropriate interval to validate the presence or absence of target conditions at the moment of the diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the region of interest (ROI) using 3D Slicer software, as described in the Methods section and illustrated in Figure 1."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions semi-automatic segmentation of VOIs, which were then manually reviewed, indicating that the segmentation process was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that images were segmented using 3D Slicer, and the process involved semi-automatic segmentation followed by manual review by an experienced radiologist. Cystic, necrotic regions and intralesional macrovessels were excluded."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were not produced by a single reader or automated tool. The segmentation was performed semi-automatically by an experienced user and then manually reviewed by an experienced radiologist."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features, including histogram-based features and second-order Haralick features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions coregistration of post-contrast T1WI with Ktrans and rCBV maps, which is an appropriate preprocessing technique. They also exclude cystic, necrotic regions and intralesional macrovessels. The gray levels implemented in this analysis were 8, 16, 32, 64, and 256."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state the use of a standardized feature extraction software compliant with IBSI. They mention using in-house developed software implemented in MATLAB."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (histogram-based and Haralick features) and provides details on how these features were computed, including the gray levels used and the distances and directions considered for Haralick features. The number of features extracted is also mentioned."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. Instead, it relies on hand-crafted feature extraction and machine learning models."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any explicit removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses the Maximum Relevance Minimum Redundancy (MRMR) feature selection technique to minimize irrelevant and redundant radiomic features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study investigates different sizes of feature sets to ensure selection of the feature set size with the best prediction accuracy. They started with the MRMR-ranked 310 features and evaluated different feature set sizes ranging from 310 to 20 in steps of 10."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning pipelines, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study uses cross-validation techniques (LOOCV and k-fold cross-validation) to evaluate the models. However, it is not explicitly mentioned whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step. It is also not explicitly mentioned whether the data split was on the patient level, not the scan level."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges that image acquisition parameters were distinct between different institutions and performs sub-analysis on the MDACC patients to determine the scalability and generalizability of the radiomics analytical technique. This addresses potential confounding factors related to scanner parameters."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, sensitivity, specificity, and p-value. ROC curves are also plotted. However, confusion matrix-derived accuracy metrics are not explicitly included."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as 95% confidence interval (CI), standard deviation (SD), or standard error (SE)."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses both Ktrans and rCBV maps and does not perform a uni-parametric evaluation to justify the need for a multi-parametric approach by formally comparing their performance."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a non-radiomic method for comparison purposes. It does not compare the radiomic approach with semantic features, RADS or RECIST scoring, or simple volume evaluations."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier) to justify the use of machine learning methods."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses internal testing through cross-validation techniques (LOOCV and k-fold cross-validation) to evaluate the accuracy, sensitivity, and specificity of the models."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study includes data from multiple institutions and performs sub-analysis on the MDACC patients to determine the scalability and generalizability of the radiomics analytical technique. Additionally, a prospective dataset of seven pathologically proven MDACC patients was used for further validation."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement, mentioning that the data is available within the Article or the Supplementary Information and that the imaging data is available from the corresponding author upon request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study mentions the software used for MR perfusion analysis, volumetric analysis, and biostatistical analysis. However, it does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system. It also does not mention making the trained model for automated segmentation available."
+  },
+  "elapsed_time": 15.309146165847778
+}

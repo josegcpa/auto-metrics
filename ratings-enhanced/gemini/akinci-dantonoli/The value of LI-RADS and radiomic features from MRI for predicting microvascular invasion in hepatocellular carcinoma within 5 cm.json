@@ -1,0 +1,144 @@
+{
+  "Summary": "This study explores the performance of LI-RADS and radiomics from multiparametric MRI in predicting microvascular invasion (MVI) preoperatively in patients with solitary hepatocellular carcinoma (HCC) < 5 cm. The study found that incomplete tumor capsule and corona enhancement on preoperative MRI were significantly related to MVI in solitary HCC < 5 cm and that multiple-sequence radiomic features potentially improve MVI-prediction-model performance.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to radiomics or machine learning-specific checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, which helps to establish a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathology, which is a high-quality reference standard for MVI."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that the data was collected at 'our hospital', indicating a single-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is CE-MRI, which is a clinically translatable imaging technique for HCC diagnosis and staging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed imaging parameters for the MRI acquisition, including TR, TE, flip angle, FOV, matrix, section thickness, and gap."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that CE-MRI examination was performed within 30 days preoperatively, which is an appropriate interval to validate the presence or absence of MVI at the moment of diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes tumor segmentation as part of the radiomic analysis workflow."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions that the ROI was drawn manually by two radiologists, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that the ROI was drawn along the tumor margin layer by layer to generate a 3D-ROI by two radiologists."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were produced by two radiologists, not a single reader or automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features using PyRadiomics, indicating the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions preprocessing steps such as resampling the voxel size and gray-level intensity discretization, which are appropriate image preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used PyRadiomics v.2.1.2 for feature extraction, which is a standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first-order statistics, morphological features, GLCM, GLSZM, GLRLM, NGTDM, and GLDM) and mentions that the same series of radiomic features were extracted from T2WI/FS, AP, PVP, and DP images."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the images."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses AdaBoost with hand-crafted radiomic features, not an end-to-end deep learning pipeline."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study employs ICC analysis to assess the reliability and stability of each feature and retains only those features exhibiting ICC values greater than 0.75."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses Pearson\u2019s correlation to remove redundant features with mutual correlation coefficients > 0.9 and LASSO for feature selection."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical evidence to support it."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly stratified into training, internal validation, and independent test cohorts. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline or whether a fixed random seed was used."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity for classification tasks. It also includes ROC curves, calibration curves, and decision curve analysis."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study includes calibration curves for the models."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multiparametric MRI and does not provide a comparison with uni-parametric imaging or justification for the use of multiple parameters."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomic model with a clinical model based on LI-RADS features and other imaging features."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an internal validation cohort."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent test cohort."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data being shared with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code being shared with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the model being shared with the public."
+  },
+  "elapsed_time": 10.792128086090088
+}

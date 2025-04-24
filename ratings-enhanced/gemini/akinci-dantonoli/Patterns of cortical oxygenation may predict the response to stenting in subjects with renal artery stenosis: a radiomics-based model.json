@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the use of radiomics analysis of BOLD-MRI images to predict renal response to percutaneous-transluminal renal angioplasty (PTRA) and stenting in a swine model of renal artery stenosis (RAS). The study found that radiomics features extracted from pre-PTRA BOLD maps, combined with functional parameters, can predict post-PTRA renal function, specifically GFR and RBF, distinguishing subjects likely to respond to PTRA and stenting.",
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions following the guidelines proposed by the image biomarker standardization initiative (IBSI) and the workflow described by van Timmeren et al. for feature selection and data preparation for radiomics analysis."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines the inclusion criteria (swine model of RAS) and the exclusion criteria. The study population is well-defined (twenty female domestic pigs with unilateral RAS induced by inserting an irritant coil in the right renal artery)."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on quantitative measurements of renal function (GFR, RBF) obtained from MDCT imaging, which is a well-established method. The study also uses histopathology as a reference standard, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study was conducted at a single institution (Mayo Clinic)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (MDCT and MRI) is clinically translatable as these techniques are commonly used in clinical practice for assessing renal function and oxygenation."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed information on the imaging protocols used for both MDCT and MRI, including acquisition parameters such as slice thickness, resolution, echo times, flip angle, and field of view."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that CT and MR imaging were performed 3-4 days apart, 4 weeks after PTRA. This time interval is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the renal cortex for radiomics analysis."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions that cortical ROIs were defined manually, indicating that the segmentation was not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, mentioning that cortical ROIs were defined manually in Analyze\u2122 software."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was performed manually, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that cortical ROIs were defined manually, indicating that the final segmentation in the test set was produced by a single reader."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from BOLD maps, including histogram features, GLCM, GLRLM, GLSZM, and NGTDM features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions that BOLD maps were interpolated and re-sampled isotropically with in-plane resolution of 1.0 mm. The study also describes the gray level discretization parameters, including the use of a fixed number of bins (n = 8) for discretization."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions using an open-source Matlab code, previously used and validated, for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (histogram features, GLCM, GLRLM, GLSZM, and NGTDM features) and provides information on the feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of physiological parameters (GFR, RBF, MAP, PRA, SCr) and radiomics features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It uses hand-crafted radiomic features and Lasso regression for model training."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study mentions removing non-robust features using a perturbation-based method and intraclass correlation coefficients (ICC)."
+  },
+  "Item15": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention removing redundant features using algorithm-based feature selection or other methods."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions an iterative partitioning approach where the dataset was repeatedly divided into training and testing cohorts. Specifically, in each iteration, 80% of the dataset (16 pigs) was randomly selected for training and the remaining 20% (4 pigs) for testing."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the task, including correlation coefficients (r) and sensitivity and specificity."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports uncertainty measures such as standard deviation (SD) and confidence intervals (CI)."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (MDCT and MRI) without providing a comparison with uni-parametric imaging or proof of its inferiority."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach or proof of added clinical value."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training and/or validation sets."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The model is not tested with independent data from other institution(s)."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention sharing any imaging, segmentation, clinical, or radiomics analysis data with the public."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention sharing any scripts related to automatic segmentation and/or modeling with the public."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention sharing the final model in any form."
+  },
+  "elapsed_time": 10.929163217544556
+}

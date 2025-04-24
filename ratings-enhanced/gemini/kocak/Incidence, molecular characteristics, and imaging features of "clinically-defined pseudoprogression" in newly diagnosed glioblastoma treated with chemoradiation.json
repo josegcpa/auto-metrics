@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates clinical, molecular, and imaging characteristics of clinically-defined pseudoprogression (PsP) in newly-diagnosed glioblastoma (GBM) patients with early radiographic progression. The authors found that patients with clinically-defined PsP had distinct clinical and MRI features, including MGMT methylation, younger age, better neurological performance, and lower contrast-enhancing tumor volume at baseline. Radiomic analysis showed potential in predicting clinical PsP with over 70% accuracy.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to radiomics or machine learning-specific checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines eligibility criteria for patient inclusion, focusing on newly-diagnosed GBM patients from the control arm of the AVAglio trial who presented with early radiographic progressive disease."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on clinical trial guidelines and post-hoc analysis by an imaging core lab, using centrally determined progression based on modified Macdonald Criteria. While not histopathology, it is a well-defined and consistently applied standard within the context of the clinical trial."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from a multicenter phase III trial (AVAglio) involving 120 institutions across 23 countries."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is based on standard clinical MR imaging protocols used in the AVAglio trial, reflecting established standardization approaches for GBM imaging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the use of 1.5-T or 3-T clinical MR scanners and describes the pulse sequences used (T1-weighted, T2-weighted, FLAIR, contrast-enhanced T1-weighted), providing some details on the imaging protocol."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses imaging data at baseline and at the time of suspected radiographic progression to correlate with residual overall survival (ROS), which is an appropriate interval to validate the presence or absence of target conditions."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of contrast-enhanced T1-weighted images, central necrosis, and T2 hyperintense regions on FLAIR images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study uses a semi-automated thresholding method for segmentation, requiring human intervention and review by a neuroradiologist."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a semi-automated thresholding method and the definition of VOIs for contrast-enhancing tumor, central necrosis, and T2 hyperintense regions."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is semi-automated, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The final VOIs were reviewed by a neuroradiologist, so the segmentation in the test set was not produced by a single reader or automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study performs radiomic analysis, which involves the extraction of hand-crafted image features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions image registration and normalization. They created contrast-enhanced T1-weighted subtraction maps by normalizing image intensity for both non-enhanced and contrast-enhanced T1-weighted images, then voxel-by-voxel subtraction between the normalized non-enhanced and contrast-enhanced T1-weighted images was performed."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not mention the use of standardized feature extraction software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study provides detailed information of radiomic features in Supplementary Note 3, in concordance with Imaging Biomarker Standardization Initiative [29]."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features and clinical data."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs feature selection to reduce dimensionality, as mentioned in the results section."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions random division of patients into training and validation cohorts while preserving the ratio of true PD and clinical PsP in both groups."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers potential confounding factors such as age, MGMT status, and KPS score, and analyzes their impact on the outcomes."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, and specificity for classification tasks. They also present Kaplan-Meier survival curves and perform log-rank tests."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes hazard ratios with 95% confidence intervals."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (T1-weighted, T2-weighted, FLAIR, contrast-enhanced T1-weighted) without a comparison to uni-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of radiomic models with multivariate logistic analysis based on clinical data."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomic model with a simple or classical statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent validation dataset sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing on data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that datasets analyzed are available from the corresponding author on request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study includes a code availability statement indicating that codes used are available from the corresponding author on request."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in a ready-to-use format."
+  },
+  "elapsed_time": 12.538678884506226
+}

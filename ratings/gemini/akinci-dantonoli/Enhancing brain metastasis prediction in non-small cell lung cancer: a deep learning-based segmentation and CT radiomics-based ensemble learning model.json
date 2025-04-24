@@ -1,0 +1,144 @@
+{
+  "Summary": "This study developed a deep learning-based segmentation and CT radiomics-based ensemble learning model to predict brain metastasis (BM) risk within three years for advanced non-small cell lung cancer (NSCLC) patients. The model, which fuses CT radiomics and clinical features, demonstrated improved prediction performance for BM risk and prognostic value for BM-free survival (BMFS) and overall survival (OS).",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population of advanced NSCLC patients."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histopathological diagnosis of NSCLC and clinical diagnosis of stage III-IV NSCLC, which are well-established clinical practices. The follow-up period of at least 3 years for BM is also appropriate."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from two centers, Fudan University Shanghai Cancer Center (FUSCC) and Nantong Tumor Hospital (NTH)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a standard imaging technique for lung cancer staging and evaluation."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the CT acquisition parameters, including tube voltage, tube current, pixel spacing, slice thickness, and reconstruction matrix, which are important for replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that CT scans were performed within one week before surgery or biopsy, which is appropriate to validate the presence or absence of target conditions at the moment of diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of lung tumors using a deep residual U-Net network."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study uses a deep residual U-Net network for fully automated segmentation of lung tumors."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of ITK-Snap software, delineation by junior radiologists, and reconfirmation by a senior radiologist. It also mentions the cubic B-spline interpolation algorithm for resampling CT images."
+  },
+  "Item9": {
+    "rating": "yes",
+    "reason": "The study evaluates the performance of the fully automated segmentation by reporting the Dice similarity coefficient and Jaccard similarity coefficient compared to the manual segmentation by radiologists."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The test set segmentation masks are produced by an automated tool (deep residual U-Net), which reflects clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features, including original features, Laplacian of Gaussian (LoG) features, and wavelet features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of appropriate image preprocessing techniques, such as cubic B-spline interpolation for resampling, intensity clipping, and zero-mean normalization for feature standardization. It also describes the different image types used (original, LoG, and wavelet)."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses the open-source Python package PyRadiomics for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (original, LoG, wavelet) and feature classes (shape, first-order, texture). It also mentions the use of PyRadiomics and provides a link to the software."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomics features and clinical features organized in a table."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. It uses deep learning for segmentation but not for direct classification or regression from image data."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study removes low-variance features and uses recursive feature elimination (RFE) with LASSO regularization to select the optimal image features."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses recursive feature elimination (RFE) with LASSO regularization to reduce dimensionality by selecting informative features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study employs feature selection methods (RFE with LASSO) to reduce the number of features, which helps to ensure that the dimensionality is appropriate for the data size. They also use SMOTE to address imbalanced datasets."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this criterion is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into training, validation, and test sets. It also uses SMOTE to address the imbalanced dataset issue, which is applied only to the training dataset."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study acknowledges the potential for confounding factors and attempts to address them by using a fused feature model that combines radiomics and clinical features. They also mention that a significant difference in the thickness of the CT image was observed in both the training and validation cohorts."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, specificity, PPV, NPV, F1 score, and MCC for the classification task. It also calculates the 95% confidence interval for AUC."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes uncertainty measures by reporting 95% confidence intervals (CI) for the AUC values, estimated using a bootstrap resampling procedure with 1000 iterations."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (wavelet features) without a clear justification or comparison with uni-parametric imaging. They do not provide proof of the inferiority of using a single imaging set."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics model with a clinical feature-based model, which represents a non-radiomic approach. It also uses decision curve analysis (DCA) to evaluate the clinical value of the models."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study compares the performance of different machine learning classifiers (XGBoost, SVM, MLP, decision tree) but does not compare with a simple baseline reference model such as a Zero Rules/No Information Rate classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an internal validation cohort (validation cohort 1) that is sampled from the same source as the training set (FUSCC)."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested on an external validation cohort (validation cohort 2) from another institution (NTH)."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study states that the datasets used or analyzed during the current study are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study mentions the use of publicly available Python libraries (PyRadiomics, PyTorch, SimpleITK, scikit-learn, XGBoost, lifelines, SciPy, Matplotlib, NumPy, and Pandas) for model development and statistical analysis."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system. The availability of the datasets does not imply the availability of the trained model."
+  },
+  "elapsed_time": 12.182226181030273
+}

@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the potential of radiomics features extracted from normal-appearing white matter (NAWM) on MR images to predict the future occurrence of MS lesions. The authors trained a machine learning model (XGBoost) to differentiate between \"prelesion\" areas and control samples within the NAWM. The model achieved high accuracy on the internal test set and moderate accuracy on an external validation set, suggesting that radiomics features could serve as imaging biomarkers for MS progression.",
+  "Item1": {
+    "rating": "yes",
+    "reason": "The authors state that the article was prepared using the Checklist for Artificial Intelligence in Medical Imaging and conforms to the Assessment of RadiomIcS rEsearch (ARISE) guideline."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The inclusion and exclusion criteria are defined in the Materials and Methods section: \"Consecutive patients who had at least 2 MR imaging brain studies for MS at our institution between January 2019 and December 2022 were reviewed (Fig 1). Those with a new lesion on follow-up imaging were included in this study.\""
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is the MAGNIMS consensus guidelines for radiologic progression (new or enlarging lesions), which is a well-established standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from an internal cohort and an external, publicly available dataset (MSSEG2), indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is standard MRI of the brain for MS, which reflects established standardization approaches."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The imaging protocol with acquisition parameters is clearly reported in the Materials and Methods section, including details of the 3D T2-FLAIR sequence."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study includes patients with at least two MRI scans, where the first scan is used to extract radiomic features and the second scan is used to identify new lesions. This allows for the validation of the presence or absence of target conditions at the moment of the diagnostic imaging exams."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of MS lesions and normal-appearing white matter (NAWM) to extract radiomics features."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions using DeepMedic for initial automated segmentation, but these segmentations were then manually corrected by radiologists."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The segmentation methodology is described in the Materials and Methods section: \"A baseline automated segmentation of MS lesions was generated using DeepMedic (https://github.com/deepmedic/deepmedic).31 These baseline segmentations were then manually corrected by 1 of 2 certified radiologists in their first year post-board examination using ITK-Snap Version 3.8.0 (www.itksnap.org).32\""
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study uses automated segmentation with manual correction, so a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks were produced by manual correction of automated segmentations by two readers, which does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomics features using PyRadiomics, which are hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions coregistration of images using FSL and defacing using the FSL Brain Extraction Tool. This indicates appropriate use of image preprocessing techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study uses PyRadiomics for feature extraction, which is a standardized software. The version number is also provided (Version 3.01)."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (radiomics features) and mentions that shape-related radiomic features were excluded. The software used (PyRadiomics) is also mentioned."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of radiomic features extracted from the images."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It uses hand-crafted radiomic features with machine learning models."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study performs feature selection based on feature importance extracted from the best-performing model (XGBoost)."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size, either statistically or empirically."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use end-to-end deep learning, so robustness assessment of end-to-end deep learning pipelines is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions splitting the data into training, test, and external validation sets. The split is done at the patient level, and the classes are balanced 50:50 in a binary prediction problem."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study mentions that failure analysis on external validation showed that in many instances, a potential cause for misclassified cases was misregistration of images rather than the machine learning model. This indicates that the authors considered potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics for the classification task, such as accuracy, precision, recall, and F1-score. Tables 2 and 3 show these metrics for different models on the test and validation sets."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not include uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of uni-parametric imaging with multi-parametric imaging or justify the need for a multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics-based model with a baseline model using only the mean intensity value of the segmented regions. This serves as a comparison with a non-radiomic approach."
+  },
+  "Item25": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the radiomics-based model with a baseline model using only the mean pixel intensity. This serves as a comparison with a simple statistical model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The model is tested with independent data from another institution (MSSEG2)."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that any imaging, segmentation, clinical, or radiomics analysis data is shared with the public, except for the external validation dataset."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study states that the code necessary to reproduce these experiments is available on GitHub."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 12.100225925445557
+}

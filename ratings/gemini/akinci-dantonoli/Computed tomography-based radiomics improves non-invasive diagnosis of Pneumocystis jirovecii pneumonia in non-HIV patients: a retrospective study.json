@@ -1,0 +1,144 @@
+{
+  "Summary": "This study develops a CT-based radiomics model to identify Pneumocystis jirovecii pneumonia (PCP) in non-HIV patients. The model, combined with serum \u03b2-D-glucan levels, shows potential for accurate and non-invasive PCP risk identification, outperforming traditional risk factors.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population of non-HIV patients with suspected PCP."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on real-time qPCR and IF staining tests on BAL fluid samples, following the ECIL guidelines, which is a robust and well-established method for PCP diagnosis."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study is a single-center retrospective analysis, meaning that all data comes from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is chest CT, a standard imaging technique for pneumonia diagnosis, and the study reports specific CT scanning parameters."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides detailed CT scanning parameters, including tube voltage, exposure control, rotation speed, collimation, pitch, matrix size, slice thickness, and reconstruction kernel."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that BAL examination was performed within three days after CT scans, which is appropriate to validate the presence or absence of PCP at the moment of imaging."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of pneumonia regions on CT images as part of the radiomics analysis pipeline."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "While the initial segmentation is performed automatically, it is followed by manual review and modification by an experienced physician, indicating that the segmentation process is not fully automated."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a deep learning algorithm for initial segmentation and subsequent manual review and modification by experienced physicians."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated, as it involves manual correction by a radiologist. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The test set segmentation masks are not produced by a single reader or automated tool, as the segmentation process involves both automated and manual steps, with confirmation by an expert chest radiologist."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts 1316 radiomic features, including shape, first-order, texture, wavelet, and Laplacian of Gaussian (LoG) features, which are considered hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of Z-score normalization for radiomic features and specifies the resampling of the region of interest (ROI) to 1 mm \u00d7 1 mm \u00d7 1 mm. It also describes the types of filtered images used (wavelet and LoG features)."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state whether a standardized software (e.g., IBSI compliant) was used for feature extraction. It only mentions the use of the \"Radiomics\" module within the FACT medical imaging system."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (shape, first order, texture, wavelet, and LoG features) and mentions that the features were extracted using the \"Radiomics\" module. However, it does not provide a complete configuration file or detailed parameter settings for the feature extraction process."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features and clinical characteristics organized in tables."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning approach. Instead, it uses a deep learning algorithm for initial segmentation, followed by hand-crafted feature extraction and traditional machine learning for model construction."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses LASSO regression for feature selection, which is a method for dimensionality reduction by selecting the most informative features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. It does not mention any statistical analysis or empirical evidence to support the choice of the number of features used in the final model."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so a robustness assessment of such a pipeline is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomized into training and validation cohorts at a 7:3 ratio. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step, or whether the data split was stratified to maintain outcome variable distribution."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors by comparing clinical characteristics and semantic CT features between the PCP and non-PCP groups. It identifies significant differences in medication use, laboratory findings, and CT features."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses AUC to evaluate the diagnostic performance of the models and reports accuracy, sensitivity, specificity, PPV, and NPV. It also includes calibration curves to show the diagnostic accuracy of the model."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals (CI) for the AUC values, providing a measure of uncertainty in the performance evaluation."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the final model using calibration curves, which show the agreement between predicted and observed probabilities."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not explicitly compare the performance of a uni-parametric imaging approach with the multi-parametric approach used. It does not provide evidence to justify the need for multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the radiomics model with a traditional model based on serum \u03b2-D-glucan levels, which is a non-radiomic method used in clinical practice. It uses the Delong test to compare the AUCs of the two models."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier. It only compares the radiomics model with a traditional model based on clinical and CT features."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent validation cohort that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study is a single-center study and does not include external testing with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study states that the datasets used and analyzed during the current study are available from the corresponding author on reasonable request."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the code used for automatic segmentation and/or modeling."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model in the form of a raw model file or as a ready-to-use system."
+  },
+  "elapsed_time": 11.548142910003662
+}

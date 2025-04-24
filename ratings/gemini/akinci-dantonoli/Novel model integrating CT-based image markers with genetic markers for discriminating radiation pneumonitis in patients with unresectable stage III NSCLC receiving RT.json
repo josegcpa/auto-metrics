@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates the potential of CT-based radiomics combined with genomics to predict the risk of grade \u22652 radiation pneumonitis (RP) in patients with unresectable stage III non-small cell lung cancer (NSCLC) treated with chemoradiotherapy. The study found that a model integrating radiomics features, clinical factors, and genomic data (specifically XRCC1 rs25487 allele mutation) demonstrated superior predictive performance compared to models based on individual data types.",
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions compliance with the TRIPOD guidelines for prediction models."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient eligibility, contributing to a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard (grade \u22652 RP) is defined according to the toxicity criteria of the Radiation Therapy Oncology Group and the European Organization for Research and Treatment of Cancer, which is a well-established standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study mentions that data was collected from multiple centers."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "CT imaging is a standard imaging modality in clinical practice for lung cancer management."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the extraction of CT images in the Digital Imaging and Communications in Medicine format from the PACS system."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The median interval from RT completion to grade \u22652 RP occurrence was 54 days, which is within a reasonable timeframe to validate the presence or absence of RP."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of the entire lung as the region of interest (ROI)."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was semi-automatic, requiring manual modification by experienced radiation oncologists."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the manual modification of the semi-automatically delineated lung region, and the exclusion of tumors, diaphragms, trachea, and mainstem bronchi."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "Two radiation oncologists were involved in the segmentation process, which does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features using a defined methodology, indicating the use of hand-crafted feature extraction."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization (z-score transformation) of the image intensity to transform the CT values into standardized intensity ranges."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions the use of 3D Slicer software for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the types of radiomic features extracted (first-order statistics, shape, texture, and wavelet features) and provides details on the feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, as evidenced by the radiomic features being organized and used in statistical models."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not describe an end-to-end deep learning pipeline."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study mentions the use of the intraclass correlation coefficient (ICC) to validate the reproducibility of the extracted features and minimize operator bias."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses the least absolute shrinkage and selection operator (LASSO) algorithm for feature selection to reduce dimensionality."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions the use of 10-fold cross validation."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study considers histology as a potential confounding factor and includes it in the multivariate analysis."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports the area under the receiver operating characteristic curve (AUC) to evaluate the predictive capacity of the model."
+  },
+  "Item21": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the inclusion of uncertainty measures such as confidence intervals or standard deviations."
+  },
+  "Item22": {
+    "rating": "yes",
+    "reason": "The study assesses the calibration of the final model using calibration curves and the Hosmer-Lemeshow test."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of uni-parametric imaging with multi-parametric imaging."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not compare the radiomics approach with a non-radiomic method that is representative of clinical practice."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model with a simple baseline reference model."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses cross-validation, which involves internal testing."
+  },
+  "Item27": {
+    "rating": "yes",
+    "reason": "The study is a multi-center study, suggesting external testing."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the code is available."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention the availability of the final model."
+  },
+  "elapsed_time": 9.65562629699707
+}

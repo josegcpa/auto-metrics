@@ -1,0 +1,144 @@
+{
+  "Summary": "This study investigates clinical, molecular, and imaging characteristics of newly diagnosed glioblastoma (GBM) patients exhibiting early radiographic progression followed by long residual overall survival (clinically-defined pseudoprogression, PsP) using data from the control arm of the AVAglio trial. The study identifies distinct features associated with clinically-defined PsP, including MGMT methylation, younger age, better neurological performance, and lower contrast-enhancing tumor volume at baseline. Radiomic analysis demonstrates the potential to predict clinical PsP with reasonable accuracy.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population. Patients with early PD, defined as PFS within 6 months, were included, while those with known IDH mutant tumors were excluded."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on centrally determined progression according to clinical trial guidelines and overall survival, which is a robust clinical outcome measure. The definition of true PD and clinical pseudoprogression based on residual overall survival is clearly defined."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study utilizes data from the AVAglio trial, which included 120 institutions across 23 countries, indicating a multi-center study."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is based on standard clinical MR imaging protocols used in the AVAglio trial, reflecting established standardization approaches for GBM imaging."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions that anatomic MR images were acquired using 1.5-T or 3-T clinical MR scanners using pulse sequences supplied by their respective manufacturers and according to their local standard of care protocols. Although specific parameters are not exhaustively listed, the general acquisition protocol is described."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses the time interval between imaging and progression/survival to define the groups (true PD vs. clinical PsP), making the interval appropriate for validating the presence or absence of target conditions at the moment of diagnostic imaging."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of contrast-enhanced T1-weighted images and FLAIR images to define volumes of interest (VOIs)."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation method is described as semi-automated, involving initial VOIs created by trained lab technologists and reviewed by a neuroradiologist, indicating human intervention."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the segmentation methodology, including the use of a semi-automated thresholding method and the definition of three mutually exclusive VOIs. The involvement of trained technologists and a neuroradiologist in the segmentation process is also mentioned."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was semi-automated, not fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The final VOIs were reviewed by a neuroradiologist, so the segmentation was not produced by a single reader or automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study performs radiomic analysis, which involves the extraction of hand-crafted image features from the segmented regions."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions image registration and normalization as preprocessing steps. It describes the creation of contrast-enhanced T1-weighted subtraction maps by normalizing image intensity and performing voxel-by-voxel subtraction."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state the use of a standardized feature extraction software compliant with IBSI. It only mentions that radiomic analysis was performed."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study provides detailed information of radiomic features in Supplementary Note 3, in concordance with Imaging Biomarker Standardization Initiative. This suggests transparent reporting of feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features and clinical data organized for analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not describe an end-to-end deep learning pipeline. It uses hand-crafted radiomic features."
+  },
+  "Item14": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis. However, it does perform feature selection."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study mentions feature selection processes to identify radiomic features for differentiating between true PD and clinical PsP, indicating removal of redundant features."
+  },
+  "Item16": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of features used in the final model."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly divided into training and validation cohorts at a ratio of 2 to 1, while preserving the ratio of true PD and clinical PsP in both groups. This suggests a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "yes",
+    "reason": "The study analyzes potential confounding factors such as age, sex, KPS score, and MGMT status, and investigates their relationship with true PD and clinical PsP."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, and specificity for predicting clinical PsP. It also includes Kaplan-Meier survival curves and log-rank tests."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study reports hazard ratios with 95% confidence intervals, providing a measure of uncertainty in the analysis."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (T1-weighted, T2-weighted, and FLAIR) without a direct comparison to uni-parametric imaging to justify the multi-parametric approach."
+  },
+  "Item24": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a non-radiomic approach representative of clinical practice. It only compares radiomic models with and without clinical data."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not include a comparison with a simple or classical statistical model as a baseline reference."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study tests the model on an independent validation dataset sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not perform external testing with independent data from other institutions. The validation is performed on a subset of the original AVAglio trial data."
+  },
+  "Item28": {
+    "rating": "yes",
+    "reason": "The study includes a data availability statement indicating that datasets analyzed during the study are available from the corresponding author on request."
+  },
+  "Item29": {
+    "rating": "yes",
+    "reason": "The study includes a code availability statement indicating that codes used during the study are available from the corresponding author on request."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system. Only code is available upon request."
+  },
+  "elapsed_time": 12.706841230392456
+}

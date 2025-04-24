@@ -1,0 +1,144 @@
+{
+  "Summary": "This study developed a radiomic classifier using contrast-enhanced T1-weighted MRI and DCE perfusion images to differentiate pseudoprogression from recurrent tumor in patients with IDH wild-type glioblastoma. The classifier, enhanced with MGMT methylation status, achieved an AUC of 0.89 in cross-validation, suggesting its potential to improve diagnostic accuracy and inform treatment decisions.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, focusing on a specific population (IDH wild type glioblastoma) and treatment history."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathology, which is a robust and well-established method for differentiating between recurrent tumor and pseudoprogression."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study uses data from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source (contrast-enhanced T1-weighted MRI and DCE perfusion) reflects established standardization approaches as part of the standard of care for glioma imaging at the institution."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details of MRI acquisition, including field strength (1.5T and 3T) and scanner types, and refers to Supplemental Methods for further details, contributing to replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The interval between imaging and repeat surgery (reference standard) is appropriate, with MRI scans acquired a median of 2 days before repeat surgery, ensuring the imaging reflects the lesion status at the time of diagnosis."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of the enhancing lesion for radiomic feature extraction."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the segmentation was fully automated. The supplemental methods would need to be reviewed to confirm."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study mentions details of MRI acquisition and segmentation in Supplemental Methods. The segmentation methodology is described as being performed using the open-source Computational Environment for Radiological Research (CERR) software."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly state that the segmentation was fully automated, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "n/a",
+    "reason": "The study does not explicitly state that the segmentation was performed by a single reader or automated tool in the test set. The supplemental methods would need to be reviewed to confirm. Since the condition is not met, this is not applicable."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from the images."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions the use of gray level normalization for MRI and refers to Supplemental Methods for details of image preprocessing, suggesting appropriate techniques were used."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study used the open-source CERR software for feature extraction, which is a standardized software."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (first order histogram features, second order features using gray level correlation matrix, etc.) and mentions using default settings for feature extraction parameters, which is a form of providing a default configuration statement."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. It uses hand-crafted radiomic features with machine learning classifiers."
+  },
+  "Item14": {
+    "rating": "yes",
+    "reason": "The study uses MRMR for feature preselection, which can be considered a method for removing non-robust features by selecting the most relevant ones."
+  },
+  "Item15": {
+    "rating": "yes",
+    "reason": "The study uses MRMR and RFE-RF for feature selection, which are algorithm-based methods for dimensionality reduction and selecting informative features."
+  },
+  "Item16": {
+    "rating": "yes",
+    "reason": "The study uses recursive feature elimination and cross-validation to optimize the number of features, suggesting consideration of the appropriateness of dimensionality compared to data size."
+  },
+  "Item17": {
+    "rating": "n/a",
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study uses nested cross-validation, which involves splitting the data into distinct folds and holding out data for testing, suggesting a proper data partitioning process."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly discuss or address potential confounding factors such as scanner variability or patient characteristics."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study reports appropriate accuracy metrics such as AUC, sensitivity, specificity, PPV, and NPV for the classification task."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes 95% confidence intervals for the AUC values, providing a measure of uncertainty."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention or assess the calibration of the final model."
+  },
+  "Item23": {
+    "rating": "no",
+    "reason": "The study uses multi-parametric imaging (contrast T1-weighted and DCE perfusion) without a direct comparison to uni-parametric imaging to justify the added complexity."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the radiomic model's performance to a model using known clinical predictors (MGMT, age, and gender), demonstrating the added value of radiomics."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the model to a simple baseline reference model such as a Zero Rules classifier."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The study uses nested cross-validation, which includes internal testing on an independent data set sampled from the same source as the training data."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The study does not include external testing on data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model availability."
+  },
+  "elapsed_time": 11.368913173675537
+}

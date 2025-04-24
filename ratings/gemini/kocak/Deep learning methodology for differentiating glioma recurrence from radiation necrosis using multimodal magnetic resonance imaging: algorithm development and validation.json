@@ -1,0 +1,144 @@
+{
+  "Summary": "This study presents a deep learning model (ERN-Net) for differentiating between recurrent glioma and radiation necrosis on routine MRI scans. The model achieved high accuracy in image-wise and subject-wise classification, outperforming experienced neurosurgeons. The study demonstrates the potential of deep learning as a tool for improving the differential diagnosis of recurrent gliomas and necrosis in clinical settings.",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines clear inclusion and exclusion criteria for patient selection, aiming to create a representative study population. Patients with pathologically confirmed gliomas who underwent radiation therapy and presented with suspected recurrent lesions were included. Patients with a mixture of tumor and necrosis were excluded."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is histopathological diagnosis of recurrent lesions, which is a high-quality reference standard."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The imaging data was acquired from five MRI systems at a single institution (Beijing Tiantan Hospital, Capital Medical University)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses routine MRI sequences (T1, T2, T1c) that are part of standard clinical practice for glioma follow-up."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides specifications of the imaging data acquired from different MRI systems, including field of view, slice thickness, slice spacing, and matrix size."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study uses follow-up MRI scans prior to the second surgery for histopathologic diagnosis, which is appropriate for validating the presence or absence of target conditions at the moment of imaging."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves identifying MRI slices presenting enhancing lesions, which can be considered a form of rough delineation or cropping around a region of interest."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The MRI slices containing the lesion were identified manually by an experienced neurosurgeon and further reviewed by an imaging analyst."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the process of identifying MRI slices containing lesions by neuroradiologists or neurosurgeons, using 3D Slicer to place a marker on axial slices with suspected recurrent lesions."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The MRI slices containing the lesion were identified manually by an experienced neurosurgeon and further reviewed by an imaging analyst."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses deep learning to automatically learn features from the images, rather than relying on hand-crafted features."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study describes the preprocessing steps, including bias field correction and co-registration of T1c and T2 images to the T1 space. It also mentions linear mapping and resampling to the Montreal Neurological Institute 152 template."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "The study does not use hand-crafted features."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the architecture of the proposed ERN-Net model and benchmarks it against other DNN models. It also mentions the use of ImageNet pretrained weights and the TensorFlow framework."
+  },
+  "Condition4": {
+    "rating": "no",
+    "reason": "The study does not explicitly present radiomic features in a tabulated format."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses an end-to-end deep learning approach to directly process the image data and produce a classification model."
+  },
+  "Item14": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data."
+  },
+  "Item15": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data."
+  },
+  "Item16": {
+    "rating": "n/a",
+    "reason": "The study does not use tabular data."
+  },
+  "Item17": {
+    "rating": "no",
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline using test-retest, different segmentations, or stability analysis."
+  },
+  "Item18": {
+    "rating": "yes",
+    "reason": "The study splits the data into training and test sets at the beginning of the analysis. The split is done randomly, and the ratio is approximately 80:20."
+  },
+  "Item19": {
+    "rating": "no",
+    "reason": "The study does not explicitly address or analyze potential confounding factors."
+  },
+  "Item20": {
+    "rating": "yes",
+    "reason": "The study uses appropriate performance evaluation metrics for the classification task, including sensitivity, specificity, accuracy, and AUC. It also provides confidence intervals for these metrics."
+  },
+  "Item21": {
+    "rating": "yes",
+    "reason": "The study includes uncertainty measures in the analysis, such as 95% confidence intervals for the performance metrics."
+  },
+  "Item22": {
+    "rating": "no",
+    "reason": "The study does not include a calibration assessment of the final model."
+  },
+  "Item23": {
+    "rating": "yes",
+    "reason": "The study compares the performance of single-modal and multimodal MRI, demonstrating that multimodal MRI outperforms single-modal MRI."
+  },
+  "Item24": {
+    "rating": "yes",
+    "reason": "The study compares the performance of the DNN models to that of experienced neurosurgeons, demonstrating that the DNN models achieve significantly better performance."
+  },
+  "Item25": {
+    "rating": "no",
+    "reason": "The study does not compare the performance of the DNN models to simple or classical statistical models."
+  },
+  "Item26": {
+    "rating": "yes",
+    "reason": "The model is tested on an independent data set that is sampled from the same source as the training set."
+  },
+  "Item27": {
+    "rating": "no",
+    "reason": "The model is not tested with independent data from other institutions."
+  },
+  "Item28": {
+    "rating": "no",
+    "reason": "The study does not mention any data availability."
+  },
+  "Item29": {
+    "rating": "no",
+    "reason": "The study does not mention any code availability."
+  },
+  "Item30": {
+    "rating": "no",
+    "reason": "The study does not mention any model availability."
+  },
+  "elapsed_time": 10.783226013183594
+}
