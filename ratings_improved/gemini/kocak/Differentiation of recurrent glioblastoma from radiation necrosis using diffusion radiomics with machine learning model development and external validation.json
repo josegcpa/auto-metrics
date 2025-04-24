@@ -1,36 +1,16 @@
 {
-  "Summary": "This study aimed to develop and validate a radiomics strategy using machine learning classifiers from conventional imaging and apparent diffusion coefficient (ADC) to differentiate recurrent glioblastoma (GBM) from radiation necrosis (RN) after concurrent chemoradiotherapy (CCRT) or radiotherapy. The study found that a diffusion radiomics model using the ADC sequence demonstrated the best diagnostic performance in an independent test set, with an AUC of 0.80, suggesting its potential usefulness in clinical decision-making.",
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study involves tumor segmentation to extract radiomic features."
-  },
-  "Condition2": {
-    "rating": "no",
-    "reason": "The tumor segmentation was performed semi-automatically with an interactive level-set region of interest, implying human intervention."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features from conventional MRI and ADC sequences."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study uses tabular data in the form of extracted radiomic features organized for machine learning."
-  },
-  "Condition5": {
-    "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach; instead, it relies on hand-crafted feature extraction and machine learning classifiers."
-  },
+  "Summary": "This study aimed to develop and validate a radiomics strategy using machine learning classifiers from conventional imaging and ADC to differentiate recurrent GBM from RN after CCRT or radiotherapy. The diffusion radiomics model showed robustness with an AUC of 0.80 in the external validation set.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient enrollment, leading to a representative study sample."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is based on either histopathology or clinicoradiological follow-up, which are acceptable methods for diagnosing recurrent GBM or RN."
+    "reason": "The reference standard is based on histopathology or clinicoradiological follow-up, which are acceptable methods for diagnosing recurrent GBM or RN."
   },
   "Item4": {
     "rating": "yes",
@@ -42,47 +22,67 @@
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides details on the MRI acquisition protocols, including scanner models and parameters, in the supplementary material."
+    "reason": "The study provides details of the MRI acquisition protocols in the supplementary material."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study specifies that the development of new or enlarging contrast enhancement occurred 12 weeks after CCRT or RT, and the diagnosis was established either pathologically or clinicoradiologically, suggesting an appropriate interval between imaging and reference standard."
+    "reason": "The study specifies that the development of new or enlarging contrast enhancement occurred within the radiation field 12 weeks after CCRT or RT, which is an appropriate interval."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of the contrast-enhancing solid portion of the tumor."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The segmentation was performed semiautomatically with an interactive level-set region of interest, implying human intervention."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the tumor segmentation process, mentioning the use of interactive level-set region of interest and edge-based and threshold-based algorithms using 3D Slicer."
+    "reason": "The study describes the segmentation method, including the use of interactive level-set region of interest and edge-based and threshold-based algorithms."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was semi-automatic, not fully automated, so this item is not applicable."
+    "reason": "The segmentation was not fully automated, so this item is not applicable."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The segmentation was performed through a consensus discussion of two neuroradiologists, not by a single reader or automated tool."
+    "reason": "The segmentation was performed through a consensus discussion of two neuroradiologists, which does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions preprocessing steps such as N4 bias correction and signal intensity normalization, along with resampling to a uniform voxel size, indicating appropriate image preprocessing techniques."
+    "reason": "The study mentions the use of N4 bias correction, signal intensity normalization, and resampling to a uniform voxel size, which are appropriate preprocessing techniques."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used PyRadiomics (version 2.0), which is adherent to the Image Biomarker Standardization Initiative (IBSI) guideline."
+    "reason": "The study used PyRadiomics, which is IBSI compliant."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the radiomic features extracted, including shape, first-order features, and second-order features, and mentions the use of a bin size of 32."
+    "reason": "The study describes the feature types (shape, first order, second order) and mentions the use of PyRadiomics, which adheres to IBSI guidelines."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of extracted radiomic features."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline."
   },
   "Item14": {
-    "rating": "n/a",
-    "reason": "The study does not explicitly discuss the removal of non-robust features. Therefore, this item is not applicable."
+    "rating": "no",
+    "reason": "The study does not mention the removal of non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study employs feature selection methods such as F-score, LASSO, or MI with stratified ten-fold cross-validation to reduce dimensionality."
+    "reason": "The study uses F-score, LASSO, or MI for feature selection, which are methods for dimensionality reduction."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size."
   },
   "Item17": {
     "rating": "n/a",
@@ -90,54 +90,55 @@
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study uses stratified ten-fold cross-validation, which helps ensure proper data partitioning."
+    "reason": "The study uses stratified ten-fold cross-validation, which is a proper data partitioning process."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study analyzes potential confounding factors such as age, sex, extent of resection, first-line treatment, total radiation dose, IDH1 mutation status, and MGMT methylation status."
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, and specificity."
+    "reason": "The study reports AUC, accuracy, sensitivity, and specificity, which are appropriate performance evaluation metrics for the classification task."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures such as 95% confidence intervals (CI) for the AUC values."
+    "reason": "The study reports 95% confidence intervals for the AUC values."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not mention any calibration assessment of the final model."
+    "reason": "The study does not assess the calibration of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not explicitly compare the performance of uni-parametric imaging to multi-parametric imaging or justify the need for a multi-parametric approach."
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the radiomics approach with a non-radiomic method representative of clinical practice."
+    "reason": "The study does not compare the radiomics model with a non-radiomic approach."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model."
+    "reason": "The study does not compare with simple or classical statistical models."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study tests the model on an independent data set from a different institution."
+    "reason": "The model is tested on an independent data set."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The study includes external testing using data from another institution (Asan Medical Center)."
+    "reason": "The model is tested with independent data from another institution."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data being shared with the public."
+    "reason": "The study does not mention any data availability."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code being shared with the public."
+    "reason": "The study does not mention any code availability."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the model being shared with the public."
-  }
+    "reason": "The study does not mention any model availability."
+  },
+  "elapsed_time": 10.21299695968628
 }

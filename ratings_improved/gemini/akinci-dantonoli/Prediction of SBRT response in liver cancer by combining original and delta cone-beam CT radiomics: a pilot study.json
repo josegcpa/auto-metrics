@@ -1,132 +1,132 @@
 {
-  "Summary": "This study investigates the potential of combining original and delta cone-beam CT (CBCT) radiomics to predict treatment response in liver tumors undergoing stereotactic body radiation therapy (SBRT). The study found that a combination of original and delta radiomics features yields promising results for predicting local efficacy and patient classification. The study also found that CBCT radiomics features are useful in predicting local efficacy in patients with 3-fraction SBRT.",
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study includes segmentation of the gross tumor volume (GTV) on planning CT (pCT) images, which are then registered and adjusted on CBCT images for each fraction."
-  },
-  "Condition2": {
-    "rating": "no",
-    "reason": "The segmentation process involves manual review and adjustment by experienced radiation therapists, indicating that the segmentation is not fully automated."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts 547 radiomics features, including intensity-based, GLCM, GLRLM, GLSZM, NGTDM, wavelet-transform, and shape-based features, which are hand-crafted features."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study uses radiomics features in a tabulated format for analysis."
-  },
-  "Condition5": {
-    "rating": "no",
-    "reason": "The study does not use end-to-end deep learning. Instead, it relies on hand-crafted feature extraction and machine learning models."
-  },
+  "Summary": "This study investigates the potential of using radiomics features extracted from cone-beam CT (CBCT) images, both original and delta (changes between fractions), to predict treatment response in liver tumors undergoing stereotactic body radiation therapy (SBRT). The study found that a combination of original and delta CBCT radiomics features showed promise in predicting treatment response, with the combined models demonstrating higher AUC values compared to models using either original or delta features alone.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines specific inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The specific inclusion criteria, patient SBRT treatment, and follow-up strategies are included in Supplementary."
+    "reason": "The study includes specific inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The inclusion criteria, patient SBRT treatment, and follow-up strategies are included in the supplementary material."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard used is the mRECIST criteria, which is a well-established method for evaluating treatment response in solid tumors. The classification of treatment response is based on changes in tumor size and enhancement on follow-up imaging."
+    "reason": "The reference standard used in this study is mRECIST criteria, which is a well-established method for evaluating treatment response in solid tumors. The classification of treatment response into four groups based on mRECIST criteria is clearly defined."
   },
   "Item4": {
     "rating": "no",
-    "reason": "The study involves data from a single institution."
+    "reason": "The study mentions that the data was collected from a single institution."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source for radiomics analysis is CBCT, which is routinely performed for set-up correction and position verification in SBRT. This reflects established standardization approaches for ensuring high-precision radiotherapy."
+    "reason": "The study uses CBCT images acquired during SBRT, which is a standard clinical practice for set-up correction and position verification. This reflects established standardization approaches in radiotherapy."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the CBCT and pCT image acquisition parameters, including tube current, tube voltage, exposure time, slice thickness, and pixel spacing."
+    "reason": "The study reports the CBCT and pCT image acquisition parameters, including tube current, tube voltage, exposure time, slice thickness, and pixel spacing. This information ensures the replicability of the method."
   },
   "Item7": {
+    "rating": "yes",
+    "reason": "The study uses CBCT images acquired during each fraction of SBRT to assess the dynamic changes in tumors during treatment. This approach ensures that the imaging data is relevant to the treatment response being evaluated."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of the gross tumor volume (GTV) on pCT images, which is then aligned with CBCT images. The VOIs on CBCT are manually checked and adjusted, indicating a form of segmentation."
+  },
+  "Condition2": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the time interval between the diagnostic imaging exams and the outcome measure/reference standard acquisition."
+    "reason": "The study mentions that the VOIs on CBCT are manually checked and adjusted by two experienced radiation therapists, indicating that the segmentation process is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of the \"Standard Deformable Image Alignment (DIR) algorithm\" provided by SmartAdapt® to align the GTV on the pCT with the CBCT image. It also mentions that two experienced radiation therapists manually review and adjust all VOIs."
+    "reason": "The study describes the process of GTV segmentation on pCT images and the alignment of GTV with CBCT images using a deformable image alignment algorithm. It also mentions that two experienced radiation therapists manually review and adjust all VOIs."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation is not fully automated, so this item is not applicable."
+    "reason": "The study does not use fully automated segmentation. The VOIs on CBCT are manually checked and adjusted by two experienced radiation therapists."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The final segmentation in the test set is reviewed and adjusted by two experienced radiation therapists, which does not reflect clinical practice."
+    "reason": "The study mentions that two experienced radiation therapists manually review and adjust all VOIs. Therefore, the final segmentation in the test set is not produced by a single reader or an automated tool."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts 547 radiomics features from the pCT and CBCT VOIs, including intensity-based, GLCM-based, GLRLM-based, GLSZM-based, NGTDM-based, wavelet-transform-based, and shape-based features. These are hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions resampling all pCT and CBCT VOIs into the same voxel size of 1x1x1 mm3 using cubic interpolation and normalizing all images into eight gray levels to prevent sparsely populated matrices. These preprocessing techniques are appropriate for the imaging modality and feature extraction techniques used."
+    "reason": "The study mentions that all pCT and CBCT VOIs are resampled into the same voxel size of 1x1x1 mm3 using cubic interpolation. All images are normalized into eight gray levels to prevent sparsely populated matrices. This indicates the use of appropriate image preprocessing techniques with transparent description."
   },
   "Item12": {
     "rating": "no",
-    "reason": "The study does not mention the use of a standardized feature extraction software."
+    "reason": "The study mentions that the radiomics features extraction is performed using Matlab 2017a with a radiomics features extraction package provided by M Valli\u00e8res et al. It does not explicitly state whether this package is IBSI compliant."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (intensity-based, GLCM, GLRLM, GLSZM, NGTDM, wavelet-transform, and shape-based features) and provides information on the wavelet transform and gray level discretization parameters."
+    "reason": "The study describes the feature types (intensity-based, GLCM-based, GLRLM-based, GLSZM-based, NGTDM-based, wavelet-transform-based, and shape-based features) and provides information on the wavelet filters used. This indicates a transparent reporting of feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data, as it involves the extraction of radiomic features which are then used in a tabulated format for further analysis."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study uses multivariable logistic regression with leave-one-out cross-validation to assess the predictive ability of radiomics features. This is not an end-to-end deep learning approach."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study removes non-robust features by assessing the robustness of radiomics features to uncertainty-driven tumor segmentation using the intraclass correlation coefficient (ICC)."
+    "reason": "The study assesses the robustness of radiomics features to uncertainty-driven tumor segmentation using the intraclass correlation coefficient (ICC). Features with an ICC value higher than 0.75 are selected, indicating the removal of non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study removes redundant features by excluding radiomics features with a high correlation with tumor volume using Spearman correlation analysis."
+    "reason": "The study excludes radiomics features that are highly correlated with tumor volume using Spearman correlation analysis. The features with a corrected p-value higher than 0.05 are retained, indicating the removal of redundant features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. It does not demonstrate this by statistical means, empirically through consistency of performance in validation and testing, or based on previous evidence in the literature."
+    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size. It does not demonstrate this by statistical means, empirically through consistency of performance, or based on previous evidence in the literature."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not include end-to-end deep learning pipelines, so this item is not applicable."
+    "reason": "The study does not use an end-to-end deep learning pipeline."
   },
   "Item18": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention whether the training-validation-test data split is done at the very beginning of the analysis pipeline, prior to any processing step. It also does not mention whether the data split is random but reproducible (e.g., fixed random seed) or whether it alters outcome variable distribution in the test set (e.g., using a stratified data split). Moreover, the data split should be on the patient level, not the scan level (i.e., different scans of the same patient should be in the same set)."
+    "rating": "yes",
+    "reason": "The study uses the leave-one-out cross-validation (LOOCV) method to evaluate the recognition ability of CBCT radiomics features to patients\u2019 responses. For each train-and-validation process, the over-under sampling approach is used for the training model to obtain a relatively balanced dataset. This indicates a proper data partitioning process."
   },
   "Item19": {
-    "rating": "no",
-    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics (e.g., gender, lesion stage or grade) across sites or scanners, or confounders stemming from the acquisition process, such as scanner type, manufacturer, or scanner parameters, or from the individual patient characteristics, such as age, weight, or comorbidities."
+    "rating": "yes",
+    "reason": "The study acknowledges the potential influence of treatment history on the response to SBRT and conducts an additional investigation into the correlation between pre-SBRT therapy and response type in patients with 5-fraction SBRT. This indicates an attempt to handle confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics, such as AUC for Receiver Operating Characteristic (ROC) curves, for classification tasks. However, the confusion matrix is not included."
+    "reason": "The study uses the area under the ROC curve (AUC) to evaluate the performance of predicting tumor responses of CBCT radiomics features. This is an appropriate performance evaluation metric for the classification task."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures in the analysis, such as 95% confidence intervals (CI) for the AUC values."
+    "reason": "The study reports the 95% confidence interval (CI) for the AUC values, indicating the consideration of uncertainty."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not assess the calibration of the final model."
+    "reason": "The study does not mention any calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach by formally comparing their performance."
+    "reason": "The study uses both original and delta radiomics features, and does not compare the performance of uni-parametric imaging with multi-parametric imaging to justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not include a non-radiomic method that is representative of the clinical practice for comparison purposes. It also does not provide proof of improved diagnostic accuracy or patient outcome."
+    "reason": "The study does not include a non-radiomic method for comparison purposes. It does not provide proof of improved diagnostic accuracy or patient outcome compared to clinical practice."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not perform a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier) to justify the use of machine learning methods by proof of increased performance."
+    "reason": "The study does not include a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier). It does not justify the use of machine learning methods by proof of increased performance compared to a simple model."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent data set using leave-one-out cross-validation (LOOCV), which is sampled from the same source as the training and/or validation sets."
+    "reason": "The study uses the leave-one-out cross-validation (LOOCV) method, which involves testing the model on an independent data point that is sampled from the same source as the training data."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The model is not tested with independent data from other institution(s)."
+    "reason": "The study does not involve testing the model with independent data from other institutions."
   },
   "Item28": {
     "rating": "no",
@@ -138,6 +138,7 @@
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the final model being shared in the form of a raw model file or as a ready-to-use system."
-  }
+    "reason": "The study does not mention the final model being shared in any form."
+  },
+  "elapsed_time": 13.954893827438354
 }

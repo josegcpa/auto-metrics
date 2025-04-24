@@ -1,36 +1,16 @@
 {
-  "Summary": "This retrospective pilot study investigates the potential of textural features from O-(2-[18F]fluoroethyl)-L-tyrosine positron emission tomography (FET-PET) to differentiate between true progression and pseudoprogression (PSP) in patients with high-grade glioma (HGG). The study identified three distinct clusters based on textural FET-PET features, showing that cluster assignment, particularly using cluster 3, was associated with PSP, and cluster 2 with true progression. The authors conclude that textural FET-PET feature analysis may be a valuable tool for distinguishing PSP from true tumor progression, warranting validation in larger, prospective studies.",
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study includes manual delineation of tumor volume on PET images for feature extraction."
-  },
-  "Condition2": {
-    "rating": "no",
-    "reason": "The tumor volume was manually delineated on PET images. Thus, the segmentation was not fully automated."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study uses a set of 19 conventional and textural FET-PET features, which are hand-crafted features."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study uses tabular data, as the radiomic features are extracted and presented in a table-like format for further analysis."
-  },
-  "Condition5": {
-    "rating": "no",
-    "reason": "The study does not use end-to-end deep learning. Instead, it relies on hand-crafted feature extraction and clustering."
-  },
+  "Summary": "This study investigates the potential of textural features from O-(2-[18F]fluoroethyl)-L-tyrosine positron emission tomography (FET-PET) to differentiate between true progression and pseudoprogression in high-grade glioma (HGG) patients. The study identified three distinct clusters based on textural FET-PET features, showing that cluster assignment, particularly using cluster 3, was more predictive of pseudoprogression than the conventional tumor-to-normal brain ratio (TNRmax). The findings suggest that textural FET-PET feature analysis could be a valuable tool for distinguishing pseudoprogression from true tumor progression.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines eligibility criteria for patient selection, including specific MRI and PET imaging characteristics, as well as histopathological confirmation of HGG."
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are based on pathohistologically confirmed HGG patients experiencing increasing contrast-enhancing lesions on MRI and having a routine FET-PET following detection of these lesions."
   },
   "Item3": {
-    "rating": "yes",
-    "reason": "The reference standard for diagnosis (true progression vs. pseudoprogression) is based on follow-up MRI using RANO criteria, which is a well-established standard in clinical practice."
+    "rating": "no",
+    "reason": "The reference standard relies on follow-up MRI using RANO criteria, which, while standard, is not as robust as histopathology. The diagnosis of pseudoprogression is retrospective, based on the stabilization or regression of contrast-enhancing lesions on follow-up MRI, which is a limitation."
   },
   "Item4": {
     "rating": "no",
@@ -38,91 +18,111 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "FET-PET imaging is a clinically translatable imaging data source for radiomics analysis in brain tumors."
+    "reason": "FET-PET imaging is a clinically translatable imaging data source for radiomics analysis in brain tumors. The use of FET-PET reflects established approaches for imaging amino acid transport in brain tumors."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The imaging protocol with acquisition parameters is described in the Materials and Methods section, including details about the PET/CT scanner, injection dose, acquisition time, and reconstruction parameters."
+    "reason": "The study reports the image acquisition protocol, including details about the PET/CT scanner, injected dose of FET, acquisition time, and reconstruction parameters. This level of detail ensures the replicability of the method."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The time interval between imaging and reference standard is mentioned. The mean time interval between initial MRI and follow-up MRI was 11 weeks."
+    "reason": "The study mentions the mean time interval between initial MRI and follow-up MRI was 11 weeks, which is appropriate for assessing progression or pseudoprogression according to RANO criteria."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual delineation of tumor volume on PET images, which constitutes segmentation."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study mentions a semiautomatic segmentation in PET was performed based on background activity, but the tumor volume was manually delineated on PET images. Therefore, the segmentation is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including manual delineation of tumor volume on PET images and the use of a semi-automatic segmentation based on background activity with a specific cutoff value."
+    "reason": "The study describes the segmentation methodology, including manual delineation of tumor volume on PET images and a semiautomatic segmentation based on background activity with a specific cutoff value (1.6 times the mean value of background ROIs)."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was not fully automated, so this item is not applicable."
+    "reason": "The segmentation is not fully automated, so this item is not applicable."
   },
   "Item10": {
+    "rating": "no",
+    "reason": "The tumor volume was manually delineated on PET images. The description does not specify whether the test set segmentation masks were produced by a single reader."
+  },
+  "Condition3": {
     "rating": "yes",
-    "reason": "The tumor volume was manually delineated on PET images. Thus, the final segmentation in the test set was produced by a single reader."
+    "reason": "The study extracts a set of 19 conventional and textural FET-PET features, which are hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions co-registration between PET and CT images. It also describes the assessment of tumor uptake heterogeneity using textural parameters estimated in 3-dimensional volumes."
+    "reason": "The study mentions co-registration between PET and CT images. The parameters for gray level discretization are not explicitly described, but the use of SUV values implies a certain level of normalization. The study describes the different PET features used, including textural and conventional parameters."
   },
   "Item12": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the use of a standardized feature extraction software compliant with IBSI."
+    "reason": "The study mentions the use of Interview Fusion Workstation (Mediso Medical Imaging System, Budapest, Hungary), but it does not explicitly state whether the software is compliant with IBSI."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the PET features used, including both conventional and textural features, and provides explanations for each feature in Table 2."
+    "reason": "The study describes the feature types (conventional and textural) and provides explanations for each PET feature in Table 2. However, a complete configuration file or statement for all feature extraction parameters is not included."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of PET features organized in a table."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It relies on hand-crafted feature extraction and clustering."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not mention any removal of non-robust features."
+    "reason": "The study does not mention any removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
   },
   "Item15": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of redundant features."
+    "reason": "The study does not explicitly mention the removal of redundant features using algorithm-based feature selection, correlation analysis, or variance analysis. The study uses PAM to identify a minimal subset of PET features that succinctly characterizes each cluster."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not discuss the appropriateness of dimensionality compared to data size."
+    "reason": "The study does not provide a statistical justification or empirical evidence to demonstrate the appropriateness of the dimensionality compared to the data size."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use end-to-end deep learning pipelines, so this item is not applicable."
+    "reason": "The study does not use end-to-end deep learning, so this item is not applicable."
   },
   "Item18": {
     "rating": "no",
-    "reason": "The study does not explicitly describe a data partitioning process into training, validation, and test sets. The analysis is retrospective and does not involve a clear data split for model training and testing."
+    "reason": "The study does not explicitly describe the data partitioning process, including whether the training-validation-test data split was done at the beginning of the analysis pipeline, whether the data split was random and reproducible, and whether the data processing was done blinded to the test set data."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study acknowledges that the cohort consisted of patients who underwent PET after relapse had occurred, making the cohort heterogeneous. They also mention that treatment at recurrence might further account for varying PET data, which makes interpretation difficult."
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across sites or scanners, or scanner parameters."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses appropriate performance evaluation metrics such as sensitivity, specificity, positive predictive value (PPV), and negative predictive value (NPV) for the classification task of distinguishing true progression from pseudoprogression."
+    "reason": "The study uses appropriate performance evaluation metrics for the task, such as sensitivity, specificity, positive predictive value (PPV), and negative predictive value (NPV) for classification tasks. The study also provides p-values for comparing the performance of different classifiers."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes confidence intervals (CI) for the performance metrics."
+    "reason": "The study includes confidence intervals (CI) for the performance metrics, such as sensitivity, specificity, PPV, and NPV."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not include a calibration assessment of the final model."
+    "reason": "The study does not mention any calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multi-parametric imaging (both conventional and textural features from FET-PET) without a direct comparison to uni-parametric imaging to justify the added complexity."
+    "reason": "The study uses multiple PET features (both conventional and textural), but it does not provide a comparison with a uni-parametric approach or justification for the use of multiple parameters."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the cluster-based classifier with the conventional classifier TNRmax in detecting true progression."
+    "reason": "The study compares the performance of the cluster-based classifier with the conventional TNRmax classifier, which is a non-radiomic method representative of clinical practice. The study provides a statistical comparison (p-values) to evaluate the added value of the model."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with simple or classical statistical models."
+    "reason": "The study does not include a comparison with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study tests the model on an independent data set that is sampled from the same source as the training and/or validation sets."
+    "reason": "The study uses an independent data set that is sampled from the same source as the training and/or validation sets."
   },
   "Item27": {
     "rating": "no",
@@ -130,14 +130,15 @@
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not mention any data availability."
+    "reason": "The study does not mention any data sharing with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not mention any code availability."
+    "reason": "The study does not mention any code sharing with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention any model availability."
-  }
+    "reason": "The study does not mention any model sharing with the public."
+  },
+  "elapsed_time": 14.464403867721558
 }

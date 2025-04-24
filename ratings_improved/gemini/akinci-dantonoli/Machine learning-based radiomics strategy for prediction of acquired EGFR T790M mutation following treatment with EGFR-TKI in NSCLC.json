@@ -1,36 +1,16 @@
 {
-  "Summary": "This study develops and validates a radiomics-based machine learning model to predict the EGFR T790M mutation in NSCLC patients at the time of diagnosis using CT images. The model integrates radiomic features and clinical factors, achieving an AUC of 0.86, demonstrating a non-invasive approach to identify patients likely to develop the T790M mutation after first- or second-generation EGFR-TKI treatment.",
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study includes manual segmentation of tumor regions of interest (ROIs) on CT images."
-  },
-  "Condition2": {
-    "rating": "no",
-    "reason": "The study mentions manual segmentation of the tumor regions, indicating that the segmentation is not fully automated."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts 1316 radiomics features from CT images, which are hand-crafted features."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study uses clinical features such as age, gender, smoking status, and serum levels of tumor markers, which are tabular data."
-  },
-  "Condition5": {
-    "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach. It relies on hand-crafted radiomic features and machine learning models."
-  },
+  "Summary": "This study develops and validates a radiomics-based machine learning model to predict the EGFR T790M mutation in NSCLC patients at diagnosis using CT images. The model integrates radiomics features and clinical factors, achieving an AUC of 0.86, demonstrating a non-invasive approach for identifying patients likely to develop the T790M mutation after first- or second-generation EGFR-TKI treatment.",
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population."
+    "reason": "The study defines clear inclusion and exclusion criteria for patient selection, aiming to create a representative study population. The criteria are explicitly stated in the Methods section."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is the EGFR T790M mutation status determined by ARMS-PCR or NGS on relapsed tumor tissue or circulating free DNA (cfDNA), which is a robust and well-established method."
+    "reason": "The reference standard is the EGFR T790M mutation status determined by ARMS-PCR or NGS on relapsed tumor tissue or cfDNA, which is a well-established method for detecting this mutation in clinical practice."
   },
   "Item4": {
     "rating": "no",
@@ -38,106 +18,127 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is CT, which is a standard imaging technique in clinical practice for NSCLC. The study reports using mediastinal and lung window settings, which are established standardization approaches."
+    "reason": "The imaging data source is CT, which is a standard imaging technique in NSCLC diagnosis and staging. The study mentions using mediastinal and lung window settings, which are common in clinical practice."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides detailed CT scan parameters, including tube voltage, tube current, detector collimation, field of view, pitch, and matrix, ensuring replicability of the method."
+    "reason": "The study reports the CT acquisition parameters, including tube voltage, tube current, detector collimation, field of view, pitch, and matrix size. This information is sufficient for replicability."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The study specifies that all CT scans were performed prior to any treatment for lung cancer, ensuring the imaging data reflects the patient's condition at the time of diagnosis, which is appropriate for the study's aim."
+    "reason": "The study specifies that all CT scans were performed prior to any treatment for lung cancer, ensuring that the imaging data reflects the patient's condition at the time of diagnosis, which is appropriate for the study's aim."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes manual segmentation of tumor regions of interest (ROIs) on CT images."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study explicitly states that tumor ROIs were manually segmented by radiologists, indicating that the segmentation process was not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the manual segmentation process performed by experienced radiologists using ITK-SNAP, with verification by another radiologist. This provides a transparent description of the segmentation methodology."
+    "reason": "The study describes the segmentation methodology, mentioning that ROIs were manually segmented slice by slice by a senior radiologist using ITK-SNAP, and verified by another radiologist. This provides a transparent description of the segmentation process."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The study uses manual segmentation, not fully automated segmentation, so this item is not applicable."
+    "reason": "The segmentation was performed manually, not in a fully automated fashion. Therefore, a formal evaluation of fully automated segmentation is not applicable."
   },
   "Item10": {
+    "rating": "no",
+    "reason": "The ROIs were delineated by two radiologists. Therefore, the test set segmentation masks were not produced by a single reader or automated tool."
+  },
+  "Condition3": {
     "rating": "yes",
-    "reason": "The tumor regions of interest (ROIs) were manually segmented slice by slice by a senior radiologist, and the segmentation was subsequently verified by another chest radiologist. This reflects clinical practice."
+    "reason": "The study extracts 1316 radiomics features from CT images, which are hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions using a resampling method to standardize image representations, converting pixel values to Hounsfield Units (HU), and resampling the dataset to a standard spacing. This indicates appropriate image preprocessing techniques with a transparent description."
+    "reason": "The study mentions using a resampling method to standardize image representations, converting pixel values to Hounsfield Units (HU), and resampling the dataset to a standard spacing. This indicates appropriate use of image preprocessing techniques."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used Pyradiomics library for feature extraction, which is a standardized software. The study also mentions that the software is in conformance with the Image Biomarker Standardization Initiative."
+    "reason": "The study used the pyradiomics library, which is IBSI compliant."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the types of radiomic features extracted (first-order statistics, shape-based, and textural features) and mentions the use of wavelet and Laplacian of Gaussian filters. This provides transparent reporting of feature extraction parameters."
+    "reason": "The study describes the radiomic features extracted, classifying them into first-order statistics, shape-based, and textural features. It also mentions the use of wavelet and Laplacian of Gaussian filters. This provides transparent reporting of feature extraction parameters."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study extracts 1316 radiomics features, which are numeric radiomic features in a tabulated format."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It uses hand-crafted radiomic features with machine learning classifiers."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The study calculated the intra-group correlation coefficient (ICC) for each feature to assess the consistency of segmentation between the two radiologists. Only features with an ICC greater than 0.85 were deemed to have high stability and were remained for the further analysis. This indicates removal of non-robust features."
+    "reason": "The study assesses the consistency of segmentation between two radiologists by calculating the intra-group correlation coefficient (ICC) for each feature. Only features with an ICC greater than 0.85 were retained for further analysis, indicating removal of non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study used the Wilcoxon rank sum test, LASSO algorithm, and backward stepwise logistic regression analysis to select potential features related to T790M mutational status. This indicates removal of redundant features."
+    "reason": "The study uses the LASSO algorithm and backward stepwise logistic regression to select potential features related to T790M mutational status, indicating removal of redundant features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification for the number of features selected relative to the number of instances."
+    "reason": "The study does not explicitly discuss the appropriateness of the dimensionality compared to the data size. It does not provide statistical evidence or empirical results to demonstrate that the number of instances and features is appropriate for the modeling algorithm."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+    "reason": "The study does not use end-to-end deep learning pipelines. Therefore, robustness assessment of end-to-end deep learning pipelines is not applicable."
   },
   "Item18": {
-    "rating": "no",
-    "reason": "The study mentions randomly assigning patients to training and validation cohorts but does not provide details on whether the data split was done prior to any processing step or whether a stratified data split was used to maintain outcome variable distribution. It also does not mention whether the data split was done on the patient level, not the scan level."
+    "rating": "yes",
+    "reason": "The study mentions that patients were randomly assigned to a training cohort and a validation cohort. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline, prior to any processing step, or whether the data split was stratified. It also does not mention whether the data split was on the patient level, not the scan level."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study analyzes potential confounding factors such as age, gender, smoking status, stage of disease, and serum level of tumor markers. It uses Chi-square and Student’s t-tests to screen clinical factors related to EGFR T790M mutation."
+    "reason": "The study analyzes potential confounding factors by comparing baseline clinical characteristics between patients with and without the EGFR T790M mutation. It identifies significant differences in the initial response to first- or second-generation EGFR-TKI and gender, which were then included in the combined model."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC, sensitivity, specificity, and accuracy for evaluating the performance of the models, which are appropriate metrics for the classification task. The study also includes confidence intervals for the AUC."
+    "reason": "The study reports AUC, sensitivity, and specificity for evaluating the performance of the models. It also presents ROC curves. This indicates the use of appropriate performance evaluation metrics for the task."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, indicating consideration of uncertainty."
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, indicating consideration of uncertainty in the analysis."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "The study includes calibration curves for the nomogram in both the training and validation cohorts, indicating calibration assessment."
+    "reason": "The study includes calibration curves for the nomogram in both the training and validation cohorts, indicating calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not perform uni-parametric imaging or provide a justification for using multi-parametric imaging by comparing its performance to uni-parametric imaging."
+    "reason": "The study uses multi-parametric imaging (CT with different window settings and filtered images) without justifying the need for it by comparing its performance with uni-parametric imaging. The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value compared to standard clinical practice."
+    "reason": "The study does not compare the radiomics-based model with a non-radiomic method that is representative of clinical practice. It does not include semantic features, RADS or RECIST scoring, or simple volume/size evaluations for comparison."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with simple or classical statistical models to justify the use of machine learning methods."
+    "reason": "The study does not include a comparison with a simple baseline reference model, such as a Zero Rules/No Information Rate classifier. It does not justify the use of machine learning methods by proof of increased performance compared to a simple baseline."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an independent validation cohort that is sampled from the same source as the training set."
+    "reason": "The study tests the model on an independent validation cohort that is sampled from the same source as the training cohort."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not test the model with independent data from other institutions."
+    "reason": "The study does not test the model with independent data from other institutions. It only uses data from a single institution."
   },
   "Item28": {
-    "rating": "yes",
-    "reason": "The study includes a data availability statement indicating that the original data supporting the conclusions of the paper will be provided unreservedly by the authors to any qualified researcher."
+    "rating": "no",
+    "reason": "The study states that the original data will be provided unreservedly by the authors to any qualified researcher and that the datasets are available from the corresponding author. However, it does not explicitly state that any imaging, segmentation, clinical, or radiomics analysis data is shared with the public."
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+    "reason": "The study does not mention whether all scripts related to automatic segmentation and/or modeling are shared with the public. It does not provide information on code availability or instructions for implementation."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention sharing the final model in the form of a raw model file or as a ready-to-use system."
-  }
+    "reason": "The study does not mention whether the final model is shared in the form of a raw model file or as a ready-to-use system. It does not provide information on model availability or instructions for usage."
+  },
+  "elapsed_time": 13.534528732299805
 }

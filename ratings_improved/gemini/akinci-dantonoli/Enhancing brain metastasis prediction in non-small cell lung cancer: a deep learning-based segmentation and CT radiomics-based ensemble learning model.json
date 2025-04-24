@@ -1,80 +1,80 @@
 {
   "Summary": "This study developed a deep learning-based segmentation and CT radiomics-based ensemble learning model to predict brain metastasis (BM) risk within three years for advanced non-small cell lung cancer (NSCLC) patients. The model fuses CT radiomics and clinical features, demonstrating improved prediction performance for BM risk, BM-free survival (BMFS), and overall survival (OS).",
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population of advanced NSCLC patients."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is based on histopathological diagnosis and clinical diagnosis of stage III-IV NSCLC, which are well-established clinical practices. The follow-up period of at least 3 years for BM is also appropriate."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study involves data from two centers, Fudan University Shanghai Cancer Center (FUSCC) and Nantong Tumor Hospital (NTH)."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The imaging data source is contrast-enhanced CT, which is a standard imaging technique for lung cancer staging and evaluation."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study reports the CT acquisition parameters, including tube voltage, mA, pixel spacing, slice thickness, and image matrix, which are important for replicability."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that CT scans were performed within one week before surgery or biopsy, which is appropriate to validate the presence or absence of target conditions at the moment of diagnostic imaging exams."
+  },
   "Condition1": {
     "rating": "yes",
     "reason": "The study includes segmentation of lung tumors using a deep residual U-Net network."
   },
   "Condition2": {
-    "rating": "yes",
-    "reason": "The study uses a fully automated deep residual U-Net network for lung tumor segmentation."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features from CT images."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study includes tabular data in the form of radiomic features and clinical data."
-  },
-  "Condition5": {
     "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning approach for classification or regression. Deep learning is only used for segmentation."
-  },
-  "Item1": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
-  },
-  "Item2": {
-    "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, leading to a representative study population."
-  },
-  "Item3": {
-    "rating": "yes",
-    "reason": "The reference standard is based on histopathological diagnosis and clinical diagnosis based on the TNM staging system, which are considered high-quality reference standards."
-  },
-  "Item4": {
-    "rating": "yes",
-    "reason": "The study involves data from two centers (Fudan University Shanghai Cancer Center and Nantong Tumor Hospital)."
-  },
-  "Item5": {
-    "rating": "yes",
-    "reason": "The radiomics data is derived from contrast-enhanced CT, a standard imaging technique for lung cancer, reflecting established standardization approaches."
-  },
-  "Item6": {
-    "rating": "yes",
-    "reason": "The study reports the CT acquisition parameters, including tube voltage, mA, pixel spacing, slice thickness, and reconstruction matrix."
-  },
-  "Item7": {
-    "rating": "yes",
-    "reason": "The study specifies that CT scans were performed within one week before surgery or biopsy, which is appropriate for validating the presence or absence of target conditions at the moment of imaging."
+    "reason": "The segmentation was performed by junior radiologists and reconfirmed by a senior radiologist, so it is not fully automated."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including the use of ITK-Snap software, delineation by junior radiologists, and reconfirmation by a senior radiologist. It also mentions the cubic patch size used for training the U-Net model."
+    "reason": "The study describes the segmentation methodology, including the use of ITK-Snap software, slice-by-slice delineation by junior radiologists, reconfirmation by a senior radiologist, and the use of a deep residual U-Net network."
   },
   "Item9": {
-    "rating": "yes",
-    "reason": "The study evaluates the performance of the fully automated segmentation by reporting the Dice coefficient and Jaccard similarity coefficient compared to manual annotations."
+    "rating": "n/a",
+    "reason": "The segmentation is not fully automated as it involves radiologists, so this item is not applicable."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The segmentation in the test set is not produced by a single reader or automated tool. The VOI was reconfirmed by a senior radiologist."
+    "reason": "The test set segmentation masks were reviewed by a senior radiologist, which does not reflect clinical practice."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features, including original features, Laplacian of Gaussian (LoG) features, and wavelet features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study describes the image preprocessing techniques, including resampling to a uniform spacing, clipping intensity values, and normalization. It also mentions the use of LoG and wavelet filters with specific parameters."
+    "reason": "The study mentions the use of cubic B-spline interpolation to resample CT images to a uniform spacing, intensity clipping, and zero-mean normalization for radiomics features. It also describes the LoG filter and wavelet filter parameters."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses PyRadiomics, an IBSI compliant software, for feature extraction."
+    "reason": "The study used PyRadiomics, an IBSI compliant software, for feature extraction."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (original, LoG, wavelet) and feature classes (shape, first-order, texture). It also mentions the use of PyRadiomics for feature extraction."
+    "reason": "The study describes the feature types (original, LoG, wavelet) and feature classes (shape, histogram-based first-order, texture features). It also mentions the use of PyRadiomics and provides the link to the software."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomics features and clinical features organized in tables."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use an end-to-end deep learning pipeline. It uses deep learning for segmentation but not for direct classification or regression."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility analysis, or stability analysis."
+    "reason": "The study does not explicitly mention the removal of non-robust features via test-retest, reproducibility analysis, or stability analysis."
   },
   "Item15": {
     "rating": "yes",
@@ -82,51 +82,51 @@
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of dimensionality compared to data size using statistical means or empirical evidence."
+    "reason": "The study does not provide a statistical justification or empirical evidence to demonstrate the appropriateness of the dimensionality compared to the data size."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not include end-to-end deep learning pipelines."
+    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study describes the data partitioning process, including random selection of patients for training and validation cohorts. It also mentions the use of SMOTE to address imbalanced datasets, applied only to the training dataset."
+    "reason": "The study mentions random data splitting into training, validation, and test sets. SMOTE was applied only to the training dataset to address imbalanced data."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study acknowledges the potential for confounding factors, such as differences in CT scanners and acquisition parameters, and attempts to address them through image resampling techniques."
+    "reason": "The study acknowledges the potential for confounding factors and attempts to address them by using data from two centers and including clinical features in the model. They also mention a significant difference in CT image thickness between the training and validation cohorts."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate performance evaluation metrics, including AUC, accuracy, sensitivity, specificity, PPV, NPV, F1 score, and MCC. It also includes ROC curves and confusion matrices."
+    "reason": "The study reports AUC, accuracy, sensitivity, specificity, PPV, NPV, F1 score, and MCC for classification tasks. It also includes ROC curves and calculates 95% confidence intervals."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CI) for the AUC, estimated using a bootstrap resampling procedure."
+    "reason": "The study reports 95% confidence intervals (CI) for the AUC values, estimated using a bootstrap resampling procedure with 1000 iterations."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not explicitly assess the calibration of the final model."
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multi-parametric imaging (CT radiomics and clinical features) without a formal comparison to uni-parametric imaging to justify the need for a multi-parametric approach."
+    "reason": "The study uses multi-parametric imaging (CT radiomics and clinical features) without a comparison to uni-parametric imaging or justification for the multi-parametric approach."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the radiomics-based model with a clinical feature-based model, which can be considered a non-radiomic approach representative of clinical practice. It also uses decision curve analysis (DCA) to evaluate the clinical value of the models."
+    "reason": "The study compares the radiomics-based model with a clinical feature-based model, which can be considered a non-radiomic approach representative of clinical practice. It uses the Delong test to compare ROC curves and DCA to assess net benefits."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the model with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier)."
+    "reason": "The study does not compare the model with a simple baseline reference model like a Zero Rules classifier."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an internal validation set sampled from the same source as the training data."
+    "reason": "The model is tested on an internal validation cohort sampled from the same source as the training set (FUSCC)."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The model is tested on an external validation set from another institution (Nantong Tumor Hospital)."
+    "reason": "The model is tested on an external validation cohort from another institution (NTH)."
   },
   "Item28": {
     "rating": "yes",
@@ -134,10 +134,11 @@
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study does not explicitly state that the code used for automatic segmentation and/or modeling is publicly available."
+    "reason": "The study does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The study does not mention the availability of the final model in the form of a raw model file or a ready-to-use system."
-  }
+    "reason": "The study does not mention sharing the final model in the form of a raw model file or a ready-to-use system."
+  },
+  "elapsed_time": 12.399865865707397
 }

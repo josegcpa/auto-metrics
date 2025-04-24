@@ -1,76 +1,76 @@
 {
-  "Summary": "This study compares the diagnostic performance of machine learning (ML) classifiers based on unenhanced CT radiomics with that of a radiologist in diagnosing cystic renal masses (CRMs). The study found that ML classifiers, particularly KNN, showed comparable diagnostic accuracy to the radiologist and could potentially be used for screening CRMs.",
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study mentions that total tumor segmentation was performed by two radiologists using 3D Slicer."
-  },
-  "Condition2": {
-    "rating": "no",
-    "reason": "The study mentions that segmentation was performed by radiologists, indicating that it was not fully automated."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts radiomic features using the PyRadiomics package, which is a form of hand-crafted feature extraction."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study uses extracted radiomic features in a tabulated format for machine learning modeling."
-  },
-  "Condition5": {
-    "rating": "no",
-    "reason": "The study does not use end-to-end deep learning. Instead, it relies on hand-crafted feature extraction followed by traditional machine learning classifiers."
-  },
+  "Summary": "This study compares the diagnostic performance of machine learning (ML) classifiers based on unenhanced CT radiomics with that of a radiologist in diagnosing cystic renal masses (CRMs). The study found that ML classifiers, particularly k-nearest neighbor (KNN), showed comparable diagnostic accuracy to the radiologist and could potentially aid in screening CRMs.",
   "Item1": {
     "rating": "yes",
-    "reason": "The study mentions using the CLEAR checklist and the radiomics quality score (RQS) to evaluate the quality of research."
+    "reason": "The authors used the CheckList for EvaluAtion of Radiomics research (CLEAR) and the radiomics quality score (RQS) to evaluate the quality of research."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study explicitly defines inclusion and exclusion criteria for patient enrollment."
+    "reason": "The inclusion and exclusion criteria are clearly defined in the Methods section under Ethics approval and case selection."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is histopathological results, which is a high-quality reference standard."
+    "reason": "Histopathological results obtained from the pathological retrieval systems of the two centers were used as reference standard."
   },
   "Item4": {
     "rating": "yes",
-    "reason": "The study involves data from two hospitals (Guangzhou and Zhuhai)."
+    "reason": "Data was collected from two centers (Guangzhou and Zhuhai)."
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source is unenhanced CT, which is a clinically relevant imaging technique for evaluating CRMs."
+    "reason": "The study uses unenhanced CT, which is a common imaging technique. The scanning parameters are also provided."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the image acquisition parameters, including tube voltage, tube current, section interval, section thickness, and matrix size."
+    "reason": "The imaging protocol with acquisition parameters is provided in the Computed tomography examinations section."
   },
   "Item7": {
+    "rating": "yes",
+    "reason": "The study mentions that histopathological results were obtained from the pathological retrieval systems of the two centers, implying that the reference standard was acquired after the imaging exams. However, the exact interval between imaging and reference standard is not explicitly stated."
+  },
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study includes segmentation of cystic renal masses (CRMs) performed by radiologists."
+  },
+  "Condition2": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the time interval between imaging and the reference standard (histopathological results)."
+    "reason": "The segmentation was performed by radiologists, not in a fully automated manner."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, mentioning that masses were delineated on the original CT images using 3D Slicer and that radiologists were allowed to observe the enhanced CT images to outline the shape and edges of the masses more accurately. It also mentions that the entire CRM was carefully and manually segmented to avoid beyond-boundary or insufficient filling. Segmentation of whole masses was performed by associate chief radiologists (T.L. and L.H.) with more than 15 years of experience in abdominal radiography. The radiologists were allowed to observe the enhanced CT images to outline the shape and edges of the masses more accurately, which is a transparent description of the segmentation methodology. The study also mentions that the radiologists were allowed to observe the enhanced CT images to delineate the boundaries of the masses, which may have led to bias in practical applications. This is a limitation of the study, but it does not negate the fact that the segmentation methodology was described."
+    "reason": "The study describes that segmentation of whole masses was performed by associate chief radiologists with more than 15 years of experience in abdominal radiography; to outline the shape and edges of the masses more accurately, the radiologists were allowed to observe the enhanced CT images. In each case, the entire CRM was carefully and manually segmented to avoid beyond-boundary or insufficient filling."
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The segmentation was performed manually by radiologists, not using a fully automated method."
+    "reason": "The segmentation was not fully automated."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The segmentation was performed by two radiologists, not a single reader or automated tool."
+    "reason": "The test set segmentation masks were not produced by a single reader or automated tool. Two radiologists performed the segmentation."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features using the PyRadiomics package, which involves hand-crafted feature extraction."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions using 3D Slicer for mass segmentation and calculation of radiomic features. It also mentions that the extracted features were classified into seven categories and that 14 filters were applied to the original images. The study also mentions that the images were analyzed for each patient. This is an appropriate use of image preprocessing techniques with transparent description."
+    "reason": "The study mentions the use of original CT images for mass delineation and radiomic feature extraction. It also describes the application of various filters (exponential, gradient, square, square root, logarithm, lbp2D, wavelet-HLH, wavelet-HLL, wavelet-LHL, wavelet-LLL, wavelet-LHH, wavelet-LLH, wavelet-HHL, and wavelet-HHH) to the original images. However, it does not explicitly mention gray level normalization or image registration."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study used PyRadiomics for feature extraction."
+    "reason": "The study used the PyRadiomics package for feature extraction."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first-order, two-dimensional, etc.) and mentions the use of wavelet filters. It also provides information on the software and version used (3D Slicer version 5.2.1 and PyRadiomics package). The study also mentions that the extracted features were classified into seven categories and that 14 filters were applied to the original images. The study also mentions that the images were analyzed for each patient. This is a transparent reporting of feature extraction parameters."
+    "reason": "The study describes the feature types (first-order features, two-dimensional features, gray-level co-occurrence matrix, gray-level dependence matrix, gray-level size-zone matrix, gray-level run-length matrix, and neighboring gray tone difference matrix) and the filters applied to the original images. However, it does not provide a default configuration statement or a file presenting the complete configuration of these settings."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study includes tabular data in the form of radiomic features extracted from the CT images."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning. It uses hand-crafted radiomic features with traditional machine learning classifiers."
   },
   "Item14": {
     "rating": "yes",
@@ -78,11 +78,11 @@
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study used the least absolute shrinkage and selection operator (LASSO) method to select the most suitable radiomic features to develop a radiomic signature with the “glmnet” package. First, 10-fold cross-validation was performed to obtain the optimal parameter λ14 by 1,000 iterations. Second, the LASSO method based on the optimal parameter λ was used to calculate the coefficient of each feature, and features with non-zero coefficients were selected.14 Finally, bidirectional elimination was used to further filter the radiomic features selected using the LASSO method;15 the “mass” package in the R software (version 4.2.2) was used for bidirectional elimination (Figure 1)."
+    "reason": "The study used the least absolute shrinkage and selection operator (LASSO) method and bidirectional elimination to select the most suitable radiomic features."
   },
   "Item16": {
-    "rating": "yes",
-    "reason": "The study uses LASSO and bidirectional elimination to reduce dimensionality, which is appropriate given the data size."
+    "rating": "no",
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical evidence to support it."
   },
   "Item17": {
     "rating": "n/a",
@@ -90,31 +90,31 @@
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions that the cases from Center 1 were allocated to the training set, while the cases from Center 2 were assigned to the validation set for external validation. The study also mentions that the data were divided into 10 parts; nine parts were used for training in turn, and the remaining part was used to estimate the efficacy of the models. During the process of fine-tuning the models, the grid search method was employed to select the best combination of hyperparameter values. This is a proper data partitioning process."
+    "reason": "The study mentions that patients from Center 1 were allocated to the training set, and patients from Center 2 were allocated to the validation set for external validation. However, it does not explicitly state whether the data split was done at the very beginning of the analysis pipeline or whether the data split was random but reproducible with a fixed random seed."
   },
   "Item19": {
-    "rating": "yes",
-    "reason": "The study acknowledges the potential for confounding factors due to the use of different scanners and mentions that it may be necessary to apply a data harmonization procedure. The study also mentions that the composition of the validation set was not balanced (15 benign and 30 malignant CRMs), which may have led to potential risks and affected the validation results. This is a handling of confounding factors."
+    "rating": "no",
+    "reason": "The study does not explicitly address the handling of confounding factors, such as different distributions of patient characteristics across sites or scanners."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as AUC, accuracy, sensitivity, specificity, PPV, and NPV. It also includes confidence intervals."
+    "reason": "The study reports accuracy, sensitivity, specificity, PPV, NPV, and AUC for the ML classifiers. It also includes calibration curves and decision curve analysis."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports 95% confidence intervals (CIs) for the performance metrics."
+    "reason": "The study reports 95% confidence intervals (CIs) for the AUCs obtained using ROC curve analysis."
   },
   "Item22": {
     "rating": "yes",
-    "reason": "The study includes calibration curves for the ML classifiers in both the training and validation sets."
+    "reason": "The study includes calibration curves for the ML classifiers in the training and validation sets."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study focuses on unenhanced CT images but does not explicitly compare its performance to multi-parametric imaging or justify the use of a single imaging set."
+    "reason": "The study does not perform uni-parametric evaluations to justify the need for a multi-parametric approach. It focuses on unenhanced CT radiomic features without comparing them to other CT phases."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the ML classifiers with that of manual diagnosis by a radiologist."
+    "reason": "The study compares the diagnostic effectiveness of the ML classifiers with that of manual diagnosis by a radiologist."
   },
   "Item25": {
     "rating": "no",
@@ -122,22 +122,23 @@
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study uses internal testing with 10-fold cross-validation."
+    "reason": "The model is tested on an independent data set (validation set) that is sampled from a different source (Zhuhai) than the training set (Guangzhou)."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The study includes external testing using data from a different center (Zhuhai)."
+    "reason": "The model is tested with independent data from another institution (Center 2: Zhuhai)."
   },
   "Item28": {
     "rating": "yes",
-    "reason": "The study states that the source code, datasets, and models are available on GitHub."
+    "reason": "The study states that the source code, datasets, and models generated and/or analyzed during the current study are available on GitHub."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The study states that the source code, datasets, and models are available on GitHub."
+    "reason": "The study states that the source code, datasets, and models generated and/or analyzed during the current study are available on GitHub."
   },
   "Item30": {
     "rating": "yes",
-    "reason": "The study states that the source code, datasets, and models are available on GitHub."
-  }
+    "reason": "The study states that the source code, datasets, and models generated and/or analyzed during the current study are available on GitHub."
+  },
+  "elapsed_time": 11.518551111221313
 }

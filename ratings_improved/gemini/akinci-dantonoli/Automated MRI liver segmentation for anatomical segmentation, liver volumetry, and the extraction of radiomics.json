@@ -1,36 +1,16 @@
 {
-  "Summary": "This study developed and evaluated a 3D deep convolutional neural network (DCNN) for automated liver segmentation, volumetry, and radiomic feature extraction on contrast-enhanced portal venous phase MRI. The DCNN achieved high segmentation accuracy and generalizable performance on internal, external, and public datasets. Automated liver volumetry demonstrated excellent agreement with manual volumetry, and automated liver segmentations can be used for robust and reproducible radiomic feature extraction.",
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study includes liver segmentation using a DCNN, with manual segmentations used as ground truth."
-  },
-  "Condition2": {
-    "rating": "yes",
-    "reason": "The study uses a fully automated DCNN for liver segmentation."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts radiomic features, which are hand-crafted features."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study includes radiomic features, which are tabular data."
-  },
-  "Condition5": {
-    "rating": "yes",
-    "reason": "The study uses an end-to-end deep learning approach for liver segmentation."
-  },
+  "Summary": "This study developed and evaluated a 3D deep convolutional neural network (DCNN) for automated liver segmentation, volumetry, and radiomic feature extraction on contrast-enhanced portal venous phase MRI. The DCNN achieved robust and generalizable segmentation performance on internal, external, and public testing data, with excellent agreement between automated and manual liver volumetry. The automated liver segmentations also enabled robust and reproducible radiomic feature extraction.",
   "Item1": {
     "rating": "no",
     "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming for a representative study population."
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population. Patients >18 years old with T1-weighted portal venous MR images available were included, while those with non-diagnostic MRI or no portal venous phase MRI were excluded."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The study uses manual segmentation by experienced radiologists as the reference standard, which is a high-quality reference standard."
+    "reason": "The reference standard is manual segmentation performed under the supervision of two board-certified abdominal radiologists with 9 and 10 years of experience, respectively, which is a reasonable reference standard."
   },
   "Item4": {
     "rating": "yes",
@@ -38,106 +18,127 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The study uses T1-weighted portal venous MR images, which are part of a standard triphasic institutional imaging protocol, suggesting clinical translatability."
+    "reason": "The imaging data source is contrast-enhanced portal venous phase MRI, which is a standard imaging technique for liver assessment, reflecting established standardization approaches."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study reports the imaging protocol and acquisition parameters, including the MRI sequence, timing of contrast administration, and scanner details."
+    "reason": "The study reports the image acquisition protocol, including the T1-weighted 3D gradient echo VIBE sequence with fat saturation, pre- and post-contrast timing, and scanner field strengths. Supplemental Table 1 provides more information about imaging parameters."
   },
   "Item7": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the time interval between imaging and the reference standard (manual segmentation). Therefore, it is not possible to assess whether the interval is appropriate."
+  },
+  "Condition1": {
     "rating": "yes",
-    "reason": "The study mentions the timing of image acquisition relative to contrast injection, which is relevant for validating the presence or absence of target conditions at the moment of imaging."
+    "reason": "The study includes liver segmentation using a DCNN, with manual segmentation used as ground truth."
+  },
+  "Condition2": {
+    "rating": "yes",
+    "reason": "The study uses a DCNN to automatically segment the liver without human intervention after training."
   },
   "Item8": {
     "rating": "yes",
-    "reason": "The study describes the manual segmentation process performed by board-certified abdominal radiologists using 3D Slicer software."
+    "reason": "The study describes the segmentation methodology, mentioning the use of 3D Slicer software and manual segmentation under the supervision of experienced radiologists."
   },
   "Item9": {
     "rating": "yes",
-    "reason": "The study quantifies segmentation accuracy using DSC, MHD, and MAD metrics, comparing the automated segmentations with manual segmentations."
+    "reason": "The study formally evaluates the fully automated segmentation by comparing it to manual segmentations using metrics like DSC, MHD, and MAD. The results are presented in Table 2."
   },
   "Item10": {
     "rating": "no",
-    "reason": "The test set segmentations are compared to manual segmentations, not produced by a single reader or automated tool."
+    "reason": "The study does not explicitly state that the test set segmentation masks were produced by a single reader or automated tool. The manual segmentation was performed under the supervision of two radiologists."
+  },
+  "Condition3": {
+    "rating": "no",
+    "reason": "The study uses a deep learning model (DCNN) for feature extraction, not hand-crafted features."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study describes image preprocessing techniques, including resizing voxel spacings and normalizing image intensity percentiles."
+    "reason": "The study mentions image preprocessing techniques, including resizing voxel spacings and normalizing image intensity percentiles. These techniques are appropriate for the imaging modality and feature extraction method used."
   },
   "Item12": {
-    "rating": "yes",
-    "reason": "The study used PyRadiomics (v3.0) for feature extraction."
+    "rating": "n/a",
+    "reason": "Since the study does not include hand-crafted feature extraction (Condition 3 is no), this item is not applicable."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the types of radiomic features extracted and provides the PyRadiomics settings used for feature extraction in Supplement 3."
+    "reason": "The study describes the neural network architecture (U-Net based DCNN), training parameters (dropout rate, mini-batch size, optimizer, learning rate), and image operations (resizing, normalization, patch extraction). Full details of the model architecture can be found in Supplement 1."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study extracts radiomic features, which are numeric and can be organized in a table."
+  },
+  "Condition5": {
+    "rating": "yes",
+    "reason": "The study uses an end-to-end deep learning approach with a DCNN to directly process the image data and produce a segmentation model."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features."
+    "reason": "The study does not mention any removal of non-robust features based on test-retest, reproducibility, or stability analysis."
   },
   "Item15": {
     "rating": "no",
-    "reason": "The study does not explicitly mention the removal of redundant features."
+    "reason": "The study does not mention any removal of redundant features using algorithm-based feature selection, correlation analysis, or variance analysis."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not discuss the appropriateness of dimensionality compared to data size."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical evidence to support it."
   },
   "Item17": {
-    "rating": "n/a",
-    "reason": "The study does not assess the robustness of the end-to-end deep learning pipeline in a test-retest setting."
+    "rating": "no",
+    "reason": "The study does not include a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study mentions random splitting of the data into training, validation, and internal testing subsets."
+    "reason": "The study mentions that the institutional dataset was randomly split into training, validation, and internal testing subsets at the beginning of the analysis pipeline."
   },
   "Item19": {
     "rating": "no",
-    "reason": "The study does not explicitly address the handling of potential confounding factors."
+    "reason": "The study does not explicitly address the handling of potential confounding factors, such as different distributions of patient characteristics across sites or scanners."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study uses appropriate performance evaluation metrics such as DSC, MHD, MAD, and ICC for segmentation and volumetry tasks."
+    "reason": "The study uses appropriate performance evaluation metrics for the segmentation task, such as DSC, MHD, and MAD. For volumetry, ICC is used. The study also presents training and validation loss curves in Supplemental Figure 3."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes uncertainty measures such as 95% confidence intervals for ICC values."
+    "reason": "The study includes uncertainty measures such as 95% confidence intervals (CI) for ICC values."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not include a calibration assessment of the final model."
+    "reason": "The study does not mention any calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study focuses on a single contrast phase (portal venous) but does not explicitly compare it to other phases or sequences to justify its use."
+    "reason": "The study uses contrast-enhanced T1-weighted MRI. It does not compare its performance to non-contrast MRI or justify the use of contrast enhancement through a formal comparison."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the DCNN approach with a non-radiomic method or provide proof of added clinical value."
+    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value compared to current clinical practice."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the DCNN approach with simple or classical statistical models."
+    "reason": "The study does not include a comparison with simple or classical statistical models to justify the use of machine learning methods."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an internal test set."
+    "reason": "The model is tested on an internal test set that is sampled from the same source as the training and validation sets."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The model is tested on external datasets from Beaujon Hospital and the LiverHccSeg dataset."
+    "reason": "The model is tested with independent data from another institution (Beaujon Hospital) and a public dataset (LiverHccSeg), indicating external testing."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study states that image data cannot be shared publicly due to legal reasons."
+    "reason": "The study explicitly states that image data cannot be shared publicly due to legal reasons."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The study mentions that all code and the trained segmentation model are publicly available on GitHub."
+    "reason": "The study states that all code and the trained segmentation model are publicly available on GitHub."
   },
   "Item30": {
     "rating": "yes",
-    "reason": "The study mentions that the trained segmentation model is publicly available on GitHub."
-  }
+    "reason": "The study states that the trained segmentation model is publicly available on GitHub."
+  },
+  "elapsed_time": 11.934709072113037
 }
