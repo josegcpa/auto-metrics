@@ -9,7 +9,7 @@ for config in ${CONFIGS[@]}
 do
     if [[  $config == "config-enhanced.yaml" ]]
     then
-        OUTPUT_PATH=ratings-enhanced
+        OUTPUT_PATH=ratings_improved
     else 
         OUTPUT_PATH=ratings
     fi
