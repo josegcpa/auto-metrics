@@ -67,7 +67,7 @@ class Metrics(BaseModel):
 def dynamically_generate_model(
     items: list[Item], conditions: list[Condition] | None = None
 ):
-    model = {}
+    model = {"Summary": (str, Field(description="Summary of the article"))}
     if conditions is not None:
         for condition in conditions:
             model[f"Condition{condition.condition_number}"] = (
@@ -106,7 +106,11 @@ def export_model_to_json(data_model: BaseModel):
     return model_schema
 
 
+def get_weights(flat_items: list[Item]):
+    return {f"Item{item.item_number}": item.item_weight for item in flat_items}
+
+
 if __name__ == "__main__":
     import json
 
-    print(json.dumps(export_model_to_json(), indent=2))
+    print(json.dumps(export_model_to_json(Metrics), indent=2))
