@@ -1,6 +1,7 @@
 // These are generated dynamically through `make_static_app.py`
 const prompt = `"!PROMPT"`;
 const responseSchema = "!RESPONSE_SCHEMA";
+const weights = "!WEIGHTS";
 
 document.addEventListener("DOMContentLoaded", function () {
   const analyzeBtn = document.getElementById("analyze-btn");
@@ -82,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Display the results
       console.log("metricsResult", metricsResult);
       var key = "";
+      var score = 0;
+      var total_score = 0;
       var outputTable = `
         <tr>
           <td><b>Item</b></td><td><b>Rating</b></td><td><b>Reason</b></td>
@@ -100,9 +103,16 @@ document.addEventListener("DOMContentLoaded", function () {
           <tr class="item">
             <td>${key}</td><td>${metricsResult[key].rating}</td><td>${metricsResult[key].reason}</td>
           </tr>`;
+          if (metricsResult[key].rating != "n/a") {
+            total_score += weights[key];
+          }
+          if (metricsResult[key].rating == "yes") {
+            score += weights[key];
+          }
         }
       }
       outputBody.innerHTML += `<table>${outputTable}</table>`;
+      outputBody.innerHTML += `<br><p><b>Total Score: ${((score / total_score) * 100).toFixed(2)}%</b></p>`;
       outputContainer.style.display = "block";
 
       // Store the result for download
