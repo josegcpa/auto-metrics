@@ -7,6 +7,7 @@ class Item(BaseModel):
     item_description: str
     item_comment: str
     condition: list[int] | None = None
+    item_weight: float | None = None
 
 
 class Condition(BaseModel):
