@@ -5,9 +5,6 @@ if __name__ == "__main__":
     import time
     from pathlib import Path
     from tqdm import tqdm
-    from ollama import Client
-    from google import genai
-    from google.genai import types
 
     from metrics import load_config
     from ratings import Metrics
@@ -34,38 +31,42 @@ if __name__ == "__main__":
 
     start_time = time.time()
     if args.ollama_model is None:
-        config = types.GenerateContentConfig(
+        from google import genai
+        from google.genai.types import GenerateContentConfig
+
+        config = GenerateContentConfig(
             temperature=0.0,
-            top_p=0.0,
+            top_p=0.001,
             seed=42,
             response_mime_type="application/json",
             response_schema=Metrics,
         )
 
         client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-        chat = client.chats.create(model="gemini-2.0-flash")
+        chat = client.chats.create(model="gemini-2.0-flash-001")
 
         response = chat.send_message(
             message=prompt.format(article=article_text), config=config
         )
         response = response.text
     else:
+        from ollama import Client
+
         client = Client()
-        response_stream = client.chat(
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt.format(article=article_text),
-                },
-            ],
+        response_stream = client.generate(
+            prompt=prompt.format(article=article_text),
             model=args.ollama_model,
-            options={"temperature": 0.0, "top_p": 0.0, "seed": 42},
+            options={
+                "top_p": 0.001,
+                "seed": 42,
+                "temperature": 0.0,
+            },
             format=Metrics.model_json_schema(),
             stream=True,
         )
         response = ""
         for content in tqdm(response_stream):
-            response += content["message"]["content"]
+            response += content["response"]
 
     verbose_eval = response
     json_response = Metrics.model_validate_json(verbose_eval).model_dump(
