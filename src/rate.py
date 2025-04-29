@@ -22,6 +22,7 @@ if __name__ == "__main__":
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--config_path", type=str, default="config.yaml")
     parser.add_argument("--local_model", type=str, default=None)
+    parser.add_argument("--skip_reasons", action="store_true")
     args = parser.parse_args()
 
     with open(args.article_path) as f:
@@ -35,7 +36,9 @@ if __name__ == "__main__":
     item_list, conditions, flat_items = load_config(args.config_path)
     prompt = make_prompt(item_list, conditions)
 
-    data_model = dynamically_generate_model(flat_items, conditions)
+    data_model = dynamically_generate_model(
+        flat_items, conditions, skip_reasons=args.skip_reasons
+    )
 
     start_time = time.time()
     if args.local_model is None:
@@ -54,7 +57,7 @@ if __name__ == "__main__":
                 model_str=model_str,
             )
         elif provider == "huggingface":
-            from src.request_utils.huggingface_request import query_model
+            from request_utils.huggingface_request import query_model
 
             response = query_model(
                 prompt.format(article=article_text), data_model, model_str
