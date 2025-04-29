@@ -30,6 +30,26 @@ You have to output a JSON file with the following structure:
 - the ratings (Yes, No or n/a) for each item (described under "# Items") and a short explanation for your decision
 """
 
+BASE_PROMPT_SPLIT = """
+# Instructions
+You are an expert radiologist with decades of experience in developing and implementing clinical artificial intelligence.
+You have to evaluate a scientific article according to a single item:
+{CRITERION_NAME} {CRITERION_DESCRIPTION}
+
+The rating rubric is:
+- No: no evidence that this item is being followed in this publication
+- Yes: evidence that this item is being followed in this publication
+- n/a: not applicable
+And a reason (a short explanation for each ranking)
+
+# Input format
+The article text is provided below under "# Article text". Anything outside of this text should not be evaluated.
+
+# Output format
+You have to output a JSON file with the following structure:
+- the answers for the item (Yes, No or n/a) and a short explanation for your decision
+"""
+
 
 def format_generic(
     identifier: str, number: int, description: str, comment: str
@@ -76,6 +96,22 @@ def make_prompt(
             prompt_complete += "\n"
         prompt_complete += "\n"
     prompt_complete += "\n# Article text\n\n{article}"
+    return prompt_complete
+
+
+def make_prompt_split(curr_item: Item | Condition):
+    prompt_complete = BASE_PROMPT_SPLIT + "\n\n"
+    if isinstance(curr_item, Item):
+        prompt_complete = prompt_complete.format(
+            CRITERION_NAME=curr_item.item_description,
+            CRITERION_DESCRIPTION=curr_item.item_comment,
+        )
+    else:
+        prompt_complete = prompt_complete.format(
+            CRITERION_NAME=curr_item.condition_description,
+            CRITERION_DESCRIPTION=curr_item.condition_comment,
+        )
+    prompt_complete += "# Article text\n\n{article}"
     return prompt_complete
 
 
