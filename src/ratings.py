@@ -25,6 +25,15 @@ class RatingWithNA(BaseModel):
     reason: str
 
 
+class RatingNoReason(BaseModel):
+    rating: RatingEnum
+
+
+class RatingWithNANoReason(BaseModel):
+    rating: RatingWithNAEnum
+    reason: str
+
+
 class Metrics(BaseModel):
     Summary: str
     Item1: Rating
@@ -65,18 +74,27 @@ class Metrics(BaseModel):
 
 
 def dynamically_generate_model(
-    items: list[Item], conditions: list[Condition] | None = None
+    items: list[Item],
+    conditions: list[Condition] | None = None,
+    skip_reasons: bool = False,
 ):
-    model = {"Summary": (str, Field(description="Summary of the article"))}
+    if skip_reasons:
+        rating = RatingNoReason
+        rating_na = RatingWithNANoReason
+        model = {}
+    else:
+        rating = Rating
+        rating_na = RatingWithNA
+        model = {"Summary": (str, Field(description="Summary of the article"))}
     if conditions is not None:
         for condition in conditions:
             model[f"Condition{condition.condition_number}"] = (
-                Rating,
+                rating,
                 Field(description=condition.condition_description),
             )
     for item in items:
         model[f"Item{item.item_number}"] = (
-            RatingWithNA if item.condition else Rating,
+            rating_na if item.condition else rating,
             Field(description=item.item_description),
         )
     return create_model("Criteria", **model)
