@@ -24,8 +24,12 @@ def load_config(
         [Condition(**x) for x in data["conditions"]],
         key=lambda condition: condition.condition_number,
     )
-    items = {k: [Item(**x) for x in data["items"][k]] for k in data["items"]}
-    return items, conditions
+    items = {}
+    flat_items = []
+    for k in data["items"]:
+        items[k] = [Item(**x) for x in data["items"][k]]
+        flat_items.extend(items[k])
+    return items, conditions, flat_items
 
 
 if __name__ == "__main__":

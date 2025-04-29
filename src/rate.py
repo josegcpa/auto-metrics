@@ -1,6 +1,4 @@
-import outlines.processors
-import outlines.samplers
-from pyperclip import is_available
+from ratings import dynamically_generate_model
 
 
 TEMPERATURE = 0.0
@@ -16,7 +14,7 @@ if __name__ == "__main__":
     from tqdm import tqdm
 
     from metrics import load_config
-    from ratings import Metrics, export_model_to_json
+    from ratings import export_model_to_json
     from prompt import make_prompt
 
     parser = argparse.ArgumentParser()
@@ -35,8 +33,10 @@ if __name__ == "__main__":
             print("Output file already exists. Use --overwrite to overwrite.")
             exit(0)
 
-    item_list, conditions = load_config(args.config_path)
+    item_list, conditions, flat_items = load_config(args.config_path)
     prompt = make_prompt(item_list, conditions)
+
+    data_model = dynamically_generate_model(flat_items, conditions)
 
     start_time = time.time()
     if args.local_model is None:
@@ -48,7 +48,7 @@ if __name__ == "__main__":
             top_p=TOP_P,
             seed=SEED,
             response_mime_type="application/json",
-            response_schema=Metrics,
+            response_schema=data_model,
         )
 
         client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
@@ -73,7 +73,7 @@ if __name__ == "__main__":
                     "seed": SEED,
                     "temperature": TEMPERATURE,
                 },
-                format=export_model_to_json(),
+                format=export_model_to_json(data_model),
                 stream=True,
             )
             response = ""
@@ -112,7 +112,7 @@ if __name__ == "__main__":
             outlines_tokenizer = outlines.models.TransformerTokenizer(tokenizer)
 
             processor = outlines.processors.JSONLogitsProcessor(
-                Metrics, tokenizer=outlines_tokenizer
+                data_model, tokenizer=outlines_tokenizer
             )
             sampling_parameters = SamplingParameters(
                 sampler="greedy",
@@ -138,7 +138,7 @@ if __name__ == "__main__":
             )
 
     verbose_eval = response
-    json_response = Metrics.model_validate_json(verbose_eval).model_dump(
+    json_response = data_model.model_validate_json(verbose_eval).model_dump(
         mode="json"
     )
     json_response["elapsed_time"] = time.time() - start_time
