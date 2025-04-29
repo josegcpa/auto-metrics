@@ -110,7 +110,7 @@ def dynamically_generate_model(
             )
     for item in items:
         model[f"Item{item.item_number}"] = (
-            Rating,
+            RatingWithNA if item.condition else Rating,
             Field(description=item.item_description),
         )
     return create_model("Criteria", **model)
