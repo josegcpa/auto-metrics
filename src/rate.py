@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     start_time = time.time()
     if args.local_model is None:
-        from src.request_utils.gemini_request import query_model
+        from request_utils.gemini_request import query_model
 
         response = query_model(prompt.format(article=article_text), data_model)
     else:
