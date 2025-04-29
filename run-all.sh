@@ -25,9 +25,9 @@ do
         set_name=$(basename $set)
         for text in article-text/$set_name/*
         do 
-            text_name=$(basename $text | sed 's/\.txt//')
+            text_name=$(basename "$text" | sed 's/\.txt//')
             echo Analysing $text_name with $config
-            echo uv run python src/rate.py \
+            uv run python src/rate.py \
                 --article_path "$text" \
                 --output_path "$OUTPUT_PATH/gemini/$set_name/$text_name.json" \
                 --config_path $config &
@@ -52,13 +52,13 @@ do
             set_name=$(basename $set)
             for text in article-text/$set_name/*
             do 
-                text_name=$(basename $text | sed 's/\.txt//')
+                text_name=$(basename "$text" | sed 's/\.txt//')
                 echo Analysing $text_name with $config
-                echo uv run python src/rate.py \
+                uv run python src/rate.py \
                     --article_path "$text" \
                     --output_path $OUTPUT_PATH/$(echo $model | sed 's/:/-/g')/$set_name/$text_name.json \
                     --config_path $config \
-                    --ollama_model $model
+                    --local_model $model
             done
         done
     done
