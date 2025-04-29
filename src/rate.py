@@ -1,10 +1,3 @@
-from ratings import dynamically_generate_model
-
-
-TEMPERATURE = 0.0
-TOP_P = 0.001
-SEED = 42
-
 if __name__ == "__main__":
     import os
     import argparse
@@ -14,6 +7,7 @@ if __name__ == "__main__":
 
     from metrics import load_config
     from ratings import export_model_to_json
+    from ratings import dynamically_generate_model
     from prompt import make_prompt
 
     parser = argparse.ArgumentParser()
