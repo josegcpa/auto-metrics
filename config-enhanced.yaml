@@ -125,6 +125,10 @@ items:
         materials (e.g., parameter file such as in YAML format, screenshot if a dedicated
         file for this is not available for the software). In the case of DL, neural
         network architecture along with all image operations should be described.
+        Mention of features by name or feature groups is not sufficient. Explicitly 
+        check whether the scientific article provides a list of the radiomic features 
+        which are being extracted or if it mentions that the default set of parameters 
+        was used.
       item_description: >-
         Transparent reporting of feature extraction parameters, otherwise
         providing a default configuration statement
