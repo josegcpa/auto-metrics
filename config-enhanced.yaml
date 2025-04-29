@@ -9,6 +9,7 @@ items:
         Adherence to radiomics and/or machine learning-specific checklists
         or guidelines
       item_number: 1
+      item_weight: 0.0368
     - condition: null
       item_comment: >-
         Whether inclusion and exclusion criteria are explicitly defined.
@@ -16,6 +17,7 @@ items:
         population of interest for the study aim.
       item_description: Eligibility criteria that describe a representative study population
       item_number: 2
+      item_weight: 0.0735
     - condition: null
       item_comment: >-
         Whether the reference standard or outcome measure is representative of the current 
@@ -26,6 +28,7 @@ items:
         used for feature extraction, or outdated versions of prognostic tools.
       item_description: High-quality reference standard with a clear definition
       item_number: 3
+      item_weight: 0.0919
   Imaging Data:
     - condition: null
       item_comment: >-
@@ -33,6 +36,7 @@ items:
         data source for radiomics analysis.
       item_description: Multi-center
       item_number: 4
+      item_weight: 0.0438
     - condition: null
       item_comment: >-
         Whether the source of the radiomics data is an imaging technique
@@ -40,12 +44,14 @@ items:
         guidelines (e.g., PI-RADS specifications).
       item_description: Clinical translatability of the imaging data source for radiomics analysis
       item_number: 5
+      item_weight: 0.0292
     - condition: null
       item_comment: >-
         Whether the image acquisition protocol is clearly reported to ensure
         the replicability of the method.
       item_description: Imaging protocol with acquisition parameters
       item_number: 6
+      item_weight: 0.0438
     - condition: null
       item_comment: >-
         Whether the time interval between the diagnostic imaging exams (used
@@ -56,6 +62,7 @@ items:
         exams, the answer should be "no".
       item_description: The interval between imaging used and reference standard
       item_number: 7
+      item_weight: 0.0292
   Segmentation:
     - condition:
         - 1
@@ -67,6 +74,7 @@ items:
         bounding boxes or cropping the image around a region of interest.
       item_description: Transparent description of segmentation methodology
       item_number: 8
+      item_weight: 0.0337
     - condition:
         - 1
         - 2
@@ -78,6 +86,7 @@ items:
         annotation).
       item_description: Formal evaluation of fully automated segmentation
       item_number: 9
+      item_weight: 0.0225
     - condition:
         - 1
       item_comment: >-
@@ -87,6 +96,7 @@ items:
         the results of the automated segmentation is not considered clinical practice.
       item_description: Test set segmentation masks produced by a single reader or automated tool
       item_number: 10
+      item_weight: 0.0112
   Image Processing and Feature Extraction:
     - condition: null
       item_comment: >-
@@ -109,6 +119,7 @@ items:
         Appropriate use of image preprocessing techniques with transparent
         description
       item_number: 11
+      item_weight: 0.0622
     - condition:
         - 3
       item_comment: >-
@@ -116,6 +127,7 @@ items:
         used for feature extraction, including information on the version number.
       item_description: Use of standardized feature extraction software
       item_number: 12
+      item_weight: 0.0311
     - condition: null
       item_comment: >-
         Whether feature types (e.g., hand-crafted, deep features) and feature
@@ -133,6 +145,7 @@ items:
         Transparent reporting of feature extraction parameters, otherwise
         providing a default configuration statement
       item_number: 13
+      item_weight: 0.0415
   Feature Processing:
     - condition:
         - 4
@@ -145,6 +158,7 @@ items:
         each component in multi-step feature removal pipelines.
       item_description: Removal of non-robust features
       item_number: 14
+      item_weight: 0.0200
     - condition:
         - 4
       item_comment: >-
@@ -155,6 +169,7 @@ items:
         specific results for each component in multi-step feature removal pipelines.
       item_description: Removal of redundant features
       item_number: 15
+      item_weight: 0.0200
     - condition:
         - 4
       item_comment: >-
@@ -165,6 +180,7 @@ items:
         literature.
       item_description: Appropriateness of dimensionality compared to data size
       item_number: 16
+      item_weight: 0.0300
     - condition:
         - 5
       item_comment: >-
@@ -173,6 +189,7 @@ items:
         by different readers, or stability analysis [i.e., image perturbations].
       item_description: Robustness assessment of end-to-end deep learning pipelines
       item_number: 17
+      item_weight: 0.0200
   Preparation for Modeling:
     - condition: null
       item_comment: >-
@@ -191,6 +208,7 @@ items:
         test data should always be handled separately from this.
       item_description: Proper data partitioning process
       item_number: 18
+      item_weight: 0.0599
     - condition: null
       item_comment: >-
         Whether potential confounding factors were analyzed, identified
@@ -202,6 +220,7 @@ items:
         weight, or comorbidities.
       item_description: Handling of confounding factors
       item_number: 19
+      item_weight: 0.0300
   Metrics and Comparison:
     - condition: null
       item_comment: >-
@@ -214,6 +233,7 @@ items:
         curves should be presented.
       item_description: Use of appropriate performance evaluation metrics for task
       item_number: 20
+      item_weight: 0.0352
     - condition: null
       item_comment: >-
         Whether uncertainty measures are included in the analysis, such
@@ -222,10 +242,12 @@ items:
         replacement, etc).
       item_description: Consideration of uncertainty
       item_number: 21
+      item_weight: 0.0234
     - condition: null
       item_comment: Whether the final model's calibration is assessed.
       item_description: Calibration assessment
       item_number: 22
+      item_weight: 0.0176
     - condition: null
       item_comment: >-
         Use of a single imaging set (such as a single MRI sequence rather
@@ -241,6 +263,7 @@ items:
         imaging modalities.
       item_description: Use of uni-parametric imaging or proof of its inferiority
       item_number: 23
+      item_weight: 0.0117
     - condition: null
       item_comment: >-
         Whether a non-radiomic method that is representative of the clinical practice is included
@@ -256,6 +279,7 @@ items:
         a frequentist approach (rather than Bayesian).
       item_description: Comparison with a non-radiomic approach or proof of added clinical value
       item_number: 24
+      item_weight: 0.0293
     - condition: null
       item_comment: >-
         Whether a comparison with a simple baseline reference model (such
@@ -269,6 +293,7 @@ items:
         a frequentist approach (rather than Bayesian).
       item_description: Comparison with simple or classical statistical models
       item_number: 25
+      item_weight: 0.0176
   Testing:
     - condition: null
       item_comment: >-
@@ -276,6 +301,7 @@ items:
         from the same source as the training and/or validation sets.
       item_description: Internal testing
       item_number: 26
+      item_weight: 0.0375
     - condition: null
       item_comment: >-
         Whether the model is tested with independent data from other institution(s).
@@ -283,6 +309,7 @@ items:
         trained at another institution.
       item_description: External testing
       item_number: 27
+      item_weight: 0.0749
   Open Science:
     - condition: null
       item_comment: >-
@@ -290,6 +317,7 @@ items:
         data is shared with the public.
       item_description: Data availability
       item_number: 28
+      item_weight: 0.0075
     - condition: null
       item_comment: >-
         Whether all scripts related to automatic segmentation and/or modeling
@@ -297,6 +325,7 @@ items:
         implementation (e.g., accompanying documentation, tutorials).
       item_description: Code availability
       item_number: 29
+      item_weight: 0.0075
     - condition: null
       item_comment: >-
         Whether the final model is shared in the form of a raw model file
@@ -305,6 +334,7 @@ items:
         include clear instructions for their usage (e.g., accompanying documentation, tutorials).
       item_description: Model availability
       item_number: 30
+      item_weight: 0.0075
 
 conditions:
   - condition_comment: >-
