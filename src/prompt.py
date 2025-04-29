@@ -30,7 +30,7 @@ You have to output a JSON file with the following structure:
 - the ratings (Yes, No or n/a) for each item (described under "# Items") and a short explanation for your decision
 """
 
-BASE_PROMPT_SKIP_EXPLANATION = """
+BASE_PROMPT_SKIP_REASONS = """
 # Instructions
 You are an expert radiologist with decades of experience in developing and implementing clinical artificial intelligence.
 You have to offer ratings to a scientific article of clinical importance at the end of this prompt according to a set of criteria (items).
@@ -68,10 +68,10 @@ def format_generic(
 def make_prompt(
     item_list: dict[str, list[Item]],
     conditions: list[Condition],
-    skip_explanations: bool = False,
+    skip_reasons: bool = False,
 ) -> str:
-    if skip_explanations:
-        prompt_complete = BASE_PROMPT_SKIP_EXPLANATION + "\n"
+    if skip_reasons:
+        prompt_complete = BASE_PROMPT_SKIP_REASONS + "\n"
     else:
         prompt_complete = BASE_PROMPT + "\n"
 

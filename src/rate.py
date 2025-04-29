@@ -34,7 +34,7 @@ if __name__ == "__main__":
             exit(0)
 
     item_list, conditions, flat_items = load_config(args.config_path)
-    prompt = make_prompt(item_list, conditions)
+    prompt = make_prompt(item_list, conditions, skip_reasons=args.skip_reasons)
 
     data_model = dynamically_generate_model(
         flat_items, conditions, skip_reasons=args.skip_reasons
