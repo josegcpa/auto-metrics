@@ -1,5 +1,7 @@
 from enum import Enum
-from pydantic import BaseModel
+from pydantic import create_model
+from pydantic import BaseModel, Field
+from metrics import Item, Condition
 
 
 class RatingEnum(Enum):
@@ -96,7 +98,25 @@ SCORES = {
 }
 
 
-def export_model_to_json():
+def dynamically_generate_model(
+    items: list[Item], conditions: list[Condition] | None = None
+):
+    model = {}
+    if conditions is not None:
+        for condition in conditions:
+            model[f"Condition{condition.condition_number}"] = (
+                Rating,
+                Field(description=condition.condition_description),
+            )
+    for item in items:
+        model[f"Item{item.item_number}"] = (
+            Rating,
+            Field(description=item.item_description),
+        )
+    return create_model("Criteria", **model)
+
+
+def export_model_to_json(data_model: BaseModel):
     def dig_dict(d, ref_dict: dict):
         if isinstance(d, dict):
             if "enum" in d:
@@ -110,7 +130,7 @@ def export_model_to_json():
         else:
             return d
 
-    model_schema_with_refs = Metrics.model_json_schema()
+    model_schema_with_refs = data_model.model_json_schema()
     refs_dict = {
         "#/$defs/" + k: model_schema_with_refs["$defs"][k]
         for k in model_schema_with_refs["$defs"]
