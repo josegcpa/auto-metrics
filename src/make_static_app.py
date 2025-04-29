@@ -1,13 +1,14 @@
-from genericpath import isdir
-
-
 SOURCE_DIR = "src/static_app_templates"
 
 if __name__ == "__main__":
     import os
     import json
     import shutil
-    from ratings import export_model_to_json
+    from ratings import (
+        export_model_to_json,
+        dynamically_generate_model,
+        get_weights,
+    )
     from prompt import make_prompt
     from metrics import load_config
 
@@ -19,16 +20,22 @@ if __name__ == "__main__":
     parser.add_argument("--additional_files_to_copy", default=None, nargs="+")
     args = parser.parse_args()
 
-    items, conditions = load_config(args.config_path)
+    items, conditions, flat_items = load_config(args.config_path)
     input_prompt = make_prompt(items, conditions)
-    output_data_model = export_model_to_json()
+    weights = get_weights(flat_items)
+    weights_str = json.dumps(weights).replace('"', "")
+    print(weights_str)
+    data_model = dynamically_generate_model(flat_items, conditions)
+    output_data_model = export_model_to_json(data_model)
 
     with open(f"{SOURCE_DIR}/main.js", "r") as f:
         main_js = f.read()
 
-    js_file = main_js.replace(
-        '"!PROMPT"', input_prompt.replace("{article}", "")
-    ).replace('"!RESPONSE_SCHEMA"', json.dumps(output_data_model))
+    js_file = (
+        main_js.replace('"!PROMPT"', input_prompt.replace("{article}", ""))
+        .replace('"!RESPONSE_SCHEMA"', json.dumps(output_data_model))
+        .replace('"!WEIGHTS"', weights_str)
+    )
 
     with open(f"{SOURCE_DIR}/index.html", "r") as f:
         main_html = f.read().replace(
