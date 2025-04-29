@@ -31,7 +31,6 @@ class RatingNoReason(BaseModel):
 
 class RatingWithNANoReason(BaseModel):
     rating: RatingWithNAEnum
-    reason: str
 
 
 class Metrics(BaseModel):
