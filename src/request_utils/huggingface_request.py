@@ -12,7 +12,7 @@ from outlines.generate.api import (
     SamplingParameters,
 )
 from transformers import set_seed
-from .parameters import TEMPERATURE, TOP_P, SEED
+from .parameters import SEED
 
 if torch.cuda.is_available():
     device = "cuda"
@@ -37,11 +37,7 @@ def query_model(query: str, data_model: BaseModel, model_str: str):
     processor = outlines.processors.JSONLogitsProcessor(
         data_model, tokenizer=outlines_tokenizer
     )
-    sampling_parameters = SamplingParameters(
-        sampler="greedy",
-        top_p=TOP_P,
-        temperature=TEMPERATURE + 1e-6,
-    )
+    sampling_parameters = SamplingParameters(sampler="greedy")
 
     outlines_model = Transformers(model=model, tokenizer=tokenizer)
     response_stream = outlines_model.stream(
