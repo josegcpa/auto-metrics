@@ -88,15 +88,23 @@ You have to output a JSON file with the following structure:
 
 
 def format_generic(
-    identifier: str, number: int, description: str, comment: str
+    identifier: str,
+    number: int,
+    description: str,
+    comment: str,
+    name: str | None = None,
 ) -> str:
-    return f"* {identifier}{number}: {description} - {comment}"
+    if name is None:
+        return f"* {identifier}{number}: {description} - {comment}"
+    else:
+        return f"* {identifier}{number}_{name}: {description} - {comment}"
 
 
 def make_prompt(
     item_list: dict[str, list[Item]],
     conditions: list[Condition],
     prompt_type: str = "default",
+    with_names: bool = False,
 ) -> str:
     if prompt_type == "skip_reasons":
         prompt_complete = BASE_PROMPT_SKIP_REASONS + "\n"
@@ -111,6 +119,7 @@ def make_prompt(
                 condition.number,
                 condition.description,
                 condition.comment,
+                name=condition.name if with_names else None,
             )
             prompt_complete += "\n"
 
@@ -127,6 +136,7 @@ def make_prompt(
                 item.number,
                 item.description,
                 item.comment,
+                name=item.name if with_names else None,
             )
             if item.condition is not None:
                 condition_text = " and ".join([f"{c}" for c in item.condition])
