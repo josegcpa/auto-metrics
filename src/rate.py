@@ -38,7 +38,11 @@ if __name__ == "__main__":
     if args.local_model is None:
         from request_utils.gemini_request import query_model
 
-        response = query_model(prompt.format(article=article_text), data_model)
+        response = query_model(
+            prompt=prompt,
+            article_text=article_text,
+            data_model=data_model,
+        )
     else:
         split_model = args.local_model.split(":")
         provider, model_str = split_model[0], ":".join(split_model[1:])
@@ -46,7 +50,8 @@ if __name__ == "__main__":
             from request_utils.ollama_request import query_model
 
             response = query_model(
-                query=prompt.format(article=article_text),
+                prompt=prompt,
+                article_text=article_text,
                 data_model=export_model_to_json(data_model),
                 model_str=model_str,
             )
@@ -54,7 +59,10 @@ if __name__ == "__main__":
             from request_utils.huggingface_request import query_model
 
             response = query_model(
-                prompt.format(article=article_text), data_model, model_str
+                prompt=prompt,
+                article_text=article_text,
+                data_model=data_model,
+                model_str=model_str,
             )
         else:
             raise ValueError(

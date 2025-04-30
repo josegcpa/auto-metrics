@@ -5,7 +5,10 @@ from pydantic import BaseModel
 from .parameters import TEMPERATURE, TOP_P, SEED
 
 
-def query_model(query: str, data_model: BaseModel):
+def query_model(prompt: str, article_text: str, data_model: BaseModel):
+    query = prompt + "\n# Article text\n\n{article}".format(
+        article=article_text
+    )
     config = GenerateContentConfig(
         temperature=TEMPERATURE,
         top_p=TOP_P,

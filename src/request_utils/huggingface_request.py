@@ -24,7 +24,12 @@ else:
 set_seed(SEED)
 
 
-def query_model(query: str, data_model: BaseModel, model_str: str):
+def query_model(
+    prompt: str, article_text: str, data_model: BaseModel, model_str: str
+):
+    query = prompt + "\n# Article text\n\n{article}".format(
+        article=article_text
+    )
     model = AutoModelForCausalLM.from_pretrained(
         model_str,
         device_map=device,

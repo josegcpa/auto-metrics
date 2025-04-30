@@ -80,11 +80,10 @@ def dynamically_generate_model(
     if skip_reasons:
         rating = RatingNoReason
         rating_na = RatingWithNANoReason
-        model = {}
     else:
         rating = Rating
         rating_na = RatingWithNA
-        model = {"Summary": (str, Field(description="Summary of the article"))}
+    model = {}
     if conditions is not None:
         for condition in conditions:
             model[f"Condition{condition.condition_number}"] = (
@@ -96,6 +95,7 @@ def dynamically_generate_model(
             rating_na if item.condition else rating,
             Field(description=item.item_description),
         )
+    model["Summary"] = (str, Field(description="Summary of the article"))
     return create_model("Criteria", **model)
 
 
