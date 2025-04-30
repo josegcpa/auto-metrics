@@ -86,14 +86,16 @@ def dynamically_generate_model(
     model = {}
     if conditions is not None:
         for condition in conditions:
-            model[f"Condition{condition.condition_number}"] = (
+            model[f"Condition{condition.number}"] = (
                 rating,
-                Field(description=condition.condition_description),
+                Field(
+                    description=f"{condition.description}\n{condition.comment}"
+                ),
             )
     for item in items:
-        model[f"Item{item.item_number}"] = (
+        model[f"Item{item.number}"] = (
             rating_na if item.condition else rating,
-            Field(description=item.item_description),
+            Field(description=f"{item.description}\n{item.comment}"),
         )
     model["Summary"] = (str, Field(description="Summary of the article"))
     return create_model("Criteria", **model)
@@ -124,7 +126,7 @@ def export_model_to_json(data_model: BaseModel):
 
 
 def get_weights(flat_items: list[Item]):
-    return {f"Item{item.item_number}": item.item_weight for item in flat_items}
+    return {f"Item{item.number}": item.weight for item in flat_items}
 
 
 if __name__ == "__main__":
