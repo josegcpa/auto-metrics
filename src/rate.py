@@ -16,7 +16,7 @@ if __name__ == "__main__":
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--config_path", type=str, default="config.yaml")
     parser.add_argument("--local_model", type=str, default=None)
-    parser.add_argument("--skip_reasons", action="store_true")
+    parser.add_argument("--prompt_type", type=str, default="default")
     args = parser.parse_args()
 
     with open(args.article_path) as f:
@@ -28,10 +28,10 @@ if __name__ == "__main__":
             exit(0)
 
     item_list, conditions, flat_items = load_config(args.config_path)
-    prompt = make_prompt(item_list, conditions, skip_reasons=args.skip_reasons)
+    prompt = make_prompt(item_list, conditions, prompt_type=args.prompt_type)
 
     data_model = dynamically_generate_model(
-        flat_items, conditions, skip_reasons=args.skip_reasons
+        flat_items, conditions, skip_reasons=args.prompt_type == "skip_reasons"
     )
 
     start_time = time.time()
