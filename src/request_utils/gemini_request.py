@@ -17,6 +17,8 @@ def query_model(prompt: str, article_text: str, data_model: BaseModel):
         response_schema=data_model,
     )
 
+    if "GOOGLE_API_KEY" not in os.environ:
+        raise ValueError("GOOGLE_API_KEY not found in environment variables")
     client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
     chat = client.chats.create(model="gemini-2.0-flash-001")
 
