@@ -30,6 +30,34 @@ You have to output a JSON file with the following structure:
 - the ratings (Yes, No or n/a) for each item (described under "# Items") and a short explanation for your decision
 """
 
+BASE_PROMPT_SIMPLIFIED = """
+# Instructions
+You are an expert at rating scientific publications. 
+You have to follow the evaluation guidelines closely and exactly as they are stated.
+
+# Evaluation
+## Metrics definition
+There are 30 items in total and each item is grouped into one of 9 categories.
+There are, additionally, 5 conditions which define whether some item should be filled or not.
+The 5 Conditions are defined below under "# Conditions". A short explanation is provided for each.
+The 30 items are defined below under "# Items". Each is grouped under its respective category. A short explanation is provided for each.
+
+## Rating Rubric
+No: no evidence that this item is being followed in this publication
+Yes: evidence that this item is being followed in this publication
+n/a: not applicable
+Reason: a short explanation for each ranking
+
+# Input format
+The article text is provided below under "# Article text". Anything outside of this text should not be evaluated.
+
+# Output format
+You have to output a JSON file with the following structure:
+- a summary of the article accurately representing the main conclusion of the article
+- the answers for conditions (Yes, No) (described under "# Conditions") and a short explanation for your decision
+- the ratings (Yes, No or n/a) for each item (described under "# Items") and a short explanation for your decision
+"""
+
 BASE_PROMPT_SKIP_REASONS = """
 # Instructions
 You are an expert radiologist with decades of experience in developing and implementing clinical artificial intelligence.
@@ -39,7 +67,7 @@ Be extremely thorough and conservative with your answers as these tools are supp
 
 # Evaluation
 ## Metrics definition
-There are 30 items in total and each item is grouped into one of 9 categories.
+There are 30 items in total.
 There are, additionally, 5 conditions which define whether some item should be filled or not.
 The 5 Conditions are defined below under "# Conditions". A short explanation is provided for each.
 The 30 items are defined below under "# Items". Each is grouped under its respective category. A short explanation is provided for each.
@@ -68,9 +96,9 @@ def format_generic(
 def make_prompt(
     item_list: dict[str, list[Item]],
     conditions: list[Condition],
-    skip_reasons: bool = False,
+    prompt_type: str = "default",
 ) -> str:
-    if skip_reasons:
+    if prompt_type == "skip_reasons":
         prompt_complete = BASE_PROMPT_SKIP_REASONS + "\n"
     else:
         prompt_complete = BASE_PROMPT + "\n"
@@ -80,25 +108,25 @@ def make_prompt(
         for condition in conditions:
             prompt_complete += format_generic(
                 "Condition",
-                condition.condition_number,
-                condition.condition_description,
-                condition.condition_comment,
+                condition.number,
+                condition.description,
+                condition.comment,
             )
             prompt_complete += "\n"
 
     prompt_complete += "\n\n# Items\n\n"
     section_order = sorted(
         item_list.keys(),
-        key=lambda k: min([item.item_number for item in item_list[k]]),
+        key=lambda k: min([item.number for item in item_list[k]]),
     )
     for section in section_order:
         prompt_complete += f"## {section}\n\n"
         for item in item_list[section]:
             prompt_complete += format_generic(
                 "Item",
-                item.item_number,
-                item.item_description,
-                item.item_comment,
+                item.number,
+                item.description,
+                item.comment,
             )
             if item.condition is not None:
                 condition_text = " and ".join([f"{c}" for c in item.condition])
