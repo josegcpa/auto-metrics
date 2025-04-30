@@ -1,102 +1,112 @@
 items:
   Study Design:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether any guideline or checklist, e.g., CLEAR checklist, is used
         in designing and reporting, as appropriate for the study design (e.g., handcrafted
         radiomics or deep learning pipeline).
-      item_description:
+      description:
         Adherence to radiomics and/or machine learning-specific checklists
         or guidelines
-      item_number: 1
-      item_weight: 0.0368
+      number: 1
+      name: Checklist
+      weight: 0.0368
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether inclusion and exclusion criteria are explicitly defined.
         These should lead to a representative study sample that matches the general
         population of interest for the study aim.
-      item_description: Eligibility criteria that describe a representative study population
-      item_number: 2
-      item_weight: 0.0735
+      description: Eligibility criteria that describe a representative study population
+      number: 2
+      name: ExclusionCriteria
+      weight: 0.0735
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the reference standard or outcome measure is representative of the current 
         clinical practice and robust. Examples of high-quality reference standards are preferably 
         histopathology, well-established clinical and genomic markers, the latest version of the prognostic 
         tools, guideline-based follow-up or consensus-based expert opinions. Examples of poor quality 
         reference standards are those based on qualitative image evaluation, images that are later 
         used for feature extraction, or outdated versions of prognostic tools.
-      item_description: High-quality reference standard with a clear definition
-      item_number: 3
-      item_weight: 0.0919
+      description: High-quality reference standard with a clear definition
+      number: 3
+      name: ReferenceStandard
+      weight: 0.0919
   Imaging Data:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether more than one institution is involved as a diagnostic imaging
         data source for radiomics analysis.
-      item_description: Multi-center
-      item_number: 4
-      item_weight: 0.0438
+      description: Multi-center
+      number: 4
+      name: MultiCenter
+      weight: 0.0438
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the source of the radiomics data is an imaging technique
         that reflects established standardization approaches, such as acquisition protocol
         guidelines (e.g., PI-RADS specifications).
-      item_description: Clinical translatability of the imaging data source for radiomics analysis
-      item_number: 5
-      item_weight: 0.0292
+      description: Clinical translatability of the imaging data source for radiomics analysis
+      number: 5
+      name: ImagingProtocolGuidelines
+      weight: 0.0292
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the image acquisition protocol is clearly reported to ensure
         the replicability of the method.
-      item_description: Imaging protocol with acquisition parameters
-      item_number: 6
-      item_weight: 0.0438
+      description: Imaging protocol with acquisition parameters
+      number: 6
+      name: ImagingProtocolReplicability
+      weight: 0.0438
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the time interval between the diagnostic imaging exams (used
         as an input for the radiomics analysis) and the outcome measure/reference standard
         acquisition is appropriate to validate the presence or absence of target conditions
         of the radiomics analysis at the moment of the diagnostic imaging exams.
-      item_description: The interval between imaging used and reference standard
-      item_number: 7
-      item_weight: 0.0292
+      description: The interval between imaging used and reference standard
+      number: 7
+      name: ImagingOutcomeInterval
+      weight: 0.0292
   Segmentation:
     - condition:
         - 1
-      item_comment: >-
+      comment: >-
         Whether the rules or the method of the segmentation are defined
         (e.g., margin shrinkage, peri-tumoral sampling, details of segmentation regardless
         of whether manual, semi-automated or automated methods are used). In the case
         of DL-based radiomics, the segmentation can refer to the rough delineation with
         bounding boxes or cropping the image around a region of interest.
-      item_description: Transparent description of segmentation methodology
-      item_number: 8
-      item_weight: 0.0337
+      description: Transparent description of segmentation methodology
+      number: 8
+      name: SegmentationMethodology
+      weight: 0.0337
     - condition:
         - 1
         - 2
-      item_comment: >-
+      comment: >-
         If a segmentation technique that does not require any sort of human
         intervention is used, examples of the results should be presented and a formal
         assessment of its accuracy compared to domain expert annotations included in
         the study (e.g., DICE score or Jaccard index compared with a radiologist's semantic
         annotation).
-      item_description: Formal evaluation of fully automated segmentation
-      item_number: 9
-      item_weight: 0.0225
+      description: Formal evaluation of fully automated segmentation
+      number: 9
+      name: FullyAutomatedSegmentationEvaluation
+      weight: 0.0225
     - condition:
         - 1
-      item_comment: >-
+      comment: >-
         Whether final segmentation in the test set is produced by a single
         reader (manually or with a semi-automated tool) or an entirely automated tool,
         to better reflect clinical practice.
-      item_description: Test set segmentation masks produced by a single reader or automated tool
-      item_number: 10
-      item_weight: 0.0112
+      description: Test set segmentation masks produced by a single reader or automated tool
+      number: 10
+      name: SegmentationReaderConsistency
+      weight: 0.0112
   Image Processing and Feature Extraction:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether preprocessing of the images is appropriately performed 
         considering the imaging modality (e.g., gray level normalization for MRI,
         image registration in case of multiple contrasts or modalities) and feature
@@ -112,21 +122,23 @@ items:
         (e.g., high and low pass filter combinations for wavelet decomposition, sigma
         values for Laplacian of Gaussian edge enhancement filtering). If the image
         window is fixed, it should be clarified.
-      item_description:
+      description:
         Appropriate use of image preprocessing techniques with transparent
         description
-      item_number: 11
-      item_weight: 0.0622
+      number: 11
+      name: ImagePreprocessing
+      weight: 0.0622
     - condition:
         - 3
-      item_comment: >-
+      comment: >-
         Whether a standardized software (e.g., compliant with IBSI) was
         used for feature extraction, including information on the version number.
-      item_description: Use of standardized feature extraction software
-      item_number: 12
-      item_weight: 0.0311
+      description: Use of standardized feature extraction software
+      number: 12
+      name: FeatureExtractionSoftware
+      weight: 0.0311
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether feature types (e.g., hand-crafted, deep features) and feature
         classes (for hand-crafted) are described. Also, if a default configuration statement
         is provided for the remaining feature extraction parameters. A file presenting
@@ -134,58 +146,63 @@ items:
         materials (e.g., parameter file such as in YAML format, screenshot if a dedicated
         file for this is not available for the software). In the case of DL, neural
         network architecture along with all image operations should be described.
-      item_description: >-
+      description: >-
         Transparent reporting of feature extraction parameters, otherwise
         providing a default configuration statement
-      item_number: 13
-      item_weight: 0.0415
+      number: 13
+      name: FeatureExtractionParameterReporting
+      weight: 0.0415
   Feature Processing:
     - condition:
         - 4
-      item_comment: >-
+      comment: >-
         Whether unstable features are removed via test-retest, reproducibility
         analysis by analysis of different segmentations, or stability analysis [i.e.,
         image perturbations]. Instability may be due to random noise introduced by manual
         or even automated image segmentation or exposed in a scan-rescan setting. The
         specific methods used should be clearly presented, with specific results for
         each component in multi-step feature removal pipelines.
-      item_description: Removal of non-robust features
-      item_number: 14
-      item_weight: 0.0200
+      description: Removal of non-robust features
+      number: 14
+      name: NonRobustFeatureRemoval
+      weight: 0.0200
     - condition:
         - 4
-      item_comment: >-
+      comment: >-
         Whether dimensionality is reduced by selecting the more informative
         features such as with algorithm-based feature selection (e.g., LASSO coefficients,
         Random Forest feature importance), univariate correlation, collinearity, or
         variance analysis. The specific methods used should be clearly presented, with
         specific results for each component in multi-step feature removal pipelines.
-      item_description: Removal of redundant features
-      item_number: 15
-      item_weight: 0.0200
+      description: Removal of redundant features
+      number: 15
+      name: RedundantFeatureRemoval
+      weight: 0.0200
     - condition:
         - 4
-      item_comment: >-
+      comment: >-
         Whether the number of instances and features in the final training
         data set is appropriate according to the research question and modeling algorithm.
         This should be demonstrated by statistical means, empirically through consistency
         of performance in validation and testing, or based on previous evidence in the
         literature.
-      item_description: Appropriateness of dimensionality compared to data size
-      item_number: 16
-      item_weight: 0.0300
+      description: Appropriateness of dimensionality compared to data size
+      number: 16
+      name: DimensionalityAppropriateness
+      weight: 0.0300
     - condition:
         - 5
-      item_comment: >-
+      comment: >-
         Whether DL pipeline consistency of performance has been assessed
         in a test-retest setting, for example by a scan-rescan approach, use of segmentations
         by different readers, or stability analysis [i.e., image perturbations].
-      item_description: Robustness assessment of end-to-end deep learning pipelines
-      item_number: 17
-      item_weight: 0.0200
+      description: Robustness assessment of end-to-end deep learning pipelines
+      number: 17
+      name: EndToEndDeepLearningPipelineRobustness
+      weight: 0.0200
   Preparation for Modeling:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the training-validation-test data split is done at the
         very beginning of the analysis pipeline, prior to any processing step. Data
         split should be random but reproducible (e.g., fixed random seed), preferably
@@ -199,21 +216,23 @@ items:
         data at the time of inference. If a single training-validation data split is
         not done and a resampling technique (e.g., cross-validation) is used instead,
         test data should always be handled separately from this.
-      item_description: Proper data partitioning process
-      item_number: 18
-      item_weight: 0.0599
+      description: Proper data partitioning process
+      number: 18
+      name: DataPartitioning
+      weight: 0.0599
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether potential confounding factors were analyzed, identified
         if present, and removed if necessary (e.g., if it has a strong influence on
         generalizability). These may include different distributions of patient characteristics
         (e.g., gender, lesion stage or grade) across sites or scanners.
-      item_description: Handling of confounding factors
-      item_number: 19
-      item_weight: 0.0300
+      description: Handling of confounding factors
+      number: 19
+      name: HandlingOfConfoundingFactors
+      weight: 0.0300
   Metrics and Comparison:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether appropriate accuracy metrics are reported, such as AUC for
         Receiver Operating Characteristics (ROC) or Precision-Recall (PRC) curves and
         confusion matrix-derived accuracy metrics (e.g., specificity, sensitivity, precision,
@@ -221,25 +240,28 @@ items:
         For classification tasks, the confusion matrix should always be included, to
         allow the calculation of additional metrics. If training a DL network, loss
         curves should be presented.
-      item_description: Use of appropriate performance evaluation metrics for task
-      item_number: 20
-      item_weight: 0.0352
+      description: Use of appropriate performance evaluation metrics for task
+      number: 20
+      name: PerformanceEvaluationMetrics
+      weight: 0.0352
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether uncertainty measures are included in the analysis, such
         as 95% confidence interval (CI), standard deviation (SD), or standard error
         (SE). Report on methodology to derive that distribution (ie. bootstrapping with
         replacement, etc).
-      item_description: Consideration of uncertainty
-      item_number: 21
-      item_weight: 0.0234
+      description: Consideration of uncertainty
+      number: 21
+      name: UncertaintyAssessment
+      weight: 0.0234
     - condition: null
-      item_comment: Whether the final model's calibration is assessed.
-      item_description: Calibration assessment
-      item_number: 22
-      item_weight: 0.0176
+      comment: Whether the final model's calibration is assessed.
+      description: Calibration assessment
+      number: 22
+      name: CalibrationAssessment
+      weight: 0.0176
     - condition: null
-      item_comment: >-
+      comment: >-
         Use of a single imaging set (such as a single MRI sequence rather
         than multiple, or a single phase in a dynamic contrast-enhanced scan) should
         be preferred, as multi-parametric imaging may unnecessarily increase data dimensionality
@@ -249,11 +271,12 @@ items:
         or McNemar's tests). This item is also intended to reward studies that experimentally
         justify the use of more complex models compared to simpler alternatives, in
         regard to input data type.
-      item_description: Use of uni-parametric imaging or proof of its inferiority
-      item_number: 23
-      item_weight: 0.0117
+      description: Use of uni-parametric imaging or proof of its inferiority
+      number: 23
+      name: UniParametricImagingEvaluation
+      weight: 0.0117
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether a non-radiomic method that is representative of the clinical practice is included
         in the analysis for comparison purposes. Non-radiomic methods might include semantic features, 
         RADS or RECIST scoring, and simple volume or size evaluations. If no non-radiomics method is available, 
@@ -265,11 +288,12 @@ items:
         multiple comparisons, multiple testing correction methods (e.g., Bonferroni) should be considered 
         in order to reduce the false discovery rate provided that the statistical comparison is done with 
         a frequentist approach (rather than Bayesian).
-      item_description: Comparison with a non-radiomic approach or proof of added clinical value
-      item_number: 24
-      item_weight: 0.0293
+      description: Comparison with a non-radiomic approach or proof of added clinical value
+      number: 24
+      name: NonRadiomicApproachComparison
+      weight: 0.0293
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether a comparison with a simple baseline reference model (such
         as a Zero Rules/No Information Rate classifier) was performed. Use of machine
         learning methods should be justified by proof of increased performance. In any
@@ -279,77 +303,88 @@ items:
         Bonferroni, Benjamini-Hochberg, or Tukey) should be considered in order to reduce
         the false discovery rate provided that the statistical comparison is done with
         a frequentist approach (rather than Bayesian).
-      item_description: Comparison with simple or classical statistical models
-      item_number: 25
-      item_weight: 0.0176
+      description: Comparison with simple or classical statistical models
+      number: 25
+      name: SimpleBaselineComparison
+      weight: 0.0176
   Testing:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the model is tested on an independent data set that is sampled
         from the same source as the training and/or validation sets.
-      item_description: Internal testing
-      item_number: 26
-      item_weight: 0.0375
+      description: Internal testing
+      number: 26
+      name: InternalTesting
+      weight: 0.0375
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the model is tested with independent data from other institution(s).
         This also applies to the studies validating the previously published models
         trained at another institution.
-      item_description: External testing
-      item_number: 27
-      item_weight: 0.0749
+      description: External testing
+      number: 27
+      name: ExternalTesting
+      weight: 0.0749
   Open Science:
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether any imaging, segmentation, clinical, or radiomics analysis
         data is shared with the public.
-      item_description: Data availability
-      item_number: 28
-      item_weight: 0.0075
+      description: Data availability
+      number: 28
+      name: DataAvailability
+      weight: 0.0075
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether all scripts related to automatic segmentation and/or modeling
         are shared with the public. These should include clear instructions for their
         implementation (e.g., accompanying documentation, tutorials).
-      item_description: Code availability
-      item_number: 29
-      item_weight: 0.0075
+      description: Code availability
+      number: 29
+      name: CodeAvailability
+      weight: 0.0075
     - condition: null
-      item_comment: >-
+      comment: >-
         Whether the final model is shared in the form of a raw model file
         or as a ready-to-use system. If automated segmentation was employed, the corresponding
         trained model should also be made available to allow replication. These should
         include clear instructions for their usage (e.g., accompanying documentation, tutorials).
-      item_description: Model availability
-      item_number: 30
-      item_weight: 0.0075
+      description: Model availability
+      number: 30
+      name: ModelAvailability
+      weight: 0.0075
 
 conditions:
-  - condition_comment: >-
+  - comment: >-
       "Segmentation" refers to i) Fine delineation of a region or
       volume of interest; ii) Rough delineation with bounding boxes; or, iii) cropping
       the image around a region of interest.
-    condition_description: Does the study include segmentation?
-    condition_number: 1
-  - condition_comment: >-
+    description: Does the study include segmentation?
+    name: Segmentation
+    number: 1
+  - comment: >-
       "Fully automated segmentation" refers to segmentation process
       without any human intervention.
-    condition_description: Does the study include fully automated segmentation?
-    condition_number: 2
-  - condition_comment: >-
+    description: Does the study include fully automated segmentation?
+    name: FullyAutomatedSegmentation
+    number: 2
+  - comment: >-
       "Hand-crafted radiomic features" (i.e., traditional radiomic
       features) are created in advance by human experts or mathematicians.
-    condition_description: Does the study include hand-crafted feature extraction?
-    condition_number: 3
-  - condition_comment: >-
+    description: Does the study include hand-crafted feature extraction?
+    name: HandCraftedFeatureExtraction
+    number: 3
+  - comment: >-
       "Tabular data" refers to data that is organized in a table with
       rows and columns (i.e., numeric radiomic features in a tabulated format, which 
       is usually seen in hand-crafted and some deep learning-based studies as deep features).
-    condition_description: Does the study include tabular data?
-    condition_number: 4
-  - condition_comment: >-
+    description: Does the study include tabular data?
+    name: TabularData
+    number: 4
+  - comment: >-
       "End-to-end deep learning" refers to the use of deep learning
       to directly process the image data and produce a classification or regression
       model.
-    condition_description: Does the study include end-to-end deep learning?
-    condition_number: 5
+    description: Does the study include end-to-end deep learning?
+    name: EndToEndDeepLearning
+    number: 5
