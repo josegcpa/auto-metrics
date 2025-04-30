@@ -107,7 +107,6 @@ def make_prompt(
                 )
             prompt_complete += "\n"
         prompt_complete += "\n"
-    prompt_complete += "\n# Article text\n\n{article}"
     return prompt_complete
 
 
