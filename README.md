@@ -6,7 +6,11 @@ This code is part of the paper "Auto-METRICS: LLM-assisted scientific quality co
 
 ## Usage
 
-We use [`uv`](https://docs.astral.sh/uv/) to manage the dependencies and run everything, so running this software should be fairly straightforward. To rate a given manuscript all you have to do is run:
+We use [`uv`](https://docs.astral.sh/uv/) to manage the dependencies and run everything, so running this software should be fairly straightforward. 
+
+### Use with Gemini (default)
+
+To rate a given manuscript with Gemini all you have to do is run:
 
 ```bash
 uv run python src/rate.py --input_path <path_to_manuscript_in_txt> --output_path <path_to_output_json> --config_path <path_to_config_yaml>
