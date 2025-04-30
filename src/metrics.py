@@ -3,17 +3,19 @@ from pydantic import BaseModel
 
 
 class Item(BaseModel):
-    item_number: int
-    item_description: str
-    item_comment: str
+    name: str
+    number: int
+    description: str
+    comment: str
     condition: list[int] | None = None
-    item_weight: float | None = None
+    weight: float | None = None
 
 
 class Condition(BaseModel):
-    condition_number: int
-    condition_description: str
-    condition_comment: str
+    name: str
+    number: int
+    description: str
+    comment: str
 
 
 def load_config(
@@ -23,7 +25,7 @@ def load_config(
         data = yaml.safe_load(o)
     conditions = sorted(
         [Condition(**x) for x in data["conditions"]],
-        key=lambda condition: condition.condition_number,
+        key=lambda condition: condition.number,
     )
     items = {}
     flat_items = []
