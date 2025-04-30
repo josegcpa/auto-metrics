@@ -2,6 +2,7 @@ from enum import Enum
 from pydantic import create_model
 from pydantic import BaseModel, Field
 from metrics import Item, Condition
+from logger import logger
 
 
 class RatingEnum(Enum):
@@ -78,6 +79,10 @@ def dynamically_generate_model(
     skip_reasons: bool = False,
     with_names: bool = False,
 ):
+    logger.info(
+        f"Generating model with {len(items)} items, {len(conditions)} conditions, "
+        f"skip_reasons={skip_reasons} and with_names={with_names}"
+    )
     if skip_reasons:
         rating = RatingNoReason
         rating_na = RatingWithNANoReason

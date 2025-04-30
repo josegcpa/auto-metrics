@@ -3,6 +3,8 @@ if __name__ == "__main__":
     import argparse
     import json
     import time
+    import logging
+    from logger import logger
     from pathlib import Path
 
     from metrics import load_config
@@ -11,21 +13,68 @@ if __name__ == "__main__":
     from prompt import make_prompt
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--article_path", type=str, required=True)
-    parser.add_argument("--output_path", type=str, default=None)
-    parser.add_argument("--overwrite", action="store_true")
-    parser.add_argument("--config_path", type=str, default="config.yaml")
-    parser.add_argument("--local_model", type=str, default=None)
-    parser.add_argument("--prompt_type", type=str, default="default")
-    parser.add_argument("--with_names", action="store_true")
+    parser.add_argument(
+        "--article_path",
+        type=str,
+        required=True,
+        help="Path to the article text file",
+    )
+    parser.add_argument(
+        "--output_path",
+        type=str,
+        default=None,
+        help="Path to the output file",
+    )
+    parser.add_argument(
+        "--config_path",
+        type=str,
+        default="config.yaml",
+        help="Path to the config file",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Overwrite the output file if it exists",
+    )
+    parser.add_argument(
+        "--local_model",
+        type=str,
+        default=None,
+        help="Local model to use for rating. Format: provider:model_str. "
+        "If not provided, Gemini will be used. "
+        "Only ollama and huggingface are supported for provider.",
+    )
+    parser.add_argument(
+        "--prompt_type",
+        type=str,
+        default="default",
+        help="Type of prompt to use",
+        choices=["default", "skip_reasons"],
+    )
+    parser.add_argument(
+        "--with_names",
+        action="store_true",
+        help="Whether to include item names in the prompt "
+        "(improves results for local models)",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Verbose output",
+    )
     args = parser.parse_args()
+
+    if args.verbose is True:
+        logger.setLevel(logging.DEBUG)
 
     with open(args.article_path) as f:
         article_text = f.read()
 
     if args.output_path is not None and not args.overwrite:
         if os.path.exists(args.output_path):
-            print("Output file already exists. Use --overwrite to overwrite.")
+            logger.info(
+                "Output file already exists. Use --overwrite to overwrite."
+            )
             exit(0)
 
     item_list, conditions, flat_items = load_config(args.config_path)
@@ -45,6 +94,7 @@ if __name__ == "__main__":
 
     start_time = time.time()
     if args.local_model is None:
+        logger.info("Using Gemini")
         from request_utils.gemini_request import query_model
 
         response = query_model(
@@ -55,6 +105,7 @@ if __name__ == "__main__":
     else:
         split_model = args.local_model.split(":")
         provider, model_str = split_model[0], ":".join(split_model[1:])
+        logger.info(f"Using {model_str} from {provider}")
         if provider == "ollama":
             from request_utils.ollama_request import query_model
 
@@ -87,6 +138,7 @@ if __name__ == "__main__":
     if args.output_path is None:
         print(verbose_eval)
     else:
+        logger.info(f"Exporting ratings to {args.output_path}")
         Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)
         with open(args.output_path, "w") as f:
             json.dump(json_response, f, indent=2)

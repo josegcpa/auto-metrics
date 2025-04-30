@@ -1,4 +1,5 @@
 from metrics import Item, Condition
+from logger import logger
 
 BASE_PROMPT = """
 # Instructions
@@ -114,6 +115,10 @@ def make_prompt(
     if len(conditions) > 0:
         prompt_complete += "# Conditions\n\n"
         for condition in conditions:
+            if with_names is True and condition.name is None:
+                logger.warning(
+                    f"with_names set to True but condition {condition.number} has no name"
+                )
             prompt_complete += format_generic(
                 "Condition",
                 condition.number,
@@ -131,6 +136,10 @@ def make_prompt(
     for section in section_order:
         prompt_complete += f"## {section}\n\n"
         for item in item_list[section]:
+            if with_names is True and item.name is None:
+                logger.warning(
+                    f"with_names set to True but item {item.number} has no name"
+                )
             prompt_complete += format_generic(
                 "Item",
                 item.number,
