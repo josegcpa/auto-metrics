@@ -1,26 +1,28 @@
 import yaml
+from logger import logger
 from pydantic import BaseModel
 
 
 class Item(BaseModel):
-    name: str
     number: int
     description: str
     comment: str
+    name: str | None = None
     condition: list[int] | None = None
     weight: float | None = None
 
 
 class Condition(BaseModel):
-    name: str
     number: int
     description: str
     comment: str
+    name: str | None = None
 
 
 def load_config(
     config_path: str = "config.yaml",
 ) -> tuple[str, dict[str, list[Item]], list[Condition]]:
+    logger.info(f"Loading configuration from {config_path}")
     with open(config_path) as o:
         data = yaml.safe_load(o)
     conditions = sorted(
