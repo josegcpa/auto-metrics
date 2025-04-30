@@ -17,6 +17,7 @@ if __name__ == "__main__":
     parser.add_argument("--config_path", type=str, default="config.yaml")
     parser.add_argument("--local_model", type=str, default=None)
     parser.add_argument("--prompt_type", type=str, default="default")
+    parser.add_argument("--with_names", action="store_true")
     args = parser.parse_args()
 
     with open(args.article_path) as f:
@@ -28,10 +29,18 @@ if __name__ == "__main__":
             exit(0)
 
     item_list, conditions, flat_items = load_config(args.config_path)
-    prompt = make_prompt(item_list, conditions, prompt_type=args.prompt_type)
+    prompt = make_prompt(
+        item_list,
+        conditions,
+        prompt_type=args.prompt_type,
+        with_names=args.with_names,
+    )
 
     data_model = dynamically_generate_model(
-        flat_items, conditions, skip_reasons=args.prompt_type == "skip_reasons"
+        flat_items,
+        conditions,
+        skip_reasons=args.prompt_type == "skip_reasons",
+        with_names=args.with_names,
     )
 
     start_time = time.time()

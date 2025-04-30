@@ -76,6 +76,7 @@ def dynamically_generate_model(
     items: list[Item],
     conditions: list[Condition] | None = None,
     skip_reasons: bool = False,
+    with_names: bool = False,
 ):
     if skip_reasons:
         rating = RatingNoReason
@@ -86,14 +87,24 @@ def dynamically_generate_model(
     model = {}
     if conditions is not None:
         for condition in conditions:
-            model[f"Condition{condition.number}"] = (
+            key = (
+                f"Condition{condition.number}_{condition.name}"
+                if with_names
+                else f"Condition{condition.number}"
+            )
+            model[key] = (
                 rating,
                 Field(
                     description=f"{condition.description}\n{condition.comment}"
                 ),
             )
     for item in items:
-        model[f"Item{item.number}"] = (
+        key = (
+            f"Item{item.number}_{item.name}"
+            if with_names
+            else f"Item{item.number}"
+        )
+        model[key] = (
             rating_na if item.condition else rating,
             Field(description=f"{item.description}\n{item.comment}"),
         )
