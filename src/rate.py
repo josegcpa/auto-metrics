@@ -1,3 +1,6 @@
+from pydantic import ValidationError
+
+
 if __name__ == "__main__":
     import os
     import argparse
@@ -62,6 +65,18 @@ if __name__ == "__main__":
         action="store_true",
         help="Verbose output",
     )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Strict mode. Raises error rather than warning when JSON is not valid",
+        default=False,
+    )
+    parser.add_argument(
+        "--max_tokens",
+        type=int,
+        default=None,
+        help="Maximum number of tokens. For open/local models.",
+    )
     args = parser.parse_args()
 
     if args.verbose is True:
@@ -114,6 +129,7 @@ if __name__ == "__main__":
                 article_text=article_text,
                 data_model=export_model_to_json(data_model),
                 model_str=model_str,
+                max_tokens=args.max_tokens,
             )
         elif provider == "huggingface":
             from request_utils.huggingface_request import query_model
@@ -123,6 +139,7 @@ if __name__ == "__main__":
                 article_text=article_text,
                 data_model=data_model,
                 model_str=model_str,
+                max_tokens=args.max_tokens,
             )
         else:
             raise ValueError(
@@ -130,9 +147,20 @@ if __name__ == "__main__":
             )
 
     verbose_eval = response
-    json_response = data_model.model_validate_json(verbose_eval).model_dump(
-        mode="json"
-    )
+    try:
+        json_response = data_model.model_validate_json(
+            verbose_eval
+        ).model_dump(mode="json")
+    except ValidationError as e:
+        if args.strict:
+            raise e
+        json_response = data_model.model_validate_json(
+            verbose_eval
+        ).model_dump(mode="python")
+        logging.warning(
+            f"Failed to parse response as JSON: {str(e)}.\nExiting"
+        )
+        exit()
     json_response["elapsed_time"] = time.time() - start_time
 
     if args.output_path is None:
