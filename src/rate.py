@@ -7,13 +7,13 @@ if __name__ == "__main__":
     import json
     import time
     import logging
-    from logger import logger
     from pathlib import Path
 
-    from metrics import load_config
-    from ratings import export_model_to_json
-    from ratings import dynamically_generate_model
-    from prompt import make_prompt
+    from .logger import logger
+    from .metrics import load_config
+    from .ratings import export_model_to_json
+    from .ratings import dynamically_generate_model
+    from .prompt import make_prompt
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     start_time = time.time()
     if args.local_model is None:
         logger.info("Using Gemini")
-        from request_utils.gemini_request import query_model
+        from .request_utils.gemini_request import query_model
 
         response = query_model(
             prompt=prompt,
@@ -122,7 +122,7 @@ if __name__ == "__main__":
         provider, model_str = split_model[0], ":".join(split_model[1:])
         logger.info(f"Using {model_str} from {provider}")
         if provider == "ollama":
-            from request_utils.ollama_request import query_model
+            from .request_utils.ollama_request import query_model
 
             response = query_model(
                 prompt=prompt,
@@ -132,7 +132,7 @@ if __name__ == "__main__":
                 max_tokens=args.max_tokens,
             )
         elif provider == "huggingface":
-            from request_utils.huggingface_request import query_model
+            from .request_utils.huggingface_request import query_model
 
             response = query_model(
                 prompt=prompt,

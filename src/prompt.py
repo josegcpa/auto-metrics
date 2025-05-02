@@ -1,5 +1,5 @@
-from metrics import Item, Condition
-from logger import logger
+from .metrics import Item, Condition
+from .logger import logger
 
 BASE_PROMPT = """
 # Instructions
