@@ -168,7 +168,7 @@ if __name__ == "__main__":
         "article_text": article_text,
         "article_text_path": args.article_path,
         "model": args.local_model,
-        "error": str(e),
+        "error": error,
         "elapsed_time": time.time() - start_time,
     }
 
