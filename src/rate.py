@@ -151,6 +151,8 @@ if __name__ == "__main__":
         json_response = data_model.model_validate_json(
             verbose_eval
         ).model_dump(mode="json")
+        json_response["prompt"] = prompt
+        json_response["article_text"] = article_text
         json_response["error"] = None
     except ValidationError as e:
         if args.strict:
@@ -158,7 +160,11 @@ if __name__ == "__main__":
         logger.warning(
             f"Failed to parse response as JSON:\n{str(e)}.\nExiting"
         )
-        json_response = {"error": str(e)}
+        json_response = {
+            "error": str(e),
+            "prompt": prompt,
+            "article_text": article_text,
+        }
     json_response["elapsed_time"] = time.time() - start_time
 
     if args.output_path is None:
