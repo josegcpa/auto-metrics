@@ -31,7 +31,7 @@ do
         do 
             text_name=$(basename "$text" | sed 's/\.txt//')
             echo Analysing $text_name with $config
-            echo uv run python src/rate.py \
+            echo uv run python -m src.rate \
                 --article_path "$text" \
                 --output_path "$OUTPUT_PATH/gemini/$set_name/$text_name.json" \
                 --config_path $config &
@@ -61,7 +61,7 @@ do
                 if [[ ! -f "$output_path" ]]
                 then
                     echo Analysing $text_name with $model and $config
-                    uv run python src/rate.py \
+                    uv run python -m src.rate \
                         --article_path "$text" \
                         --output_path "$output_path" \
                         --config_path $config \
