@@ -1,6 +1,6 @@
 import yaml
-from logger import logger
 from pydantic import BaseModel
+from .logger import logger
 
 
 class Item(BaseModel):

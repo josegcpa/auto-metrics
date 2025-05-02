@@ -4,13 +4,13 @@ if __name__ == "__main__":
     import os
     import json
     import shutil
-    from ratings import (
+    from .ratings import (
         export_model_to_json,
         dynamically_generate_model,
         get_weights,
     )
-    from prompt import make_prompt
-    from metrics import load_config
+    from .prompt import make_prompt
+    from .metrics import load_config
 
     import argparse
 

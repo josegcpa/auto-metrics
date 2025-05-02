@@ -1,8 +1,8 @@
 from enum import Enum
 from pydantic import create_model
 from pydantic import BaseModel, Field
-from metrics import Item, Condition
-from logger import logger
+from .metrics import Item, Condition
+from .logger import logger
 
 
 class RatingEnum(Enum):
