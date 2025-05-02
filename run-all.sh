@@ -66,7 +66,8 @@ do
                         --output_path "$output_path" \
                         --config_path $config \
                         --local_model ollama:$model \
-                        --with_names
+                        --with_names \
+                        --max_tokens 5000
                 fi
             done
         done
