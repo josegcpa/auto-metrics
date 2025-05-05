@@ -12,6 +12,13 @@ declare -a OLLAMA_MODELS=(
     "qwen3:32b-q4_K_M"
     "mistral:7b-instruct-q4_0"
     "mistral-small:24b-instruct-2501-q4_K_M"
+    "cogito:70b-v1-preview-llama-q4_K_M"
+    "cogito:32b-v1-preview-qwen-q4_K_M"
+    "cogito:14b-v1-preview-qwen-q4_K_M"
+    "cogito:8b-v1-preview-llama-q4_K_M"
+    "cogito:3b-v1-preview-llama-q4_K_M"
+    "dolphin3:8b-llama3.1-q4_K_M"
+    "llama3.3:70b-instruct-q4_K_M"
     "phi4:14b-q4_K_M")
 ARTICLE_PATH=article-text
 OUTPUT_PATH=ratings
@@ -31,7 +38,7 @@ do
         do 
             text_name=$(basename "$text" | sed 's/\.txt//')
             echo Analysing $text_name with $config
-            echo uv run python -m src.rate \
+            uv run python -m src.rate \
                 --article_path "$text" \
                 --output_path "$OUTPUT_PATH/gemini/$set_name/$text_name.json" \
                 --config_path $config &
