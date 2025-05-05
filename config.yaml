@@ -360,7 +360,7 @@ conditions:
       volume of interest; ii) Rough delineation with bounding boxes; or, iii) cropping
       the image around a region of interest.
     description: Does the study include segmentation?
-    name: Segmentation
+    name: StudyIncludesSegmentation
     number: 1
   - comment: >-
       "Fully automated segmentation" refers to segmentation process
