@@ -26,6 +26,18 @@ class RatingWithNA(BaseModel):
     reason: str
 
 
+class RatingReasoning(BaseModel):
+    criteria_description: str
+    reasoning: list[str]
+    rating: RatingEnum
+
+
+class RatingWithNAReasoning(BaseModel):
+    criteria_description: str
+    reasoning: list[str]
+    rating: RatingWithNAEnum
+
+
 class RatingNoReason(BaseModel):
     rating: RatingEnum
 
@@ -76,15 +88,15 @@ class Metrics(BaseModel):
 def dynamically_generate_model(
     items: list[Item],
     conditions: list[Condition] | None = None,
-    skip_reasons: bool = False,
     with_names: bool = False,
+    reasoning: bool = False,
 ):
     logger.info(
-        f"Generating model with {len(items)} items, {len(conditions)} conditions, "
-        f"skip_reasons={skip_reasons} and with_names={with_names}"
+        f"Generating answers with {len(items)} items, {len(conditions)} conditions, "
+        f"with_names={with_names}, reasoning={reasoning}"
     )
-    if skip_reasons:
-        rating = RatingNoReason
+    if reasoning:
+        rating = RatingReasoning
         rating_na = RatingWithNANoReason
     else:
         rating = Rating

@@ -52,7 +52,7 @@ if __name__ == "__main__":
         type=str,
         default="default",
         help="Type of prompt to use",
-        choices=["default", "skip_reasons"],
+        choices=["default", "reasoning"],
     )
     parser.add_argument(
         "--with_names",
@@ -103,8 +103,8 @@ if __name__ == "__main__":
     data_model = dynamically_generate_model(
         flat_items,
         conditions,
-        skip_reasons=args.prompt_type == "skip_reasons",
         with_names=args.with_names,
+        reasoning=args.prompt_type == "reasoning",
     )
 
     start_time = time.time()
