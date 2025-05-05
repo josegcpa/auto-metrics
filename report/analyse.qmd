@@ -1359,6 +1359,7 @@ cohens_for_all %>%
   mutate(
     model_provider = gsub("[0-9\\.]+", "", gsub("-Small", "", gsub(" \\(.*\\)", "", model_label)))) %>%
   ggplot(aes(x = estimate, y = model_label, colour = set)) +
+  geom_vline(xintercept = 0) +
   geom_point(position = position_jitter(height = 0.10)) +
   theme_classic_2(base_size = 8) +
   scale_colour_brewer(palette = "Set1", name = "Source") +
