@@ -31,10 +31,12 @@ You have to output a JSON file with the following structure:
 - the ratings (Yes, No or n/a) for each item (described under "# Items") and a short explanation for your decision
 """
 
-BASE_PROMPT_SIMPLIFIED = """
+REASONING_PROMPT = """
 # Instructions
-You are an expert at rating scientific publications. 
-You have to follow the evaluation guidelines closely and exactly as they are stated.
+You are an expert radiologist with decades of experience in developing and implementing clinical artificial intelligence.
+You have to offer ratings to a scientific article of clinical importance at the end of this prompt according to a set of criteria (items).
+You must answer carefully and thoughtfully, considering the context of the article and your expertise.
+Be extremely thorough and conservative with your answers as these tools are supposed to be deployed in the clinic.
 
 # Evaluation
 ## Metrics definition
@@ -44,47 +46,18 @@ The 5 Conditions are defined below under "# Conditions". A short explanation is 
 The 30 items are defined below under "# Items". Each is grouped under its respective category. A short explanation is provided for each.
 
 ## Rating Rubric
-No: no evidence that this item is being followed in this publication
-Yes: evidence that this item is being followed in this publication
-n/a: not applicable
-Reason: a short explanation for each ranking
+- Criteria description ("criteria_description"): a short description of the criteria used for the rating. This is used to remind you of the criteria
+- Reasoning trace ("reasoning"): the reasoning trace for each rating. Be as extensive as you need and provide the adequate reasoning for each rating. It should be immediately clear to the reader why each rating was provided.
+- Rating ("rating"): the rating for each item (i.e. No: no evidence that this item is being followed in this publication; Yes: evidence that this item is being followed in this publication; n/a: not applicable)
 
 # Input format
 The article text is provided below under "# Article text". Anything outside of this text should not be evaluated.
 
 # Output format
 You have to output a JSON file with the following structure:
-- a summary of the article accurately representing the main conclusion of the article
-- the answers for conditions (Yes, No) (described under "# Conditions") and a short explanation for your decision
-- the ratings (Yes, No or n/a) for each item (described under "# Items") and a short explanation for your decision
-"""
-
-BASE_PROMPT_SKIP_REASONS = """
-# Instructions
-You are an expert radiologist with decades of experience in developing and implementing clinical artificial intelligence.
-You have to offer ratings to a scientific article of clinical importance at the end of this prompt according to a set of criteria (items).
-You must answer carefully and thoughtfully, considering the context of the article and your expertise.
-Be extremely thorough and conservative with your answers as these tools are supposed to be deployed in the clinic.
-
-# Evaluation
-## Metrics definition
-There are 30 items in total.
-There are, additionally, 5 conditions which define whether some item should be filled or not.
-The 5 Conditions are defined below under "# Conditions". A short explanation is provided for each.
-The 30 items are defined below under "# Items". Each is grouped under its respective category. A short explanation is provided for each.
-
-## Rating Rubric
-No: no evidence that this item is being followed in this publication
-Yes: evidence that this item is being followed in this publication
-n/a: not applicable
-
-# Input format
-The article text is provided below under "# Article text". Anything outside of this text should not be evaluated.
-
-# Output format
-You have to output a JSON file with the following structure:
-- the answers for conditions (Yes, No) (described under "# Conditions") 
-- the ratings (Yes, No or n/a) for each item (described under "# Items") 
+- a list of items with a simplified description of the criteria used for the rating (criteria_description), the reasoning trace for the answer provided in "rating" ("reasoning") and the rating for the item ("rating"). Each Item is described under "# Items".
+- a list of conditions with a simplified description of the criteria used for the rating (criteria_description), the reasoning trace for the answer provided in "rating" ("reasoning") and the rating for the condition ("rating"). Each Condition is described under "# Conditions".
+- Summary: a summary of the article accurately representing the main conclusion of the article
 """
 
 
@@ -107,10 +80,12 @@ def make_prompt(
     prompt_type: str = "default",
     with_names: bool = False,
 ) -> str:
-    if prompt_type == "skip_reasons":
-        prompt_complete = BASE_PROMPT_SKIP_REASONS + "\n"
-    else:
+    if prompt_type == "default":
         prompt_complete = BASE_PROMPT + "\n"
+    elif prompt_type == "reasoning":
+        prompt_complete = REASONING_PROMPT + "\n"
+    else:
+        raise ValueError(f"Unknown prompt type: {prompt_type}")
 
     if len(conditions) > 0:
         prompt_complete += "# Conditions\n\n"
