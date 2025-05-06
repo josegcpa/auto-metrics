@@ -27,7 +27,8 @@ declare -a OLLAMA_MODELS_REASONING=(
     "phi4-reasoning:14b-plus-q4_K_M"
     "qwq:32b-q4_K_M"
     "deepseek-r1:7b-qwen-distill-q4_K_M"
-    "deepseek-r1:14b-qwen-distill-q4_K_M")
+    "deepseek-r1:14b-qwen-distill-q4_K_M"
+    "deepseek-r1:32b-qwen-distill-q4_K_M")
 ARTICLE_PATH=article-text
 OUTPUT_PATH=ratings
 
@@ -128,7 +129,7 @@ then
                             --config_path $config \
                             --local_model ollama:$model \
                             --with_names \
-                            --max_tokens 5000
+                            --prompt_type reasoning
                     fi
                 done
             done
