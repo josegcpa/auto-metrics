@@ -28,7 +28,8 @@ declare -a OLLAMA_MODELS_REASONING=(
     "qwq:32b-q4_K_M"
     "deepseek-r1:7b-qwen-distill-q4_K_M"
     "deepseek-r1:14b-qwen-distill-q4_K_M"
-    "deepseek-r1:32b-qwen-distill-q4_K_M")
+    "deepseek-r1:32b-qwen-distill-q4_K_M"
+    "deepseek-r1:70b-llama-distill-q4_K_M")
 ARTICLE_PATH=article-text
 OUTPUT_PATH=ratings
 
