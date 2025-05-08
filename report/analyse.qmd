@@ -1269,14 +1269,14 @@ for (rating_id in c("ratings", "ratings_improved")) {
       model <- information[3]
       paper_group <- ifelse(information[4] == "kocak", 
                             "Kocak (2025)", "Akinci D'Antonoli (2025)")
-      paper <- information[5]
+      paper <- gsub("\\.json", "", information[5])
       json_data <- fromJSON(file = file)
       if (is.null(json_data$metadata$error)) {
         json_data <- json_data[!(names(json_data) %in% skip_columns)]
         json_df <- data.frame(
           key = names(json_data), 
           value_llm = unlist(lapply(json_data, function(x) x$rating)), 
-          title = title,
+          title = paper,
           rater_llm = ifelse(rating_id == "ratings", "llm", "llm_changes"),
           set = paper_group, 
           model = model)
@@ -1316,9 +1316,7 @@ all_human_raters <- rbind(
 complete_comparisons <- merge(
   all_human_raters, 
   all_llm_df, 
-  by = c("title", "key")) %>%
-  mutate(set = set.y) %>%
-  select(-set.y, -set.x)
+  by = c("title", "key", "set")) 
 
 complete_comparisons
 ```
@@ -1341,7 +1339,8 @@ cohens_for_all <- complete_comparisons %>%
     model_label = ifelse(
       model != "gemini",
       sprintf("%s (%sb)", str_to_title(model_name), param_count),
-      "Gemini"))
+      "Gemini")) %>%
+  mutate(model_label = gsub("Qwq", "QwQ", model_label)) 
 
 model_label_order <- str_sort(unique(cohens_for_all$model_label), numeric = T)
 model_label_order <- model_label_order[model_label_order != "Gemini"]
@@ -1354,21 +1353,38 @@ cohens_for_all$model_label <- factor(
 
 ```{r}
 #| fig.height: 4
-#| fig.width: 6
+#| fig.width: 6.5
 cohens_for_all %>%
+  subset(rater_llm == "llm_changes") %>%
   mutate(
     model_provider = gsub("[0-9\\.]+", "", gsub("-Small", "", gsub(" \\(.*\\)", "", model_label)))) %>%
-  ggplot(aes(x = estimate, y = model_label, colour = set)) +
+  mutate(model_provider = case_when(
+    model_provider == "Deepseek-R" ~ "Deepseek",
+    grepl("Phi", model_provider) ~ "Microsoft",
+    grepl("QwQ|Qwen", model_provider) ~ "Alibaba",
+    grepl("Llama", model_provider) ~ "Meta",
+    grepl("Gemma|Gemini", model_label) ~ "Google",
+    .default = model_provider)) %>%
+  mutate(
+    model_type = case_when(
+      grepl("QwQ|R1|Reasoning", model_label) ~ "Open LRM",
+      grepl("Gemini", model_label) ~ "Commercial",
+      .default = "Open LLM"
+    ) 
+  ) %>%
+  ggplot(aes(x = estimate, y = model_label, colour = set, shape = model_type)) +
   geom_vline(xintercept = 0) +
-  geom_point(position = position_jitter(height = 0.10)) +
+  geom_point(position = position_dodge(width = 0.10)) +
   theme_classic_2(base_size = 8) +
-  scale_colour_brewer(palette = "Set1", name = "Source") +
+  scale_colour_brewer(palette = "Set1", name = "Ratings source") +
   xlab("Cohen's Kappa") +
   ylab("") + 
   facet_grid(model_provider ~ ., scales = "free", space = "free") +
-  theme(legend.position = "bottom",
-        legend.key.size = unit(0.5, "line"),
-        strip.text.y = element_text(angle = 0))
+  theme(legend.key.size = unit(0.2, "line"),
+        strip.text.y = element_text(angle = 0)) +
+  scale_shape_manual(values = c(3, 2, 17), name = "Model type") +
+  guides(colour = guide_legend(ncol = 1),
+         shape = guide_legend(ncol = 1))
 ```
 
 # Conclusion and where to go from here
