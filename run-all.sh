@@ -1,7 +1,7 @@
 set -e
 
-RUN_GEMINI=false
-RUN_OLLAMA=false
+RUN_GEMINI=true
+RUN_OLLAMA=true
 RUN_REASONING=true
 declare -a CONFIGS=("config.yaml" "config-enhanced.yaml")
 declare -a OLLAMA_MODELS=(
