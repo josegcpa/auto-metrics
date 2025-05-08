@@ -1,132 +1,132 @@
 {
-  "Summary": "This study developed a deep learning model to distinguish pseudoprogression (PsP) from true progression (TP) in glioblastoma (GBM) patients using routine follow-up MRI sequences (T2 and CET1). The model achieved a mean accuracy of 76.4%, a mean AUROCC of 0.7560, a mean sensitivity of 88.72%, and a mean specificity of 62.05% using five-fold cross-validation. The authors conclude that T2 and CET1 images can be helpful in predicting a new lesion's growth to be a tumor recurrence or regress and be a therapeutic response.",
-  "Item1": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines."
-  },
-  "Item2": {
-    "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, contributing to a representative study population. Table 1 describes the inclusion and exclusion criteria."
-  },
-  "Item3": {
-    "rating": "yes",
-    "reason": "The reference standard is based on clinical and imaging follow-up, with a subset validated by histological diagnosis, which is a robust approach. The final labels of TP and PsP were based on a retrospective review of the diagnoses made at the time of a patient\u2019s clinical care. A sub-cohort of subjects underwent a second resection. We labeled these subjects as PsP or TP based on the histological diagnosis."
-  },
-  "Item4": {
-    "rating": "no",
-    "reason": "The study uses data from a single institution."
-  },
-  "Item5": {
-    "rating": "yes",
-    "reason": "The imaging data source consists of routine follow-up MRI sequences (T2 and CET1), which are commonly acquired in clinical practice."
-  },
-  "Item6": {
-    "rating": "yes",
-    "reason": "The study mentions the MRI sequences used (FLAIR, T1, CET1, T2) and refers to parameters used in brain extraction and co-registration, contributing to replicability."
-  },
-  "Item7": {
-    "rating": "yes",
-    "reason": "The study specifies that the images used were the first to show a new lesion in the radiation field or an increase in size, and the categorization of TP or PsP was based on follow-up radiology reports and clinical notes for one year after the progression. This suggests an attempt to validate the presence or absence of target conditions at the moment of diagnostic imaging."
-  },
+  "Summary": "This study develops a deep learning model to distinguish pseudoprogression (PsP) from true progression (TP) in glioblastoma (GBM) patients using routine follow-up MRI sequences (T2 and CET1). The model achieved a mean accuracy of 76.4%, AUROCC of 0.7560, sensitivity of 88.72%, and specificity of 62.05% using five-fold cross-validation. The study highlights the potential of deep learning in improving the accuracy of GBM treatment response assessment.",
   "Condition1": {
     "rating": "yes",
     "reason": "The study includes segmentation using HD-GLIO-AUTO to segment the MRI exams resulting in enhancing lesion volumes."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The study mentions that they manually checked all the extracted masks and made corrections when necessary, so the segmentation is not fully automated."
-  },
-  "Item8": {
-    "rating": "yes",
-    "reason": "The study describes the use of HD-GLIO-AUTO for segmentation and mentions manual corrections, providing some transparency regarding the segmentation methodology."
-  },
-  "Item9": {
-    "rating": "n/a",
-    "reason": "The segmentation is not fully automated, so this item is not applicable."
-  },
-  "Item10": {
-    "rating": "no",
-    "reason": "The study mentions that they manually checked all the extracted masks and made corrections when necessary. This means that the final segmentation in the test set was not produced by a single reader or automated tool."
+    "reason": "The study mentions that HD-GLIO-AUTO was used for automated segmentation, but the extracted masks were manually checked and corrected when necessary, indicating that the segmentation was not fully automated."
   },
   "Condition3": {
     "rating": "no",
-    "reason": "The study uses deep learning and does not extract hand-crafted features."
-  },
-  "Item11": {
-    "rating": "yes",
-    "reason": "The study mentions normalization of voxel intensity and co-registration of images, indicating the use of image preprocessing techniques. The brain extracted CET1, FLAIR, and T2 images were co-registered on T1 for each study using the linear image registration tool, FMRIB software library, FSL."
-  },
-  "Item12": {
-    "rating": "n/a",
-    "reason": "The study does not use hand-crafted features, so this item is not applicable."
-  },
-  "Item13": {
-    "rating": "yes",
-    "reason": "The study describes the neural network architecture (3D-DenseNet-121) and image operations, providing some transparency regarding feature extraction parameters."
+    "reason": "The study uses a deep learning model (3D-DenseNet-121) to classify PsP vs TP, which does not involve hand-crafted feature extraction."
   },
   "Condition4": {
     "rating": "no",
-    "reason": "The study does not include tabular data."
+    "reason": "The study does not explicitly mention the use of tabular data. The input to the deep learning model consists of MRI sequences (T2 and CET1) directly."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses an end-to-end deep learning approach."
+    "reason": "The study uses a 3D-DenseNet-121 deep learning model that directly processes the image data (T2 and CET1 MRI sequences) to predict TP vs PsP, indicating an end-to-end deep learning approach."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population (Table 1)."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard (TP or PsP) is based on clinical and imaging follow-up, and in a subset of patients, histological diagnosis, which are considered high-quality reference standards."
+  },
+  "Item4": {
+    "rating": "no",
+    "reason": "The study mentions that data relied on a pool from a single institution."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses routine follow-up MRI sequences (T2 and CET1), which are commonly acquired in clinical practice for GBM patients."
+  },
+  "Item6": {
+    "rating": "no",
+    "reason": "The study does not provide detailed information on the imaging protocol and acquisition parameters."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study reviews radiology reports and clinical notes for one year after the progression to see if the lesion and patient\u2019s clinical status stabilized, improved, or progressed further after the index MRI, which is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study mentions the use of HD-GLIO-AUTO for segmentation and that the extracted masks were manually checked and corrected when necessary. This provides a transparent description of the segmentation methodology."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The segmentation was not fully automated, as the extracted masks were manually checked and corrected. Therefore, a formal evaluation of fully automated segmentation is not applicable."
+  },
+  "Item10": {
+    "rating": "no",
+    "reason": "The segmentation masks in the test set were manually checked and corrected, so it was not produced by a single reader or automated tool."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions normalization of voxel intensity to zero mean and unit standard deviation. They also mention brain extraction and co-registration of all 4 sequences."
+  },
+  "Item12": {
+    "rating": "n/a",
+    "reason": "The study uses a deep learning model, not hand-crafted features."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the neural network architecture (3D-DenseNet-121) and image operations (normalization, resizing, padding, augmentation). It also mentions the use of transfer learning with pre-trained weights."
   },
   "Item14": {
     "rating": "n/a",
-    "reason": "The study does not include tabular data, so this item is not applicable."
+    "reason": "The study does not use hand-crafted features."
   },
   "Item15": {
     "rating": "n/a",
-    "reason": "The study does not include tabular data, so this item is not applicable."
+    "reason": "The study does not use hand-crafted features."
   },
   "Item16": {
     "rating": "n/a",
-    "reason": "The study does not include tabular data, so this item is not applicable."
+    "reason": "The study does not use hand-crafted features."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipeline, such as test-retest or stability analysis."
+    "reason": "The study does not explicitly mention a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study splits the dataset at the patient level into 5 folds stratified by class status, using five-fold cross-validation. This indicates a proper data partitioning process."
+    "reason": "The study splits the dataset at the patient level into 5 folds stratified by class status using the Scikit-learn library. This indicates a proper data partitioning process."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study acknowledges and analyzes potential confounding factors such as age, gender, IDH mutational status, and RT dose, although only MGMT promoter methylation status showed a significant difference between the groups."
+    "reason": "The study analyzes potential confounding factors such as age, gender, IDH mutational status, and RT dose. It also acknowledges the difference in MGMT promoter methylation status between the groups."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate accuracy metrics such as accuracy, AUROCC, sensitivity, and specificity for the classification task."
+    "reason": "The study reports appropriate accuracy metrics such as accuracy, AUROCC, sensitivity, and specificity. The results of each fold are shown in Table 3."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes standard deviations for the performance metrics, providing a measure of uncertainty."
+    "reason": "The study reports standard deviations for the performance metrics (accuracy, AUROCC, sensitivity, and specificity), providing a measure of uncertainty."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not mention any calibration assessment of the final model."
+    "reason": "The study does not mention calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study uses multi-parametric imaging (CET1 and T2) without a formal comparison to uni-parametric imaging to justify the need for a multi-parametric approach."
+    "reason": "The study uses two MRI sequences (T2 and CET1) and does not provide a comparison with a uni-parametric approach or justification for the multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not compare the deep learning model with a non-radiomic approach or provide proof of added clinical value."
+    "reason": "The study does not include a non-radiomic method for comparison or provide proof of added clinical value."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the model with a simple or classical statistical model."
+    "reason": "The study does not include a comparison with a simple or classical statistical model."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The study uses five-fold cross-validation, which involves internal testing on independent data sets sampled from the same source as the training data."
+    "reason": "The study uses five-fold cross-validation, which involves internal testing on independent data sets sampled from the same source."
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not include external testing with independent data from other institutions."
+    "reason": "The study mentions that data relied on a pool from a single institution and could benefit from validation in multi-institutional data. This indicates the absence of external testing."
   },
   "Item28": {
     "rating": "no",
@@ -134,7 +134,7 @@
   },
   "Item29": {
     "rating": "no",
-    "reason": "The study mentions the use of HD-GLIO-AUTO, which is available on github, but does not explicitly state that all scripts related to automatic segmentation and/or modeling are shared with the public."
+    "reason": "The study does not mention any code availability."
   },
   "Item30": {
     "rating": "no",
@@ -148,6 +148,6 @@
     "article_text_path": "article-text/kocak/A deep learning model for discriminating true progression from pseudoprogression in glioblastoma patients.txt",
     "model": null,
     "error": null,
-    "elapsed_time": 12.065780878067017
+    "elapsed_time": 16.73331618309021
   }
 }

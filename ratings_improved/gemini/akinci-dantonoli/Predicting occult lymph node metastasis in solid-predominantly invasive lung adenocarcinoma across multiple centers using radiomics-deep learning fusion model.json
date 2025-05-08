@@ -1,108 +1,108 @@
 {
-  "Summary": "This study developed and validated a radiomics-deep learning fusion model to predict occult lymph node metastasis (OLNM) in solid-predominantly invasive lung adenocarcinoma (SPILAC) patients using CT scans from multiple centers. The fusion model, combining radiomics with pre-trained ResNet-18 features via concatenation, outperformed individual radiomics and deep learning models, demonstrating promising generalizability for personalized treatment planning.",
-  "Item1": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention adherence to any specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
-  },
-  "Item2": {
-    "rating": "yes",
-    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming to create a representative study population of cT1a-bN0M0 SPILAC patients."
-  },
-  "Item3": {
-    "rating": "yes",
-    "reason": "The reference standard is histopathology (pathological nodal status), which is a high-quality reference standard for lymph node metastasis."
-  },
-  "Item4": {
-    "rating": "yes",
-    "reason": "The study uses data from six different hospitals, indicating a multi-center approach."
-  },
-  "Item5": {
-    "rating": "yes",
-    "reason": "The imaging data source is CT, which is a standard imaging technique for lung cancer diagnosis and staging. The study mentions using thin-slice CT images, which are common in clinical practice."
-  },
-  "Item6": {
-    "rating": "yes",
-    "reason": "The study provides details on the CT imaging protocols, including the use of contrast agents, injection rates, and acquisition timing, which contributes to the replicability of the method. Additional details are provided in the supplementary material."
-  },
-  "Item7": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention the time interval between the CT scans and the pathological diagnosis (reference standard). Without this information, it's difficult to assess whether the imaging data accurately reflects the nodal status at the time of diagnosis."
-  },
+  "Summary": "This study develops and validates a radiomics-deep learning fusion model to predict occult lymph node metastasis (OLNM) in solid-predominantly invasive lung adenocarcinoma (SPILAC) patients using multi-center CT data. The fusion model, combining radiomics features with pre-trained ResNet-18 deep learning features via concatenation, outperformed individual radiomics and deep learning models in predicting OLNM.",
   "Condition1": {
     "rating": "yes",
-    "reason": "The study involves manual correction of tumor masks slice-by-slice on CT images, indicating segmentation of the tumor region."
+    "reason": "The study mentions manual correction of tumor masks slice-by-slice on axial CT images to generate three-dimensional volumes of interest (VOIs), indicating segmentation."
   },
   "Condition2": {
-    "rating": "no",
-    "reason": "The study mentions initial automatic tumor region segmentation followed by manual correction by an experienced radiologist. Therefore, the segmentation is not fully automated."
-  },
-  "Item8": {
     "rating": "yes",
-    "reason": "The study describes the segmentation methodology, including manual correction of tumor masks by an experienced radiologist on axial images in a fixed lung window. It also mentions the use of uAI Research Portal (uRP) for initial automatic segmentation and the lung window settings used for manual correction."
-  },
-  "Item9": {
-    "rating": "n/a",
-    "reason": "The segmentation is not fully automated, as it involves manual correction by a radiologist. Therefore, a formal evaluation of fully automated segmentation is not applicable."
-  },
-  "Item10": {
-    "rating": "no",
-    "reason": "The test set segmentation masks are manually corrected by an experienced radiologist, which does not reflect a fully automated or single-reader approach."
+    "reason": "The study mentions initial automatic tumor region segmentation using uAI Research Portal (uRP, Shanghai United Imaging Intelligence, Co., Ltd, China)."
   },
   "Condition3": {
     "rating": "yes",
     "reason": "The study extracts 1364 radiomics features from the delineated VOIs, indicating the use of hand-crafted feature extraction."
   },
-  "Item11": {
-    "rating": "yes",
-    "reason": "The study mentions the use of bilinear and nearest neighbor interpolation for image resampling to achieve isotropic voxel spacing. It also specifies the lung window settings used for image visualization during segmentation. This indicates appropriate use of image preprocessing techniques with transparent description."
-  },
-  "Item12": {
-    "rating": "yes",
-    "reason": "The study mentions the use of uAI Research Portal (uRP) for feature extraction, which can be considered a standardized software. However, the version number is not provided."
-  },
-  "Item13": {
-    "rating": "yes",
-    "reason": "The study describes the feature types (radiomics and deep learning features) and mentions the number of radiomics features extracted. It also provides information on the neural network architectures used for deep learning feature extraction. The github link provides access to the code."
-  },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study extracts radiomics features and uses them in conjunction with deep learning features, which are numeric and organized in a table."
+    "reason": "The study uses radiomics features, which are numeric and organized in a table."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study uses deep learning models (ResNet, DenseNet, Swin Transformer) to directly process image data and produce a classification model for OLNM prediction."
+    "reason": "The study uses deep learning models (ResNet-18, ResNet-34, ResNet-50, DenseNet-121, and Swin Transformer) to directly process image data for classification."
+  },
+  "Item1": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention adherence to radiomics or machine learning-specific checklists or guidelines like the CLEAR checklist."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study defines inclusion and exclusion criteria for patient selection, aiming for a representative study population of cT1a-bN0M0 SPILAC patients."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is pathological nodal status (pN+ or pN-), which is a robust outcome measure based on histopathology."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study uses data from six hospitals, indicating a multi-center approach."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses CT imaging, a standard technique for lung cancer diagnosis, although specific protocol standardization (e.g., PI-RADS) is not mentioned."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study provides details of the CT imaging protocols in Additional file 1: Appendix A, including contrast agent volume, flow rate, and acquisition timing."
+  },
+  "Item7": {
+    "rating": "no",
+    "reason": "The study does not explicitly mention the time interval between the diagnostic imaging exams and the outcome measure/reference standard acquisition."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes manual correction of tumor masks by an experienced radiologist on axial images in a fixed lung window, providing a transparent description of the segmentation methodology."
+  },
+  "Item9": {
+    "rating": "no",
+    "reason": "The study does not provide a formal evaluation of the initial automatic tumor region segmentation using uAI Research Portal (uRP, Shanghai United Imaging Intelligence, Co., Ltd, China) compared to domain expert annotations."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that an experienced radiologist manually corrected the tumor masks slice-by-slice on the axial images, generating the three-dimensional volumes of interest (VOIs)."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions isotropic resampling to 1x1x1 mm3 voxel size using bilinear and nearest neighbor interpolation, which is appropriate for image preprocessing. They also mention the fixed lung window used."
+  },
+  "Item12": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that a standardized software (e.g., compliant with IBSI) was used for feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study mentions extracting 1364 radiomics features and provides detailed information on the radiomics approach in Additional file 1: Appendix B. The deep learning architecture is also described."
   },
   "Item14": {
     "rating": "no",
-    "reason": "The study does not mention any specific methods for removing non-robust features, such as test-retest analysis or stability analysis."
+    "reason": "The study does not mention any removal of non-robust features via test-retest, reproducibility analysis, or stability analysis."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses a decision tree to select the ten most important radiomics features, indicating a method for dimensionality reduction and removal of redundant features."
+    "reason": "The study mentions feature selection using a decision tree to select the ten most important radiomics features."
   },
   "Item16": {
     "rating": "no",
-    "reason": "The study does not provide a clear justification for the appropriateness of the dimensionality compared to the data size. There is no statistical evidence or empirical demonstration to support the chosen number of features in relation to the number of instances."
+    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size or provide statistical justification."
   },
   "Item17": {
     "rating": "no",
-    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipelines, such as a test-retest setting or stability analysis."
+    "reason": "The study does not mention any robustness assessment of the end-to-end deep learning pipelines in a test-retest setting or with different readers."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study describes the data partitioning process, including the random splitting of patients into training, internal validation, and independent test sets. It also mentions stratified splitting based on pN+ and pN- cases. The split is done on the patient level."
+    "reason": "The study describes splitting patients into training, internal validation, and independent test sets. It also mentions matching pN- patients based on gender, age, density, and nodular location."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The study acknowledges significant inter-cohort differences in clinical characteristics across the training, validation, and test sets, suggesting an awareness of potential confounding factors. The contrastive learning loss function was used to enhance the domain invariance of semantic features from pN+ and pN- cases across different centers."
+    "reason": "The study acknowledges significant inter-cohort differences in clinical characteristics across the training, internal validation, and test sets, suggesting consideration of potential confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports AUC, accuracy, sensitivity, specificity, PPV, and NPV to evaluate the performance of the models. ROC curves are also presented. These are appropriate metrics for a classification task."
+    "reason": "The study uses AUC, accuracy, sensitivity, specificity, PPV, and NPV to evaluate model performance, which are appropriate metrics for the classification task. ROC curves are also presented."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study reports standard deviation (SD) for the average AUC (aAUC) across the validation and test sets, providing a measure of uncertainty."
+    "reason": "The study reports average AUC (aAUC) with standard deviation (\u00b1 0.018), indicating consideration of uncertainty."
   },
   "Item22": {
     "rating": "no",
@@ -110,31 +110,31 @@
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not compare the performance of uni-parametric imaging with multi-parametric imaging or provide justification for using multi-parametric imaging. Both non-enhanced and contrast-enhanced images were used."
+    "reason": "The study does not explicitly compare uni-parametric imaging with multi-parametric imaging or justify the need for a multi-parametric approach."
   },
   "Item24": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a non-radiomic approach or provide proof of added clinical value. The comparison is limited to different radiomics and deep learning models."
+    "reason": "The study does not compare the fusion model with a non-radiomic approach or provide proof of added clinical value through improved diagnostic accuracy or patient outcome."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple or classical statistical model. The comparison is limited to different radiomics and deep learning models."
+    "reason": "The study does not compare the fusion model with simple or classical statistical models."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The model is tested on an internal validation set that is sampled from the same source as the training set."
+    "reason": "The study includes an internal validation set, indicating internal testing."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The model is tested on two independent test sets from different institutions (hospitals 5 and 6), indicating external testing."
+    "reason": "The study includes two independent test sets from different hospitals (hospitals 5-6), indicating external testing."
   },
   "Item28": {
     "rating": "no",
-    "reason": "The study does not explicitly state that any imaging, segmentation, clinical, or radiomics analysis data is shared with the public."
+    "reason": "The study does not mention sharing any imaging, segmentation, clinical, or radiomics analysis data with the public."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The study provides a link to a GitHub repository where the code used for the analysis is available."
+    "reason": "The study mentions that the codes are publicly available at https://github.com/paradisetww/OLNM_Prediction."
   },
   "Item30": {
     "rating": "no",
@@ -148,6 +148,6 @@
     "article_text_path": "article-text/akinci-dantonoli/Predicting occult lymph node metastasis in solid-predominantly invasive lung adenocarcinoma across multiple centers using radiomics-deep learning fusion model.txt",
     "model": null,
     "error": null,
-    "elapsed_time": 12.23101806640625
+    "elapsed_time": 16.56855797767639
   }
 }

@@ -1,144 +1,144 @@
 {
-  "Summary": "This study developed and validated an integrated model incorporating deep learning (DL), hand-crafted radiomics, and clinical and US features for diagnosing central lymph node metastasis (CLNM) in patients with papillary thyroid cancer (PTC). The integrated model outperformed individual DL and hand-crafted radiomics models, as well as junior and senior radiologists, in reducing missed CLNM and unnecessary central lymph node dissection (CLND). The study also used SHAP and Grad-CAM for model explanation, enhancing the acceptance of AI-assisted US diagnosis.",
-  "Item1": {
-    "rating": "yes",
-    "reason": "The authors state that \"The checklist for Artificial Intelligence in Medical Imaging (CLAIM) and EvaluAtion of Radiomics research (CLEAR) were applied as step-by-step reporting guideline for this study, which is presented in a Supplementary Material 1 and 2\""
-  },
-  "Item2": {
-    "rating": "yes",
-    "reason": "The authors define inclusion and exclusion criteria for patient selection."
-  },
-  "Item3": {
-    "rating": "yes",
-    "reason": "The reference standard is histopathology, which is a high-quality reference standard."
-  },
-  "Item4": {
-    "rating": "yes",
-    "reason": "The study includes data from two institutions."
-  },
-  "Item5": {
-    "rating": "yes",
-    "reason": "The study uses ultrasound (US) imaging, which is a common and standardized imaging technique for thyroid cancer assessment. The US features are based on C-TIRADS and ATA guidelines."
-  },
-  "Item6": {
-    "rating": "yes",
-    "reason": "The authors mention the US machines used and that the data was stored in DICOM format. They also describe the US features based on C-TIRADS and ATA guidelines."
-  },
-  "Item7": {
-    "rating": "yes",
-    "reason": "The thyroid US examination was performed within one month before the operation, which is an appropriate interval to validate the presence or absence of target conditions."
-  },
+  "Summary": "This study develops and validates an integrated model incorporating deep learning (DL), hand-crafted radiomics, and clinical/US features for diagnosing central lymph node metastasis (CLNM) in papillary thyroid cancer (PTC). The integrated model demonstrates superior performance compared to individual DL and hand-crafted radiomics models, as well as junior and senior radiologists, in reducing missed CLNM and unnecessary central lymph node dissection (CLND). The model's explainability, through SHAP and Grad-CAM, enhances its clinical acceptance.",
   "Condition1": {
     "rating": "yes",
-    "reason": "The study includes manual segmentation of the primary lesion images to develop the deep learning and hand-crafted radiomics models."
+    "reason": "The study mentions manual segmentation of regions of interest (ROI) using ITK-SNAP for radiomic feature extraction and cropping images based on delineated ROIs for deep learning model development."
   },
   "Condition2": {
     "rating": "no",
-    "reason": "The segmentation was performed manually by radiologists."
-  },
-  "Item8": {
-    "rating": "yes",
-    "reason": "The authors describe the manual segmentation process using ITK-SNAP and the consensus reached by two radiologists. They also mention the consistency analysis with a Dice coefficient of 0.946."
-  },
-  "Item9": {
-    "rating": "n/a",
-    "reason": "The segmentation was performed manually, not fully automatically."
-  },
-  "Item10": {
-    "rating": "yes",
-    "reason": "The ROIs were reviewed by a radiologist with seven years of experience reaching a consensus. This reflects clinical practice."
+    "reason": "The study mentions manual segmentation of ROIs, indicating that the segmentation process is not fully automated."
   },
   "Condition3": {
     "rating": "yes",
-    "reason": "The study includes the development of a hand-crafted radiomics model."
-  },
-  "Item11": {
-    "rating": "yes",
-    "reason": "The authors describe the pre-processing steps for the deep learning model, including resizing and normalization. For the radiomics model, they mention the extraction of wavelet decompositions and Laplacian of Gaussian features."
-  },
-  "Item12": {
-    "rating": "yes",
-    "reason": "The authors used pyradiomics (version 3.1.0) for feature extraction."
-  },
-  "Item13": {
-    "rating": "yes",
-    "reason": "The authors describe the feature types (first-order statistics, texture features, shape features, wavelet decompositions, and Laplacian of Gaussian features) and provide a supplementary material listing the definitions of each feature group. They also describe the CNN architecture and image augmentation techniques."
+    "reason": "The study explicitly mentions the extraction of hand-crafted radiomic features using pyradiomics."
   },
   "Condition4": {
     "rating": "yes",
-    "reason": "The study includes tabular data in the form of clinical and US features, as well as the extracted radiomic features."
+    "reason": "The study includes clinical and US features (age, gender, tumor size, etc.) in a tabular format, which are integrated into the model."
   },
   "Condition5": {
     "rating": "yes",
-    "reason": "The study includes the development of a deep learning model using a CNN."
+    "reason": "The study develops a deep learning model using a convolutional neural network (CNN) with ResNet50 architecture for predicting central lymph node metastasis directly from US images."
+  },
+  "Item1": {
+    "rating": "yes",
+    "reason": "The study mentions adherence to the CLAIM and CLEAR checklists as reporting guidelines, which are presented in supplementary materials."
+  },
+  "Item2": {
+    "rating": "yes",
+    "reason": "The study explicitly defines inclusion and exclusion criteria for patient enrollment, aiming to create a representative study population."
+  },
+  "Item3": {
+    "rating": "yes",
+    "reason": "The reference standard is clinicopathological confirmation of PTC and CLNM, which is a robust and well-established standard."
+  },
+  "Item4": {
+    "rating": "yes",
+    "reason": "The study includes data from two institutions, Nanfang Hospital of South Medical University and the First People\u2019s Hospital of Foshan."
+  },
+  "Item5": {
+    "rating": "yes",
+    "reason": "The study uses ultrasound (US) imaging, which is a commonly used and standardized technique for preoperative LN assessment in PTC."
+  },
+  "Item6": {
+    "rating": "yes",
+    "reason": "The study mentions the US machines used (Siemens Sequoia, Supersonic Aixplorer, and Toshiba Aplio 500) and states that data was stored in DICOM format. It also mentions the use of C-TIRADS and ATA guidelines for US feature assessment."
+  },
+  "Item7": {
+    "rating": "yes",
+    "reason": "The study specifies that the thyroid US examination was performed within one month before the operation, which is an appropriate interval to validate the presence or absence of CLNM at the time of imaging."
+  },
+  "Item8": {
+    "rating": "yes",
+    "reason": "The study describes the manual segmentation process using ITK-SNAP, with a radiologist performing the initial segmentation and another radiologist reviewing and reaching a consensus. They also report a Dice coefficient of 0.946 for inter-observer consistency."
+  },
+  "Item9": {
+    "rating": "n/a",
+    "reason": "The study uses manual segmentation, not fully automated segmentation, so this item is not applicable."
+  },
+  "Item10": {
+    "rating": "yes",
+    "reason": "The study mentions that the manual segmentation of regions of interest (ROI) was independently performed using ITK-SNAP by a radiologist with five years of experience, followed by another radiologist with seven years of experience reviewing the ROI and reaching a consensus."
+  },
+  "Item11": {
+    "rating": "yes",
+    "reason": "The study mentions that US images were cropped based on delineated ROIs, resized to 224x224, and normalized to [0, 1] in the pre-processing stage. They also used image augmentation techniques."
+  },
+  "Item12": {
+    "rating": "yes",
+    "reason": "The study mentions using the open-source Python package \u201cpyradiomics\u201d (version 3.1.0) for radiomic feature extraction."
+  },
+  "Item13": {
+    "rating": "yes",
+    "reason": "The study describes the feature types (hand-crafted radiomics and deep learning features) and mentions the extraction of 783 features, including first-order statistics, texture features, shape features, wavelet decompositions, and Laplacian of Gaussian features. The detailed structure of the network is presented in Supplementary Material 3 S4."
   },
   "Item14": {
     "rating": "yes",
-    "reason": "The authors used LASSO logistic regression to select radiomics features, which can be considered a method for removing non-robust features."
+    "reason": "The study used LASSO for feature selection, which can be considered a method for removing non-robust features by selecting the most relevant ones."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The authors used LASSO logistic regression to select the most informative features."
+    "reason": "The study employed LASSO logistic regression analysis for feature selection, which is a method for dimensionality reduction by selecting informative features."
   },
   "Item16": {
     "rating": "yes",
-    "reason": "The authors performed multivariate analysis to select clinical and US features, and used LASSO for feature selection in radiomics. This suggests consideration of the appropriateness of dimensionality compared to data size."
+    "reason": "The study uses LASSO for feature selection. The number of instances and features are appropriate."
   },
   "Item17": {
-    "rating": "no",
-    "reason": "The authors do not explicitly mention a robustness assessment of the end-to-end deep learning pipeline in a test-retest setting or with image perturbations."
+    "rating": "n/a",
+    "reason": "The study does not explicitly mention a test-retest assessment or stability analysis for the deep learning pipeline. Therefore, this item is not applicable."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The authors state that \"The participants were randomly divided into training and independent test cohorts for further analysis.\""
+    "reason": "The study mentions that participants were randomly divided into training and independent test cohorts. The US images of the patient in the training cohort were randomly divided into training and validation datasets with a ratio of 2:1."
   },
   "Item19": {
     "rating": "yes",
-    "reason": "The authors performed multivariate analysis to identify independent risk factors for CLNM, which can be considered an attempt to handle confounding factors."
+    "reason": "The study performed multivariate analysis to identify independent risk factors for CLNM, which can be considered an attempt to handle confounding factors."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The authors report AUC, accuracy, sensitivity, specificity, PPV, and NPV for evaluating the performance of the models. They also include ROC curves."
+    "reason": "The study reports AUC, accuracy, sensitivity, specificity, PPV, and NPV for evaluating the performance of the predictive models. ROC curves are also presented."
   },
   "Item21": {
     "rating": "no",
-    "reason": "The authors do not include uncertainty measures such as confidence intervals or standard deviations."
+    "reason": "The study does not report uncertainty measures such as confidence intervals or standard deviations for the performance metrics."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The authors do not mention calibration assessment of the final model."
+    "reason": "The study does not mention any calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not compare the performance of the integrated model with uni-parametric imaging or provide justification for the use of multi-parametric imaging."
+    "reason": "The study does not explicitly compare the performance of the integrated model with uni-parametric imaging or justify the need for multi-parametric imaging."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the performance of the integrated model with junior and senior radiologists, which can be considered a non-radiomic approach representative of clinical practice. They also use DeLong's test to compare the AUCs."
+    "reason": "The study compares the performance of the integrated model with junior and senior radiologists, which represents a comparison with a non-radiomic approach representative of clinical practice."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not include a comparison with a simple baseline reference model."
+    "reason": "The study does not explicitly compare the performance of the models with a simple baseline reference model (e.g., Zero Rules classifier)."
   },
   "Item26": {
     "rating": "yes",
-    "reason": "The authors state that \"The participants were randomly divided into training and independent test cohorts for further analysis.\""
+    "reason": "The study uses an independent test set sampled from the same source as the training data."
   },
   "Item27": {
     "rating": "yes",
-    "reason": "The study includes data from two institutions, and the model is tested on an independent dataset."
+    "reason": "The study includes data from two institutions."
   },
   "Item28": {
-    "rating": "no",
-    "reason": "The authors state that \"Other analyzed datasets from the current study are not publicly available because the data contain information that may compromise patients\""
+    "rating": "yes",
+    "reason": "The study provides a link to the code used during the study."
   },
   "Item29": {
     "rating": "yes",
-    "reason": "The authors state that \"The codes used during the current study can be accessed at https://github.com/yytangxiaoyuan/metastasis_predict_model/tree/main.\""
+    "reason": "The study provides a link to the code used during the study."
   },
   "Item30": {
     "rating": "no",
-    "reason": "The authors do not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
+    "reason": "The study does not explicitly state that the final model is shared in the form of a raw model file or as a ready-to-use system."
   },
   "metadata": {
     "prompt": "\n# Instructions\nYou are an expert radiologist with decades of experience in developing and implementing clinical artificial intelligence.\nYou have to offer ratings to a scientific article of clinical importance at the end of this prompt according to a set of criteria (items).\nYou must answer carefully and thoughtfully, considering the context of the article and your expertise.\nBe extremely thorough and conservative with your answers as these tools are supposed to be deployed in the clinic.\n\n# Evaluation\n## Metrics definition\nThere are 30 items in total and each item is grouped into one of 9 categories.\nThere are, additionally, 5 conditions which define whether some item should be filled or not.\nThe 5 Conditions are defined below under \"# Conditions\". A short explanation is provided for each.\nThe 30 items are defined below under \"# Items\". Each is grouped under its respective category. A short explanation is provided for each.\n\n## Rating Rubric\nNo: no evidence that this item is being followed in this publication\nYes: evidence that this item is being followed in this publication\nn/a: not applicable\nReason: a short explanation for each ranking\n\n# Input format\nThe article text is provided below under \"# Article text\". Anything outside of this text should not be evaluated.\n\n# Output format\nYou have to output a JSON file with the following structure:\n- a summary of the article accurately representing the main conclusion of the article\n- the answers for conditions (Yes, No) (described under \"# Conditions\") and a short explanation for your decision\n- the ratings (Yes, No or n/a) for each item (described under \"# Items\") and a short explanation for your decision\n\n# Conditions\n\n* Condition1: Does the study include segmentation? - \"Segmentation\" refers to i) Fine delineation of a region or volume of interest; ii) Rough delineation with bounding boxes; or, iii) cropping the image around a region of interest.\n* Condition2: Does the study include fully automated segmentation? - \"Fully automated segmentation\" refers to segmentation process without any human intervention.\n* Condition3: Does the study include hand-crafted feature extraction? - \"Hand-crafted radiomic features\" (i.e., traditional radiomic features) are created in advance by human experts or mathematicians.\n* Condition4: Does the study include tabular data? - \"Tabular data\" refers to data that is organized in a table with rows and columns (i.e., numeric radiomic features in a tabulated format, which  is usually seen in hand-crafted and some deep learning-based studies as deep features).\n* Condition5: Does the study include end-to-end deep learning? - \"End-to-end deep learning\" refers to the use of deep learning to directly process the image data and produce a classification or regression model.\n\n\n# Items\n\n## Study Design\n\n* Item1: Adherence to radiomics and/or machine learning-specific checklists or guidelines - Whether any guideline or checklist, e.g., CLEAR checklist, is used in designing and reporting, as appropriate for the study design (e.g., handcrafted radiomics or deep learning pipeline).\n* Item2: Eligibility criteria that describe a representative study population - Whether inclusion and exclusion criteria are explicitly defined. These should lead to a representative study sample that matches the general population of interest for the study aim.\n* Item3: High-quality reference standard with a clear definition - Whether the reference standard or outcome measure is representative of the current  clinical practice and robust. Examples of high-quality reference standards are preferably  histopathology, well-established clinical and genomic markers, the latest version of the prognostic  tools, guideline-based follow-up or consensus-based expert opinions. Examples of poor quality  reference standards are those based on qualitative image evaluation, images that are later  used for feature extraction, or outdated versions of prognostic tools.\n\n## Imaging Data\n\n* Item4: Multi-center - Whether more than one institution is involved as a diagnostic imaging data source for radiomics analysis.\n* Item5: Clinical translatability of the imaging data source for radiomics analysis - Whether the source of the radiomics data is an imaging technique that reflects established standardization approaches, such as acquisition protocol guidelines (e.g., PI-RADS specifications).\n* Item6: Imaging protocol with acquisition parameters - Whether the image acquisition protocol is clearly reported to ensure the replicability of the method.\n* Item7: The interval between imaging used and reference standard - Whether the time interval between the diagnostic imaging exams (used as an input for the radiomics analysis) and the outcome measure/reference standard acquisition is appropriate to validate the presence or absence of target conditions of the radiomics analysis at the moment of the diagnostic imaging exams.\n\n## Segmentation\n\n* Item8: Transparent description of segmentation methodology - Whether the rules or the method of the segmentation are defined (e.g., margin shrinkage, peri-tumoral sampling, details of segmentation regardless of whether manual, semi-automated or automated methods are used). In the case of DL-based radiomics, the segmentation can refer to the rough delineation with bounding boxes or cropping the image around a region of interest. Answer only if Condition 1 are \"yes\".\n* Item9: Formal evaluation of fully automated segmentation - If a segmentation technique that does not require any sort of human intervention is used, examples of the results should be presented and a formal assessment of its accuracy compared to domain expert annotations included in the study (e.g., DICE score or Jaccard index compared with a radiologist's semantic annotation). Answer only if Condition 1 and 2 are \"yes\".\n* Item10: Test set segmentation masks produced by a single reader or automated tool - Whether final segmentation in the test set is produced by a single reader (manually or with a semi-automated tool) or an entirely automated tool, to better reflect clinical practice. Answer only if Condition 1 are \"yes\".\n\n## Image Processing and Feature Extraction\n\n* Item11: Appropriate use of image preprocessing techniques with transparent description - Whether preprocessing of the images is appropriately performed  considering the imaging modality (e.g., gray level normalization for MRI, image registration in case of multiple contrasts or modalities) and feature extraction techniques (i.e., 2D or 3D) that are used. For instance, in the case of large slice thickness (e.g., u22655 mm), extreme upsampling (e.g., 1 x 1 x 1 mm3) of the volume might be inappropriate. In such a case, 2D feature extraction could be preferable, ensuring in-plane isotropy of the pixels. On the other hand, achieving isotropic voxel values should be targeted in 3D feature extraction, to allow for texture feature rotational invariance. Also, whether gray level discretization parameters (bin width, along with resulting gray level range, or bin count) are described in full detail. Description of different image types used (e.g., original, filtered) should also be included (e.g., high and low pass filter combinations for wavelet decomposition, sigma values for Laplacian of Gaussian edge enhancement filtering). If the image window is fixed, it should be clarified.\n* Item12: Use of standardized feature extraction software - Whether a standardized software (e.g., compliant with IBSI) was used for feature extraction, including information on the version number. Answer only if Condition 3 are \"yes\".\n* Item13: Transparent reporting of feature extraction parameters, otherwise providing a default configuration statement - Whether feature types (e.g., hand-crafted, deep features) and feature classes (for hand-crafted) are described. Also, if a default configuration statement is provided for the remaining feature extraction parameters. A file presenting the complete configuration of these settings should be included in the study materials (e.g., parameter file such as in YAML format, screenshot if a dedicated file for this is not available for the software). In the case of DL, neural network architecture along with all image operations should be described.\n\n## Feature Processing\n\n* Item14: Removal of non-robust features - Whether unstable features are removed via test-retest, reproducibility analysis by analysis of different segmentations, or stability analysis [i.e., image perturbations]. Instability may be due to random noise introduced by manual or even automated image segmentation or exposed in a scan-rescan setting. The specific methods used should be clearly presented, with specific results for each component in multi-step feature removal pipelines. Answer only if Condition 4 are \"yes\".\n* Item15: Removal of redundant features - Whether dimensionality is reduced by selecting the more informative features such as with algorithm-based feature selection (e.g., LASSO coefficients, Random Forest feature importance), univariate correlation, collinearity, or variance analysis. The specific methods used should be clearly presented, with specific results for each component in multi-step feature removal pipelines. Answer only if Condition 4 are \"yes\".\n* Item16: Appropriateness of dimensionality compared to data size - Whether the number of instances and features in the final training data set is appropriate according to the research question and modeling algorithm. This should be demonstrated by statistical means, empirically through consistency of performance in validation and testing, or based on previous evidence in the literature. Answer only if Condition 4 are \"yes\".\n* Item17: Robustness assessment of end-to-end deep learning pipelines - Whether DL pipeline consistency of performance has been assessed in a test-retest setting, for example by a scan-rescan approach, use of segmentations by different readers, or stability analysis [i.e., image perturbations]. Answer only if Condition 5 are \"yes\".\n\n## Preparation for Modeling\n\n* Item18: Proper data partitioning process - Whether the training-validation-test data split is done at the very beginning of the analysis pipeline, prior to any processing step. Data split should be random but reproducible (e.g., fixed random seed), preferably without altering outcome variable distribution in the test set (e.g., using a stratified data split). Moreover, the data split should be on the patient level, not the scan level (i.e., different scans of the same patient should be in the same set). Proper data partitioning should guarantee that all data processing (e.g., scaling, missing value imputation, oversampling or undersampling) is done blinded to the test set data. These techniques should be exclusively fitted on training (or development) data sets and then used to transform test data at the time of inference. If a single training-validation data split is not done and a resampling technique (e.g., cross-validation) is used instead, test data should always be handled separately from this.\n* Item19: Handling of confounding factors - Whether potential confounding factors were analyzed, identified if present, and removed if necessary (e.g., if it has a strong influence on generalizability). These may include different distributions of patient characteristics (e.g., gender, lesion stage or grade) across sites or scanners.\n\n## Metrics and Comparison\n\n* Item20: Use of appropriate performance evaluation metrics for task - Whether appropriate accuracy metrics are reported, such as AUC for Receiver Operating Characteristics (ROC) or Precision-Recall (PRC) curves and confusion matrix-derived accuracy metrics (e.g., specificity, sensitivity, precision, F1 score) for classification tasks; MSE, RMSE, and MAE for regression tasks. For classification tasks, the confusion matrix should always be included, to allow the calculation of additional metrics. If training a DL network, loss curves should be presented.\n* Item21: Consideration of uncertainty - Whether uncertainty measures are included in the analysis, such as 95% confidence interval (CI), standard deviation (SD), or standard error (SE). Report on methodology to derive that distribution (ie. bootstrapping with replacement, etc).\n* Item22: Calibration assessment - Whether the final model's calibration is assessed.\n* Item23: Use of uni-parametric imaging or proof of its inferiority - Use of a single imaging set (such as a single MRI sequence rather than multiple, or a single phase in a dynamic contrast-enhanced scan) should be preferred, as multi-parametric imaging may unnecessarily increase data dimensionality and risk of overfitting. Therefore, in the case of multi-parametric studies, uni-parametric evaluations should also be performed to justify the need for a multi-parametric approach by formally comparing their performance (e.g., DeLong's or McNemar's tests). This item is also intended to reward studies that experimentally justify the use of more complex models compared to simpler alternatives, in regard to input data type.\n* Item24: Comparison with a non-radiomic approach or proof of added clinical value - Whether a non-radiomic method that is representative of the clinical practice is included in the analysis for comparison purposes. Non-radiomic methods might include semantic features,  RADS or RECIST scoring, and simple volume or size evaluations. If no non-radiomics method is available,  proof of improved diagnostic accuracy (e.g., improved performance of a radiologist assisted by the  model's output) or patient outcome (e.g., decision analysis, overall survival) should be provided.  In any case, the comparison should be done with an appropriate statistical method to evaluate the  added practical and clinical value of the model (e.g., DeLong's test for AUC comparison, decision  curve analysis for net benefit comparison, Net Reclassification Index). Furthermore, in case of  multiple comparisons, multiple testing correction methods (e.g., Bonferroni) should be considered  in order to reduce the false discovery rate provided that the statistical comparison is done with  a frequentist approach (rather than Bayesian).\n* Item25: Comparison with simple or classical statistical models - Whether a comparison with a simple baseline reference model (such as a Zero Rules/No Information Rate classifier) was performed. Use of machine learning methods should be justified by proof of increased performance. In any case, the comparison should be done with an appropriate statistical method (e.g., DeLong's test for AUC comparison, Net Reclassification Index). Furthermore, in case of multiple comparisons, multiple testing correction methods (e.g., Bonferroni, Benjamini-Hochberg, or Tukey) should be considered in order to reduce the false discovery rate provided that the statistical comparison is done with a frequentist approach (rather than Bayesian).\n\n## Testing\n\n* Item26: Internal testing - Whether the model is tested on an independent data set that is sampled from the same source as the training and/or validation sets.\n* Item27: External testing - Whether the model is tested with independent data from other institution(s). This also applies to the studies validating the previously published models trained at another institution.\n\n## Open Science\n\n* Item28: Data availability - Whether any imaging, segmentation, clinical, or radiomics analysis data is shared with the public.\n* Item29: Code availability - Whether all scripts related to automatic segmentation and/or modeling are shared with the public. These should include clear instructions for their implementation (e.g., accompanying documentation, tutorials).\n* Item30: Model availability - Whether the final model is shared in the form of a raw model file or as a ready-to-use system. If automated segmentation was employed, the corresponding trained model should also be made available to allow replication. These should include clear instructions for their usage (e.g., accompanying documentation, tutorials).\n\n",
@@ -148,6 +148,6 @@
     "article_text_path": "article-text/akinci-dantonoli/An integrated model incorporating deep learning, hand-crafted radiomics and clinical and US features to diagnose central lymph node metastasis in patients with papillary thyroid cancer.txt",
     "model": null,
     "error": null,
-    "elapsed_time": 11.321559190750122
+    "elapsed_time": 17.16977882385254
   }
 }

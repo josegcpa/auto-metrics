@@ -1,16 +1,36 @@
 {
-  "Summary": "This study developed a radiomic classifier using contrast-enhanced T1-weighted MRI and perfusion images to differentiate pseudoprogression from recurrent tumor in patients with IDH wild-type glioblastoma. The classifier, enhanced with MGMT methylation status, achieved an AUC of 0.89 in cross-validation, suggesting potential for improved diagnostic accuracy. The study emphasizes the need for external validation to confirm these findings.",
+  "Summary": "This study develops a radiomic classifier using contrast-enhanced T1-weighted and perfusion MRI images to differentiate pseudoprogression from recurrent tumor in patients with IDH wild-type glioblastoma. The classifier, enhanced with MGMT status, achieved an AUC of 0.89 in cross-validation, suggesting potential for improved diagnostic accuracy.",
+  "Condition1": {
+    "rating": "yes",
+    "reason": "The study involves segmentation of enhancing lesions on MRI for radiomic feature extraction."
+  },
+  "Condition2": {
+    "rating": "no",
+    "reason": "The study does not explicitly state that the segmentation was fully automated. The supplemental methods would need to be reviewed to confirm."
+  },
+  "Condition3": {
+    "rating": "yes",
+    "reason": "The study extracts hand-crafted radiomic features from the images."
+  },
+  "Condition4": {
+    "rating": "yes",
+    "reason": "The study uses tabular data in the form of radiomic features and MGMT status for machine learning classification."
+  },
+  "Condition5": {
+    "rating": "no",
+    "reason": "The study does not use end-to-end deep learning; instead, it relies on hand-crafted radiomic features."
+  },
   "Item1": {
     "rating": "no",
-    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines like the CLEAR checklist."
+    "reason": "The study does not explicitly mention adherence to specific radiomics or machine learning checklists or guidelines."
   },
   "Item2": {
     "rating": "yes",
-    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative cohort of IDH wild-type glioblastoma patients."
+    "reason": "The study clearly defines inclusion and exclusion criteria for patient selection, aiming for a representative study population of IDH wild-type glioblastoma patients."
   },
   "Item3": {
     "rating": "yes",
-    "reason": "The reference standard is histopathology, which is a high-quality standard for determining the presence of tumor versus pseudoprogression."
+    "reason": "The reference standard is histopathology, which is a high-quality standard for differentiating tumor recurrence from pseudoprogression."
   },
   "Item4": {
     "rating": "no",
@@ -18,23 +38,15 @@
   },
   "Item5": {
     "rating": "yes",
-    "reason": "The imaging data source (contrast-enhanced T1-weighted and DCE perfusion MRI) reflects established standardization approaches in glioma imaging."
+    "reason": "The imaging data source (contrast-enhanced T1-weighted and perfusion MRI) reflects established standardization approaches for glioma imaging."
   },
   "Item6": {
     "rating": "yes",
-    "reason": "The study provides details of MRI acquisition parameters, although some parameters are in the supplementary material, which contributes to replicability."
+    "reason": "The study provides details of MRI acquisition parameters, although some parameters are in the supplement."
   },
   "Item7": {
     "rating": "yes",
-    "reason": "The interval between imaging and repeat surgery (reference standard) is appropriate to validate the presence or absence of tumor/pseudoprogression at the time of imaging."
-  },
-  "Condition1": {
-    "rating": "yes",
-    "reason": "The study involves segmentation of enhancing lesions on MRI for radiomic feature extraction."
-  },
-  "Condition2": {
-    "rating": "no",
-    "reason": "The study does not explicitly state that the segmentation was fully automated. The supplementary methods would need to be reviewed to confirm."
+    "reason": "The interval between imaging and the reference standard (repeat surgery) is appropriate for validating the presence or absence of tumor recurrence or pseudoprogression."
   },
   "Item8": {
     "rating": "yes",
@@ -42,83 +54,71 @@
   },
   "Item9": {
     "rating": "n/a",
-    "reason": "The study does not use fully automated segmentation, so this item is not applicable."
+    "reason": "The study does not explicitly state that the segmentation was fully automated."
   },
   "Item10": {
-    "rating": "no",
-    "reason": "The study does not explicitly state that the test set segmentation masks were produced by a single reader or automated tool."
-  },
-  "Condition3": {
-    "rating": "yes",
-    "reason": "The study extracts hand-crafted radiomic features using CERR software."
+    "rating": "n/a",
+    "reason": "The study does not explicitly state that the segmentation was fully automated."
   },
   "Item11": {
     "rating": "yes",
-    "reason": "The study mentions appropriate preprocessing techniques, such as z-score normalization, and describes the different image types used (T1-weighted, Ktrans, VP maps)."
+    "reason": "The study mentions image preprocessing techniques and gray level discretization parameters in the supplemental methods."
   },
   "Item12": {
     "rating": "yes",
-    "reason": "The study uses the open-source CERR software for feature extraction, which is IBSI compliant."
+    "reason": "The study used CERR software, which is IBSI compliant."
   },
   "Item13": {
     "rating": "yes",
-    "reason": "The study describes the feature types (first order histogram, second order features) and mentions using default settings for feature extraction parameters."
-  },
-  "Condition4": {
-    "rating": "yes",
-    "reason": "The study includes tabular data in the form of radiomic features."
-  },
-  "Condition5": {
-    "rating": "no",
-    "reason": "The study does not use an end-to-end deep learning pipeline."
+    "reason": "The study describes the feature types and classes and provides a default configuration statement."
   },
   "Item14": {
-    "rating": "no",
-    "reason": "The study does not explicitly mention the removal of non-robust features through test-retest, reproducibility, or stability analysis."
+    "rating": "yes",
+    "reason": "The study uses MRMR for feature selection, which can be considered a method for removing non-robust features."
   },
   "Item15": {
     "rating": "yes",
-    "reason": "The study uses MRMR for feature selection, which can be considered a method for removing redundant features."
+    "reason": "The study uses MRMR and RFE-RF for feature selection, which are methods for removing redundant features."
   },
   "Item16": {
-    "rating": "no",
-    "reason": "The study does not explicitly discuss the appropriateness of dimensionality compared to data size using statistical means or empirical evidence."
+    "rating": "yes",
+    "reason": "The study uses recursive feature elimination to reduce the number of features, suggesting consideration of the appropriateness of dimensionality compared to data size."
   },
   "Item17": {
     "rating": "n/a",
-    "reason": "The study does not use an end-to-end deep learning pipeline, so this item is not applicable."
+    "reason": "The study does not use an end-to-end deep learning pipeline."
   },
   "Item18": {
     "rating": "yes",
-    "reason": "The study uses nested cross-validation, which involves splitting the data into training and testing sets. They also mention using a subset of cases to prevent biasing the feature preselection step."
+    "reason": "The study uses nested cross-validation, which involves splitting the data into distinct folds and holding out data for testing."
   },
   "Item19": {
-    "rating": "no",
-    "reason": "The study does not explicitly address or analyze potential confounding factors."
+    "rating": "yes",
+    "reason": "The study considers MGMT status as a potential confounding factor and includes it in the classifier."
   },
   "Item20": {
     "rating": "yes",
-    "reason": "The study reports appropriate performance evaluation metrics such as AUROC, sensitivity, specificity, PPV, and NPV."
+    "reason": "The study reports appropriate accuracy metrics such as AUC, sensitivity, specificity, PPV, and NPV for the classification task."
   },
   "Item21": {
     "rating": "yes",
-    "reason": "The study includes confidence intervals (95% CI) for the AUROC."
+    "reason": "The study includes confidence intervals for the AUC."
   },
   "Item22": {
     "rating": "no",
-    "reason": "The study does not mention calibration assessment of the final model."
+    "reason": "The study does not explicitly mention calibration assessment of the final model."
   },
   "Item23": {
     "rating": "no",
-    "reason": "The study does not compare the performance of uni-parametric imaging with multi-parametric imaging to justify the need for the latter."
+    "reason": "The study does not compare the performance of uni-parametric imaging with multi-parametric imaging."
   },
   "Item24": {
     "rating": "yes",
-    "reason": "The study compares the radiomic approach with a model using known clinical predictors (MGMT, age, gender)."
+    "reason": "The study compares the performance of the radiomic classifier with a model constructed using known clinical predictors (MGMT, age, and gender)."
   },
   "Item25": {
     "rating": "no",
-    "reason": "The study does not compare the model with a simple baseline reference model like a Zero Rules classifier."
+    "reason": "The study does not compare the performance of the classifier with a simple baseline reference model."
   },
   "Item26": {
     "rating": "yes",
@@ -126,7 +126,7 @@
   },
   "Item27": {
     "rating": "no",
-    "reason": "The study does not include external testing on data from other institutions."
+    "reason": "The study does not perform external testing on data from other institutions."
   },
   "Item28": {
     "rating": "no",
@@ -148,6 +148,6 @@
     "article_text_path": "article-text/kocak/Radiomic analysis to predict histopathologically confirmed pseudoprogression in glioblastoma patients.txt",
     "model": null,
     "error": null,
-    "elapsed_time": 9.818192958831787
+    "elapsed_time": 15.042587280273438
   }
 }
