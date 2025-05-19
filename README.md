@@ -32,6 +32,15 @@ To use HuggingFace please add the `--extra huggingface` option to your commands 
 
 Then you can use it similarly to the Ollama models (with `--local_model`) but with a HuggingFace model (with `huggingface:<model_identifier>`). This does not require pulling models from the repository, but tends to be more resource intensive (from our experience).
 
+### Short note on guided generation with local models
+
+For both Ollama and HuggingFace models, structured generation is supported - this is what allows us to have any model produce a JSON. However, they both use slightly different frameworks: 
+
+- Ollama uses GBNF grammars (as implemented in the [llama.cpp](https://github.com/ggml-org/llama.cpp) project)
+- The HuggingFace framework we have implemented leverages [outlines.txt](https://github.com/dottxt-ai/outlines). This supports more generic structuring with regular expressions (more information on this: [Efficient Guided Generation for Large Language Models](https://arxiv.org/pdf/2307.09702)). 
+
+For the use cases at hand they are practically equivalent as they simply constrain, at each sampling step, which tokens can be generated and we do not use any regular expressions.
+
 ## User interface
 
 Not everyone likes or feels comfortable using the command line, so we have provided an easily usable interface for Auto-METRICS available [here](https://autometrics.josegcpa.net/). This is automatically dispatched with every update to the code repository through Github Actions and is hosted using Netlify.
