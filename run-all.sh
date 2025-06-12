@@ -50,7 +50,7 @@ then
             do 
                 text_name=$(basename "$text" | sed 's/\.txt//')
                 echo Analysing $text_name with $config
-                uv run python -m src.rate \
+                uv run rate \
                     --article_path "$text" \
                     --output_path "$OUTPUT_PATH/gemini/$set_name/$text_name.json" \
                     --config_path $config &
@@ -83,7 +83,7 @@ then
                     if [[ ! -f "$output_path" ]]
                     then
                         echo Analysing $text_name with $model and $config
-                        uv run python -m src.rate \
+                        uv run rate \
                             --article_path "$text" \
                             --output_path "$output_path" \
                             --config_path $config \
@@ -124,7 +124,7 @@ then
                     if [[ ! -f "$output_path" ]]
                     then
                         echo Analysing $text_name with $model and $config
-                        uv run python -m src.rate \
+                        uv run rate \
                             --article_path "$text" \
                             --output_path "$output_path" \
                             --config_path $config \
