@@ -1,4 +1,4 @@
-SOURCE_DIR = "src/static_app_templates"
+SOURCE_DIR = "src/auto_metrics/static_app_templates"
 
 if __name__ == "__main__":
     import os
@@ -24,7 +24,6 @@ if __name__ == "__main__":
     input_prompt = make_prompt(items, conditions)
     weights = get_weights(flat_items)
     weights_str = json.dumps(weights).replace('"', "")
-    print(weights_str)
     data_model = dynamically_generate_model(flat_items, conditions)
     output_data_model = export_model_to_json(data_model)
 
