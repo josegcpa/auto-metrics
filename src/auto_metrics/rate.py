@@ -1,7 +1,7 @@
 from pydantic import ValidationError
 
 
-if __name__ == "__main__":
+def main():
     import os
     import argparse
     import json
@@ -179,3 +179,7 @@ if __name__ == "__main__":
         Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)
         with open(args.output_path, "w") as f:
             json.dump(json_response, f, indent=2)
+
+
+if __name__ == "__main__":
+    main()

@@ -25,7 +25,10 @@ huggingface = [
     "transformers[huggingface]>=4.51.3",
 ]
 
-# build with pdm
+# expose endpoints
+[project.scripts]
+rate = "auto_metrics.rate:main"
+
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"

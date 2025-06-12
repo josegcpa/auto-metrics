@@ -13,7 +13,7 @@ We use [`uv`](https://docs.astral.sh/uv/) to manage the dependencies and run eve
 To rate a given manuscript with Gemini all you have to do is run:
 
 ```bash
-uv run python src/rate.py --input_path <path_to_manuscript_in_txt> --output_path <path_to_output_json> --config_path <path_to_config_yaml>
+uv run rate --article_path <path_to_manuscript_in_txt> --output_path <path_to_output_json> --config_path <path_to_config_yaml>
 ```
 
 `uv` does a good job at managing the dependencies at runtime so it should be easy to install/run everything.
@@ -28,9 +28,11 @@ To run this with Ollama models, simply add the local model flag `--local_model` 
 
 ### Use with HuggingFace models
 
-To use HuggingFace please add the `--extra huggingface` option to your commands as this will ensure that HuggingFace dependencies are downloaded (i.e. `uv run --extra huggingface python src/rate.py ...`).
+To use HuggingFace please add the `--extra huggingface` option to your commands as this will ensure that HuggingFace dependencies are downloaded (i.e. `uv run --extra huggingface rate ...`).
 
 Then you can use it similarly to the Ollama models (with `--local_model`) but with a HuggingFace model (with `huggingface:<model_identifier>`). This does not require pulling models from the repository, but tends to be more resource intensive (from our experience).
+
+**Important note:** we did not validate how Auto-METRICS works with HuggingFace models. It produces an output similar to what is produced by the other routes, but whether that output is reliable has not been confirmed.
 
 ### Short note on guided generation with local models
 
