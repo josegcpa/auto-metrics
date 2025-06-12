@@ -2,7 +2,7 @@ import os
 from google import genai
 from google.genai.types import GenerateContentConfig
 from pydantic import BaseModel
-from .parameters import TEMPERATURE, TOP_P, SEED
+from .parameters import Parameters
 
 
 def query_model(prompt: str, article_text: str, data_model: BaseModel):
@@ -10,9 +10,12 @@ def query_model(prompt: str, article_text: str, data_model: BaseModel):
         article=article_text
     )
     config = GenerateContentConfig(
-        temperature=TEMPERATURE,
-        top_p=TOP_P,
-        seed=SEED,
+        temperature=Parameters.TEMPERATURE,
+        top_p=Parameters.TOP_P,
+        top_k=Parameters.TOP_K,
+        seed=Parameters.SEED,
+        frequency_penalty=Parameters.FREQUENCY_PENALTY,
+        presence_penalty=Parameters.PRESENCE_PENALTY,
         response_mime_type="application/json",
         response_schema=data_model,
     )

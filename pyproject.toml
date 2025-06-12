@@ -1,7 +1,7 @@
 [project]
-name = "automatic-metrics"
+name = "auto-metrics"
 version = "0.1.0"
-description = "Add your description here"
+description = "Automatic METRICS assessment using large language models."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -24,3 +24,8 @@ huggingface = [
     "sentencepiece>=0.2.0",
     "transformers[huggingface]>=4.51.3",
 ]
+
+# build with pdm
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

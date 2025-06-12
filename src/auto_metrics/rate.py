@@ -9,11 +9,11 @@ if __name__ == "__main__":
     import logging
     from pathlib import Path
 
-    from .logger import logger
-    from .metrics import load_config
-    from .ratings import export_model_to_json
-    from .ratings import dynamically_generate_model
-    from .prompt import make_prompt
+    from auto_metrics.logger import logger
+    from auto_metrics.metrics import load_config
+    from auto_metrics.ratings import export_model_to_json
+    from auto_metrics.ratings import dynamically_generate_model
+    from auto_metrics.prompt import make_prompt
 
     parser = argparse.ArgumentParser()
     parser.add_argument(

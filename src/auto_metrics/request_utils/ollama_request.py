@@ -1,7 +1,7 @@
 from tqdm import tqdm
 from ollama import Client
 from pydantic import BaseModel
-from .parameters import TEMPERATURE, TOP_P, SEED
+from auto_metrics.parameters import Parameters
 
 
 def query_model(
@@ -21,9 +21,12 @@ def query_model(
         ],
         model=model_str,
         options={
-            "top_p": TOP_P,
-            "seed": SEED,
-            "temperature": TEMPERATURE,
+            "top_p": Parameters.TOP_P,
+            "top_k": Parameters.TOP_K,
+            "seed": Parameters.SEED,
+            "frequency_penalty": Parameters.FREQUENCY_PENALTY,
+            "presence_penalty": Parameters.PRESENCE_PENALTY,
+            "temperature": Parameters.TEMPERATURE,
         },
         format=data_model,
         stream=True,
