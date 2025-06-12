@@ -1,0 +1,47 @@
+name: Run Command and Push Output
+
+on:
+  push:
+    branches:
+      - main  # Or your trigger branch
+
+permissions:
+  contents: write
+
+jobs:
+  run-command:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Cache uv virtualenv
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: uv-venv-${{ runner.os }}-${{ hashFiles('pyproject.toml', 'requirements.txt') }}
+          restore-keys: |
+            uv-venv-${{ runner.os }}-
+
+      - name: Create virtualenv and install dependencies using uv
+        run: >
+          uv run python -m src.auto_metrics.make_static_app
+          --config_path config-enhanced.yaml 
+          --additional_files_to_copy report/analyse.html report/analyse_files
+
+      - name: Push output to branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./static_app
+          publish_branch: prod
+          commit_message: "Automated output update from workflow"
