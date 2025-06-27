@@ -1,9 +1,12 @@
 set -e
 
-RUN_GEMINI=true
+RUN_GEMINI=false
 RUN_OLLAMA=true
 RUN_REASONING=true
-declare -a CONFIGS=("config.yaml" "config-enhanced.yaml")
+declare -a CONFIGS=(
+    "config.yaml" 
+    "config-enhanced.yaml"
+)
 declare -a OLLAMA_MODELS=(
     "gemma3:4b-it-q4_K_M"
     "gemma3:12b-it-q4_K_M"
@@ -32,6 +35,10 @@ declare -a OLLAMA_MODELS_REASONING=(
     "deepseek-r1:70b-llama-distill-q4_K_M")
 ARTICLE_PATH=article-text
 OUTPUT_PATH=ratings
+
+TMP_DIR=.tmp
+OLLAMA_CTX_SIZE=20000
+mkdir -p $TMP_DIR
 
 if [[ $RUN_GEMINI == true ]]
 then
@@ -64,7 +71,8 @@ then
     for model in ${OLLAMA_MODELS[@]}
     do
         echo Pulling ollama model $model
-        ollama pull $model
+        echo -e "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
+        ollama create tmp_model -f $TMP_DIR/Modelfile
         for config in ${CONFIGS[@]}
         do
             if [[  $config == "config-enhanced.yaml" ]]
@@ -87,15 +95,17 @@ then
                             --article_path "$text" \
                             --output_path "$output_path" \
                             --config_path $config \
-                            --local_model ollama:$model \
+                            --local_model ollama:tmp_model \
                             --with_names \
                             --max_tokens 5000
+                        break
                     fi
                 done
             done
         done
         # stop model to free memory
-        ollama stop $model
+        ollama stop tmp_model
+        ollama rm tmp_model
         ollama rm $model
     done
 fi
@@ -105,7 +115,8 @@ then
     for model in ${OLLAMA_MODELS_REASONING[@]}
     do
         echo Pulling ollama model $model
-        ollama pull $model
+        echo "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
+        ollama create tmp_model $TMP_DIR/Modelfile
         for config in ${CONFIGS[@]}
         do
             if [[  $config == "config-enhanced.yaml" ]]
@@ -128,7 +139,7 @@ then
                             --article_path "$text" \
                             --output_path "$output_path" \
                             --config_path $config \
-                            --local_model ollama:$model \
+                            --local_model ollama:tmp_model \
                             --with_names \
                             --prompt_type reasoning
                     fi
@@ -136,7 +147,8 @@ then
             done
         done
         # stop model to free memory
-        ollama stop $model
+        ollama stop tmp_model
+        ollama rm tmp_model
         ollama rm $model
     done
 fi
