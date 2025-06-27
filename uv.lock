@@ -145,6 +145,7 @@ dependencies = [
     { name = "pyyaml" },
     { name = "requests" },
     { name = "selenium" },
+    { name = "tqdm" },
 ]
 
 [package.optional-dependencies]
@@ -171,6 +172,7 @@ requires-dist = [
     { name = "requests", specifier = ">=2.32.3" },
     { name = "selenium", specifier = ">=4.30.0" },
     { name = "sentencepiece", marker = "extra == 'huggingface'", specifier = ">=0.2.0" },
+    { name = "tqdm", specifier = ">=4.67.1" },
     { name = "transformers", extras = ["huggingface"], marker = "extra == 'huggingface'", specifier = ">=4.51.3" },
 ]
 provides-extras = ["huggingface"]
