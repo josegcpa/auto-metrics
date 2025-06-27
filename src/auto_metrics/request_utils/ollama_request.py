@@ -1,7 +1,7 @@
 from tqdm import tqdm
 from ollama import Client
 from pydantic import BaseModel
-from auto_metrics.parameters import Parameters
+from auto_metrics.request_utils.parameters import Parameters
 
 
 def query_model(
