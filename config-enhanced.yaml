@@ -64,8 +64,8 @@ items:
         as an input for the radiomics analysis) and the outcome measure/reference standard
         acquisition is appropriate to validate the presence or absence of target conditions
         of the radiomics analysis at the moment of the diagnostic imaging exams. If there is
-        no mention of when the reference standard was acquired relative to the diagnostic imaging 
-        exams, the answer should be "no".
+        no mention of when the reference standard (i.e. the prediction target) was acquired 
+        relative to the diagnostic imaging exams, the answer should be "no".
       description: The interval between imaging used and reference standard
       number: 7
       name: ImagingOutcomeInterval
@@ -78,7 +78,9 @@ items:
         (e.g., margin shrinkage, peri-tumoral sampling, details of segmentation regardless
         of whether manual, semi-automated or automated methods are used). In the case
         of DL-based radiomics, the segmentation can refer to the rough delineation with
-        bounding boxes or cropping the image around a region of interest.
+        bounding boxes or cropping the image around a region of interest. The segmentation 
+        methodology should be detailed, including the years of experience of each radiologist and
+        the utilized software program.
       description: Transparent description of segmentation methodology
       number: 8
       name: SegmentationMethodology
@@ -101,8 +103,10 @@ items:
       comment: >-
         Whether final segmentation in the test set is produced by a single
         reader (manually or with a semi-automated tool) or an entirely automated tool,
-        to better reflect clinical practice. Keep in mind that having a radiologist review
-        the results of the automated segmentation is not considered clinical practice.
+        to better reflect clinical practice. A radiologist reviewing the results of the
+        automated segmentation is not considered clinical practice. Additionally, both
+        training and testing segmentation masks should be produced by a single reader
+        or automated tool.
       description: Test set segmentation masks produced by a single reader or automated tool
       number: 10
       name: SegmentationReaderConsistency
@@ -149,10 +153,9 @@ items:
         materials (e.g., parameter file such as in YAML format, screenshot if a dedicated
         file for this is not available for the software). In the case of DL, neural
         network architecture along with all image operations should be described.
-        Mention of features by name or feature groups is not sufficient. Explicitly 
-        check whether the scientific article provides a list of the radiomic features 
-        which are being extracted or if it mentions that the default set of parameters 
-        was used.
+        Authors mentioning features by name or feature groups is not sufficient. 
+        Explicitly check whether a list of the extracted radiomic features is provided or if it 
+        mentions that the default set of parameters was used.
       description: >-
         Transparent reporting of feature extraction parameters, otherwise
         providing a default configuration statement
@@ -192,7 +195,8 @@ items:
         data set is appropriate according to the research question and modeling algorithm.
         This should be demonstrated by statistical means, empirically through consistency
         of performance in validation and testing, or based on previous evidence in the
-        literature.
+        literature. If Condition 4 is "yes". use the best available knowledge to provide 
+        a "yes" or "no" answer.
       description: Appropriateness of dimensionality compared to data size
       number: 16
       name: DimensionalityAppropriateness
@@ -280,9 +284,14 @@ items:
         a multi-parametric approach by formally comparing their performance (e.g., DeLong's
         or McNemar's tests). This item is also intended to reward studies that experimentally
         justify the use of more complex models compared to simpler alternatives, in
-        regard to input data type. Uni-parametric imaging implies the acquisition of a single 
-        imaging modality, as opposed to multi-parametric imaging, which involves the acquisition of multiple 
-        imaging modalities.
+        regard to input data type. Uni-parametric imaging implies the acquisition of a 
+        single image for each study, as opposed to multi-parametric imaging, which involves 
+        the acquisition of multiple images for each study. If a study applies a radiomics-based 
+        method to multi-parametric imaging data, it should also apply that method to 
+        uni-parametric imaging data and compare both. If a single imaging modality was 
+        used, the answer should be "yes". Examples of uni-parametric imaging include a single
+        MRI sequence rather than multiple, or a single phase in a dynamic 
+        contrast-enhanced scan.
       description: Use of uni-parametric imaging or proof of its inferiority
       number: 23
       name: UniParametricImagingEvaluation
@@ -299,7 +308,10 @@ items:
         curve analysis for net benefit comparison, Net Reclassification Index). Furthermore, in case of 
         multiple comparisons, multiple testing correction methods (e.g., Bonferroni) should be considered 
         in order to reduce the false discovery rate provided that the statistical comparison is done with 
-        a frequentist approach (rather than Bayesian).
+        a frequentist approach (rather than Bayesian). Radiological features (features extracted 
+        by radiologists without the assistance of computer or software tools) are not radiomic features. 
+        Additionally, models incorporating exclusively clinical features without any radiological information 
+        can be considered comparisons with representative clinical standards.
       description: Comparison with a non-radiomic approach or proof of added clinical value
       number: 24
       name: NonRadiomicApproachComparison
