@@ -39,7 +39,7 @@ if __name__ == "__main__":
     with open(f"{SOURCE_DIR}/index.html", "r") as f:
         main_html = f.read().replace(
             '<script src="static/js/main.js"></script>',
-            f'<script src="main.js"></script>',
+            '<script src="main.js"></script>',
         )
 
     os.makedirs(args.output_dir, exist_ok=True)
