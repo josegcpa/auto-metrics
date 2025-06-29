@@ -116,7 +116,7 @@ then
     do
         echo Pulling ollama model $model
         echo "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
-        ollama create tmp_model $TMP_DIR/Modelfile
+        ollama create tmp_model -f $TMP_DIR/Modelfile
         for config in ${CONFIGS[@]}
         do
             if [[  $config == "config-enhanced.yaml" ]]
