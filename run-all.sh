@@ -98,7 +98,6 @@ then
                             --local_model ollama:tmp_model \
                             --with_names \
                             --max_tokens 5000
-                        break
                     fi
                 done
             done
@@ -115,7 +114,7 @@ then
     for model in ${OLLAMA_MODELS_REASONING[@]}
     do
         echo Pulling ollama model $model
-        echo "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
+        echo -e "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
         ollama create tmp_model -f $TMP_DIR/Modelfile
         for config in ${CONFIGS[@]}
         do
