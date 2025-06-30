@@ -158,7 +158,7 @@ def main():
         logger.warning(
             f"Failed to parse response as JSON:\n{str(e)}.\nExiting"
         )
-        json_response = {}
+        json_response = {"raw_output": verbose_eval}
         error = str(e)
 
     json_response["metadata"] = {
