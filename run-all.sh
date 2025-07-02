@@ -70,6 +70,16 @@ if [[ $RUN_OLLAMA == true ]]
 then
     for model in ${OLLAMA_MODELS[@]}
     do
+        MODEL_CLEAN=$(echo $model | sed 's/:/-/g')
+        N_articles=$(find article-text -name '*txt' | wc -l)
+        N_articles_done=$(find ratings*/$MODEL_CLEAN -name '*.json' | wc -l)
+
+        if [[ $N_articles_done -eq $(($N_articles * ${#CONFIGS[@]})) ]]
+        then
+            echo $model already done
+            continue
+        fi
+
         echo Pulling ollama model $model
         echo -e "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
         ollama create tmp_model -f $TMP_DIR/Modelfile
@@ -113,6 +123,16 @@ if [[ $RUN_REASONING == true ]]
 then
     for model in ${OLLAMA_MODELS_REASONING[@]}
     do
+        MODEL_CLEAN=$(echo $model | sed 's/:/-/g')
+        N_articles=$(find article-text -name '*txt' | wc -l)
+        N_articles_done=$(find ratings*/$MODEL_CLEAN -name '*.json' | wc -l)
+
+        if [[ $N_articles_done -eq $(($N_articles * ${#CONFIGS[@]})) ]]
+        then
+            echo $model already done
+            continue
+        fi
+
         echo Pulling ollama model $model
         echo -e "FROM $model\nPARAMETER num_ctx $OLLAMA_CTX_SIZE" > $TMP_DIR/Modelfile
         ollama create tmp_model -f $TMP_DIR/Modelfile
