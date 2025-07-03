@@ -3,7 +3,7 @@ Contains the data models for generic metrics.
 """
 
 import yaml
-from pydantic import BaseModel, field
+from pydantic import BaseModel, Field
 from .logger import logger
 
 
@@ -11,25 +11,25 @@ class Item(BaseModel):
     """
     Data model for a metric item.
     """
-    number: int = field(description="Item number")
-    description: str = field(description="Item description")
-    comment: str = field(description="Item comment with clarification")
-    name: str | None = field(description="Item name", default=None)
-    condition: list[int] | None = field(
+    number: int = Field(description="Item number")
+    description: str = Field(description="Item description")
+    comment: str = Field(description="Item comment with clarification")
+    name: str | None = Field(description="Item name", default=None)
+    condition: list[int] | None = Field(
         description="Item condition (only if it depends on a specific condition)",
         default=None,
     )
-    weight: float | None = field(description="Item weight", default=None)
+    weight: float | None = Field(description="Item weight", default=None)
 
 
 class Condition(BaseModel):
     """
     Data model for conditions (define whether items should be considered).
     """
-    number: int = field(description="Condition number")
-    description: str = field(description="Condition description")
-    comment: str = field(description="Condition comment with clarification")
-    name: str | None = field(description="Condition name", default=None)
+    number: int = Field(description="Condition number")
+    description: str = Field(description="Condition description")
+    comment: str = Field(description="Condition comment with clarification")
+    name: str | None = Field(description="Condition name", default=None)
 
 
 def load_config(
@@ -43,12 +43,12 @@ def load_config(
         "Feature Extraction", etc.) and within each section each item should be
         defined by its ``number``, a ``description`` (loose description of the
         item) and a ``comment`` (detailed description of the item). Additional
-        optional fields include its ``name``, the ``condition`` it depends on (as
+        optional Fields include its ``name``, the ``condition`` it depends on (as
         a list of numbers) and its ``weight``.
 
         - "conditions": these should be defined by its ``number``, a
         ``description`` (loose description of the condition) and a ``comment``
-        (detailed description of the condition). Additional optional fields
+        (detailed description of the condition). Additional optional Fields
         include its ``name``.
 
     Args:
