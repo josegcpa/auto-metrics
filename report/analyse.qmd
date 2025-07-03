@@ -48,11 +48,11 @@ In this work, a set of radiologists was divided into three separate experience l
 
 ## Visualizing reproducibility results from Akinci D'Antonoli and others
 
-Here we are providing only a recapitulation of what is provided as Supplementary Information 1. In particular, here we only use the Cohen's Kappa to analyse how agreement varies between different conditions and raters. As observable in @fig-cohen-raters, Cohen's Kappa (a measure of inter-rater agreement) is quite consistent and between 0.4 and 0.6. The one exception is the very high Kappa between experience level 3 (highest experience level) with and without training. This may highlight the effect of experience or it may be biased as the four radiologists annotated with experience level 3 are either editors/members of the editorial board of European Radiology (and are more exposed to this sort of analysis) or took part in developing METRICS (AP/AS/MK and LU, respectively); only three other authors are in this position of being parts of editorial teams at radiology journals/publications or having participated in METRICS. In any case it quite a stark difference in my opinion.
+Here we are providing only a recapitulation of what is provided as Supplementary Information 1. In particular, here we only use the Cohen's Kappa to analyse how agreement varies between different conditions and raters. As observable in @fig-cohen-raters, Cohen's Kappa (a measure of inter-rater agreement) is quite consistent and between 0.4 and 0.6. The one exception is the very high Kappa between experience level 3 (highest experience level) with and without training. This may highlight the effect of experience or it may be biased as the four radiologists annotated with experience level 3 are either editors/members of the editorial board of European Radiology (and are more exposed to this sort of analysis) or took part in developing METRICS (AP/AS/MK and LU, respectively); only three other authors are in this position of being parts of editorial teams at radiology journals/publications or having participated in METRICS. In any case it quite a stark difference in our opinion.
 
 Further analyzing how this looks for items and conditions separetely (i.e. calculating the average item-specific Cohen's Kappa) further confirms the overall analysis as illustrated in @fig-cohen-raters B. Finally, it is interesting to see that there is little agreement as far as determining the different conditions is concerned @fig-cohen-raters C. This part is crucial as some items depend on specific conditions being met for grading, otherwise they are discarded.
 
-```{r}
+```{r library-loading}
 #| output: false
 library(tidyverse)
 library(rjson)
@@ -70,7 +70,7 @@ theme_classic_2 <- function(base_size = 11,
   theme_classic(base_size = base_size,
                 base_family = base_family,
                 base_line_size = base_line_size,
-                base_rect_size = base_rect_size) %>%
+                base_rect_size = base_rect_size) +
     theme(axis.text = element_text(size = base_size,
                                    colour = "black"),
           title = element_text(size = base_size + 1),
@@ -198,7 +198,7 @@ for (k in unique(long_df$key)) {
 }
 ```
 
-```{r}
+```{r cohen-calculation}
 cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
@@ -258,7 +258,7 @@ Here, we have a concrete hypothesis: is the average agreement between an LLM and
 
 We used Gemini 2.0 Flash because it is remarkably cheap for these sorts of experiments (and in general). As a prompt, we use the following (it is somewhat long so bear with us, it copies the guidelines made available in the original METRICS paper and in the [METRICS helper website](https://metricsscore.github.io/metrics/METRICS.html)):
 
-```{r}
+```{r prompt-exposition}
 read_file("prompt.txt") %>%
   cat
 ```
@@ -267,7 +267,7 @@ We start by detailing some instructions that the LLM should follow. Then, we pro
 
 To ensure structured outputs, we make use of a relatively strict --- but simple! --- data model for the output:
 
-```{python}
+```{python ratings-schematic}
 #| echo: true
 #| eval: false
 from enum import Enum
@@ -338,8 +338,11 @@ class Metrics(BaseModel):
 
 Upon loading, we were able to verify that all the LLM outputs have, as expected, generated a correctly formatted JSON. Below we present an example for one such article. Additionally, the flexibility of our specification also allows for a small reason to be appended to each rating --- this facilitates the verification of LLM claims. Indeed, this explanation ends up being helpful at a later stage of this analysis when we start getting into possible reasons for disagreement.
 
-```{r}
-llm_rating_files <- list.files(path = "../ratings/gemini/akinci-dantonoli", pattern = "*json", full.names = T)
+```{r loading-json-example}
+llm_rating_files <- list.files(
+  path = "../ratings/gemini/akinci-dantonoli", 
+  pattern = "*json", 
+  full.names = T)
 names(llm_rating_files) <- lapply(
   llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][5])
 )
@@ -355,15 +358,15 @@ cat(sprintf("Loading and printing the JSON for %s:\n\n%s",
 
 Upon analysis of @fig-cohen-raters-llm we see quite clearly that, while there is some agreement between LLMs and raters, this is very much on the lower end of the agreement spectrum which is observed for human rater groups. Indeed, it can be risky to simply deployed this sans supervision. However, we note that this is still well within what would be acceptable had this been an additional reviewer. As noted earlier, it might be a good format to have an LLM perform these assessments as a second reader which ends up reinforcing some conclusions or reanalysing others.
 
-```{r}
+```{r load-llm-ratings-ada2025}
 all_llm_ratings <- list()
 for (f in llm_rating_files) {
   title <- gsub(".json", "", str_split(f, "/")[[1]][5])
   json_data <- fromJSON(file = f)
   json_data <- json_data[!(names(json_data) %in% skip_columns)]
   json_df <- data.frame(
-    key = names(json_data[-1]), 
-    llm = unlist(lapply(json_data[-1], function(x) x$rating)), title = title)
+    key = names(json_data), 
+    llm = unlist(lapply(json_data, function(x) x$rating)), title = title)
   all_llm_ratings[[length(all_llm_ratings) + 1]] <- json_df
 }
 
@@ -387,7 +390,7 @@ full_df <- merge(
   by = c("key", "title"))
 ```
 
-```{r}
+```{r calculate-cohens-llm-ada2025}
 #| warning: false
 rater_combinations <- combn(all_raters, 2)
 
@@ -426,7 +429,7 @@ for (k in unique(full_df$key)) {
 }
 ```
 
-```{r}
+```{r calculate-cohens-llm-averages}
 cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
@@ -480,12 +483,13 @@ In @fig-proportions we show how these scores are somewhat variable when analysed
 
 [^2]: here we used percent agreements as opposed to Cohen's Kappa because the latter is not defined when data has 0 variance (some questions were always answered the same) and has unintuitive behavior when it gets too close to 0 or 1.
 
-```{r}
+```{r calculate-readers-vs-llm-ada2025}
 #| fig.height: 5
 #| fig.width: 6
 #| warning: false
-#| fig-cap: Proportion of agreement between human readers and the LLM METRICS assessment stratified by training groups and experience levels.
+#| fig-cap: Proportion of agreement between human readers and Auto-METRICS assessment stratified by training groups and experience levels.
 #| label: fig-proportions
+
 proportion_data <- merge(
   df,
   llm_df, 
@@ -518,9 +522,11 @@ My main point of interest now was getting to know how these differences are mani
 
 A main point of this analysis is for us to think through of some possible improvements that can be added to the description of each item to make it as clear as possible for automated assessment.
 
-```{r}
+```{r fig-disagreement}
 #| fig.height: 5
 #| fig.width: 4
+#| fig.cap: Average agreement between the LLM and all rater groups. Negative values imply a higher proportion of disagreements, whereas higher values imply a higher proportion of agreements.
+#| label: fig-disagreement
 score_agreement <- function(a, b) {
   d <- case_when(
     is.na(a) | is.na(b) ~ NA,
@@ -553,16 +559,36 @@ disagreement_df <- full_df %>%
   ) %>%
   arrange(n_disagreements)
 
-disagreement_df %>%
+threshold <- 1.0
+
+aggregated_disagreement_df <- disagreement_df %>%
   group_by(key) %>%
   summarise(average_disagreement_score = mean(n_disagreements, na.rm = T)) %>%
   arrange(average_disagreement_score) %>%
+  mutate(Reassessed = ifelse(average_disagreement_score < threshold, "Yes", "No"))
+
+
+aggregated_disagreement_df %>%
   ggplot(aes(x = average_disagreement_score,
-             y = reorder(key, average_disagreement_score))) + 
+             y = reorder(key, average_disagreement_score),
+             colour = Reassessed)) + 
+  geom_vline(xintercept = threshold, linetype = 2) +
   geom_point() +
   theme_classic_2(base_size = 8) +
   ylab("METRICS item/condition") +
+  scale_color_manual(values = c(No = "black", Yes = "red3")) +
   xlab("Average agreement\n(negative = disagreement, positive = agreement)")
+
+aggregated_disagreement_df
+```
+
+```{r disagreement}
+prompt_improvement_items <- aggregated_disagreement_df$key[
+  aggregated_disagreement_df$Reassessed == "Yes"]
+
+cat(sprintf(
+  "Items where prompting will be improved: %s", 
+  paste(prompt_improvement_items, collapse = ", ")))
 ```
 
 ### Item23
@@ -576,14 +602,14 @@ As in the table above, we can see that the average disagreement score (the avera
 
 #### Potential improvement
 
-Including the following in the item helper: "Uni-parametric imaging implies the acquisition of a single imaging modality, as opposed to multi-parametric imaging, which involves the acquisition of multiple imaging modalities."
+Including the following in the item helper: "Uni-parametric imaging implies the acquisition of a single image for each study, as opposed to multi-parametric imaging, which involves the acquisition of multiple images for each study. If a study applies a radiomics-based method to multi-parametric imaging data, it should also apply that method to uni-parametric imaging data and compare both. If a single imaging modality was used, the answer should be "yes". Examples of uni-parametric imaging include a single MRI sequence rather than multiple, or a single phase in a dynamic contrast-enhanced scan."
 
-```{r}
+```{r disagreement-23}
 set.seed(42)
 
-get_examples_of_disagreement <- function(item_number, n_examples = 5) {
+get_examples_of_disagreement <- function(item, n_examples = 5) {
   item_subset <- disagreement_df %>%
-    subset(key == sprintf("Item%s", item_number)) %>%
+    subset(key == item) %>%
     arrange(n_disagreements) 
   
   if (nrow(item_subset) < n_examples) {
@@ -593,7 +619,7 @@ get_examples_of_disagreement <- function(item_number, n_examples = 5) {
   
   output <- list()
   for (tt in relevant_titles) {
-    reason <- fromJSON(file = llm_rating_files[[gsub("/", "_", tt)]])[[sprintf("Item%s", item_number)]]
+    reason <- fromJSON(file = llm_rating_files[[gsub("/", "_", tt)]])[[item]]
     reason_number <- match_class[reason$rating]
     human_raters <- subset(item_subset, title == tt)
     human_raters <- unlist(
@@ -609,21 +635,7 @@ get_examples_of_disagreement <- function(item_number, n_examples = 5) {
   do.call(what = rbind, output)
 }
 
-get_examples_of_disagreement(23)
-```
-
-### Item16
-
-*Appropriateness of dimensionality compared to data size*
-
-This is something which was somewhat expected --- the METRICS question referring to appropriate data dimensionality does not define this in exact terms. Consequently, Item16 is typically hard to understand @Akinci-D-Antonoli2025-ep.
-
-#### Potential improvement
-
-N/A
-
-```{r}
-get_examples_of_disagreement(16)
+get_examples_of_disagreement(prompt_improvement_items[1])
 ```
 
 ### Item7
@@ -636,10 +648,27 @@ Disagreements for this item are somewhat interesting --- upon closer inspection 
 
 #### Potential improvement
 
-Inclusion of the following in the item helper: "If there is no mention of when the reference standard was acquired relative to the diagnostic imaging exams, the answer should be"no"."
+Inclusion of the following in the item helper: "If there is no mention of when the reference standard (i.e. the prediction target) was acquired relative to the diagnostic imaging exams, the answer should be"no"."
 
-```{r}
-get_examples_of_disagreement(7)
+```{r disagreement-7}
+prompt_improvement_items[2]
+get_examples_of_disagreement(prompt_improvement_items[2])
+```
+
+### Item16
+
+*Appropriateness of dimensionality compared to data size*
+
+This is something which was somewhat expected --- the METRICS question referring to appropriate data dimensionality does not define this in exact terms. Consequently, Item16 is typically hard to understand @Akinci-D-Antonoli2025-ep. However, a consistent analysis of the LLM outputs showed that it tended to answer "n/a" when there was no available information, when this should only be the case when Condition 4 is "no".
+
+#### Potential improvement
+
+Inclusion of the following in the item helper: "Only when Condition 4 is negative should this item be "n/a". If the information is not specified, use the best available knowledge to provide a "yes" or "no" answer."
+
+```{r disagreement-16}
+prompt_improvement_items[3]
+
+get_examples_of_disagreement(prompt_improvement_items[3])
 ```
 
 ### Item10
@@ -652,51 +681,119 @@ Here, the LLM considers a senior radiologist reviewing segmentations to be stand
 
 #### Potential improvement
 
-Inclusion of the following in the item helper: "Keep in mind that having a radiologist review the results of the automated segmentation is not considered clinical practice."
+Inclusion of the following in the item helper: "A radiologist reviewing the results of the automated segmentation is not considered clinical practice. Additionally, both training and testing segmentation masks should be produced by a single reader or automated tool."
 
-```{r}
-get_examples_of_disagreement(10)
-```
-
-### Item19
-
-*Handling of confounding factors*
-
-Here, the disagreements are, as far as I can tell, stemming from a difficulty I myself face when considering questions such as this. The helper note for this item [^5] is somewhat hard to consider in strict terms. For instance:
-
-[^5]: "Whether potential confounding factors were analyzed, identified if present, and removed if necessary (e.g., if it has a strong influence on generalizability). These may include different distributions of patient characteristics (e.g., gender, lesion stage or grade) across sites or scanners."
-
--   In 'A Radiomic "Warning Sign" of Progression on Brain MRI in Individuals with MS', the authors offer an analysis of a pipeline-specific confounder which could affect how predictions were obtained or are interpreted. However, this confounder does not represent anything inherent to the patient or to the acquisition process, but rather to the algorithm developed during this work
--   In "CNN-based multi-modal radiomics analysis of pseudo-CT utilization in MRI-only brain stereotactic radiotherapy: a feasibility study", the authors do offer an analysis of how MRI contrast presence affects model performance, but then again this is not really a confounder in the traditional sense
--   In the remaining articles were the LLM answered "yes" and reader groups tended towards "no", there are some more confounding factors which *could* be considered confounders but it is understandable that they are not *necessarily* regarded as such by most people.
-
-#### Potential improvement
-
-Inclusion of the following in the item helper: "Be sure to focus on confounders stemming from the acquisition process, such as scanner type, manufacturer, or scanner parameters, or from the individual patient characteristics, such as age, weight, or comorbidities."
-
-```{r}
-get_examples_of_disagreement(19)
+```{r disagreement-10}
+prompt_improvement_items[4]
+get_examples_of_disagreement(prompt_improvement_items[4])
 ```
 
 ### Item13
 
 *Transparent reporting of feature extraction parameters, otherwise providing a default configuration statement*
 
-Here, the disagreements stem from the LLM assuming that adequate reporting of feature extraction parameters can be simply the explanation of which packages were used. However, as radiomics researchers know, there are multiple possible configurations for these feature packages. Indeed, oftentimes the list of possible features _groups_ may not be sufficient as multiple features can be activated or deactivated inside of each feature group.
+Here, the disagreements stem from the LLM assuming that adequate reporting of feature extraction parameters can be simply the explanation of which packages were used. However, as radiomics researchers know, there are multiple possible configurations for these feature packages. Indeed, oftentimes the list of possible features *groups* may not be sufficient as multiple features can be activated or deactivated inside of each feature group.
 
 #### Potential improvement
 
 Inclusion of the following in the item helper: "Mention of features by name or feature groups is not sufficient. Explicitly check whether the scientific article provides a list of the radiomic features which are being extracted or if it mentions that the default set of parameters was used."
 
-```{r}
-get_examples_of_disagreement(13)
+```{r disagreement-13}
+prompt_improvement_items[5]
+get_examples_of_disagreement(prompt_improvement_items[5])
+```
+
+### Item24
+
+*Comparison with a non-radiomic approach or proof of added clinical value*
+
+Here, the main point is for raters to determine whether the radiomics-based method can improve on a standard approach which is more likely to be already implemented [^5]. 
+
+[^5]: "Whether a non-radiomic method that is representative of the clinical practice is included in the analysis for comparison purposes. Non-radiomic methods might include semantic features, RADS or RECIST scoring, and simple volume or size evaluations. If no non-radiomics method is available, proof of improved diagnostic accuracy (e.g., improved performance of a radiologist assisted by the model’s output) or patient outcome (e.g., decision analysis, overall survival) should be provided. In any case, the comparison should be done with an appropriate statistical method to evaluate the added practical and clinical value of the model (e.g., DeLong’s test for AUC comparison, decision curve analysis for net benefit comparison, Net Reclassification Index). Furthermore, in case of multiple comparisons, multiple testing correction methods (e.g., Bonferroni) should be considered in order to reduce the false discovery rate provided that the statistical comparison is done with a frequentist approach (rather than Bayesian)."
+
+Large parts of the disagreement stem from the LLM considering that this is not the case whereas human raters believe this to be the case. As observed for examples 1 through four, we note that the LLM consistently considers models with _radiological_ features as models which make use of _radiomics_ features. This implies a deeply interesting question: is a radiological feature a radiomic feature? Depending on the source, radiomics can be as simple as quantitative features extracted from radiological images: this would place radiological features extracted by clinicians in the same field as radiomic features. However, we believe that the model operates under the definition that "quantitative radiological features" are synonyms with "radiomic features".
+
+The 4 examples where the LLM provides a negative evaluation to an overall positive evaluation by radioligsts are:
+
+1. "Development of a combined radiomics and CT feature-based model for differentiating malignant from benign subcentimeter solid pulmonary nodules" compares the radiomics approach with a clinical/radiological feature model (this clinical/radiologicl feature model included both features extracted manually from CT images by radiologists and sex, age, smoking history, and interval time between the CT scans and surgery)
+2. "Preoperative prediction of early recurrence in resectable pancreatic cancer integrating clinical, radiologic, and CT radiomics features" compares the radiomics-based approach with a clinical-radiological model
+3. "The value of LI-RADS and radiomic features from MRI for predicting microvascular invasion in hepatocellular carcinoma within 5 cm" compares LI-RADS (a standard radiological assessment for liver imaging) with radiomic features
+4. "Comparative analysis of radiomics and deep-learning algorithms for survival prediction in hepatocellular carcinoma" compares their radiomics/CNN-based approach with a clinical model; however and interestingly, the LLM recognises this but does not consider this as it does not relate to radiological characteristics.
+
+Finally, contrary to most human rater/rater groups, the LLM considers that "CT radiomics to differentiate between Wilms tumor and clear cell sarcoma of the kidney in children" did perform a comparison with a non-radiomics approach, but this comparison is not direct in the publication. Indeed, in the publication, authors rely instead on a statistical test between groups in the training data, showing that readily available radiological are not sufficiently discriminative.
+
+#### Potential improvement
+
+Inclusion of the following in the item helper: "Radiological features (features extracted by radiologists without the assistance of computer or software tools) are not radiomic features. Additionally, models incorporating exclusively clinical features without any radiological information can be considered comparisons with representative clinical standards."
+
+```{r disagreement-24}
+prompt_improvement_items[6]
+get_examples_of_disagreement(prompt_improvement_items[6])
+```
+
+### Item8
+
+*Transparent description of segmentation methodology*
+
+This item seeks to elucidate whether there is a sufficiently good description of the segmentation methodology [^6], and the LLM consistently disagrees when the majority voted "no". Here, we find that the reason stems from there being relatively distinct definitions of what constitutes a good description of such a methodology: indeed, there is always at least one rater group which considers this to be "yes".  For "CNN-based multi-modal radiomics analysis of pseudo-CT utilization in MRI-only brain stereotactic radiotherapy: a feasibility study", 3 groups considered that there was no segmentation; this is incorrect as the study features CTV/OAR deliniation, despite this being only for the validation. Whether or not this counts as segmentation in the context of radiomics is hard to understand from current guidelines. For the remaining cases (where LLM considered "no" and rater groups considered "yes"):
+
+[^6]: "Whether the rules or the method of the segmentation are defined (e.g., margin shrinkage, peri-tumoral sampling, details of segmentation regardless of whether manual, semi-automated or automated methods are used). In the case of DL-based radiomics, the segmentation can refer to the rough delineation with bounding boxes or cropping the image around a region of interest."
+
+1. "Prediction of venous trans-stenotic pressure gradient using shape features derived from magnetic resonance venography in idiopathic intracranial hypertension patients" describes the segmentation only as having been performed by "neuroradiologists", which does not provide sufficient details.
+2. "Comparative analysis of radiomics and deep-learning algorithms for survival prediction in hepatocellular carcinoma" describes the segmentation protocol as "[a] resident with two years of experience in liver imaging contoured the liver parenchyma and the largest HCC-lesion in both contrast phases using the open-source software 3D Slicer. All segmentations were verified by the same resident 4 weeks later"; in our opinion this stands as a sufficiently transparent description of segmentation, so without any further details it is in our opinion hard to understand why rater groups (but not all) did not consider this to be the case.
+3. "Deep learning-radiomics integrated noninvasive detection of epidermal growth factor receptor mutations in non-small cell lung cancer patients" provide a short note that an automatic segmentation was used and provide a link to a paper describing this. Given that the description is not available in this paper, we agree with the rater group majority ("no" is the correct evaluation).
+4. "Prediction of SBRT response in liver cancer by combining original and delta cone-beam CT radiomics: a pilot study" features a fairly complete description of the delineation method but does not mention the experience levels of each radiologist; this can be the reason why the majority considered this to be insufficient, whereas the LLM considers this to be sufficient.
+
+#### Potential improvement
+
+Inclusion of the following in the item helper: "The segmentation methodology should be detailed, including the years of experience of each radiologist and the utilized software program."
+
+```{r disagreement-8}
+prompt_improvement_items[7]
+get_examples_of_disagreement(prompt_improvement_items[7])
+```
+
+### Item19
+
+*Handling of confounding factors*
+
+Here, the disagreements are, as far as we can tell, stemming from a difficulty we also face when considering questions such as this. The helper note for this item [^7] is somewhat hard to consider in strict terms. From our understanding and also based on the ratings provided by the different rater groups, we assume that the confounders should be associated with acquisition parameters or with patient characteristics. 
+
+[^7]: "Whether potential confounding factors were analyzed, identified if present, and removed if necessary (e.g., if it has a strong influence on generalizability). These may include different distributions of patient characteristics (e.g., gender, lesion stage or grade) across sites or scanners."
+
+* Cases where the LLM considers a "yes" for Item19 while the majority of rater groups consider a "no" stem from the LLM either considering that there was an analysis of confounders. For example, in "Prediction of SBRT response in liver cancer by combining original and delta cone-beam CT radiomics: a pilot study", the authors do not control for confounders. However, they analyse how pre-SBRT therapy is associated with response typ, which the LLM considers as an analysis of confounders.
+* Cases where the LLM considers a "no" for Item19 while the majority of rater groups consider a "yes" stem from ambiguity in what controlling for confounders can be. For instance, in "The value of LI-RADS and radiomic features from MRI for predicting microvascular invasion in hepatocellular carcinoma within 5 cm", the authors include potential confounders into the model (mostly clinical and demographic variables), leading raters to largely consider a "yes" for Item19. However, no post-hoc analysis is performed, nor is an explicit analysis of the impact of confounders, leading the LLM to consider a "no" for Item19.
+
+#### Potential improvement
+
+Inclusion of the following in the item helper: "Be sure to focus on confounders stemming from the acquisition process, such as scanner type, manufacturer, or scanner parameters, or from the individual patient characteristics, such as age, weight, or comorbidities."
+
+```{r disagreement-19}
+prompt_improvement_items[8]
+get_examples_of_disagreement(prompt_improvement_items[8])
+```
+
+### Overall table
+
+```{r overall-table-disagreements}
+prompt_improvement_items %>%
+  lapply(function(x) {
+    get_examples_of_disagreement(x) %>%
+      mutate(Item = x)
+  }) %>%
+  do.call(what = rbind) %>%
+  mutate(`Human ratings` = gsub("1", "Yes", `Human ratings`),
+         `Human ratings` = gsub("0", "No", `Human ratings`),
+         `LLM rating` = gsub("1", "Yes", `LLM rating`),
+         `LLM rating` = gsub("0", "No", `LLM rating`)) %>%
+  kable
 ```
 
 ### Reanalysis with improved prompt
 
-Upon the analysis above, we use the same LLM with the data and the improved descriptions injected into the prompt. While not ideal, this will allow us to see --- to a very limited extent as we are lacking an external validation --- whether this can lead to an improvement. As highlighted in @fig-cohen-raters-llm-improved it is possible to see a clear improvement in performance. @fig-cohen-raters-conditions-llm-improved-subset, specific for the five items with suggestions above, this process can lead to systematic improvements. Additionally, an interesting effect non-linear effect here is that while the condition prompts where not altered, there was a notable improvement to the agreement between LLM and human rater groups for conditions.
+Upon the analysis above, we use the same LLM with the data and the improved descriptions injected into the prompt. While not ideal, this will allow us to see --- to a very limited extent as we are lacking an external validation --- whether this can lead to an improvement. As highlighted in @fig-cohen-raters-llm-improved it is possible to see no improvements, hinting that these sorts of analysis may benefit from more refined prompt improvement methods. @fig-cohen-raters-conditions-llm-improved-subset, specific for the eight items above, shows that there are no systematic improvements. Additionally, an interesting effect non-linear effect here is that while the condition prompts where not altered, there was a notable improvement to the agreement between LLM and human rater groups for conditions.
 
-```{r}
+```{r list-improved-prompt-results}
 improved_llm_rating_files <- list.files(
   path = "../ratings_improved/gemini/akinci-dantonoli", 
   pattern = "*json", full.names = T)
@@ -705,15 +802,15 @@ names(improved_llm_rating_files) <- lapply(
 )
 ```
 
-```{r}
+```{r read-improved-prompt-results}
 all_improved_llm_ratings <- list()
 for (f in improved_llm_rating_files) {
   title <- gsub(".json", "", str_split(f, "/")[[1]][5])
   json_data <- fromJSON(file = f)
   json_data <- json_data[!(names(json_data) %in% skip_columns)]
   json_df <- data.frame(
-    key = names(json_data[-1]), 
-    llm_changes = unlist(lapply(json_data[-1], function(x) x$rating)), title = title)
+    key = names(json_data), 
+    llm_changes = unlist(lapply(json_data, function(x) x$rating)), title = title)
   all_improved_llm_ratings[[length(all_improved_llm_ratings) + 1]] <- json_df
 }
 
@@ -737,7 +834,7 @@ fuller_df <- merge(
   by = c("key", "title"))
 ```
 
-```{r}
+```{r calculate-cohens-improved-ada2025}
 #| warning: false
 rater_combinations <- combn(all_raters, 2)
 
@@ -776,7 +873,53 @@ for (k in unique(fuller_df$key)) {
 }
 ```
 
-```{r}
+```{r calculate-cohens-improved-ada2025-subset}
+disagreement_df <- fuller_df %>%
+  rowwise() %>%
+  mutate(
+    n_disagreements = c(
+      score_agreement(`no training_1`, llm),
+      score_agreement(`no training_2`, llm),
+      score_agreement(`no training_3`, llm),
+      score_agreement(`with training_1`,llm),
+      score_agreement(`with training_2`, llm), 
+      score_agreement(`with training_3`, llm)
+    ) %>%
+      Filter(f = function(x) !is.na(x)) %>%
+      sum_na_if_empty,
+    n_disagreements_changes = c(
+      score_agreement(`no training_1`, llm_changes),
+      score_agreement(`no training_2`, llm_changes),
+      score_agreement(`no training_3`, llm_changes),
+      score_agreement(`with training_1`,llm_changes),
+      score_agreement(`with training_2`, llm_changes), 
+      score_agreement(`with training_3`, llm_changes)
+    ) %>%
+      Filter(f = function(x) !is.na(x)) %>%
+      sum_na_if_empty
+  ) %>%
+  arrange(n_disagreements)
+
+aggregated_disagreement_df <- disagreement_df %>%
+  group_by(key) %>%
+  summarise(average_disagreement_score = mean(n_disagreements, na.rm = T),
+            average_disagreement_changes_score = mean(n_disagreements_changes, 
+                                                      na.rm = T)) %>%
+  arrange(average_disagreement_score) %>%
+  mutate(Reassessed = ifelse(average_disagreement_score < threshold, "Yes", "No"))
+
+aggregated_disagreement_df %>%
+  ggplot(aes(x = average_disagreement_score,
+             y = average_disagreement_changes_score,
+             label = key,
+             colour = Reassessed)) +
+  geom_point() +
+  geom_label() +
+  geom_abline(slope = 1)
+```
+
+```{r calculate-cohens-improved-aggregate-ada2025}
+#| warning: false
 cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
@@ -831,6 +974,18 @@ cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
   scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across conditions") +
   inside_legend_theme + 
   colourbar_guides
+
+cohens_overall %>% 
+  mutate(irg = case_when(
+    grepl("LLM", rater1) & grepl("LLM", rater2) ~ "LLM-LLM",
+    grepl("LLM", rater1) & !grepl("LLM", rater2) ~ "LLM-Human",
+    grepl("LLM", rater2) & !grepl("LLM", rater1) ~ "LLM-Human",
+    .default = "Human-Human"
+  )) %>%
+  subset(irg != "LLM-LLM") %>%
+  summarise(average_llm_human = mean(estimate[irg == "LLM-Human"]),
+            average_human_human = mean(estimate[irg == "Human-Human"]),
+            p.val = wilcox.test(estimate ~ irg)$p.val)
 ```
 
 ```{r fig-cohen-raters-llm-improved}
@@ -844,13 +999,13 @@ cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
   plot_annotation(tag_levels = c("A"))
 ```
 
-```{r}
+```{r fig-cohen-raters-conditions-llm-improved-subset}
 #| fig.height: 3.0
 #| fig.width: 6.0
 #| label: fig-cohen-raters-conditions-llm-improved-subset
-#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition and only for items 23, 16, 7, 19, 13 and 10.
+#| fig-cap: Average of Cohen's Kappa calculated between different groups of raters and the LLM for each specific condition and only for items 23, 7, 16, 10, 13, 24, 8 and 19.
 do.call(rbind, all_cohens_items) %>% 
-  subset(item %in% c("Item23", "Item16", "Item7", "Item19", "Item13", "Item10")) %>%
+  subset(item %in% prompt_improvement_items) %>%
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels)) %>%
   group_by(rater1, rater2) %>%
@@ -862,7 +1017,7 @@ do.call(rbind, all_cohens_items) %>%
             .groups = "drop") %>%
   make_heatmap() +
   scale_fill_distiller(palette = 3, 
-                       name = "Average Cohen's Kappa\nacross items 23, 16, 7, 19, 13 and 10") +
+                       name = "Average Cohen's Kappa\nacross items 23, 7, 16,\n10, 13, 24, 8 and 19") +
   inside_legend_theme + 
   colourbar_guides
 ```
@@ -871,7 +1026,7 @@ do.call(rbind, all_cohens_items) %>%
 
 Finally, we consider the final quantity of METRICS (i.e. a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (@fig-corr-matrix). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (@fig-corr-matrix). Mean absolute errors are also not particularly higher than others (@fig-corr-matrix).
 
-```{r}
+```{r calculate-metrics-scores-ada2025}
 #| warning: false
 SCORES <- c(
     Item1 = 0.0368,
@@ -951,7 +1106,7 @@ for (idx in 1:ncol(rater_combinations_pretty)) {
 }
 ```
 
-```{r}
+```{r fig-corr}
 #| fig.height: 2.7
 #| fig.width: 4
 #| warning: false
@@ -974,7 +1129,7 @@ scores_df %>%
   xlab("METRICS score from human rater")
 ```
 
-```{r}
+```{r fig-corr-matrix-block}
 #| fig.height: 6
 #| fig.width: 5.5
 #| warning: false
@@ -999,35 +1154,67 @@ mae_plot <- do.call(rbind, all_corr) %>%
   inside_legend_theme + 
   colourbar_guides
 
+do.call(rbind, all_corr) %>% 
+  mutate(rater1 = factor(rater1, all_rater_labels)) %>%
+  mutate(rater2 = factor(rater2, all_rater_labels)) %>% 
+  mutate(irg = case_when(
+    grepl("LLM", rater1) & grepl("LLM", rater2) ~ "LLM-LLM",
+    grepl("LLM", rater1) & !grepl("LLM", rater2) ~ "LLM-Human",
+    grepl("LLM", rater2) & !grepl("LLM", rater1) ~ "LLM-Human",
+    .default = "Human-Human"
+  )) %>%
+  subset(irg != "LLM-LLM") %>%
+  summarise(average_llm_human = mean(estimate[irg == "LLM-Human"]),
+            average_human_human = mean(estimate[irg == "Human-Human"]),
+            p.val = wilcox.test(estimate ~ irg)$p.val)
+
 (pearsons_r_plot / mae_plot) +
   plot_annotation(tag_levels = c("A"))
 ```
 
 However, and dispite some similarities, we show that there are more statistically significant differences when performing human-LLM comparisons than when comparing human-human comparisons. We do this through a post-hoc analysis with a Tukey HSD following a statistically significant ANOVA.
 
-```{r}
-scores.aov <- aov(lm(score ~ group, data = scores_df_long))
+```{r lme-analysis-ada2025}
+library(lme4)
+library(emmeans)
+library(multcomp)
 
-print(summary(scores.aov))
+select <- dplyr::select
 
-tukey.hsd <- scores.aov %>%
-  TukeyHSD()
+model <- lmer(score ~ group + (1|title), data = scores_df_long)
 
-tukey.hsd <- tukey.hsd$group %>%
+# Get EMMs and do Tukey HSD
+emm <- emmeans(model, ~ group)
+pair_comparisons <- pairs(emm, adjust = "tukey")
+
+tukey.hsd <- pair_comparisons %>%
   as.data.frame
-comparisons <- rownames(tukey.hsd)
 
-tukey.hsd %>%
+tukey_df <- tukey.hsd %>%
   mutate(comparisons = case_when(
-    !grepl("rained", comparisons) ~ "LLM-LLM",
-    !grepl("LLM", comparisons) ~ "Human-Human",
+    !grepl("rained", contrast) ~ "LLM-LLM",
+    !grepl("LLM", contrast) ~ "Human-Human",
     .default = "Human-LLM")) %>%
+  select(-df)
+
+tukey_df_clean <- tukey_df %>%
+  mutate(value = sprintf("%.3f (%.3f)", estimate, SE),
+         p.value = ifelse(p.value < 0.0001, "<0.0001", 
+                          sprintf("%.4f", p.value))) %>%
+  select(comparisons, contrast, value, p.value) %>%
+  mutate(contrast = gsub("-", " vs. ", contrast))
+
+tukey_df_clean %>%
+  arrange(comparisons, contrast) %>% 
+  kable(format = "html")
+
+tukey_df %>%
   group_by(comparisons) %>%
   summarise(
-    `Fraction of statistically significant Tukey HSD` = sum(`p adj` < 0.05) / length(diff),
-    `Number of stat. sig. comparisons` = sum(`p adj` < 0.05),
-    `Total number of comparisons` = length(diff),
-    `Average absolute difference` = mean(abs(diff[`p adj` < 0.05])))
+    `Fraction of statistically significant Tukey HSD` = sum(p.value < 0.05) / length(estimate),
+    `Number of stat. sig. comparisons` = sum(p.value < 0.05),
+    `Total number of comparisons` = length(estimate),
+    `Average absolute difference` = mean(abs(estimate[p.value < 0.05])))
 ```
 
 ## Validation of LLM observations above with *Kocak et. al (2025)*
@@ -1036,7 +1223,7 @@ Around the time we were developing this, Kocak and others published "Radiomics f
 
 As visible below across @fig-cohen-kocak, the inter-rater agreements are relatively stable between readers and between readers and LLMs. An interesting outcome of this is that the LLM + changes do not lead to such stark improvements as before, hinting that dataset-specific prompt tuning may not be the best way of improving scores across multiple publications.
 
-```{r}
+```{r read-k2025}
 df_original <- read_csv(
   "../data/kocak/inter-rater.csv", col_types = c(rep("c", 40), "i", "i")) 
 df <- df_original %>% 
@@ -1053,8 +1240,11 @@ all_dfs$kocak <- df
 df_original
 ```
 
-```{r}
-llm_rating_files <- list.files(path = "../ratings/gemini/kocak", pattern = "*json", full.names = T)
+```{r load-files-k2025}
+llm_rating_files <- list.files(
+  path = "../ratings/gemini/kocak", 
+  pattern = "*json", 
+  full.names = T)
 names(llm_rating_files) <- lapply(
   llm_rating_files, function(x) gsub(".json", "", str_split(x, "/")[[1]][5])
 )
@@ -1065,8 +1255,8 @@ for (f in llm_rating_files) {
   json_data <- fromJSON(file = f)
   json_data <- json_data[!(names(json_data) %in% skip_columns)]
   json_df <- data.frame(
-    key = names(json_data[-1]), 
-    llm = unlist(lapply(json_data[-1], function(x) x$rating)), title = title)
+    key = names(json_data), 
+    llm = unlist(lapply(json_data, function(x) x$rating)), title = title)
   all_llm_ratings[[length(all_llm_ratings) + 1]] <- json_df
 }
 
@@ -1087,8 +1277,8 @@ for (f in improved_llm_rating_files) {
   json_data <- fromJSON(file = f)
   json_data <- json_data[!(names(json_data) %in% skip_columns)]
   json_df <- data.frame(
-    key = names(json_data[-1]), 
-    llm_changes = unlist(lapply(json_data[-1], function(x) x$rating)), title = title)
+    key = names(json_data), 
+    llm_changes = unlist(lapply(json_data, function(x) x$rating)), title = title)
   all_improved_llm_ratings[[length(all_improved_llm_ratings) + 1]] <- json_df
 }
 
@@ -1107,7 +1297,7 @@ fuller_df <- merge(
   by = c("key", "title"))
 ```
 
-```{r}
+```{r calculate-cohens-k2025}
 #| warning: false
 all_raters <- c("Rater1", "Rater2", "Rater3",
                 "llm", "llm_changes")
@@ -1153,7 +1343,8 @@ for (k in unique(fuller_df$key)) {
 }
 ```
 
-```{r}
+```{r calculate-cohens-average-k2025}
+#| warning: false
 cohens_overall <- do.call(rbind, all_cohens) %>% 
   mutate(rater1 = factor(rater1, all_raters, all_rater_labels)) %>%
   mutate(rater2 = factor(rater2, all_raters, all_rater_labels))
@@ -1196,9 +1387,21 @@ cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
   scale_fill_distiller(palette = 3, name = "Average Cohen's\nKappa across conditions") +
   inside_legend_theme + 
   colourbar_guides
+
+cohens_overall %>% 
+  mutate(irg = case_when(
+    grepl("LLM", rater1) & grepl("LLM", rater2) ~ "LLM-LLM",
+    grepl("LLM", rater1) & !grepl("LLM", rater2) ~ "LLM-Human",
+    grepl("LLM", rater2) & !grepl("LLM", rater1) ~ "LLM-Human",
+    .default = "Human-Human"
+  )) %>%
+  subset(irg != "LLM-LLM") %>%
+  summarise(average_llm_human = mean(estimate[irg == "LLM-Human"]),
+            average_human_human = mean(estimate[irg == "Human-Human"]),
+            p.val = wilcox.test(estimate ~ irg)$p.val)
 ```
 
-```{r}
+```{r fig-cohen-kocak}
 #| fig.height: 6.0
 #| fig.width: 4.2
 #| label: fig-cohen-kocak
@@ -1210,7 +1413,8 @@ cohens_average_conditions_plot <- make_heatmap(cohens_average_conditions) +
   plot_annotation(tag_levels = c("A"))
 ```
 
-```{r}
+```{r average-cohens-testing}
+#| warning: false
 scores_df_long <- fuller_df %>%
   gather(key = "group", value = "value", 
          Rater1, Rater2, Rater3,
@@ -1223,42 +1427,100 @@ scores_df_long <- fuller_df %>%
             .groups = "drop") %>%
   mutate(group = factor(group, all_raters, all_rater_labels))
 
-scores.aov <- aov(lm(score ~ group, data = scores_df_long))
+scores_df_wide <- scores_df_long %>% 
+  spread(key = "group", value = "score")
 
-print(summary(scores.aov))
+all_corr <- list()
+rater_combinations_pretty <- combn(all_rater_labels, 2)
+for (idx in 1:ncol(rater_combinations_pretty)) {
+    raters <- rater_combinations_pretty[, idx]
+    sub_df <- scores_df_wide[,c(raters[1], raters[2])] %>%
+        na.omit() %>%
+        as.matrix()
+    corr_output <- cor.test(sub_df[,1], sub_df[,2])
+    mae <- mean(abs(sub_df[,1] - sub_df[,2]))
+    mae_half_interval = sd(abs(sub_df[,1] - sub_df[,2])) / sqrt(nrow(sub_df)) * qnorm(1 - 0.025)
+    curr_df <- data.frame(estimate = corr_output$estimate,
+                          lower = corr_output$conf.int[1],
+                          upper = corr_output$conf.int[2],
+                          mae = mae,
+                          mae_lower = mae - mae_half_interval,
+                          mae_upper = mae + mae_half_interval
+    )
+    curr_df$rater1 <- raters[1]
+    curr_df$rater2 <- raters[2]
+    all_corr[[length(all_corr) + 1]] <- curr_df
+}
 
-tukey.hsd <- scores.aov %>%
-  TukeyHSD()
+do.call(rbind, all_corr) %>% 
+  mutate(rater1 = factor(rater1, all_rater_labels)) %>%
+  mutate(rater2 = factor(rater2, all_rater_labels)) %>% 
+  mutate(irg = case_when(
+    grepl("LLM", rater1) & grepl("LLM", rater2) ~ "LLM-LLM",
+    grepl("LLM", rater1) & !grepl("LLM", rater2) ~ "LLM-Human",
+    grepl("LLM", rater2) & !grepl("LLM", rater1) ~ "LLM-Human",
+    .default = "Human-Human"
+  )) %>%
+  subset(irg != "LLM-LLM") %>%
+  summarise(average_llm_human = mean(estimate[irg == "LLM-Human"]),
+            average_human_human = mean(estimate[irg == "Human-Human"]),
+            p.val = wilcox.test(estimate ~ irg)$p.val)
+```
 
-tukey.hsd <- tukey.hsd$group %>%
+```{r lme-k2025}
+scores_df_long <- fuller_df %>%
+  gather(key = "group", value = "value", 
+         Rater1, Rater2, Rater3,
+         llm, llm_changes) %>%
+  subset(grepl("Item", key)) %>%
+  mutate(multiplier = ifelse(is.na(value), NA, SCORES[key]),
+         score = multiplier * value) %>%
+  group_by(group, title) %>%
+  summarise(score = sum(score, na.rm = T) / sum(multiplier, na.rm = T),
+            .groups = "drop") %>%
+  mutate(group = factor(group, all_raters, all_rater_labels))
+
+model <- lmer(score ~ group + (1|title), data = scores_df_long)
+
+# Get EMMs and do Tukey HSD
+emm <- emmeans(model, ~ group)
+pair_comparisons <- pairs(emm, adjust = "tukey")
+
+tukey.hsd <- pair_comparisons %>%
   as.data.frame
-comparisons <- rownames(tukey.hsd)
 
-tukey.hsd %>%
+tukey_df <- tukey.hsd %>%
   mutate(comparisons = case_when(
-    !grepl("Rater", comparisons) ~ "LLM-LLM",
-    !grepl("LLM", comparisons) ~ "Human-Human",
+    !grepl("ater", contrast) ~ "LLM-LLM",
+    !grepl("LLM", contrast) ~ "Human-Human",
     .default = "Human-LLM")) %>%
+  select(-df)
+
+tukey_df_clean <- tukey_df %>%
+  mutate(value = sprintf("%.3f (%.3f)", estimate, SE),
+         p.value = ifelse(p.value < 0.0001, "<0.0001", 
+                          sprintf("%.4f", p.value))) %>%
+  select(comparisons, contrast, value, p.value) %>%
+  mutate(contrast = gsub("-", " vs. ", contrast))
+
+tukey_df_clean %>%
+  arrange(comparisons, contrast) %>% 
+  kable(format = "html")
+
+tukey_df %>%
   group_by(comparisons) %>%
   summarise(
-    `Fraction of statistically significant Tukey HSD` = sum(`p adj` < 0.05) / length(diff),
-    `Number of stat. sig. comparisons` = sum(`p adj` < 0.05),
-    `Total number of comparisons` = length(diff),
-    `Average absolute difference` = mean(abs(diff[`p adj` < 0.05])))
+    `Fraction of statistically significant Tukey HSD` = sum(p.value < 0.05) / length(estimate),
+    `Number of stat. sig. comparisons` = sum(p.value < 0.05),
+    `Total number of comparisons` = length(estimate),
+    `Average absolute difference` = mean(abs(estimate[p.value < 0.05])))
 ```
 
 ## Analysis with local LLMs
 
-To better understand how local LLMs can perform this task, we make use of a small panel of local LLMs as provided by Ollama and with their default quantizations:
+To better understand how local LLMs can perform this task, we make use of a small panel of local LLMs and LRMs as provided by Ollama and with their default quantizations.
 
-- Gemma3 (4b)
-- Gemma3 (12b)
-- Llama3.2 (3b)
-- Qwen2.5 (3b)
-- Qwen2.5 (7b)
-- Mistral (7b)
-
-```{r}
+```{r read-local-llms-results}
 all_llm_ratings <- list()
 for (rating_id in c("ratings", "ratings_improved")) {
   for (model in list.files(sprintf("../%s", rating_id), pattern = "*")) {
@@ -1271,6 +1533,7 @@ for (rating_id in c("ratings", "ratings_improved")) {
                             "Kocak (2025)", "Akinci D'Antonoli (2025)")
       paper <- gsub("\\.json", "", information[5])
       json_data <- fromJSON(file = file)
+      time_elapsed <- json_data$metadata$elapsed_time
       if (is.null(json_data$metadata$error)) {
         json_data <- json_data[!(names(json_data) %in% skip_columns)]
         json_df <- data.frame(
@@ -1279,7 +1542,43 @@ for (rating_id in c("ratings", "ratings_improved")) {
           title = paper,
           rater_llm = ifelse(rating_id == "ratings", "llm", "llm_changes"),
           set = paper_group, 
-          model = model)
+          model = model,
+          time_elapsed = time_elapsed,
+          error = NA)
+        all_llm_ratings[[length(all_llm_ratings) + 1]] <- json_df
+      } else {
+        worked <- F
+        try(
+          {
+            json_data <- fromJSON(paste0(json_data$raw_output, '"}'))
+            json_data <- json_data[!(names(json_data) %in% skip_columns)]
+            worked <- T
+          },
+          silent = T
+        )
+        if (worked == T) {
+          json_df <- data.frame(
+            key = names(json_data), 
+            value_llm = unlist(lapply(json_data, function(x) x$rating)), 
+            title = paper,
+            rater_llm = ifelse(rating_id == "ratings", "llm", "llm_changes"),
+            set = paper_group, 
+            model = model,
+            time_elapsed = time_elapsed,
+            error = "Recoverable")
+          
+        } else {
+          json_df <- data.frame(
+            key = NA,
+            value_llm = NA,
+            title = paper,
+            rater_llm = ifelse(rating_id == "ratings", "llm", "llm_changes"),
+            set = paper_group,
+            model = model,
+            time_elapsed = time_elapsed,
+            error = "Irrecoverable"
+          )
+        }
         all_llm_ratings[[length(all_llm_ratings) + 1]] <- json_df
       }
     }
@@ -1321,7 +1620,7 @@ complete_comparisons <- merge(
 complete_comparisons
 ```
 
-```{r}
+```{r local-llms-cohens}
 cohens_for_all <- complete_comparisons %>%
   group_by(model, rater, rater_llm, set) %>%
   summarise(
@@ -1342,6 +1641,24 @@ cohens_for_all <- complete_comparisons %>%
       "Gemini")) %>%
   mutate(model_label = gsub("Qwq", "QwQ", model_label)) 
 
+times_for_all <- complete_comparisons %>%
+  group_by(model, rater_llm) %>%
+  summarise(
+    average_time = mean(time_elapsed),
+    min_time = min(time_elapsed),
+    max_time = max(time_elapsed),
+    .groups = "drop") %>%
+  rowwise() %>%
+  rowwise() %>%
+  mutate(model_name = gsub("-[0-9]+b.*", "", model),
+         param_count = str_match(model, "[0-9]+(?=b)")[[1]]) %>%
+  mutate(
+    model_label = ifelse(
+      model != "gemini",
+      sprintf("%s (%sb)", str_to_title(model_name), param_count),
+      "Gemini")) %>%
+  mutate(model_label = gsub("Qwq", "QwQ", model_label)) 
+
 model_label_order <- str_sort(unique(cohens_for_all$model_label), numeric = T)
 model_label_order <- model_label_order[model_label_order != "Gemini"]
 model_label_order <- c(model_label_order, "Gemini")
@@ -1349,15 +1666,16 @@ model_label_order <- c(model_label_order, "Gemini")
 cohens_for_all$model_label <- factor(
   cohens_for_all$model_label,
   model_label_order)
-```
 
-```{r}
-#| fig.height: 4
-#| fig.width: 6.5
-cohens_for_all %>%
-  subset(rater_llm == "llm_changes") %>%
+times_for_all$model_label <- factor(
+  times_for_all$model_label,
+  model_label_order)
+
+cohens_for_all <- cohens_for_all %>%
   mutate(
-    model_provider = gsub("[0-9\\.]+", "", gsub("-Small", "", gsub(" \\(.*\\)", "", model_label)))) %>%
+    model_provider = gsub(
+      "[0-9\\.]+", "", 
+      gsub("-Small", "", gsub(" \\(.*\\)", "", model_label)))) %>%
   mutate(model_provider = case_when(
     model_provider == "Deepseek-R" ~ "Deepseek",
     grepl("Phi", model_provider) ~ "Microsoft",
@@ -1372,19 +1690,199 @@ cohens_for_all %>%
       .default = "Open LLM"
     ) 
   ) %>%
+  group_by(rater) %>%
+  mutate(ranking = rank(-estimate))
+
+times_for_all <- times_for_all %>%
+  mutate(
+    model_provider = gsub(
+      "[0-9\\.]+", "", 
+      gsub("-Small", "", gsub(" \\(.*\\)", "", model_label)))) %>%
+  mutate(model_provider = case_when(
+    model_provider == "Deepseek-R" ~ "Deepseek",
+    grepl("Phi", model_provider) ~ "Microsoft",
+    grepl("QwQ|Qwen", model_provider) ~ "Alibaba",
+    grepl("Llama", model_provider) ~ "Meta",
+    grepl("Gemma|Gemini", model_label) ~ "Google",
+    .default = model_provider)) %>%
+  mutate(
+    model_type = case_when(
+      grepl("QwQ|R1|Reasoning", model_label) ~ "Open LRM",
+      grepl("Gemini", model_label) ~ "Commercial",
+      .default = "Open LLM"
+    ) 
+  )
+```
+
+```{r local-llms-cohens-subset}
+cohens_for_all_plot_df <- cohens_for_all %>%
+  subset(rater_llm == "llm_changes")
+
+times_for_all_plot_df <- times_for_all %>%
+  subset(rater_llm == "llm_changes")
+```
+
+```{r calculate-metrics-df}
+open_llm_cohens_plot <- cohens_for_all_plot_df %>%
   ggplot(aes(x = estimate, y = model_label, colour = set, shape = model_type)) +
-  geom_vline(xintercept = 0) +
+  geom_vline(xintercept = 0, alpha = 0.5) +
   geom_point(position = position_dodge(width = 0.10)) +
   theme_classic_2(base_size = 8) +
   scale_colour_brewer(palette = "Set1", name = "Ratings source") +
-  xlab("Cohen's Kappa") +
+  xlab("Cohen's Kappa\n(higher = better)") +
   ylab("") + 
   facet_grid(model_provider ~ ., scales = "free", space = "free") +
   theme(legend.key.size = unit(0.2, "line"),
         strip.text.y = element_text(angle = 0)) +
   scale_shape_manual(values = c(3, 2, 17), name = "Model type") +
-  guides(colour = guide_legend(ncol = 1),
-         shape = guide_legend(ncol = 1))
+  guides(colour = guide_legend(ncol = 1,
+                               direction = "vertical"),
+         shape = guide_legend(ncol = 1,
+                              direction = "vertical"))
+
+open_llm_ranking_plot <- cohens_for_all_plot_df %>%
+  group_by(model_label, model_type, model_provider) %>%
+  summarise(min_ranking = min(ranking),
+            max_ranking = max(ranking),
+            ranking = median(ranking)) %>%
+  ggplot(aes(x = ranking, y = model_label, 
+             xmin = min_ranking, xmax = max_ranking, 
+             shape = model_type)) +
+  geom_vline(xintercept = 1, alpha = 0.5) +
+  geom_point(position = position_dodge(width = 0.10)) +
+  geom_errorbarh(position = position_dodge(width = 0.10),
+                 height = 0) +
+  theme_classic_2(base_size = 8) +
+  scale_colour_brewer(palette = "Set1", name = "Ratings source") +
+  xlab("Ranking\n(lower = better)") +
+  ylab("") + 
+  facet_grid(model_provider ~ ., scales = "free", space = "free") +
+  theme(legend.key.size = unit(0.2, "line"),
+        strip.text.y = element_text(angle = 0)) +
+  scale_shape_manual(values = c(3, 2, 17), name = "Model type") +
+  guides(shape = guide_legend(ncol = 1, direction = "vertical"))
+
+open_llm_time_plot <- times_for_all_plot_df %>%
+  ggplot(aes(x = average_time, 
+             y = model_label,
+             xmin = min_time,
+             xmax = max_time)) +
+  geom_bar(stat = "identity", fill = "grey90", colour = "black") +
+  geom_errorbarh(height = 0) +
+  theme_classic_2(base_size = 8) +
+  xlab("Time elapsed (s)") +
+  ylab("") + 
+  facet_grid(model_provider ~ ., scales = "free", space = "free") +
+  theme(legend.key.size = unit(0.2, "line"),
+        strip.text.y = element_text(angle = 0)) +
+  coord_cartesian(expand = F) +
+  scale_x_continuous(breaks = c(0, 150, 300))
+
+times_for_all_plot_df
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 5
+#| fig.cap: Comparison of Cohen's kappa for LLM and LLM + changes.
+#| label: fig-local-comparison
+cohens_comparison_llm_prompt <- cohens_for_all %>% 
+  select(-lower, -upper, -ranking) %>% 
+  spread(key = rater_llm, value = estimate) %>%
+  subset(model != "gemini")
+
+wilcox.test(
+  cohens_comparison_llm_prompt$llm,
+  cohens_comparison_llm_prompt$llm_changes,
+  paired = T)
+
+cohens_comparison_llm_prompt %>% 
+  ggplot(aes(x = llm, y = llm_changes, colour = set, shape = model_type)) + 
+  geom_point() +
+  geom_abline(slope = 1) + 
+  xlab("LLM") + ylab("LLM + changes") + 
+  theme_classic_2(base_size = 8) + 
+  theme(legend.key.height = unit(0, "line")) + 
+  scale_color_brewer(palette = "Set1", name = "Ratings source") + 
+  scale_shape_manual(values = c(2, 17), name = "Model type")
+```
+
+### Error codes
+
+```{r fig-local-errors}
+#| fig.cap: Number of recoverable or irrecoverable errors stratified by LLM.
+#| label: fig-local-errors
+open_llm_error_plot_df <- all_llm_df %>%
+  select(title, rater_llm, error, model) %>%
+  distinct() %>%
+  group_by(model, rater_llm, error) %>%
+  summarise(N = length(unique(title))) %>%
+  group_by(model, rater_llm) %>%
+  mutate(total = sum(N)) %>%
+  mutate(error = ifelse(is.na(error), "No error", error)) %>%
+  mutate(model_name = gsub("-[0-9]+b.*", "", model),
+         param_count = str_match(model, "[0-9]+(?=b)")[[1]]) %>%
+  mutate(
+    model_label = ifelse(
+      model != "gemini",
+      sprintf("%s (%sb)", str_to_title(model_name), param_count),
+      "Gemini")) %>%
+  mutate(model_label = gsub("Qwq", "QwQ", model_label)) %>%
+  mutate(rater_llm = ifelse(rater_llm == "llm", "LLM", "LLM + changes"))
+
+open_llm_error_plot <- open_llm_error_plot_df %>%
+  ggplot(
+    aes(x = N / total, y = model_label, fill = error)
+  ) + 
+  geom_bar(stat = "identity", position = "stack", colour = "black") + 
+  xlab("Fraction of cases") + 
+  ylab("Model") + 
+  facet_wrap(~ rater_llm) + 
+  theme_classic_2(base_size = 8) +
+  scale_fill_brewer(palette = "Set3",
+                    breaks = c("No error", "Recoverable", "Irrecoverable"),
+                    name = "Error status") + 
+  coord_cartesian(expand = F) + 
+  theme(panel.spacing.x = unit(2.0, "line"))
+
+open_llm_error_plot_df %>%
+  subset(error != "No error") %>%
+  select(-model_label, -param_count, -model_name)
+open_llm_error_plot
+```
+
+### Overall plot
+
+```{r make-local-overall-figure}
+open_llm_ranking_cohens_plot <- 
+  (
+    open_llm_ranking_plot + 
+      theme(strip.text.y = element_blank())
+    ) + 
+  (
+    open_llm_cohens_plot + 
+      theme(legend.position = "bottom",
+            strip.text.y = element_blank(),
+            axis.text.y = element_blank())
+    ) + 
+  (
+    open_llm_time_plot + 
+      theme(axis.text.y = element_blank())
+  ) +
+  plot_layout(guides = 'collect', widths = c(0.8, 1.0, 0.4)) &
+  theme(legend.position = "bottom")
+```
+
+```{r fig-local-llm}
+#| fig.height: 5
+#| fig.width: 6.5
+#| fig.cap: Comparison of Cohen’s Kappa with different raters/rater groups and elapsed time for open large language models (LLMs), large reasoning models (LRMs) and Gemini (commercial alternative). A – Median ranking (triangles or crosses) and minimum/maximum rankings (horizontal line) across all rater/rater groups. B – Human-LLM Cohen’s kappa for each rater/rater group. C – Average (bars) and minimum/maximum (horizontal lines) elapsed time in seconds for all models. For A and B, shapes relate to whether the model was commercial, an open LLM or an open LRM, while colours (red and blue) refer to the paper group. The size of all open models is specified between parentheses after the name of each model.
+#| label: fig-local-llm
+
+#| fig.height: 5
+#| fig.width: 6.5
+open_llm_ranking_cohens_plot +
+  plot_annotation(tag_levels = "A")
 ```
 
 # Conclusion and where to go from here
@@ -1392,8 +1890,9 @@ cohens_for_all %>%
 This was a somewhat quick analysis prompted by a concrete question --- can we facilitate what are oftentimes cumbersome analyses by getting the assistance of an LLM? The answer to this --- at least what this analysis shows --- is that:
 
 1.  There is a reasonable amount of agreement between LLMs and human rater groups, but there is also a reasonable amount of differences between human rater groups and LLMs. This is not absurd as this system in particular --- METRICS --- relies quite heavily on expert knowledge. The paper that originated this short report highlights, to an extent, the differences in subjective evaluation associated with human raters @Akinci-D-Antonoli2025-ep. While more objective, LLM-based assessments may end up being too different. However, our confirmation using @Kocak2025-uj does show that these findings --- that there is a good number of similarities between human raters and LLMs --- generalise to other datasets.
-2.  Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small. Our analysis on @Kocak2025-uj showed that prompt tuning using small sample sizes is likely to result in improvements which lead to limited improvements. However, both the tuning and its validation used relatively small dataset sizes. Perhaps automatic prompt tuning can improve this.
+2.  Improvements are possible from relatively simple analyses which place the human in the loop, suggesting that more data and further optimization can lead to a robust automated METRICS assessment system. While automated prompt engineering could be an alternative, there is a significant amount of work which goes into the annotation of these manuscripts, making these approaches --- which require a good number of examples --- quite tricky to handle when sample sizes are small. Our analysis on @Kocak2025-uj showed that prompt tuning using small sample sizes is likely to result in observable but limited improvements However, both the tuning and its validation used relatively small dataset sizes. Perhaps automatic prompt tuning can improve this.
+3. Open LLMs can pave the way for a more privacy-preserving way of using Auto-METRICS. Phi4-Reasoning, in particular, is remarkably powerful at this, out-ranking Gemini Flash 2.0. The only drawback is in terms of compute access (not everyone has access to a GPU) and time - this solutions takes significantly longer (a little over 10 seconds becomes over 2 minutes on average). 
 
-```{r}
+```{r session-info}
 sessionInfo()
 ```
