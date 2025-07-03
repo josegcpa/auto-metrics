@@ -1,3 +1,8 @@
+"""
+A tool used to perform human-assisted scrapping. It takes what the user copies
+and writes it down into a folder as an individual file.
+"""
+
 import csv
 import pyperclip
 from pathlib import Path
