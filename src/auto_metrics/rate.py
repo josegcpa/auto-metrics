@@ -1,3 +1,7 @@
+"""
+CLI tool to rate an article using METRICS.
+"""
+
 def main():
     import os
     import argparse
