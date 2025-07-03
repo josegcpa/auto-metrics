@@ -1,3 +1,8 @@
+"""
+Functions to query a model for a given prompt and article text using HuggingFace.
+These have not been widely tested and should be used with caution.
+"""
+
 import outlines
 import torch
 from tqdm import tqdm
@@ -31,6 +36,19 @@ def query_model(
     model_str: str,
     max_tokens: int | None = None,
 ):
+    """
+    Query a model for a given prompt and article text.
+
+    Args:
+        prompt (str): The prompt to query the model with.
+        article_text (str): The article text to query the model with.
+        data_model (BaseModel): The data model to use for the query.
+        model_str (str): The model to use for the query.
+        max_tokens (int | None): The maximum number of tokens to generate.
+
+    Returns:
+        str: The response from the model.
+    """
     query = prompt + "\n# Article text\n\n{article}".format(
         article=article_text
     )

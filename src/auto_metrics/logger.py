@@ -1,3 +1,7 @@
+"""
+Contains generic logging utilities.
+"""
+
 import logging
 
 logger = logging.getLogger("Auto-METRICS")

@@ -1,3 +1,7 @@
+"""
+Functions to generate a prompt for rating articles using METRICS.
+"""
+
 from .metrics import Item, Condition
 from .logger import logger
 
@@ -68,6 +72,19 @@ def format_generic(
     comment: str,
     name: str | None = None,
 ) -> str:
+    """
+    Generic formatting for items and conditions.
+
+    Args:
+        identifier (str): The identifier for the item or condition (e.g. "Item" or "Condition").
+        number (int): The number of the item or condition.
+        description (str): The description of the item or condition.
+        comment (str): The comment of the item or condition.
+        name (str, optional): The name of the item or condition.
+
+    Returns:
+        str: The formatted string.
+    """
     if name is None:
         return f"* {identifier}{number}: {description} - {comment}"
     else:
@@ -80,6 +97,22 @@ def make_prompt(
     prompt_type: str = "default",
     with_names: bool = False,
 ) -> str:
+    """
+    Make a prompt for rating articles using METRICS.
+
+    Args:
+        item_list (dict[str, list[Item]]): The list of items (as ``Item``
+            objects) grouped by section.
+        conditions (list[Condition]): The list of conditions (as ``Condition``
+            objects).
+        prompt_type (str, optional): The type of prompt to generate. Defaults to
+            "default".
+        with_names (bool, optional): Whether to include names in the prompt.
+            Defaults to False.
+
+    Returns:
+        str: The prompt.
+    """
     if prompt_type == "default":
         prompt_complete = BASE_PROMPT + "\n"
     elif prompt_type == "reasoning":

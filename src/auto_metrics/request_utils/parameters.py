@@ -2,9 +2,12 @@ from dataclasses import dataclass
 
 @dataclass
 class Parameters:
-    TEMPERATURE = 0.0
-    TOP_P = 0.001
-    TOP_K = 5
-    SEED = 42
-    FREQUENCY_PENALTY = 0.0
-    PRESENCE_PENALTY = 0.0
+    """
+    Parameters for the requests.
+    """
+    TEMPERATURE: float = 0.0
+    TOP_P: float = 0.001
+    TOP_K: int = 5
+    SEED: int = 42
+    FREQUENCY_PENALTY: float = 0.0
+    PRESENCE_PENALTY: float = 0.0

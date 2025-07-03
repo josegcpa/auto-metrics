@@ -1,3 +1,7 @@
+"""
+Data models and functions for ratings.
+"""
+
 from enum import Enum
 from pydantic import create_model
 from pydantic import BaseModel, Field
@@ -6,47 +10,74 @@ from .logger import logger
 
 
 class RatingEnum(Enum):
+    """
+    Enum for ratings.
+    """
     yes = "yes"
     no = "no"
 
 
 class RatingWithNAEnum(Enum):
+    """
+    Enum for ratings with n/a.
+    """
     yes = "yes"
     no = "no"
     na = "n/a"
 
 
 class Rating(BaseModel):
+    """
+    Data model for ratings.
+    """
     rating: RatingEnum
     reason: str
 
 
 class RatingWithNA(BaseModel):
+    """
+    Data model for ratings with n/a.
+    """
     rating: RatingWithNAEnum
     reason: str
 
 
 class RatingReasoning(BaseModel):
+    """
+    Data model for ratings with reasoning.
+    """
     criteria_description: str
     reasoning: list[str]
     rating: RatingEnum
 
 
 class RatingWithNAReasoning(BaseModel):
+    """
+    Data model for ratings with reasoning and n/a.
+    """
     criteria_description: str
     reasoning: list[str]
     rating: RatingWithNAEnum
 
 
 class RatingNoReason(BaseModel):
+    """
+    Data model for ratings with no reasoning.
+    """
     rating: RatingEnum
 
 
 class RatingWithNANoReason(BaseModel):
+    """
+    Data model for ratings with no reasoning and n/a.
+    """
     rating: RatingWithNAEnum
 
 
 class Metrics(BaseModel):
+    """
+    Data model for METRICS.
+    """
     Summary: str
     Item1: Rating
     Item2: Rating
@@ -90,7 +121,21 @@ def dynamically_generate_model(
     conditions: list[Condition] | None = None,
     with_names: bool = False,
     reasoning: bool = False,
-):
+) -> BaseModel:
+    """
+    Dynamically generate a model for ratings. This can be used to extend
+    Auto-METRICS to other generic standardised METRICS which are based on yes/no
+    ratings and on conditional ratings.
+
+    Args:
+        items (list[Item]): List of items.
+        conditions (list[Condition]): List of conditions.
+        with_names (bool): Whether to include names in the model.
+        reasoning (bool): Whether to include reasoning in the model.
+
+    Returns:
+        BaseModel: The generated data model.
+    """
     logger.info(
         f"Generating answers with {len(items)} items, {len(conditions)} conditions, "
         f"with_names={with_names}, reasoning={reasoning}"
@@ -129,8 +174,18 @@ def dynamically_generate_model(
     return create_model("Criteria", **model)
 
 
-def export_model_to_json(data_model: BaseModel):
-    def dig_dict(d, ref_dict: dict):
+def export_model_to_json(data_model: BaseModel) -> dict:
+    """
+    Export a data model to a JSON schema.
+
+    Args:
+        data_model (BaseModel): The data model to export.
+
+    Returns:
+        dict: The JSON schema.
+    """
+
+    def dig_dict(d, ref_dict: dict) -> dict:
         if isinstance(d, dict):
             if "enum" in d:
                 d["type"] = "string"
@@ -153,7 +208,16 @@ def export_model_to_json(data_model: BaseModel):
     return model_schema
 
 
-def get_weights(flat_items: list[Item]):
+def get_weights(flat_items: list[Item]) -> dict[str, float]:
+    """
+    Get the weights of the items.
+
+    Args:
+        flat_items (list[Item]): The list of flattened items.
+
+    Returns:
+        dict[str, float]: The weights of the items.
+    """
     return {f"Item{item.number}": item.weight for item in flat_items}
 
 

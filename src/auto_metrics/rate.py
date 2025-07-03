@@ -1,6 +1,3 @@
-from pydantic import ValidationError
-
-
 def main():
     import os
     import argparse
@@ -8,6 +5,7 @@ def main():
     import time
     import logging
     from pathlib import Path
+    from pydantic import ValidationError
 
     from auto_metrics.logger import logger
     from auto_metrics.metrics import load_config
@@ -15,7 +13,9 @@ def main():
     from auto_metrics.ratings import dynamically_generate_model
     from auto_metrics.prompt import make_prompt
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Rate an article using METRICS"
+    )
     parser.add_argument(
         "--article_path",
         type=str,

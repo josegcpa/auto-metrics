@@ -1,3 +1,8 @@
+"""
+Functions to query a model for a given prompt and article text using Google 
+Gemini.
+"""
+
 import os
 from google import genai
 from google.genai.types import GenerateContentConfig
@@ -5,17 +10,34 @@ from pydantic import BaseModel
 from .parameters import Parameters
 
 
-def query_model(prompt: str, article_text: str, data_model: BaseModel):
+def query_model(
+    prompt: str,
+    article_text: str,
+    data_model: BaseModel,
+    parameters: Parameters = Parameters(),
+) -> str:
+    """
+    Query a model for a given prompt and article text.
+
+    Args:
+        prompt (str): The prompt to query the model with.
+        article_text (str): The article text to query the model with.
+        data_model (BaseModel): The data model to use for the query.
+        parameters (Parameters): The parameters to use for the query.
+
+    Returns:
+        str: The response from the model.
+    """
     query = prompt + "\n# Article text\n\n{article}".format(
         article=article_text
     )
     config = GenerateContentConfig(
-        temperature=Parameters.TEMPERATURE,
-        top_p=Parameters.TOP_P,
-        top_k=Parameters.TOP_K,
-        seed=Parameters.SEED,
-        frequency_penalty=Parameters.FREQUENCY_PENALTY,
-        presence_penalty=Parameters.PRESENCE_PENALTY,
+        temperature=parameters.TEMPERATURE,
+        top_p=parameters.TOP_P,
+        top_k=parameters.TOP_K,
+        seed=parameters.SEED,
+        frequency_penalty=parameters.FREQUENCY_PENALTY,
+        presence_penalty=parameters.PRESENCE_PENALTY,
         response_mime_type="application/json",
         response_schema=data_model,
     )

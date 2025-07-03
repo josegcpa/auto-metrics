@@ -1,3 +1,7 @@
+"""
+Make a static app for rating articles using METRICS.
+"""
+
 SOURCE_DIR = "src/auto_metrics/static_app_templates"
 
 if __name__ == "__main__":
