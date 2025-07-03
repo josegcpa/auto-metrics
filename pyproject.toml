@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Automatic METRICS assessment using large language models."
 readme = "README.md"
 requires-python = ">=3.12"
+authors = [
+    { name = "José Guilherme de Almeida", email = "jose.gcp.almeida@gmail.com" }
+]
 dependencies = [
     "beautifulsoup4>=4.13.3",
     "google-genai>=1.8.0",
