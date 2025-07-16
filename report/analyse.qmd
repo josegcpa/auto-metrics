@@ -1024,7 +1024,7 @@ do.call(rbind, all_cohens_items) %>%
 
 ## Analysing whether radiomic scores are similar between different rater groups and LLMs
 
-Finally, we consider the final quantity of METRICS (i.e. a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (@fig-corr-matrix). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (@fig-corr-matrix). Mean absolute errors are also not particularly higher than others (@fig-corr-matrix).
+Finally, we consider the final quantity of METRICS (i.e. a single score between 0 and 1 which quantifies how much a manuscript follows this rating). We can see that LLM-based assessments tend to over-estimate scores when relative to some readers (@fig-corr-matrix-block). However, when measuring correlations between all human rater groups and between LLMs and all human rater groups, these are relatively similar, hinting that there is similar variability between other reader groups (@fig-corr-matrix-block). Mean absolute errors are also not particularly higher than others (@fig-corr-matrix-block).
 
 ```{r calculate-metrics-scores-ada2025}
 #| warning: false
@@ -1215,6 +1215,49 @@ tukey_df %>%
     `Number of stat. sig. comparisons` = sum(p.value < 0.05),
     `Total number of comparisons` = length(estimate),
     `Average absolute difference` = mean(abs(estimate[p.value < 0.05])))
+```
+
+## LLM vs. Majority 
+
+A reviewer requested a "reference standard" which does not exist: due to the nature of metrics, such a reference standard is dependent on the rater. However, we have here calculated a pseudo-consensus for each item in each publication and use that as a "reference standard". Below we present the Cohen's Kappa/MAE for those results.
+
+```{r}
+average_ratings <- fuller_df  %>% 
+  rowwise() %>%
+  mutate(
+    Average = mean(
+      c(`no training_1`, `no training_2`, `no training_3`,
+        `with training_1`, `with training_2`, `with training_3`),
+      na.rm = T) > 0.5)%>%
+  mutate(Average = as.numeric(Average)) %>%
+  subset(!grepl("Condition", key))
+
+average_scores <- average_ratings %>%
+  ungroup() %>%
+  select(title, key, Average, llm, llm_changes) %>%
+  gather(key = "rater", value = "value", Average, llm, llm_changes) %>%
+  rowwise() %>%
+  mutate(multiplier = SCORES[key],
+         score = multiplier * value) %>%
+  group_by(title, rater) %>%
+  summarise(score = sum(score, na.rm = T) / sum(multiplier, na.rm = T),
+            .groups = "drop") %>%
+  spread(key = "rater", value = "score")
+
+na_idxs <- is.na(average_ratings$llm) | is.na(average_ratings$Average)
+cohen.kappa(as.matrix(average_ratings[!na_idxs,][,c("llm", "Average")]))
+
+na_idxs <- is.na(average_ratings$llm_changes) | is.na(average_ratings$Average)
+cohen.kappa(as.matrix(average_ratings[!na_idxs,][,c("llm_changes", "Average")]))
+
+average_scores %>%
+  summarise(`LLM MAE` = mean(abs(llm - Average)),
+            `LLM + changes MAE` = mean(abs(llm_changes - Average)))
+```
+
+```{r}
+cor.test(average_scores$llm, average_scores$Average)
+cor.test(average_scores$llm_changes, average_scores$Average)
 ```
 
 ## Validation of LLM observations above with *Kocak et. al (2025)*
@@ -1514,6 +1557,46 @@ tukey_df %>%
     `Number of stat. sig. comparisons` = sum(p.value < 0.05),
     `Total number of comparisons` = length(estimate),
     `Average absolute difference` = mean(abs(estimate[p.value < 0.05])))
+```
+
+### LLM vs. Majority
+
+```{r}
+average_ratings <- fuller_df  %>% 
+  rowwise() %>%
+  mutate(
+    Average = mean(
+      c(`Rater1`, `Rater2`, `Rater3`),
+      na.rm = T) > 0.5)%>%
+  mutate(Average = as.numeric(Average)) %>%
+  subset(!grepl("Condition", key))
+
+average_scores <- average_ratings %>%
+  ungroup() %>%
+  select(title, key, Average, llm, llm_changes) %>%
+  gather(key = "rater", value = "value", Average, llm, llm_changes) %>%
+  rowwise() %>%
+  mutate(multiplier = SCORES[key],
+         score = multiplier * value) %>%
+  group_by(title, rater) %>%
+  summarise(score = sum(score, na.rm = T) / sum(multiplier, na.rm = T),
+            .groups = "drop") %>%
+  spread(key = "rater", value = "score")
+
+na_idxs <- is.na(average_ratings$llm) | is.na(average_ratings$Average)
+cohen.kappa(as.matrix(average_ratings[!na_idxs,][,c("llm", "Average")]))
+
+na_idxs <- is.na(average_ratings$llm_changes) | is.na(average_ratings$Average)
+cohen.kappa(as.matrix(average_ratings[!na_idxs,][,c("llm_changes", "Average")]))
+
+average_scores %>%
+  summarise(`LLM MAE` = mean(abs(llm - Average)),
+            `LLM + changes MAE` = mean(abs(llm_changes - Average)))
+```
+
+```{r}
+cor.test(average_scores$llm, average_scores$Average)
+cor.test(average_scores$llm_changes, average_scores$Average)
 ```
 
 ## Analysis with local LLMs
